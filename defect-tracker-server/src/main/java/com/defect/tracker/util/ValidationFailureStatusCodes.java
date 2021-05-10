@@ -23,4 +23,16 @@ public class ValidationFailureStatusCodes {
 	public String getProNameAlreadyExists() {
 		return proNameAlreadyExists;
 	}
+	@Value("${validation.defect.AlreadyExists}")
+	private String ModNameAlreadyExists;
+
+	public String getModNameAlreadyExists() {
+		return ModNameAlreadyExists;
+	}
+
+	public void setModNameAlreadyExists(String modNameAlreadyExists) {
+		ModNameAlreadyExists = modNameAlreadyExists;
+	}
+	
+	
 }
