@@ -23,4 +23,31 @@ public class ValidationFailureStatusCodes {
 	public String getProNameAlreadyExists() {
 		return proNameAlreadyExists;
 	}
+
+	@Value("${validation.designation.AlreadyExists}")
+	private String desigNameAlreadyExists;
+
+	public String getDesigNameAlreadyExists() {
+		return desigNameAlreadyExists;
+	}
+
+	public void setDesigNameAlreadyExists(String desigNameAlreadyExists) {
+		this.desigNameAlreadyExists = desigNameAlreadyExists;
+	}
+	@Value("${validation.designation.existsById}")
+	private String existsById;
+
+	public String getExistsById() {
+		return existsById;
+	}
+
+	public void setExistsById(String existsById) {
+		this.existsById = existsById;
+	}
+	
+	
+
+	
+	
+	
 }
