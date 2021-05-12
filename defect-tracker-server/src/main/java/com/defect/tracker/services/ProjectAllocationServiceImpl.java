@@ -11,10 +11,23 @@ public class ProjectAllocationServiceImpl implements ProjectAllocationService {
 	@Autowired
 	private ProjectAllocationRepository projectAllocationRepository;
 
-	// ------------------ Create Project Allocation-------------------------//
+	// ----------------- Create Project Allocation ----------------- //
 	@Override
 	public void createProjectAllocation(ProjectAllocation projectAllocation) {
 		projectAllocationRepository.save(projectAllocation);
+
+	}
+
+	// ----------------- Project Allocation Exists By Id ----------------- //
+	@Override
+	public boolean existsById(Long id) {
+		return projectAllocationRepository.existsById(id);
+	}
+
+	// ----------------------- Delete By Id -----------------------//
+	@Override
+	public void deleteById(Long id) {
+		projectAllocationRepository.deleteById(id);
 
 	}
 

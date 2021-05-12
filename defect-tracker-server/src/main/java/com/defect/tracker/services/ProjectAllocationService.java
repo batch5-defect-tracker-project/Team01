@@ -6,4 +6,8 @@ public interface ProjectAllocationService {
 
 	public void createProjectAllocation(ProjectAllocation projectAllocation);
 
+	public boolean existsById(Long id);
+
+	public void deleteById(Long id);
+
 }
