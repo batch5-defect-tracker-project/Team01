@@ -2,6 +2,7 @@ package com.defect.tracker.controller;
 
 import java.util.List;
 
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -62,6 +64,14 @@ public class DesignationController {
 		return new ResponseEntity<Object>(Constants.DELETED_SUCCESS,HttpStatus.OK);
 	}
 	
+	@GetMapping(value = EndpointURI.DESIGNATION_BY_ID)
+	public ResponseEntity<Object> findDesignationById(@PathVariable Long id){
+		if(designationService.existsById(id)) {
+			return new ResponseEntity<Object>(designationService.getDesignationById(id),HttpStatus.OK);
+		}
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_EXISTS_BY_ID,
+				validationFailureStatusCodes.getDesignationById()), HttpStatus.BAD_REQUEST);
+	}
 	
 	
 	

@@ -42,4 +42,12 @@ public class DesignationServiceImpl implements DesignationService{
 		
 	}
 
+	@Override
+	public Object getDesignationById(Long id) {
+		
+		return designationRepository.findById(id);
+	}
+
+	
+
 }

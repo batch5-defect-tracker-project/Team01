@@ -45,6 +45,17 @@ public class ValidationFailureStatusCodes {
 		this.existsById = existsById;
 	}
 	
+	@Value("${validation.designation.designationById}")
+	private String designationById;
+
+	public String getDesignationById() {
+		return designationById;
+	}
+
+	public void setDesignationById(String designationById) {
+		this.designationById = designationById;
+	}
+
 	
 
 	

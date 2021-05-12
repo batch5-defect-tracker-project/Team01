@@ -18,5 +18,9 @@ public boolean isDesigNameAlreadyExist(String name);
 	public boolean existsById(Long id);
 	
 	public void deleteById(Long id);
+	
+	public Object getDesignationById(Long id);
+	
+	
 
 }
