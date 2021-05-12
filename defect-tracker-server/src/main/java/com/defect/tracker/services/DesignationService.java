@@ -14,5 +14,9 @@ public boolean isDesigNameAlreadyExist(String name);
 	public void createDesignation(Designation designation);
 	
 	public List <Designation> getAllDesignation();
+	
+	public boolean existsById(Long id);
+	
+	public void deleteById(Long id);
 
 }
