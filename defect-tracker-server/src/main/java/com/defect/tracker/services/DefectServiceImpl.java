@@ -30,6 +30,17 @@ public class DefectServiceImpl implements DefectService {
 		return defectRepository.findAll();
 	}
 
+	@Override
+	public boolean existsById(Long id) {
+		return defectRepository.existsById(id);
+	}
+
+	@Override
+	public void editDefect(Defect defect) {
+		defectRepository.save(defect);
+		
+	}
+
 	
 }
 

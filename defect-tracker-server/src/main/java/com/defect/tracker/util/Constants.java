@@ -7,7 +7,9 @@ public class Constants {
 	public static final String DEFECT_ADDED_SUCCESS = "Defect added successfully";
 
 	// encaptulate constructor to restrict modification from outside
-
+	 
+	public static final String UPDATED_SUCCESS = "Updated successfully";
+	
 	private Constants() { 
 	}
 }

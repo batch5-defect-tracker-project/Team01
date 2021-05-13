@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -50,6 +51,19 @@ public class DefectController {
 		return new ResponseEntity<Object>(defectList, HttpStatus.OK);
 		
 	}
-
-	
+	@PutMapping(value = EndpointURI.DEFECT)
+	public ResponseEntity<Object> editDefect(@RequestBody DefectDto defDto){
+		if(defectService.existsById(defDto.getId())) {
+			if(defectService.isModNameAlreadyExist(defDto.getModuleName())) {
+				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS,
+                  validationFailureStatusCodes.getModNameAlreadyExists()),HttpStatus.BAD_REQUEST);
+			}
+			Defect defect = mapper.map(defDto, Defect.class);
+			defectService.createDefect(defect);
+			return new ResponseEntity<Object>(Constants.UPDATED_SUCCESS,HttpStatus.OK);
+		}
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS,
+				validationFailureStatusCodes.getExistsById()),HttpStatus.BAD_REQUEST);
+		
+	}		
 }

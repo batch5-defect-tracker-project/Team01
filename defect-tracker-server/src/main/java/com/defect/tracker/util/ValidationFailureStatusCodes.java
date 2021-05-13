@@ -24,15 +24,39 @@ public class ValidationFailureStatusCodes {
 		return proNameAlreadyExists;
 	}
 	@Value("${validation.defect.AlreadyExists}")
-	private String ModNameAlreadyExists;
+	private String modNameAlreadyExists;
 
 	public String getModNameAlreadyExists() {
-		return ModNameAlreadyExists;
+		return modNameAlreadyExists;
 	}
 
 	public void setModNameAlreadyExists(String modNameAlreadyExists) {
-		ModNameAlreadyExists = modNameAlreadyExists;
+		this.modNameAlreadyExists = modNameAlreadyExists;
+	}
+	@Value("${validation.defect.existsById}")
+	private String existsById;
+
+	public String getExistsById() {
+		return existsById;
+	}
+
+	public void setExistsById(String existsById) {
+		this.existsById = existsById;
 	}
 	
+	@Value("${validation.defect.defectById}")
+	private String defectById;
+
+	public String getDefectById() {
+		return defectById;
+	}
+
+	public void setDefectById(String defectById) {
+		this.defectById = defectById;
+	}
+	
+	
+
+
 	
 }

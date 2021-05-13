@@ -14,4 +14,8 @@ public interface DefectService {
 	
 	public List<Defect> getAllDefect();
 	
+	public boolean existsById(Long id);
+	
+	public void editDefect (Defect defect);
+	
 }
