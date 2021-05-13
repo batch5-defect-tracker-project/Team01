@@ -16,6 +16,8 @@ public interface DefectService {
 	
 	public boolean existsById(Long id);
 	
-	public void editDefect (Defect defect);
+	public void editDefectById(Defect defect);
+	
+	public void deleteDefectById(Long id);
 	
 }

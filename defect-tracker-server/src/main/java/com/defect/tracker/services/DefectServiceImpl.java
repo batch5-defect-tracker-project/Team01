@@ -36,9 +36,14 @@ public class DefectServiceImpl implements DefectService {
 	}
 
 	@Override
-	public void editDefect(Defect defect) {
+	public void editDefectById(Defect defect) {
 		defectRepository.save(defect);
 		
+	}
+
+	@Override
+	public void deleteDefectById(Long id) {
+		defectRepository.deleteById(id);
 	}
 
 	
