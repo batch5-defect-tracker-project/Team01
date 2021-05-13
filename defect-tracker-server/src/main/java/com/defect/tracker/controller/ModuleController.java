@@ -7,7 +7,9 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -64,5 +66,17 @@ public class ModuleController {
 	public ResponseEntity<Object>getAllModule(){
 	List<ModuleDto> moduleList= mapper.map(moduleService.getAllModule(),ModuleDto.class);
 		return new ResponseEntity<Object>(moduleList,HttpStatus.OK);
+	}
+	
+
+	@DeleteMapping(value = EndpointURI.MODULE_BY_ID)
+	public ResponseEntity<Object> deleteModule(@PathVariable Long id) {
+		if (!moduleService.existsById(id)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_DELETE_EXISTS_BY_ID,
+					validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+		}
+
+		moduleService.deleteById(id);
+		return new ResponseEntity<Object>(Constants.MODULE_DELETED_SUCCESS, HttpStatus.OK);
 	}
 }

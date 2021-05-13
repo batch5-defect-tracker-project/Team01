@@ -21,4 +21,10 @@ public interface ModuleService  {
 	public List<Module> getAllModule();
 
 	
+
+	public void deleteById(Long id);
+
+	public boolean existsById(Long id);
+
+	
 }

@@ -51,6 +51,15 @@ public class ModuleServiceImpl  implements ModuleService{
 		
 		return moduleRepository.findAll();
 	}
+	@Override
+	public void deleteById(Long id) {
+		moduleRepository.deleteById(id);
+		
+	}
+	@Override
+	public boolean existsById(Long id) {	
+		return moduleRepository.existsById(id);
+	}
 	
 
     
