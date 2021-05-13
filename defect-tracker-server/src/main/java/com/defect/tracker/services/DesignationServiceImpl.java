@@ -1,10 +1,8 @@
 package com.defect.tracker.services;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.defect.tracker.data.entities.Designation;
 import com.defect.tracker.data.repositories.DesignationRepository;
 
@@ -14,40 +12,42 @@ public class DesignationServiceImpl implements DesignationService{
 		private  DesignationRepository designationRepository ;
 	@Override
 	public boolean isDesigNameAlreadyExist(String name) {
-
-		return designationRepository.existsByName(name);
+        return designationRepository.existsByName(name);
 	}
 
 	@Override
 	public void createDesignation(Designation designation) {
 		designationRepository.save(designation);
-		
 	}
 
 	@Override
 	public List<Designation> getAllDesignation() {
-		
 		return designationRepository.findAll();
 	}
 
 	@Override
-	public boolean existsById(Long id) {
-	
-		return designationRepository.existsById(id);
+	public boolean designationExistsById(Long id) {
+	    return designationRepository.existsById(id);
 	}
 
 	@Override
-	public void deleteById(Long id) {
+	public void designationDeleteById(Long id) {
 		designationRepository.deleteById(id);
-		
 	}
 
 	@Override
 	public Object getDesignationById(Long id) {
-		
 		return designationRepository.findById(id);
 	}
 
+	@Override
+	public void editDesignation(Designation designation) {
+		designationRepository.save(designation);
+	}
+}
+
 	
 
-}
+	
+
+	

@@ -15,38 +15,41 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.project.AlreadyExists}")
 	private String proNameAlreadyExists;
+	
+	@Value("${validation.designation.AlreadyExists}")
+	private String desigNameAlreadyExists;
+
+	@Value("${validation.designation.existsById}")
+	private String existsById;
+	
+	@Value("${validation.designation.designationById}")
+	private String designationById;
+	
 
 	public void setProNameAlreadyExists(String proNameAlreadyExists) {
 		this.proNameAlreadyExists = proNameAlreadyExists;
 	}
-
-	public String getProNameAlreadyExists() {
+    public String getProNameAlreadyExists() {
 		return proNameAlreadyExists;
 	}
 
-	@Value("${validation.designation.AlreadyExists}")
-	private String desigNameAlreadyExists;
-
+	
 	public String getDesigNameAlreadyExists() {
 		return desigNameAlreadyExists;
 	}
-
-	public void setDesigNameAlreadyExists(String desigNameAlreadyExists) {
+    public void setDesigNameAlreadyExists(String desigNameAlreadyExists) {
 		this.desigNameAlreadyExists = desigNameAlreadyExists;
 	}
-	@Value("${validation.designation.existsById}")
-	private String existsById;
+	
 
 	public String getExistsById() {
 		return existsById;
 	}
-
-	public void setExistsById(String existsById) {
+    public void setExistsById(String existsById) {
 		this.existsById = existsById;
 	}
 	
-	@Value("${validation.designation.designationById}")
-	private String designationById;
+	
 
 	public String getDesignationById() {
 		return designationById;

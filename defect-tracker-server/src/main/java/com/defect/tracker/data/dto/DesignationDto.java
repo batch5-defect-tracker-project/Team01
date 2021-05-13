@@ -12,9 +12,9 @@ public class DesignationDto {
 	@NotBlank(message="name is not blank")
 	@NotEmpty(message="name is not empty")
 	@Pattern(regexp = "^[a-zA-Z.\\-\\/+=@_ ]*$",message="name not allowed special character and number")
-	
-    private String name;
+	private String name;
 
+	
 	public Long getId() {
 		return id;
 	}
