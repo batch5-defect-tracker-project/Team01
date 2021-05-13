@@ -19,6 +19,9 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.projectAllocation.AlreadyExistsId}")
 	private String proAllocExistsById;
 
+	@Value("${validation.projectAllocation.AlreadyExistsId}")
+	private String employeeIdAlreadyExists;
+
 	public void setProNameAlreadyExists(String proNameAlreadyExists) {
 		this.proNameAlreadyExists = proNameAlreadyExists;
 	}
@@ -33,6 +36,14 @@ public class ValidationFailureStatusCodes {
 
 	public void setProAllocExistsById(String proAllocExistsById) {
 		this.proAllocExistsById = proAllocExistsById;
+	}
+
+	public String getEmployeeIdAlreadyExists() {
+		return employeeIdAlreadyExists;
+	}
+
+	public void setEmployeeIdAlreadyExists(String employeeIdAlreadyExists) {
+		this.employeeIdAlreadyExists = employeeIdAlreadyExists;
 	}
 
 }

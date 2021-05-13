@@ -10,4 +10,8 @@ public interface ProjectAllocationService {
 
 	public void deleteById(Long id);
 
+	public boolean isEmployeeIdAlreadyExist(Long employeeId);
+
+	public void updateprojectAllocation(ProjectAllocation projectAllocation);
+
 }
