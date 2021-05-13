@@ -15,6 +15,14 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.project.AlreadyExists}")
 	private String proNameAlreadyExists;
+	
+	@Value("${validation.module.AlreadyExists}")
+	private String moduleNameAlreadyExists;
+	
+
+	public void setModuleNameAlreadyExists(String moduleNameAlreadyExists) {
+		this.moduleNameAlreadyExists = moduleNameAlreadyExists;
+	}
 
 	public void setProNameAlreadyExists(String proNameAlreadyExists) {
 		this.proNameAlreadyExists = proNameAlreadyExists;
@@ -23,4 +31,15 @@ public class ValidationFailureStatusCodes {
 	public String getProNameAlreadyExists() {
 		return proNameAlreadyExists;
 	}
+
+	public String getModuleNameAlreadyExists() {
+		return moduleNameAlreadyExists;
+	}
+
+	public String getExistsById() {
+		
+		return getExistsById();
+	}
+
+	
 }
