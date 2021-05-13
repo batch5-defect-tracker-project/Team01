@@ -10,7 +10,7 @@ public final class EndpointURI {
 	private static final String ID ="/{id}";
 
 	// Project
-	public static final String PROJECT = BASE_API_PATH + "project";
+	public static final String PROJECT = BASE_API_PATH + "Project";
 
 	public static final String DESIGNATION =BASE_API_PATH +"Designation" ;
 	

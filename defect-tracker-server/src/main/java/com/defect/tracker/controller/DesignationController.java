@@ -67,7 +67,7 @@ public class DesignationController {
 				validationFailureStatusCodes.getDesignationById()), HttpStatus.BAD_REQUEST);
 	}
 	@PutMapping(value = EndpointURI.DESIGNATION)
-	public ResponseEntity<Object> editDesignation(@RequestBody DesignationDto designationDto){
+	public ResponseEntity<Object> editDesignationById(@RequestBody DesignationDto designationDto){
 		if(designationService.designationExistsById(designationDto.getId())) {
 			if(designationService.isDesigNameAlreadyExist(designationDto.getName())) {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_EXISTS,

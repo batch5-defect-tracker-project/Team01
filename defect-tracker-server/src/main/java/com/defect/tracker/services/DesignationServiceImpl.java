@@ -41,7 +41,7 @@ public class DesignationServiceImpl implements DesignationService{
 	}
 
 	@Override
-	public void editDesignation(Designation designation) {
+	public void editDesignationById(Designation designation) {
 		designationRepository.save(designation);
 	}
 }

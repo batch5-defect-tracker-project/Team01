@@ -21,6 +21,6 @@ public interface DesignationService {
 	
 	public Object getDesignationById(Long id);
 	
-	public void editDesignation(Designation designation);
+	public void editDesignationById(Designation designation);
 
 }
