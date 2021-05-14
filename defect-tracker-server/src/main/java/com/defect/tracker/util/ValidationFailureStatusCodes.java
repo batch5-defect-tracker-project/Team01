@@ -4,17 +4,33 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
-/**
- * contains custom error messages
- *
- */
-
 @Component
 @PropertySource("classpath:ValidationMessages.properties")
 public class ValidationFailureStatusCodes {
 
 	@Value("${validation.project.AlreadyExists}")
 	private String proNameAlreadyExists;
+
+	@Value("${validation.employee.email.AlreadyExists}")
+	private String empEmailAlreadyExists;
+
+	@Value("${validation.employee.id.AlreadyExists}")
+	private String empIdAlreadyExists;
+
+	@Value("${validation.employee.profile.SizeException}")
+	private String empProfileSizeException;
+
+	@Value("${validation.employee.profile.ContentTypeException}")
+	private String empProfileContenetTypeException;
+
+	@Value("${validation.employee.profile.Empty}")
+	private String empProfileIsEmpty;
+
+	@Value("${validation.employee.token.Invalid}")
+	private String invalidToken;
+
+	@Value("${validation.employee.token.Expired}")
+	private String expiredToken;
 
 	public void setProNameAlreadyExists(String proNameAlreadyExists) {
 		this.proNameAlreadyExists = proNameAlreadyExists;
@@ -23,4 +39,61 @@ public class ValidationFailureStatusCodes {
 	public String getProNameAlreadyExists() {
 		return proNameAlreadyExists;
 	}
+
+	public void setEmpEmailAlreadyExists(String empEmailAlreadyExists) {
+		this.empEmailAlreadyExists = empEmailAlreadyExists;
+	}
+
+	public String getEmpEmailAlreadyExists() {
+		return empEmailAlreadyExists;
+	}
+
+	public String getEmpProfileSizeException() {
+		return empProfileSizeException;
+	}
+
+	public void setEmpProfileSizeException(String empProfileSizeException) {
+		this.empProfileSizeException = empProfileSizeException;
+	}
+
+	public String getEmpProfileContenetTypeException() {
+		return empProfileContenetTypeException;
+	}
+
+	public void setEmpProfileContenetTypeException(String empProfileContenetTypeException) {
+		this.empProfileContenetTypeException = empProfileContenetTypeException;
+	}
+
+	public String getEmpProfileIsEmpty() {
+		return empProfileIsEmpty;
+	}
+
+	public void setEmpProfileIsEmpty(String empProfileIsEmpty) {
+		this.empProfileIsEmpty = empProfileIsEmpty;
+	}
+
+	public String getEmpIdAlreadyExists() {
+		return empIdAlreadyExists;
+	}
+
+	public void setEmpIdAlreadyExists(String empIdAlreadyExists) {
+		this.empIdAlreadyExists = empIdAlreadyExists;
+	}
+
+	public String getInvalidToken() {
+		return invalidToken;
+	}
+
+	public void setInvalidToken(String invalidToken) {
+		this.invalidToken = invalidToken;
+	}
+
+	public String getExpiredToken() {
+		return expiredToken;
+	}
+
+	public void setExpiredToken(String expiredToken) {
+		this.expiredToken = expiredToken;
+	}
+
 }
