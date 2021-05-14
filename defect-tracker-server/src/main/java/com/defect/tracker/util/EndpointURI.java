@@ -10,6 +10,7 @@ public final class EndpointURI {
 	// Employee
 	public static final String EMPLOYEE = BASE_API_PATH + "employee";
 	public static final String EMPLOYEE_ACTIVATION = BASE_API_PATH + "employee/activation";
+	public static final String MODULE = BASE_API_PATH + "module";
 
 	private EndpointURI() {
 	}

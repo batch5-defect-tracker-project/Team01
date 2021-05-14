@@ -17,6 +17,8 @@ public class ValidationConstance {
 	public static final String TOKEN_INVALID = "invalid token please sign Up";
 
 	public static final String TOKEN_EXPIRED = "token Expired";
+	
+	public static final String MODULE_EXISTS = "Module  Already Exists";
 
 	private ValidationConstance() {
 	}

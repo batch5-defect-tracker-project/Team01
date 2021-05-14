@@ -1,6 +1,5 @@
 package com.defect.tracker.services;
 
-import java.security.SecureRandom;
 import java.util.UUID;
 
 import javax.mail.MessagingException;
@@ -42,6 +41,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public void registerEmployee(EmployeeDto employeeDto) throws MessagingException {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		employeeDto.setPassword(bCryptPasswordEncoder.encode(employeeDto.getPassword()));
+		System.out.println(employeeDto.getPassword());
 		employeeDto.setEnabled(false);
 		Employee employee = mapper.map(employeeDto, Employee.class);
 		employeeRepository.save(employee);

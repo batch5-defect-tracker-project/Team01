@@ -11,6 +11,9 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.project.AlreadyExists}")
 	private String proNameAlreadyExists;
 
+	@Value("${validation.module.AlreadyExists}")
+	private String moduleNameAlreadyExists;
+
 	@Value("${validation.employee.email.AlreadyExists}")
 	private String empEmailAlreadyExists;
 
@@ -94,6 +97,19 @@ public class ValidationFailureStatusCodes {
 
 	public void setExpiredToken(String expiredToken) {
 		this.expiredToken = expiredToken;
+	}
+
+	public String getModuleNameAlreadyExists() {
+		return moduleNameAlreadyExists;
+	}
+
+	public String getExistsById() {
+
+		return getExistsById();
+	}
+
+	public void setModuleNameAlreadyExists(String moduleNameAlreadyExists) {
+		this.moduleNameAlreadyExists = moduleNameAlreadyExists;
 	}
 
 }
