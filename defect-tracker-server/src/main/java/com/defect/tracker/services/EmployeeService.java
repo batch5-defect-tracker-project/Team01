@@ -23,4 +23,8 @@ public interface EmployeeService {
 
 	Long getEmployeeIdByEmail(String email);
 
+	void updateEmployeeById(EmployeeDto employeeDto) throws MessagingException;
+
+	boolean getEmployeeStatus(Long id);
+
 }

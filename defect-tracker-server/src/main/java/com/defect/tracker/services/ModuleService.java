@@ -5,13 +5,14 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.defect.tracker.data.entities.Module;
+
 @Service
-public interface ModuleService  {
+public interface ModuleService {
 
 	public boolean isModuleNameAlreadyExist(String name);
 
 	public void createModule(Module module);
-	
+
 	public boolean moduleExits(String name);
 
 	public boolean exitsById(Long id);
@@ -20,5 +21,4 @@ public interface ModuleService  {
 
 	public List<Module> getAllModule();
 
-	
 }

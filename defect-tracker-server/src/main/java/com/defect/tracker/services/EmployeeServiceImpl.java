@@ -75,4 +75,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 		EmployeeDto employeeDto = mapper.map(employee, EmployeeDto.class);
 		return employeeDto.getId();
 	}
+
+	@Override
+	public void updateEmployeeById(EmployeeDto employeeDto) throws MessagingException {
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		employeeDto.setPassword(bCryptPasswordEncoder.encode(employeeDto.getPassword()));
+		System.out.println(employeeDto.getPassword());
+		employeeDto.setEnabled(true);
+		Employee employee = mapper.map(employeeDto, Employee.class);
+		employeeRepository.save(employee);
+		emailService.sendUpdatedMail(employee);
+	}
+
+	@Override
+	public boolean getEmployeeStatus(Long id) {
+		Employee employee = employeeRepository.findById(id).get();
+		return employee.isEnabled();
+	}
+
 }

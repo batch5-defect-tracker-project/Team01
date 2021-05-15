@@ -7,18 +7,22 @@ import org.springframework.stereotype.Component;
 @Component
 @PropertySource("classpath:ValidationMessages.properties")
 public class ValidationFailureStatusCodes {
-
+	// project
 	@Value("${validation.project.AlreadyExists}")
 	private String proNameAlreadyExists;
 
-	@Value("${validation.module.AlreadyExists}")
-	private String moduleNameAlreadyExists;
+	// employee
+	@Value("${validation.employee.not.Active}")
+	private String empNotActive;
 
 	@Value("${validation.employee.email.AlreadyExists}")
 	private String empEmailAlreadyExists;
 
 	@Value("${validation.employee.id.AlreadyExists}")
 	private String empIdAlreadyExists;
+
+	@Value("${validation.employee.id.NotAvailable}")
+	private String empIdNotAvailable;
 
 	@Value("${validation.employee.profile.SizeException}")
 	private String empProfileSizeException;
@@ -34,6 +38,10 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.employee.token.Expired}")
 	private String expiredToken;
+
+	// module
+	@Value("${validation.module.AlreadyExists}")
+	private String moduleNameAlreadyExists;
 
 	public void setProNameAlreadyExists(String proNameAlreadyExists) {
 		this.proNameAlreadyExists = proNameAlreadyExists;
@@ -104,12 +112,27 @@ public class ValidationFailureStatusCodes {
 	}
 
 	public String getExistsById() {
-
 		return getExistsById();
 	}
 
 	public void setModuleNameAlreadyExists(String moduleNameAlreadyExists) {
 		this.moduleNameAlreadyExists = moduleNameAlreadyExists;
+	}
+
+	public String getEmpIdNotAvailable() {
+		return empIdNotAvailable;
+	}
+
+	public void setEmpIdNotAvailable(String empIdNotAvailable) {
+		this.empIdNotAvailable = empIdNotAvailable;
+	}
+
+	public String getEmpNotActive() {
+		return empNotActive;
+	}
+
+	public void setEmpNotActive(String empNotActive) {
+		this.empNotActive = empNotActive;
 	}
 
 }

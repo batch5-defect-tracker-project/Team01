@@ -1,5 +1,8 @@
 package com.defect.tracker.services;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +35,18 @@ public class EmailServiceImpl implements EmailService {
 							+ token);
 			javaMailSender.send(simpleMail);
 		}
+	}
+
+	@Override
+	public void sendUpdatedMail(Employee employee) throws MessagingException {
+		SimpleMailMessage simpleMail = new SimpleMailMessage();
+		simpleMail.setFrom("meera10testmail@gmail.com");
+		simpleMail.setTo(employee.getEmail());
+		simpleMail.setSubject("Employee Details Update Confirmation");
+		LocalTime time = LocalTime.now();
+		LocalDate date = LocalDate.now();
+		simpleMail.setText("Your details update successful when " + date + "	" + time);
+		javaMailSender.send(simpleMail);
+
 	}
 }
