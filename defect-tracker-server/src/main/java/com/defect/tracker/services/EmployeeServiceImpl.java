@@ -93,4 +93,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employee.isEnabled();
 	}
 
+	@Override
+	public void deleteEmployeeById(Long id) {
+		verificationService.delete(id);
+		employeeRepository.deleteById(id);
+	}
+
+	@Override
+	public Employee findById(Long id) {
+		return employeeRepository.findById(id).get();
+	}
+
 }

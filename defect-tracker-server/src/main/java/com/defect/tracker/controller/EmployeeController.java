@@ -13,7 +13,9 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -159,6 +161,16 @@ public class EmployeeController {
 		Files.copy(file.getInputStream(), Paths.get(UPLOAD_DIR + File.separator + id + ".jpg"),
 				StandardCopyOption.REPLACE_EXISTING);
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATE_SUCCESS, HttpStatus.OK);
+	}
+
+	@DeleteMapping(value = EndpointURI.EMPLOYEE+"/{id}")
+	public ResponseEntity<Object> deleteEmployeeById(@PathVariable Long id) {
+		if (employeeService.isIdAlreadyExists(id)) {
+			employeeService.deleteEmployeeById(id);
+			return new ResponseEntity<Object>(Constants.EMPLOYEE_SUCCESSFULL_DELETE, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_Id_NOT_AVAILABLE,
+				validationFailureStatusCode.getEmpIdNotAvailable()), HttpStatus.BAD_REQUEST);
 	}
 
 }

@@ -16,6 +16,9 @@ public class Constants {
 
 	public static final String EMPLOYEE_UPDATE_SUCCESS = "employee update Successfully";
 
+	public static final String EMPLOYEE_SUCCESSFULL_DELETE = "employee successfull Deleted";
+
+	// module
 	public static final String MODULE_ADDED_SUCCESS = "Module added successfully";
 
 	public static final String UPDATE_SUCCESS = "Module Update successfully";

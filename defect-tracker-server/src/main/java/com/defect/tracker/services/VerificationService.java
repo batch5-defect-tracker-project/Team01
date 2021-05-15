@@ -13,4 +13,7 @@ public interface VerificationService {
 	public VerificationToken findByEmployee(Employee employee);
 
 	public void addVerificationToken(Employee employee, String token);
+
+	public void delete(Long id);
+
 }

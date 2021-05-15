@@ -15,6 +15,9 @@ public class VerificationServiceImpl implements VerificationService {
 	@Autowired
 	private VerificationTokenRepository verificationTokenRepository;
 
+	@Autowired
+	private EmployeeService employeeService;
+
 	@Override
 	public VerificationToken findByToken(String token) {
 		return verificationTokenRepository.findByToken(token);
@@ -36,6 +39,13 @@ public class VerificationServiceImpl implements VerificationService {
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.MINUTE, expiryTimeInMinutes);
 		return new Timestamp(cal.getTime().getTime());
+	}
+
+	@Override
+	public void delete(Long id) {
+		Employee employee = employeeService.findById(id);
+		VerificationToken verificationToken = verificationTokenRepository.findByEmployee(employee);
+		verificationTokenRepository.deleteById(verificationToken.getId());
 	}
 
 }
