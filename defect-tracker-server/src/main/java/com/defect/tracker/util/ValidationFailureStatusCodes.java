@@ -14,13 +14,36 @@ import org.springframework.stereotype.Component;
 public class ValidationFailureStatusCodes {
 
 	@Value("${validation.project.AlreadyExists}")
-	private String proNameAlreadyExists;
+	private String ProjectNameAlreadyExists;
 
-	public void setProNameAlreadyExists(String proNameAlreadyExists) {
-		this.proNameAlreadyExists = proNameAlreadyExists;
+	public String getProjectNameAlreadyExists() {
+		return ProjectNameAlreadyExists;
 	}
 
-	public String getProNameAlreadyExists() {
-		return proNameAlreadyExists;
+	public void setProjectNameAlreadyExists(String projectNameAlreadyExists) {
+		ProjectNameAlreadyExists = projectNameAlreadyExists;
 	}
+
+	public String getProjectIdNotFound() {
+		return projectIdNotFound;
+	}
+
+	public void setProjectIdNotFound(String projectIdNotFound) {
+		this.projectIdNotFound = projectIdNotFound;
+	}
+
+	@Value("${validation.id.NotFound}")
+	private String projectIdNotFound;
+
+	@Value("${validation.Name.UseAnotherProject}")
+	private String getProjectNameAlreadyUseByAnotherProject;
+
+	public String getGetProjectNameAlreadyUseByAnotherProject() {
+		return getProjectNameAlreadyUseByAnotherProject;
+	}
+
+	public void setGetProjectNameAlreadyUseByAnotherProject(String getProjectNameAlreadyUseByAnotherProject) {
+		this.getProjectNameAlreadyUseByAnotherProject = getProjectNameAlreadyUseByAnotherProject;
+	}
+
 }

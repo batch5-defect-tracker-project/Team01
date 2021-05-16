@@ -2,10 +2,9 @@ package com.defect.tracker.util;
 
 public class Constants {
 
-	// project
 	public static final String PROJECT_ADDED_SUCCESS = "Project added successfully ";
-
-	// encaptulate constructor to restrict modification from outside
+	public static final String PROJECT_UPDATE_SUCCESS = "Project update successfully";
+	public static final String PROJECT_DELETE_SUCCESS = "Project delete successfully";
 
 	private Constants() {
 	}
