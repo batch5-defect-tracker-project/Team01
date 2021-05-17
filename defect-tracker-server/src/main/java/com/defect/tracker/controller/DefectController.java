@@ -70,7 +70,7 @@ public class DefectController {
 	}	
 	@DeleteMapping(value = EndpointURI.DEFECT_BY_ID)
 	  public ResponseEntity<Object>deleteDefectById(@PathVariable Long id){
-		if(!defectService.existsById(id)) {
+		if(defectService.existsById(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_DELETE_EXISTS_BY_ID,
 					validationFailureStatusCodes.getExistsById()),HttpStatus.BAD_REQUEST);
 					
@@ -78,6 +78,15 @@ public class DefectController {
 		
 		defectService.deleteDefectById(id);
 		return new ResponseEntity<Object>(Constants.DELETED_SUCCESS,HttpStatus.OK);
+	}
+	
+	@GetMapping(value = EndpointURI.DEFECT_BY_ID)
+	public ResponseEntity<Object>findDefectById(@PathVariable Long id){
+		if(defectService.existsById(id)) {
+			return new ResponseEntity<Object>(defectService.getDefectById(id),HttpStatus.OK);
+		}
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS_BY_ID,
+				validationFailureStatusCodes.getDefectById()), HttpStatus.BAD_REQUEST);
 	}
 
 }

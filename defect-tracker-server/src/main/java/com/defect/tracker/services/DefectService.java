@@ -20,4 +20,6 @@ public interface DefectService {
 	
 	public void deleteDefectById(Long id);
 	
+	public Object getDefectById(Long id);
+	
 }

@@ -46,6 +46,11 @@ public class DefectServiceImpl implements DefectService {
 		defectRepository.deleteById(id);
 	}
 
+	@Override
+	public Object getDefectById(Long id) {
+		return defectRepository.findById(id);
+	}
+
 	
 }
 
