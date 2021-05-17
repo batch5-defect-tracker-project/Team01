@@ -31,7 +31,7 @@ public class DefectServiceImpl implements DefectService {
 	}
 
 	@Override
-	public boolean existsById(Long id) {
+	public boolean existsDefectById(Long id) {
 		return defectRepository.existsById(id);
 	}
 

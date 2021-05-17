@@ -1,7 +1,5 @@
 package com.defect.tracker.controller;
 
-
-
 import java.util.List;
 
 import javax.validation.Valid;
@@ -36,9 +34,9 @@ public class DefectController {
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	private Mapper mapper;
-	
+
 	@PostMapping(value = EndpointURI.DEFECT)
-	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) {	
+	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) {
 		if (defectService.isModNameAlreadyExist(defectDto.getModuleName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS,
 					validationFailureStatusCodes.getModNameAlreadyExists()), HttpStatus.BAD_REQUEST);
@@ -46,44 +44,47 @@ public class DefectController {
 		Defect defect = mapper.map(defectDto, Defect.class);
 		defectService.createDefect(defect);
 		return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
-}
+	}
+
 	@GetMapping(value = EndpointURI.DEFECT)
-	public ResponseEntity<Object> getAllDefect(){
+	public ResponseEntity<Object> getAllDefect() {
 		List<DefectDto> defectList = mapper.map(defectService.getAllDefect(), DefectDto.class);
 		return new ResponseEntity<Object>(defectList, HttpStatus.OK);
-		
+
 	}
+
 	@PutMapping(value = EndpointURI.DEFECT)
-	public ResponseEntity<Object> editDefectById(@RequestBody DefectDto defectDto){
-		if(defectService.existsById(defectDto.getId())) {
-			if(defectService.isModNameAlreadyExist(defectDto.getModuleName())) {
+	public ResponseEntity<Object> editDefectById(@RequestBody DefectDto defectDto) {
+		if (defectService.existsDefectById(defectDto.getId())) {
+			if (defectService.isModNameAlreadyExist(defectDto.getModuleName())) {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS,
-                  validationFailureStatusCodes.getModNameAlreadyExists()),HttpStatus.BAD_REQUEST);
+						validationFailureStatusCodes.getModNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 			}
 			Defect defect = mapper.map(defectDto, Defect.class);
 			defectService.createDefect(defect);
-			return new ResponseEntity<Object>(Constants.UPDATED_SUCCESS,HttpStatus.OK);
+			return new ResponseEntity<Object>(Constants.UPDATED_SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS,
-				validationFailureStatusCodes.getExistsById()),HttpStatus.BAD_REQUEST);
-		
-	}	
-	@DeleteMapping(value = EndpointURI.DEFECT_BY_ID)
-	  public ResponseEntity<Object>deleteDefectById(@PathVariable Long id){
-		if(defectService.existsById(id)) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_DELETE_EXISTS_BY_ID,
-					validationFailureStatusCodes.getExistsById()),HttpStatus.BAD_REQUEST);
-					
-		}
-		
-		defectService.deleteDefectById(id);
-		return new ResponseEntity<Object>(Constants.DELETED_SUCCESS,HttpStatus.OK);
+				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+
 	}
-	
+
+	@DeleteMapping(value = EndpointURI.DEFECT_BY_ID)
+	public ResponseEntity<Object> deleteDefectById(@PathVariable Long id) {
+		if (defectService.existsDefectById(id)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_DELETE_EXISTS_BY_ID,
+					validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+
+		}
+
+		defectService.deleteDefectById(id);
+		return new ResponseEntity<Object>(Constants.DELETED_SUCCESS, HttpStatus.OK);
+	}
+
 	@GetMapping(value = EndpointURI.DEFECT_BY_ID)
-	public ResponseEntity<Object>findDefectById(@PathVariable Long id){
-		if(defectService.existsById(id)) {
-			return new ResponseEntity<Object>(defectService.getDefectById(id),HttpStatus.OK);
+	public ResponseEntity<Object> findDefectById(@PathVariable Long id) {
+		if (defectService.existsDefectById(id)) {
+			return new ResponseEntity<Object>(defectService.getDefectById(id), HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getDefectById()), HttpStatus.BAD_REQUEST);
