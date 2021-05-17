@@ -38,4 +38,10 @@ public class ProjectAllocationServiceImpl implements ProjectAllocationService {
 		projectAllocationRepository.save(projectAllocation);
 
 	}
+
+	@Override
+	public Object getProjectAllocationById(Long id) {
+		return projectAllocationRepository.findById(id);
+	}
+
 }

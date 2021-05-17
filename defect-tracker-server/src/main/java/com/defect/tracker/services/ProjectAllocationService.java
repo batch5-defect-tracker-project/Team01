@@ -14,4 +14,6 @@ public interface ProjectAllocationService {
 
 	public void updateprojectAllocation(ProjectAllocation projectAllocation);
 
+	public Object getProjectAllocationById(Long id);
+
 }

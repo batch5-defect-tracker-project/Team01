@@ -13,22 +13,23 @@ import org.springframework.stereotype.Component;
 @PropertySource("classpath:ValidationMessages.properties")
 public class ValidationFailureStatusCodes {
 
+	// Project
 	@Value("${validation.project.AlreadyExists}")
 	private String proNameAlreadyExists;
-	
+
+	// Module
 	@Value("${validation.module.AlreadyExists}")
 	private String moduleNameAlreadyExists;
-	
 
-	public void setModuleNameAlreadyExists(String moduleNameAlreadyExists) {
-		this.moduleNameAlreadyExists = moduleNameAlreadyExists;
-	}
-
+	// Project Allocation
 	@Value("${validation.projectAllocation.AlreadyExistsId}")
-	private String proAllocExistsById;
+	private String projectAllocationExistsById;
 
 	@Value("${validation.projectAllocation.AlreadyExistsId}")
 	private String employeeIdAlreadyExists;
+
+	@Value("${validation.projectAllocation.AlreadyExistsId}")
+	private String projectAllocationById;
 
 	public void setProNameAlreadyExists(String proNameAlreadyExists) {
 		this.proNameAlreadyExists = proNameAlreadyExists;
@@ -38,12 +39,20 @@ public class ValidationFailureStatusCodes {
 		return proNameAlreadyExists;
 	}
 
-	public String getProAllocExistsById() {
-		return proAllocExistsById;
+	public String getModuleNameAlreadyExists() {
+		return moduleNameAlreadyExists;
 	}
 
-	public void setProAllocExistsById(String proAllocExistsById) {
-		this.proAllocExistsById = proAllocExistsById;
+	public void setModuleNameAlreadyExists(String moduleNameAlreadyExists) {
+		this.moduleNameAlreadyExists = moduleNameAlreadyExists;
+	}
+
+	public String getProjectAllocationExistsById() {
+		return projectAllocationExistsById;
+	}
+
+	public void setProjectAllocationExistsById(String projectAllocationExistsById) {
+		this.projectAllocationExistsById = projectAllocationExistsById;
 	}
 
 	public String getEmployeeIdAlreadyExists() {
@@ -54,14 +63,16 @@ public class ValidationFailureStatusCodes {
 		this.employeeIdAlreadyExists = employeeIdAlreadyExists;
 	}
 
-	public String getModuleNameAlreadyExists() {
-		return moduleNameAlreadyExists;
-	}
-
 	public String getExistsById() {
-		
 		return getExistsById();
 	}
 
-	
+	public String getProjectAllocationById() {
+		return projectAllocationById;
+	}
+
+	public void setProjectAllocationById(String projectAllocationById) {
+		this.projectAllocationById = projectAllocationById;
+	}
+
 }
