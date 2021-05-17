@@ -1,9 +1,13 @@
 package com.defect.tracker.util;
 
+import org.springframework.util.MultiValueMap;
+
 public class Constants {
 
 	// project
 	public static final String PROJECT_ADDED_SUCCESS = "Project added successfully ";
+	public static final String MODULE_ADDED_SUCCESS = "Module added successfully";
+	public static final String UPDATE_SUCCESS = "Module Update successfully";
 
 	// Project Allocation
 	public static final String PROJECT_ALLOCATION_ADDED_SUCCESS = "Project Allocation Added Successfully...!";
