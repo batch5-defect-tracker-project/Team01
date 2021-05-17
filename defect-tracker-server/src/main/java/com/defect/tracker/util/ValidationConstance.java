@@ -4,6 +4,10 @@ public class ValidationConstance {
 
 	// Project
 	public static final String PROJECT_EXISTS = "Project  Already Exists";
+	public static final String DEFECT_EXISTS = "Defect Already Exists";
+	public static final String DEFECT_DELETE_EXISTS_BY_ID = "Defect Delete Exists By Id";
+	public static final String DEFECT_NOT_EXISTS_BY_ID = "Defect Not Exists";
+	
 	
 	//Module
 	public static final String MODULE_EXISTS = "Module  Already Exists";
