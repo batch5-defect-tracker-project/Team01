@@ -54,17 +54,6 @@ public class ValidationFailureStatusCodes {
 
 	public void setExistsById(String existsById) {
 		this.existsById = existsById;
-	}
-
-	
-	
-	
-
-	
-
-	
-	
-
-	
+	}	
 	
 }
