@@ -79,4 +79,13 @@ public class ModuleController {
 		moduleService.deleteById(id);
 		return new ResponseEntity<Object>(Constants.MODULE_DELETED_SUCCESS, HttpStatus.OK);
 	}
+
+	@GetMapping(value = EndpointURI.MODULE_BY_ID)
+	public ResponseEntity<Object>findDefectById(@PathVariable Long id){
+		if(moduleService.existsById(id)) {
+			return new ResponseEntity<Object>(moduleService.getModuleById(id),HttpStatus.OK);
+		}
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
+				validationFailureStatusCodes.getModuleById()), HttpStatus.BAD_REQUEST);
+	}
 }

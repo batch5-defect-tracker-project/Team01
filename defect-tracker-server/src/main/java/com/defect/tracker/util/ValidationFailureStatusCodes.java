@@ -20,7 +20,17 @@ public class ValidationFailureStatusCodes {
 	private String moduleNameAlreadyExists;
 	@Value("${validation.module.IdAlreadyExists}")
 	private String existsById;
+	@Value("${validation.module.IdAlreadyExists}")
+	private String ModuleById;
 	
+
+	public String getModuleById() {
+		return ModuleById;
+	}
+
+	public void setModuleById(String moduleById) {
+		ModuleById = moduleById;
+	}
 
 	public void setModuleNameAlreadyExists(String moduleNameAlreadyExists) {
 		this.moduleNameAlreadyExists = moduleNameAlreadyExists;
@@ -46,6 +56,13 @@ public class ValidationFailureStatusCodes {
 		this.existsById = existsById;
 	}
 
+	
+	
+	
+
+	
+
+	
 	
 
 	
