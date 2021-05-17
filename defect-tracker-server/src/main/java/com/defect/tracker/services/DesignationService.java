@@ -8,19 +8,19 @@ import com.defect.tracker.data.entities.Designation;
 
 @Service
 public interface DesignationService {
-	
-    public boolean isDesigNameAlreadyExist(String name);
-	
+
+	public boolean isDesigNameAlreadyExist(String name);
+
 	public void createDesignation(Designation designation);
-	
-	public List <Designation> getAllDesignation();
-	
+
+	public List<Designation> getAllDesignation();
+
 	public boolean designationExistsById(Long id);
-	
-	public void  designationDeleteById(Long id);
-	
+
+	public void designationDeleteById(Long id);
+
 	public Object getDesignationById(Long id);
-	
+
 	public void editDesignationById(Designation designation);
 
 }
