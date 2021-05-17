@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -46,7 +47,7 @@ public class ProjectAllocationController {
 		if (!projectAllocationService.existsById(id)) {
 			return new ResponseEntity<>(
 					new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_NOT_EXISTS_BY_ID,
-							validationFailureStatusCodes.getProAllocExistsById()),
+							validationFailureStatusCodes.getProjectAllocationExistsById()),
 					HttpStatus.BAD_REQUEST);
 		}
 		projectAllocationService.deleteById(id);
@@ -68,10 +69,20 @@ public class ProjectAllocationController {
 		}
 		return new ResponseEntity<>(
 				new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_NOT_EXISTS_BY_ID,
-						validationFailureStatusCodes.getProAllocExistsById()),
+						validationFailureStatusCodes.getProjectAllocationById()),
 				HttpStatus.BAD_REQUEST);
 	}
 
-	
+	// ------------------------- Get By Id -API ------------------------- //
+	@GetMapping(value = EndpointURI.PROJECT_ALLOCATION_BY_ID)
+	public ResponseEntity<Object> findProjectAllocationById(@PathVariable Long id) {
+		if (projectAllocationService.existsById(id)) {
+			return new ResponseEntity<Object>(projectAllocationService.getProjectAllocationById(id), HttpStatus.OK);
+		}
+		return new ResponseEntity<>(
+				new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_NOT_EXISTS_BY_ID,
+						validationFailureStatusCodes.getProjectAllocationById()),
+				HttpStatus.BAD_REQUEST);
+	}
 
 }

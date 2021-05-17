@@ -4,6 +4,8 @@ public class ValidationConstance {
 
 	// Project
 	public static final String PROJECT_EXISTS = "Project  Already Exists";
+	
+	//Module
 	public static final String MODULE_EXISTS = "Module  Already Exists";
 
 	// Project Allocation
