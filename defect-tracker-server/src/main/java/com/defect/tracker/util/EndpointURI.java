@@ -15,5 +15,14 @@ public final class EndpointURI {
 	
     private EndpointURI() {
 
+
+	// Project Allocation
+	public static final String PROJECT_ALLOCATION = BASE_API_PATH + "projectAllocation";
+	public static final String PROJECT_ALLOCATION_BY_ID = BASE_API_PATH + "projectAllocation" + ID;
+	public static final String MODULE = BASE_API_PATH + "module";
+
+	private EndpointURI() {
+
+
 	}
 }
