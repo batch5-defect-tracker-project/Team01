@@ -51,6 +51,6 @@ public class DefectServiceImpl implements DefectService {
 		return defectRepository.findById(id);
 	}
 
-	
+
 }
 
