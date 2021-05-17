@@ -35,12 +35,12 @@ public class ProjectController {
 	private Mapper mapper;
 
 	@PostMapping(value = EndpointURI.PROJECT)
-	public ResponseEntity<Object> addProject(@Valid @RequestBody ProjectDto projectdto) {
-		if (projectService.exitsByProjectName(projectdto.getName())) {
+	public ResponseEntity<Object> addProject(@Valid @RequestBody ProjectDto projectDto) {
+		if (projectService.exitsByProjectName(projectDto.getName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS,
 					validationFailureStatusCodes.getProjectNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
-		projectService.addProject(mapper.map(projectdto, Project.class));
+		projectService.addProject(mapper.map(projectDto, Project.class));
 		return new ResponseEntity<Object>(Constants.PROJECT_ADDED_SUCCESS, HttpStatus.OK);
 	}
 
@@ -71,11 +71,11 @@ public class ProjectController {
 	}
 
 	@PutMapping(value = EndpointURI.PROJECT)
-	public ResponseEntity<Object> updateProject(@Valid @RequestBody ProjectDto projectdto) {
-		if (projectService.projectIdExits(projectdto.getId())) {
-			if (projectService.exitsByProjectName(projectdto.getName())) {
-				if (projectService.getProjectByName(projectdto.getId()).equals(projectdto.getName())) {
-					projectService.updateProject(mapper.map(projectdto, Project.class));
+	public ResponseEntity<Object> updateProject(@Valid @RequestBody ProjectDto projectDto) {
+		if (projectService.projectIdExits(projectDto.getId())) {
+			if (projectService.exitsByProjectName(projectDto.getName())) {
+				if (projectService.getProjectByName(projectDto.getId()).equals(projectDto.getName())) {
+					projectService.updateProject(mapper.map(projectDto, Project.class));
 					return new ResponseEntity<Object>(Constants.PROJECT_UPDATE_SUCCESS, HttpStatus.OK);
 				}
 				return new ResponseEntity<>(
@@ -83,7 +83,7 @@ public class ProjectController {
 								validationFailureStatusCodes.getGetProjectNameAlreadyUseByAnotherProject()),
 						HttpStatus.BAD_REQUEST);
 			}
-			projectService.updateProject(mapper.map(projectdto, Project.class));
+			projectService.updateProject(mapper.map(projectDto, Project.class));
 			return new ResponseEntity<Object>(Constants.PROJECT_UPDATE_SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.ID_NOTFOUND,
