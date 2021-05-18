@@ -22,7 +22,18 @@ public class ValidationFailureStatusCodes {
 	private String existsById;
 	@Value("${validation.module.IdAlreadyExists}")
 	private String ModuleById;
+	@Value("${validation.subModule.AlreadyExists}")
+	private String SubModuleNameAlreadyExists;
 	
+	
+
+	public String getSubModuleNameAlreadyExists() {
+		return SubModuleNameAlreadyExists;
+	}
+
+	public void setSubModuleNameAlreadyExists(String subModuleNameAlreadyExists) {
+		SubModuleNameAlreadyExists = subModuleNameAlreadyExists;
+	}
 
 	public String getModuleById() {
 		return ModuleById;
