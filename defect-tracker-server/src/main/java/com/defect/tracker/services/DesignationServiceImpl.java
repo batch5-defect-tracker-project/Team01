@@ -1,49 +1,53 @@
 package com.defect.tracker.services;
 
 import java.util.List;
-
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.defect.tracker.data.dto.DesignationDto;
 import com.defect.tracker.data.entities.Designation;
-import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.DesignationRepository;
 
 @Service
-public class DesignationServiceImpl implements DesignationService {
-	@Autowired
-	private DesignationRepository designationRepository;
-
-	@Autowired
-	private Mapper mapper;
+public class DesignationServiceImpl implements DesignationService{
+	 @Autowired
+		private  DesignationRepository designationRepository ;
+	@Override
+	public boolean isDesigNameAlreadyExist(String name) {
+        return designationRepository.existsByName(name);
+	}
 
 	@Override
-	public void addDesignation(@Valid DesignationDto designationDto) {
-		Designation designation = mapper.map(designationDto, Designation.class);
+	public void createDesignation(Designation designation) {
 		designationRepository.save(designation);
 	}
 
 	@Override
-	public boolean existsByDesignation(String designation) {
-		return designationRepository.existsByDesignation(designation);
+	public List<Designation> getAllDesignation() {
+		return designationRepository.findAll();
 	}
 
 	@Override
-	public boolean existsDesignationById(Long id) {
-		return designationRepository.existsById(id);
+	public boolean designationExistsById(Long id) {
+	    return designationRepository.existsById(id);
 	}
 
 	@Override
-	public List<DesignationDto> getAllDesignation() {
-		return mapper.map(designationRepository.findAll(), DesignationDto.class);
+	public void designationDeleteById(Long id) {
+		designationRepository.deleteById(id);
 	}
 
 	@Override
-	public DesignationDto getDesignationById(Long id) {
-		return mapper.map(designationRepository.findById(id).get(), DesignationDto.class);
+	public Object getDesignationById(Long id) {
+		return designationRepository.findById(id);
 	}
 
+	@Override
+	public void editDesignationById(Designation designation) {
+		designationRepository.save(designation);
+	}
 }
+
+	
+
+	
+
+	

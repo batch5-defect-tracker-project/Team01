@@ -3,13 +3,12 @@ package com.defect.tracker.data.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.defect.tracker.data.entities.Designation;
+import com.defect.tracker.data.entities.Defect;
 
 @Repository
-public interface DesignationRepository extends JpaRepository<Designation, Long> {
+public interface DefectRepository extends JpaRepository<Defect, Long> {
 
-	boolean existsByName(String name);
+	boolean existsByModuleName(String modName);
 
-	
 
 }

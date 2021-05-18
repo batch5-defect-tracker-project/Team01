@@ -2,6 +2,7 @@ package com.defect.tracker.util;
 
 public class ValidationConstance {
 
+	// Project
 	public static final String PROJECT_EXISTS = "Project  Already Exists";
 
 	// employee
@@ -27,16 +28,24 @@ public class ValidationConstance {
 
 	public static final String EMPLOYEE_USERNAME_PASSWORD_ERROR = "Username Or Password Incorrect";
 
+	// module
+	public static final String DESIGNATION_EXISTS = "Designation Already Exists";
+	public static final String DESIGNATION_DELETE_EXISTS_BY_ID = "Designation Not Exists";
+	public static final String DESIGNATION_NOT_EXISTS_BY_ID = "Designation Not Exist";
 	public static final String DESIGNATION_NOT_FOUND = "Designation Not Found";
 
-	public static final String DESIGNATION_ALREADY_EXIXTS = "Designation Is Already Exists";
+	public static final String DEFECT_EXISTS = "Defect Already Exists";
+	public static final String DEFECT_DELETE_EXISTS_BY_ID = "Defect Delete Exists By Id";
+	public static final String DEFECT_NOT_EXISTS_BY_ID = "Defect Not Exists";
 
-	public static final String DESIGNATION_ID_NOTFOUND = "Designation Id is Not Found";
-
-	// module
+	// Module
 	public static final String MODULE_EXISTS = "Module  Already Exists";
+
+	// Project Allocation
+	public static final String PROJECT_ALLOCATION_EXISTS = "Project Allocation Already Exists";
+	public static final String PROJECT_ALLOCATION_EXISTS_BY_ID = "Project Allocation Id Already Exists";
+	public static final String PROJECT_ALLOCATION_NOT_EXISTS_BY_ID = "Project Allocation Id Not Exists";
 
 	private ValidationConstance() {
 	}
-
 }

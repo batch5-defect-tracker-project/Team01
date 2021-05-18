@@ -52,7 +52,6 @@ public class EmployeeController {
 	@Autowired
 	private DesignationService designationService;
 
-	@Autowired
 	private Mapper mapper;
 
 	final String UPLOAD_DIR = "E:\\pro_defect___\\defect-tracker-server\\src\\main\\resources\\profiles";
@@ -80,7 +79,7 @@ public class EmployeeController {
 					HttpStatus.BAD_REQUEST);
 		}
 
-		if (!designationService.existsDesignationById(employeeDto.getDesignationId())) {
+		if (!designationService.designationExistsById(employeeDto.getDesignationId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_FOUND,
 					validationFailureStatusCode.getDesignationNotFound()), HttpStatus.BAD_REQUEST);
 		}
@@ -126,27 +125,12 @@ public class EmployeeController {
 					validationFailureStatusCode.getEmpIdNotAvailable()), HttpStatus.BAD_REQUEST);
 		}
 
-		/*
-		 * if (!employeeService.getEmployeeStatus(employeeDto.getId())) { return new
-		 * ResponseEntity<>(new
-		 * ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_ACTIVE,
-		 * validationFailureStatusCode.getEmpNotActive()), HttpStatus.BAD_REQUEST); }
-		 */
+		/*if (!employeeService.getEmployeeStatus(employeeDto.getId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_ACTIVE,
+					validationFailureStatusCode.getEmpNotActive()), HttpStatus.BAD_REQUEST);
+		}*/
 
-		if (file.isEmpty()) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_PROFILE_EMPTY,
-					validationFailureStatusCode.getEmpProfileIsEmpty()), HttpStatus.BAD_REQUEST);
-		}
-
-		if (!file.getContentType().equals("image/jpeg")) {
-			System.out.println(validationFailureStatusCode.getEmpProfileContenetTypeException());
-			return new ResponseEntity<>(
-					new ValidationFailureResponse(ValidationConstance.EMPLOYEE_PROFILE_CONTANTTYPE_EXCEPTION,
-							validationFailureStatusCode.getEmpProfileContenetTypeException()),
-					HttpStatus.BAD_REQUEST);
-		}
-
-		if (!designationService.existsDesignationById(employeeDto.getDesignationId())) {
+		if (!designationService.designationExistsById(employeeDto.getDesignationId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_FOUND,
 					validationFailureStatusCode.getDesignationNotFound()), HttpStatus.BAD_REQUEST);
 		}
@@ -154,16 +138,32 @@ public class EmployeeController {
 		if (employeeService.isEmailAlreadyExist(employeeDto.getEmail())) {
 			if (employeeDto.getId() == id) {
 				employeeService.updateEmployeeById(employeeDto);
-				Files.copy(file.getInputStream(), Paths.get(UPLOAD_DIR + File.separator + id + ".jpg"),
-						StandardCopyOption.REPLACE_EXISTING);
+				if (!file.isEmpty()) {
+					if (!file.getContentType().equals("image/jpeg")) {
+						return new ResponseEntity<>(
+								new ValidationFailureResponse(ValidationConstance.EMPLOYEE_PROFILE_CONTANTTYPE_EXCEPTION,
+										validationFailureStatusCode.getEmpProfileContenetTypeException()),
+								HttpStatus.BAD_REQUEST);
+					}
+					Files.copy(file.getInputStream(), Paths.get(UPLOAD_DIR + File.separator + id + ".jpg"),
+							StandardCopyOption.REPLACE_EXISTING);
+				}
 				return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATE_SUCCESS, HttpStatus.OK);
 			}
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMAIL_EXISTS,
 					validationFailureStatusCode.getEmpEmailAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
 		employeeService.updateEmployeeById(employeeDto);
-		Files.copy(file.getInputStream(), Paths.get(UPLOAD_DIR + File.separator + id + ".jpg"),
-				StandardCopyOption.REPLACE_EXISTING);
+		if (!file.isEmpty()) {
+			if (!file.getContentType().equals("image/jpeg")) {
+				return new ResponseEntity<>(
+						new ValidationFailureResponse(ValidationConstance.EMPLOYEE_PROFILE_CONTANTTYPE_EXCEPTION,
+								validationFailureStatusCode.getEmpProfileContenetTypeException()),
+						HttpStatus.BAD_REQUEST);
+			}
+			Files.copy(file.getInputStream(), Paths.get(UPLOAD_DIR + File.separator + id + ".jpg"),
+					StandardCopyOption.REPLACE_EXISTING);
+		}
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATE_SUCCESS, HttpStatus.OK);
 	}
 
