@@ -39,6 +39,18 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.employee.token.Expired}")
 	private String expiredToken;
 
+	@Value("${validation.employee.email.NotAvailable}")
+	private String empEmailNotAvailable;
+
+	@Value("${validation.designation.NotFound}")
+	private String designationNotFound;
+
+	@Value("${validation.designation.AlreadyExists}")
+	private String designationAlreadyExists;
+
+	@Value("${validation.designation.id.NotFound}")
+	private String designationIdNotFound;
+
 	// module
 	@Value("${validation.module.AlreadyExists}")
 	private String moduleNameAlreadyExists;
@@ -133,6 +145,38 @@ public class ValidationFailureStatusCodes {
 
 	public void setEmpNotActive(String empNotActive) {
 		this.empNotActive = empNotActive;
+	}
+
+	public String getEmpEmailNotAvailable() {
+		return empEmailNotAvailable;
+	}
+
+	public void setEmpEmailNotAvailable(String empEmailNotAvailable) {
+		this.empEmailNotAvailable = empEmailNotAvailable;
+	}
+
+	public String getDesignationNotFound() {
+		return designationNotFound;
+	}
+
+	public void setDesignationNotFound(String designationNotFound) {
+		this.designationNotFound = designationNotFound;
+	}
+
+	public String getDesignationAlreadyExists() {
+		return designationAlreadyExists;
+	}
+
+	public void setDesignationAlreadyExists(String designationAlreadyExists) {
+		this.designationAlreadyExists = designationAlreadyExists;
+	}
+
+	public String getDesignationIdNotFound() {
+		return designationIdNotFound;
+	}
+
+	public void setDesignationIdNotFound(String designationIdNotFound) {
+		this.designationIdNotFound = designationIdNotFound;
 	}
 
 }

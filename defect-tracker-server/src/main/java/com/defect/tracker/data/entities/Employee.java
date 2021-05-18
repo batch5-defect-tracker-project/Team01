@@ -1,9 +1,12 @@
 package com.defect.tracker.data.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -16,12 +19,15 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private String designation;
 	private String email;
 	private String password;
 	private String gender;
 	private Long contactNumber;
 	private boolean isEnabled;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "designation_id", nullable = false)
+	private Designation designation;
 
 	public Long getId() {
 		return id;
@@ -37,14 +43,6 @@ public class Employee {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getDesignation() {
-		return designation;
-	}
-
-	public void setDesignation(String designation) {
-		this.designation = designation;
 	}
 
 	public String getEmail() {
@@ -85,6 +83,14 @@ public class Employee {
 
 	public void setEnabled(boolean isEnabled) {
 		this.isEnabled = isEnabled;
+	}
+
+	public Designation getDesignation() {
+		return designation;
+	}
+
+	public void setDesignation(Designation designation) {
+		this.designation = designation;
 	}
 
 }

@@ -16,4 +16,6 @@ public interface VerificationService {
 
 	public void delete(Long id);
 
+	public boolean existsTokenByEmployee(Long id);
+
 }

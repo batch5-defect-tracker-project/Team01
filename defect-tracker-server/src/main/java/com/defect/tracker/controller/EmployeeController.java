@@ -18,14 +18,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.defect.tracker.data.dto.EmployeeDto;
+import com.defect.tracker.data.dto.LogInDto;
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.entities.VerificationToken;
+import com.defect.tracker.services.DesignationService;
 import com.defect.tracker.services.EmployeeService;
 import com.defect.tracker.services.VerificationService;
 import com.defect.tracker.util.EndpointURI;
@@ -47,6 +50,9 @@ public class EmployeeController {
 	private VerificationService verificationService;
 
 	@Autowired
+	private DesignationService designationService;
+
+	@Autowired
 	private Mapper mapper;
 
 	final String UPLOAD_DIR = "E:\\pro_defect___\\defect-tracker-server\\src\\main\\resources\\profiles";
@@ -61,13 +67,6 @@ public class EmployeeController {
 					validationFailureStatusCode.getEmpEmailAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
 
-		if ((int) file.getSize() > 1048576) {
-			return new ResponseEntity<>(
-					new ValidationFailureResponse(ValidationConstance.EMPLOYEE_PROFILE_SIZE_EXCEPTION,
-							validationFailureStatusCode.getEmpProfileSizeException()),
-					HttpStatus.BAD_REQUEST);
-		}
-
 		if (file.isEmpty()) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_PROFILE_EMPTY,
 					validationFailureStatusCode.getEmpProfileIsEmpty()), HttpStatus.BAD_REQUEST);
@@ -79,6 +78,11 @@ public class EmployeeController {
 					new ValidationFailureResponse(ValidationConstance.EMPLOYEE_PROFILE_CONTANTTYPE_EXCEPTION,
 							validationFailureStatusCode.getEmpProfileContenetTypeException()),
 					HttpStatus.BAD_REQUEST);
+		}
+
+		if (!designationService.existsDesignationById(employeeDto.getDesignationId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_FOUND,
+					validationFailureStatusCode.getDesignationNotFound()), HttpStatus.BAD_REQUEST);
 		}
 
 		employeeService.registerEmployee(employeeDto);
@@ -122,17 +126,12 @@ public class EmployeeController {
 					validationFailureStatusCode.getEmpIdNotAvailable()), HttpStatus.BAD_REQUEST);
 		}
 
-		if (!employeeService.getEmployeeStatus(employeeDto.getId())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_ACTIVE,
-					validationFailureStatusCode.getEmpNotActive()), HttpStatus.BAD_REQUEST);
-		}
-
-		if ((int) file.getSize() > 1048576) {
-			return new ResponseEntity<>(
-					new ValidationFailureResponse(ValidationConstance.EMPLOYEE_PROFILE_SIZE_EXCEPTION,
-							validationFailureStatusCode.getEmpProfileSizeException()),
-					HttpStatus.BAD_REQUEST);
-		}
+		/*
+		 * if (!employeeService.getEmployeeStatus(employeeDto.getId())) { return new
+		 * ResponseEntity<>(new
+		 * ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_ACTIVE,
+		 * validationFailureStatusCode.getEmpNotActive()), HttpStatus.BAD_REQUEST); }
+		 */
 
 		if (file.isEmpty()) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_PROFILE_EMPTY,
@@ -145,6 +144,11 @@ public class EmployeeController {
 					new ValidationFailureResponse(ValidationConstance.EMPLOYEE_PROFILE_CONTANTTYPE_EXCEPTION,
 							validationFailureStatusCode.getEmpProfileContenetTypeException()),
 					HttpStatus.BAD_REQUEST);
+		}
+
+		if (!designationService.existsDesignationById(employeeDto.getDesignationId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_FOUND,
+					validationFailureStatusCode.getDesignationNotFound()), HttpStatus.BAD_REQUEST);
 		}
 
 		if (employeeService.isEmailAlreadyExist(employeeDto.getEmail())) {
@@ -163,7 +167,7 @@ public class EmployeeController {
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATE_SUCCESS, HttpStatus.OK);
 	}
 
-	@DeleteMapping(value = EndpointURI.EMPLOYEE+"/{id}")
+	@DeleteMapping(value = EndpointURI.EMPLOYEE_ID)
 	public ResponseEntity<Object> deleteEmployeeById(@PathVariable Long id) {
 		if (employeeService.isIdAlreadyExists(id)) {
 			employeeService.deleteEmployeeById(id);
@@ -171,6 +175,34 @@ public class EmployeeController {
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_Id_NOT_AVAILABLE,
 				validationFailureStatusCode.getEmpIdNotAvailable()), HttpStatus.BAD_REQUEST);
+	}
+
+	@GetMapping(value = EndpointURI.EMPLOYEE)
+	public ResponseEntity<Object> getAllEmployee() {
+		return new ResponseEntity<Object>(employeeService.findAll(), HttpStatus.OK);
+	}
+
+	@GetMapping(value = EndpointURI.EMPLOYEE_ID)
+	public ResponseEntity<Object> getEmployeeById(@PathVariable Long id) {
+		if (!employeeService.isIdAlreadyExists(id)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_Id_NOT_AVAILABLE,
+					validationFailureStatusCode.getEmpIdNotAvailable()), HttpStatus.BAD_REQUEST);
+		}
+		EmployeeDto employeeDto = employeeService.findEmployeeById(id);
+		return new ResponseEntity<Object>(employeeDto, HttpStatus.OK);
+	}
+
+	@PostMapping(value = EndpointURI.EMPLOYEE_LOGIN)
+	public ResponseEntity<Object> logIn(@Valid @RequestBody LogInDto logInDto) {
+		if (!employeeService.isEmailAlreadyExist(logInDto.getUserName())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMAIL_NOT_AVAILABLE,
+					validationFailureStatusCode.getEmpEmailNotAvailable()), HttpStatus.OK);
+		}
+		if (employeeService.logIn(logInDto)) {
+			return new ResponseEntity<Object>(Constants.EMPLOYEE_SUCCESSFULL_LOGIN, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_USERNAME_PASSWORD_ERROR,
+				validationFailureStatusCode.getEmpEmailNotAvailable()), HttpStatus.OK);
 	}
 
 }

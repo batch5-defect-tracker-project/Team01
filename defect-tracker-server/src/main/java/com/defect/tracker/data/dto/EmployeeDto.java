@@ -14,10 +14,9 @@ public class EmployeeDto {
 	@NotBlank(message = "{employee.name.blank}")
 	@Pattern(regexp = "^[a-zA-Z.\\-\\/+=@_ ]*$", message = "{employee.name.notallow.specialcharacters}")
 	private String name;
-	@NotNull(message = "{employee.designation.null}")
-	@NotEmpty(message = "{employee.designation.empty}")
-	@NotBlank(message = "{employee.designation.blank}")
-	private String designation;
+	@NotNull(message = "{employee.email.null}")
+	@NotEmpty(message = "{employee.email.empty}")
+	@NotBlank(message = "{employee.email .blank}")
 	@Email(message = "{employee.email.invalid}")
 	@Pattern(regexp = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$", message = "{employee.email.syntaxerror}")
 	private String email;
@@ -35,6 +34,18 @@ public class EmployeeDto {
 	private Long contactNumber;
 	@NotNull(message = "{employee.status.blank}")
 	private boolean isEnabled;
+	@NotNull(message = "{employee.designationId.null}")
+	@NotEmpty(message = "{employee.designationId.empty}")
+	@NotBlank(message = "{employee.designationId.blank}")
+	private Long designationId;
+
+	public Long getDesignationId() {
+		return designationId;
+	}
+
+	public void setDesignationId(Long designationId) {
+		this.designationId = designationId;
+	}
 
 	public Long getId() {
 		return id;
@@ -50,14 +61,6 @@ public class EmployeeDto {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getDesignation() {
-		return designation;
-	}
-
-	public void setDesignation(String designation) {
-		this.designation = designation;
 	}
 
 	public String getEmail() {

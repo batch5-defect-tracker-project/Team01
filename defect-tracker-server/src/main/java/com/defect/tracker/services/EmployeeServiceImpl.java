@@ -1,14 +1,17 @@
 package com.defect.tracker.services;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.mail.MessagingException;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.defect.tracker.data.dto.EmployeeDto;
+import com.defect.tracker.data.dto.LogInDto;
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.EmployeeRepository;
@@ -32,6 +35,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	ObjectMapper objectMapper = new ObjectMapper();
 
+	BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
 	@Override
 	public boolean isEmailAlreadyExist(String email) {
 		return employeeRepository.existsByEmail(email);
@@ -39,9 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public void registerEmployee(EmployeeDto employeeDto) throws MessagingException {
-		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		employeeDto.setPassword(bCryptPasswordEncoder.encode(employeeDto.getPassword()));
-		System.out.println(employeeDto.getPassword());
 		employeeDto.setEnabled(false);
 		Employee employee = mapper.map(employeeDto, Employee.class);
 		employeeRepository.save(employee);
@@ -78,9 +81,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public void updateEmployeeById(EmployeeDto employeeDto) throws MessagingException {
-		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		employeeDto.setPassword(bCryptPasswordEncoder.encode(employeeDto.getPassword()));
-		System.out.println(employeeDto.getPassword());
 		employeeDto.setEnabled(true);
 		Employee employee = mapper.map(employeeDto, Employee.class);
 		employeeRepository.save(employee);
@@ -95,13 +96,35 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public void deleteEmployeeById(Long id) {
-		verificationService.delete(id);
+		if (verificationService.existsTokenByEmployee(id)) {
+			verificationService.delete(id);
+		}
 		employeeRepository.deleteById(id);
 	}
 
 	@Override
 	public Employee findById(Long id) {
 		return employeeRepository.findById(id).get();
+	}
+
+	@Override
+	public List<EmployeeDto> findAll() {
+		return mapper.map(employeeRepository.findAll(), EmployeeDto.class);
+	}
+
+	@Override
+	public EmployeeDto findEmployeeById(Long id) {
+		return mapper.map(employeeRepository.findById(id).get(), EmployeeDto.class);
+	}
+
+	@Override
+	public boolean logIn(@Valid LogInDto logInDto) {
+		Employee employee = employeeRepository.findByEmail(logInDto.getUserName());
+		if (logInDto.getUserName().equalsIgnoreCase(employee.getEmail())
+				&& bCryptPasswordEncoder.matches(logInDto.getPassword(), employee.getPassword())) {
+			return true;
+		}
+		return false;
 	}
 
 }

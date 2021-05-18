@@ -12,4 +12,6 @@ public interface VerificationTokenRepository extends JpaRepository<VerificationT
 
 	public VerificationToken findByEmployee(Employee employee);
 
+	public boolean existsByEmployee(Employee employee);
+
 }

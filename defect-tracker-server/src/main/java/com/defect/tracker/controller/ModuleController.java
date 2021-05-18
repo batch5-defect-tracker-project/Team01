@@ -63,4 +63,5 @@ public class ModuleController {
 		List<ModuleDto> moduleList = mapper.map(moduleService.getAllModule(), ModuleDto.class);
 		return new ResponseEntity<Object>(moduleList, HttpStatus.OK);
 	}
+
 }
