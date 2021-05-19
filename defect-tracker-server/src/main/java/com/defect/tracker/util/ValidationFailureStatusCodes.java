@@ -1,3 +1,4 @@
+
 package com.defect.tracker.util;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -81,6 +82,19 @@ public class ValidationFailureStatusCodes {
 		return proNameAlreadyExists;
 	}
 
+	@Value("${validation.type.AlreadyExists}")
+	private String nameAlreadyExists;
+
+	public String getNameAlreadyExists() {
+		return nameAlreadyExists;
+	}
+
+	public void setNameAlreadyExists(String nameAlreadyExists) {
+		this.nameAlreadyExists = nameAlreadyExists;
+	}
+
+
+
 
 	public void setProNameAlreadyExists(String proNameAlreadyExists) {
 		this.proNameAlreadyExists = proNameAlreadyExists;
@@ -163,4 +177,6 @@ public class ValidationFailureStatusCodes {
 	private String defectById;
 
 
+
 }
+
