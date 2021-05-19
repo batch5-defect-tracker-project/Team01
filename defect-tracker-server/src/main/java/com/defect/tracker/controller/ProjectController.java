@@ -53,7 +53,7 @@ public class ProjectController {
 	}
 
 	@GetMapping(value = EndpointURI.ID)
-	public ResponseEntity<Object> getEmployeeid(@PathVariable Long id) {
+	public ResponseEntity<Object> getProjectId(@PathVariable Long id) {
 		if (projectService.projectIdExits(id)) {
 			return new ResponseEntity<Object>(mapper.map(projectService.getProjectById(id), ProjectDto.class),
 					HttpStatus.OK);
