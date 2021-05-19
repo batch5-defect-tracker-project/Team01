@@ -7,6 +7,8 @@ public class ValidationConstance {
 	public static final String PROJECT_UPDATE_EXISTS = "Project name already use another project";
 	public static final String ID_NOTFOUND = "Id  Not Found";
 
+
+
 	public static final String TYPE_EXISTS = "Type Already Exists";
 
 	public static final String DESIGNATION_EXISTS = "Designation Already Exists";
@@ -31,3 +33,4 @@ public class ValidationConstance {
 	private ValidationConstance() {
 	}
 }
+

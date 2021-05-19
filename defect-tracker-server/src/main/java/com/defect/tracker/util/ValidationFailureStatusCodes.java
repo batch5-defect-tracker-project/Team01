@@ -13,6 +13,7 @@ public class ValidationFailureStatusCodes {
 
 	// Project
 	@Value("${validation.project.AlreadyExists}")
+
 	private String ProjectNameAlreadyExists;
 
 	public String getProjectNameAlreadyExists() {
@@ -130,6 +131,12 @@ public class ValidationFailureStatusCodes {
 
 
 
+	public String getProNameAlreadyExists() {
+		return proNameAlreadyExists;
+
+	}
+
+
 	public String getDesigNameAlreadyExists() {
 		return desigNameAlreadyExists;
 	}
@@ -154,9 +161,6 @@ public class ValidationFailureStatusCodes {
 	private String modNameAlreadyExists;
 
 
-	public String getProNameAlreadyExists() {
-		return proNameAlreadyExists;
-	}
 
 	@Value("${validation.type.AlreadyExists}")
 	private String nameAlreadyExists;
@@ -168,8 +172,6 @@ public class ValidationFailureStatusCodes {
 	public void setNameAlreadyExists(String nameAlreadyExists) {
 		this.nameAlreadyExists = nameAlreadyExists;
 	}
-
-
 
 
 	public void setProNameAlreadyExists(String proNameAlreadyExists) {
@@ -255,4 +257,5 @@ public class ValidationFailureStatusCodes {
 
 
 }
+
 

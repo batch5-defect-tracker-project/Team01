@@ -16,6 +16,7 @@ public class Constants {
 	public static final String TYPE_ADDED_SUCCESS = "Type added successfully ";
 	// encaptulate constructor to restrict modification from outside
 
+
 	
 	public static final String DESIGNATION_ADDED_SUCCESS = "Designation Added Successfully";
 	
@@ -38,6 +39,7 @@ public class Constants {
 	public static final String SUB_MODULE_UPDATE_SUCCESS = "SubModule Update successfully";
     
 	// encaptulate constructor to restrict modification from outside
+
 
 	// Project Allocation
 	public static final String PROJECT_ALLOCATION_ADDED_SUCCESS = "Project Allocation Added Successfully...!";
