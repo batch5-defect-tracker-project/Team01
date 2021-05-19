@@ -125,10 +125,10 @@ public class EmployeeController {
 					validationFailureStatusCode.getEmpIdNotAvailable()), HttpStatus.BAD_REQUEST);
 		}
 
-		/*if (!employeeService.getEmployeeStatus(employeeDto.getId())) {
+		if (!employeeService.getEmployeeStatus(employeeDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_ACTIVE,
 					validationFailureStatusCode.getEmpNotActive()), HttpStatus.BAD_REQUEST);
-		}*/
+		}
 
 		if (!designationService.designationExistsById(employeeDto.getDesignationId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_FOUND,
