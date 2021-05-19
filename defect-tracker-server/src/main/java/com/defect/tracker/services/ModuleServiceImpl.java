@@ -10,7 +10,6 @@ import com.defect.tracker.data.entities.Module;
 import com.defect.tracker.data.repositories.ModuleRepository;
 
 
-
 @Service
 public class ModuleServiceImpl  implements ModuleService{
 
@@ -33,14 +32,11 @@ public class ModuleServiceImpl  implements ModuleService{
 		return moduleRepository.existsByName(name);
 	}
 
-
-
 	@Override
 	public boolean moduleExits(String name) {
-		// TODO Auto-generated method stub
+		
 		return moduleRepository.existsByName(name);
 	}
-	
 	
 	@Override
 	public void updateModule(Module module) {
@@ -51,21 +47,21 @@ public class ModuleServiceImpl  implements ModuleService{
 		
 		return moduleRepository.findAll();
 	}
+	@Override
+	public void deleteById(Long id) {
+		moduleRepository.deleteById(id);
+		
+	}
+	@Override
+	public boolean existsById(Long id) {	
+		return moduleRepository.existsById(id);
+	}
+	@Override
+	public Object getModuleById(Long id) {
+		
+		return moduleRepository.findById(id) ;
+	}
 	
-
-    
-    
-
-	
-	
-	
-	
-
-
-
-
-	
-
 
 }
 	
