@@ -32,7 +32,7 @@ public class SubModuleController {
 	@Autowired
 	private Mapper mapper;
 	
-
+//ADD
 	@PostMapping(value = EndpointURI.SUB_MODULE)
 	public ResponseEntity<Object> addSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
 		
@@ -46,10 +46,10 @@ public class SubModuleController {
 		subModuleService.createSubModule(subModule);
 		return new ResponseEntity<Object>(Constants.SUB_MODULE_ADDED_SUCCESS, HttpStatus.OK);
 	}
-	
+	//UPDATE
 	@PutMapping(value = EndpointURI.SUB_MODULE)
 	public ResponseEntity<Object> updateSubModule(@Valid @RequestBody  SubModuleDto subModuleDto) {
-		if (subModuleService.exitsById(subModuleDto.getId())) {
+		if (subModuleService.exitsSubModuleById(subModuleDto.getId())) {
 			if(subModuleService.isSubModuleNameAlreadyExist(subModuleDto.getName())){
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
 					validationFailureStatusCodes.getSubModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);

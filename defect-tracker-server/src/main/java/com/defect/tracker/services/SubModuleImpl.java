@@ -25,17 +25,18 @@ public class SubModuleImpl implements SubModuleService {
 		
 	}
 
-	@Override
-	public boolean exitsById(Long id) {
-		return subModuleRepository.existsById(id);
-		
-	}
 
 	@Override
 	public boolean isSubModuleNameAlreadyExist(String name) {
 		
 		return  subModuleRepository.existsByName(name) ;
 		
+	}
+
+	@Override
+	public boolean exitsSubModuleById(Long id) {
+	
+		return subModuleRepository.existsById(id);
 	}
 
 }

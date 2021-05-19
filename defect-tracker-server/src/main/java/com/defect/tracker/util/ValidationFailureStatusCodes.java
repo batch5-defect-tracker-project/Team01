@@ -57,8 +57,17 @@ public class ValidationFailureStatusCodes {
 	private String ModuleById;
 	@Value("${validation.subModule.AlreadyExists}")
 	private String SubModuleNameAlreadyExists;
+	@Value("${validation.subModule.AlreadyExists}")
+	private String exitsSubModuleById;
 	
-	
+
+	public String getExitsSubModuleById() {
+		return exitsSubModuleById;
+	}
+
+	public void setExitsSubModuleById(String exitsSubModuleById) {
+		this.exitsSubModuleById = exitsSubModuleById;
+	}
 
 	public String getSubModuleNameAlreadyExists() {
 		return SubModuleNameAlreadyExists;

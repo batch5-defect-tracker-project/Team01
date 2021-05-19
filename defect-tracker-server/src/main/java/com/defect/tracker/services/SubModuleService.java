@@ -10,7 +10,7 @@ public interface SubModuleService {
 
 	public void createSubModule(SubModule subModule);
 
-	public boolean exitsById(Long id);
+	public boolean exitsSubModuleById(Long id);
 
 	public boolean isSubModuleNameAlreadyExist(String name);
 
