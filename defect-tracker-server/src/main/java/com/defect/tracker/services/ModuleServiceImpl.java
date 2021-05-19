@@ -31,7 +31,7 @@ public class ModuleServiceImpl implements ModuleService {
 
 	@Override
 	public boolean moduleExits(String name) {
-		// TODO Auto-generated method stub
+		
 		return moduleRepository.existsByName(name);
 	}
 
@@ -46,4 +46,16 @@ public class ModuleServiceImpl implements ModuleService {
 		return moduleRepository.findAll();
 	}
 
+	@Override
+	public void deleteById(Long id) {
+		moduleRepository.deleteById(id);
+		
+	}
+
+	@Override
+	public Object getModuleById(Long id) {
+		
+		return moduleRepository.findById(id) ;
+	}
+  
 }
