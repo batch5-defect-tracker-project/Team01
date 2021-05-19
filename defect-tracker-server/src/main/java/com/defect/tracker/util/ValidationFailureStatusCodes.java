@@ -50,6 +50,7 @@ public class ValidationFailureStatusCodes {
 	// Module
 	@Value("${validation.module.AlreadyExists}")
 	private String moduleNameAlreadyExists;
+
 	@Value("${validation.module.IdAlreadyExists}")
 	private String moduleExistsById;
 	@Value("${validation.module.IdAlreadyExists}")
@@ -75,6 +76,7 @@ public class ValidationFailureStatusCodes {
 		ModuleById = moduleById;
 	}
 
+
 	// Project Allocation
 	@Value("${validation.projectAllocation.AlreadyExistsId}")
 	private String projectAllocationExistsById;
@@ -84,6 +86,8 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.projectAllocation.AlreadyExistsId}")
 	private String projectAllocationById;
+
+
 
 
 	public String getProNameAlreadyExists() {
@@ -146,6 +150,18 @@ public class ValidationFailureStatusCodes {
 		this.employeeIdAlreadyExists = employeeIdAlreadyExists;
 	}
 
+	public String getmoduleExistsById() {
+
+		return existsById;
+	}
+
+	public void setmoduleExistsById(String existsById) {
+		this.existsById = existsById;
+	}	
+	
+
+		
+
 	public String getProjectAllocationById() {
 		return projectAllocationById;
 	}
@@ -154,6 +170,7 @@ public class ValidationFailureStatusCodes {
 	public void setProjectAllocationById(String projectAllocationById) {
 		this.projectAllocationById = projectAllocationById;
 	}
+
 
 	public String getModNameAlreadyExists() {
 		return modNameAlreadyExists;
@@ -166,11 +183,7 @@ public class ValidationFailureStatusCodes {
 
 
 
-	public void setExistsById(String existsById) {
-		this.existsById = existsById;
-	}	
 	
-
 
 
 
@@ -191,6 +204,7 @@ public class ValidationFailureStatusCodes {
 	
 	@Value("${validation.defect.defectById}")
 	private String defectById;
+
 
 
 }
