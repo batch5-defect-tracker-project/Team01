@@ -9,6 +9,7 @@ public final class EndpointURI {
 
 	// Project
 	public static final String PROJECT = BASE_API_PATH + "project";
+	public static final String TYPE = BASE_API_PATH + "Type";
 
 	private EndpointURI() {
 
