@@ -20,9 +20,16 @@ public class SubModule {
 	private  Long id;
 	private String name;
 	
+	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "module_id", nullable = false)
     private Module module;
+	SubModule(){
+		
+	}
+   SubModule(String name,Module module){
+		
+	}
 	
 	public Module getModule() {
 		return module;

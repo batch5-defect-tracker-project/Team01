@@ -5,18 +5,16 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.defect.tracker.data.dto.ModuleDto;
 import com.defect.tracker.data.dto.SubModuleDto;
-import com.defect.tracker.data.entities.Module;
 import com.defect.tracker.data.entities.SubModule;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
-import com.defect.tracker.services.ModuleService;
 import com.defect.tracker.services.SubModuleService;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
@@ -60,4 +58,17 @@ public class SubModuleController {
 	}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,validationFailureStatusCodes.getExistsById()),HttpStatus.BAD_REQUEST);
 	}
+   //GetById
+	@GetMapping(value = EndpointURI.SUB_MODULE_BY_ID)
+	public ResponseEntity<Object> findSubModuleById(@PathVariable Long id) {
+		if (subModuleService.exitsSubModuleById(id)) {
+			System.out.println("Controller");
+		SubModule subModule = subModuleService.getSubModuleById(id);
+			System.out.println(subModule.getName()+"SubModuleController");
+			return new ResponseEntity<Object>(subModule, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS_BY_ID,
+				validationFailureStatusCodes.getSubModuleById()), HttpStatus.BAD_REQUEST);
+	}
+
 }

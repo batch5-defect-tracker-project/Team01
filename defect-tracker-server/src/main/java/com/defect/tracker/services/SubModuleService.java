@@ -13,5 +13,8 @@ public interface SubModuleService {
 	public boolean exitsSubModuleById(Long id);
 
 	public boolean isSubModuleNameAlreadyExist(String name);
+	
+	public SubModule getSubModuleById(Long id);
+
 
 }

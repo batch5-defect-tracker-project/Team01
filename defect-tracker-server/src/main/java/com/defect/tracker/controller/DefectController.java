@@ -62,23 +62,23 @@ public class DefectController {
 			}
 			Defect defect = mapper.map(defectDto, Defect.class);
 			defectService.createDefect(defect);
-			return new ResponseEntity<Object>(Constants.UPDATED_SUCCESS, HttpStatus.OK);
+			return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS,
-				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+				validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
 
 	}
 
 	@DeleteMapping(value = EndpointURI.DEFECT_BY_ID)
 	public ResponseEntity<Object> deleteDefectById(@PathVariable Long id) {
-		if (defectService.existsDefectById(id)) {
+		if (!defectService.existsDefectById(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_DELETE_EXISTS_BY_ID,
-					validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes. getDefectExistsById()), HttpStatus.BAD_REQUEST);
 
 		}
 
 		defectService.deleteDefectById(id);
-		return new ResponseEntity<Object>(Constants.DELETED_SUCCESS, HttpStatus.OK);
+		return new ResponseEntity<Object>(Constants.DEFECT_DELETED_SUCCESS, HttpStatus.OK);
 	}
 
 	@GetMapping(value = EndpointURI.DEFECT_BY_ID)
