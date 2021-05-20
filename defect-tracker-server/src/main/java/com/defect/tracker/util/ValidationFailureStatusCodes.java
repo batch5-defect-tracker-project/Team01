@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
-/**
- * contains custom error messages
- *
- */
+
 
 @Component
 @PropertySource("classpath:ValidationMessages.properties")
@@ -16,6 +13,39 @@ public class ValidationFailureStatusCodes {
 
 	// Project
 	@Value("${validation.project.AlreadyExists}")
+
+	private String ProjectNameAlreadyExists;
+
+	public String getProjectNameAlreadyExists() {
+		return ProjectNameAlreadyExists;
+	}
+
+	public void setProjectNameAlreadyExists(String projectNameAlreadyExists) {
+		ProjectNameAlreadyExists = projectNameAlreadyExists;
+	}
+
+	public String getProjectIdNotFound() {
+		return projectIdNotFound;
+	}
+
+	public void setProjectIdNotFound(String projectIdNotFound) {
+		this.projectIdNotFound = projectIdNotFound;
+	}
+
+	@Value("${validation.id.NotFound}")
+	private String projectIdNotFound;
+
+	@Value("${validation.Name.UseAnotherProject}")
+	private String getProjectNameAlreadyUseByAnotherProject;
+
+	public String getGetProjectNameAlreadyUseByAnotherProject() {
+		return getProjectNameAlreadyUseByAnotherProject;
+	}
+
+	public void setGetProjectNameAlreadyUseByAnotherProject(String getProjectNameAlreadyUseByAnotherProject) {
+		this.getProjectNameAlreadyUseByAnotherProject = getProjectNameAlreadyUseByAnotherProject;
+	}
+
 	private String proNameAlreadyExists;
     //	DESIGNATION
 	@Value("${validation.designation.AlreadyExists}")
@@ -63,17 +93,16 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.defect.defectById}")
 	private String defectById;
 
+
 	public String getProNameAlreadyExists() {
 		return proNameAlreadyExists;
-	}
 
-	public void setProNameAlreadyExists(String proNameAlreadyExists) {
-		this.proNameAlreadyExists = proNameAlreadyExists;
 	}
 
 
 	public String getDesignationNameAlreadyExists() {
 		return designationNameAlreadyExists;
+
 	}
 
 	public void setDesignationNameAlreadyExists(String designationNameAlreadyExists) {
@@ -99,7 +128,6 @@ public class ValidationFailureStatusCodes {
 	public String getModuleNameAlreadyExists() {
 		return moduleNameAlreadyExists;
 	}
-
 	public void setModuleNameAlreadyExists(String moduleNameAlreadyExists) {
 		this.moduleNameAlreadyExists = moduleNameAlreadyExists;
 	}
@@ -120,6 +148,7 @@ public class ValidationFailureStatusCodes {
 		ModuleById = moduleById;
 	}
 
+
 	public String getSubModuleNameAlreadyExists() {
 		return SubModuleNameAlreadyExists;
 	}
@@ -130,6 +159,10 @@ public class ValidationFailureStatusCodes {
 
 	public String getExitsSubModuleById() {
 		return exitsSubModuleById;
+	}
+	public void setProNameAlreadyExists(String proNameAlreadyExists) {
+		this.proNameAlreadyExists = proNameAlreadyExists;
+
 	}
 
 	public void setExitsSubModuleById(String exitsSubModuleById) {
@@ -196,4 +229,5 @@ public class ValidationFailureStatusCodes {
 	
 
 }
+
 
