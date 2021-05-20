@@ -12,8 +12,8 @@ public final class EndpointURI {
 	
 	// Project
 
-	public static final String PROJECT = BASE_API_PATH + "Project";
-
+	
+	//DESIGNATION  
 	public static final String DESIGNATION =BASE_API_PATH +"Designation" ;
 	
 	public static final String DESIGNATION_BY_ID = BASE_API_PATH + "Designation" +ID;

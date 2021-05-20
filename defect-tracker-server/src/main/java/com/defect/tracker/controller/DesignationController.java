@@ -34,9 +34,9 @@ public class DesignationController {
 	// Add
 	@PostMapping(value = EndpointURI.DESIGNATION)
 	public ResponseEntity<Object> addDesignation(@Valid @RequestBody DesignationDto designationDto) {
-		if (designationService.isDesigNameAlreadyExist(designationDto.getName())) {
+		if (designationService.isDesignationNameAlreadyExist(designationDto.getName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_EXISTS,
-					validationFailureStatusCodes.getDesigNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getDesignationNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
 		Designation designation = mapper.map(designationDto, Designation.class);
 		designationService.createDesignation(designation);
@@ -48,13 +48,13 @@ public class DesignationController {
 		List<DesignationDto> designationList = mapper.map(designationService.getAllDesignation(), DesignationDto.class);
 		return new ResponseEntity<Object>(designationList, HttpStatus.OK);
 	}
-
+	
 	@DeleteMapping(value = EndpointURI.DESIGNATION_BY_ID)
 	public ResponseEntity<Object> deleteDesignation(@PathVariable Long id) {
 		if (!designationService.designationExistsById(id)) {
 			return new ResponseEntity<>(
 					new ValidationFailureResponse(ValidationConstance.DESIGNATION_DELETE_EXISTS_BY_ID,
-							validationFailureStatusCodes.getExistsById()),
+							validationFailureStatusCodes.getDesignationExistsById()),
 					HttpStatus.BAD_REQUEST);
 		}
 		designationService.designationDeleteById(id);
@@ -73,15 +73,15 @@ public class DesignationController {
 	@PutMapping(value = EndpointURI.DESIGNATION)
 	public ResponseEntity<Object> editDesignationById(@RequestBody DesignationDto designationDto) {
 		if (designationService.designationExistsById(designationDto.getId())) {
-			if (designationService.isDesigNameAlreadyExist(designationDto.getName())) {
+			if (designationService.isDesignationNameAlreadyExist(designationDto.getName())) {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_EXISTS,
-						validationFailureStatusCodes.getDesigNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+						validationFailureStatusCodes.getDesignationNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 			}
 			Designation designation = mapper.map(designationDto, Designation.class);
 			designationService.createDesignation(designation);
 			return new ResponseEntity<Object>(Constants.DESIGNATION_UPDATED_SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_EXISTS,
-				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+				validationFailureStatusCodes.getDesignationExistsById()), HttpStatus.BAD_REQUEST);
 	}
 }
