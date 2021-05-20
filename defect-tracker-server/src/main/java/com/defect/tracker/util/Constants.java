@@ -18,15 +18,15 @@ public class Constants {
 
 
 	
+   //DESIGNATION	
 	public static final String DESIGNATION_ADDED_SUCCESS = "Designation Added Successfully";
-	
-	// Encapsulate constructor to restrict modification from outside
-	
+		
 	public static final String DESIGNATION_DELETED_SUCCESS = "Designation Delete Successfully";
 	
 	public static final String DESIGNATION_UPDATED_SUCCESS = "Designation Update Successfully";
 	
-
+	// Encapsulate constructor to restrict modification from outside
+	
 	
 	public static final String DEFECT_ADDED_SUCCESS = "Defect Added Successfully";
 

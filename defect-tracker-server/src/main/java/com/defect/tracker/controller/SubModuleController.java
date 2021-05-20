@@ -1,15 +1,19 @@
 package com.defect.tracker.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.defect.tracker.data.dto.DesignationDto;
 import com.defect.tracker.data.dto.ModuleDto;
 import com.defect.tracker.data.dto.SubModuleDto;
 import com.defect.tracker.data.entities.Module;
@@ -60,4 +64,11 @@ public class SubModuleController {
 	}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,validationFailureStatusCodes.getExistsById()),HttpStatus.BAD_REQUEST);
 	}
+//	GETALL
+	@GetMapping(value =EndpointURI.SUB_MODULE)
+	public ResponseEntity<Object> getAllSubModule() {
+		List<SubModuleDto> subModuleList = mapper.map(subModuleService.getAllSubModule(), SubModuleDto.class);
+		return new ResponseEntity<Object>(subModuleList, HttpStatus.OK);
+	}
+
 }
