@@ -6,14 +6,17 @@ import org.springframework.util.MultiValueMap;
 
 public class Constants {
 
-	// project
 
 	public static final String PROJECT_ADDED_SUCCESS = "Project added successfully ";
+	public static final String PROJECT_UPDATE_SUCCESS = "Project update successfully";
+	public static final String PROJECT_DELETE_SUCCESS = "Project delete successfully";
+
+	// project
+
 	public static final String TYPE_ADDED_SUCCESS = "Type added successfully ";
 	// encaptulate constructor to restrict modification from outside
 
 
-	public static final String PROJECT_ADDED_SUCCESS = "Project Added Successfully";
 	
 	public static final String DESIGNATION_ADDED_SUCCESS = "Designation Added Successfully";
 	
@@ -37,12 +40,12 @@ public class Constants {
     
 	// encaptulate constructor to restrict modification from outside
 
+
 	// Project Allocation
 	public static final String PROJECT_ALLOCATION_ADDED_SUCCESS = "Project Allocation Added Successfully...!";
 	public static final String PROJECT_ALLOCATION_DELETED_SUCCESS = "Project Allocation Deleted Successfully...!";
 	public static final String PROJECT_ALLOCATION_UPDATED_SUCCESS = "Project Allocation Updated Successfully...!";
 
-	// encaptulate constructor to restrict modification from outside
 	public static final String DELETED_SUCCESS = "Deleted Successfully"; 
 	public static final String UPDATED_SUCCESS = "Updated Successfully";
 	
