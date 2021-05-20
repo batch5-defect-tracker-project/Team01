@@ -24,11 +24,16 @@ public final class EndpointURI {
 	public static final String MODULE = BASE_API_PATH + "module";
 	public static final String MODULE_BY_ID = BASE_API_PATH + "module" + ID;
 	public static final String SUB_MODULE =BASE_API_PATH + "sub-module";
+	public static final String SUB_MODULE_BY_ID =BASE_API_PATH + "sub-module"+ID;
 
+<<<<<<< HEAD
+  
+=======
 
+>>>>>>> 10a3c9d8c692617ed94a8927fb61ce9ec222efcf
 
 	public static final String TYPE = BASE_API_PATH + "Type";
-
+   //Defect
 	public static final String DEFECT = BASE_API_PATH + "Defect";
 	public static final String DEFECT_BY_ID = BASE_API_PATH + "Defect"+ID;
 	
