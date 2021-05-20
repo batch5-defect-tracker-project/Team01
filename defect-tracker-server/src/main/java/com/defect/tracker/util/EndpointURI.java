@@ -1,16 +1,18 @@
 package com.defect.tracker.util;
 
-/**
- * Contains all the rest endpoint url constants
- */
+
 public final class EndpointURI {
 
 	private static final String BASE_API_PATH = "/api/v1/";
-	private static  final  String ID = "/{id}";
 
+	
+
+	public static final String PROJECT = BASE_API_PATH + "project";
+	public static final String ID = BASE_API_PATH + "{id}";
+	
+	
 	// Project
 
-	public static final String PROJECT = BASE_API_PATH + "Project";
 
 	public static final String DESIGNATION =BASE_API_PATH +"Designation" ;
 	
@@ -22,7 +24,11 @@ public final class EndpointURI {
 	public static final String SUB_MODULE =BASE_API_PATH + "sub-module";
 	public static final String SUB_MODULE_BY_ID =BASE_API_PATH + "sub-module"+ID;
 
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 10a3c9d8c692617ed94a8927fb61ce9ec222efcf
 
 	public static final String TYPE = BASE_API_PATH + "Type";
    //Defect
