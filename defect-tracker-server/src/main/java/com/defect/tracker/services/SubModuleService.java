@@ -1,6 +1,9 @@
 package com.defect.tracker.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
+
 
 import com.defect.tracker.data.entities.SubModule;
 @Service
@@ -14,7 +17,11 @@ public interface SubModuleService {
 
 	public boolean isSubModuleNameAlreadyExist(String name);
 	
+
 	public SubModule getSubModuleById(Long id);
+
+	public List<SubModule> getAllSubModule();
+
 
 
 }

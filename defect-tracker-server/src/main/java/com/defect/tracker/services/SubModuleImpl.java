@@ -1,5 +1,7 @@
 package com.defect.tracker.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,10 +42,15 @@ public class SubModuleImpl implements SubModuleService {
 	}
 
 	@Override
+
 	public SubModule getSubModuleById(Long id) {
 		SubModule subModule = subModuleRepository.findById(id).get();
 		System.out.println(subModule.getModule());
 		return subModule;
+
+	public List<SubModule> getAllSubModule() {
+		return subModuleRepository.findAll();
+
 	}
 
 }
