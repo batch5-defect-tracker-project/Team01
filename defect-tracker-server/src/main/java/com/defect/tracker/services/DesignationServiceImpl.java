@@ -11,7 +11,7 @@ public class DesignationServiceImpl implements DesignationService{
 	 @Autowired
 		private  DesignationRepository designationRepository ;
 	@Override
-	public boolean isDesigNameAlreadyExist(String name) {
+	public boolean isDesignationNameAlreadyExist(String name) {
         return designationRepository.existsByName(name);
 	}
 

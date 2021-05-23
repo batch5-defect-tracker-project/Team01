@@ -1,9 +1,13 @@
 package com.defect.tracker.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.defect.tracker.data.entities.SubModule;
+
+
 import com.defect.tracker.data.repositories.SubModuleRepository;
 
 @Service
@@ -33,6 +37,7 @@ public class SubModuleImpl implements SubModuleService {
 	}
 
 	@Override
+
 	public boolean existsById(Long id) {
 		return subModuleRepository.existsById(id);
 	}
@@ -40,6 +45,16 @@ public class SubModuleImpl implements SubModuleService {
 	@Override
 	public void deleteById(Long id) {
 		subModuleRepository.deleteById(id);		
+
+
+	public SubModule getSubModuleById(Long id) {
+		SubModule subModule = subModuleRepository.findById(id).get();
+		System.out.println(subModule.getModule());
+		return subModule;
+
+	public List<SubModule> getAllSubModule() {
+		return subModuleRepository.findAll();
+
 	}
 
 }
