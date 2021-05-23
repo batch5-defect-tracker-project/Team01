@@ -2,6 +2,22 @@ package com.defect.tracker.util;
 
 public class Constants {
 
+
+	// project
+	public static final String PROJECT_ADDED_SUCCESS = "Project Added successfully ";
+
+	// employee
+	public static final String EMPLOYEE_REGISTERED_SUCCESS = "Employee Register Successfully And Verification Email Sended ";
+
+	public static final String EMPLOYEE_PROFILE_ADDED_SUCCESS = "Employee Profile Picture Added Successfully";
+  
+	public static final String EMPLOYEE_ACTIVATIN_SUCCESS = "Employee Email Verification Success";
+
+	public static final String EMPLOYEE_ALREADY_ACTIVATED = "Employee Already Verified";
+  
+	public static final String EMPLOYEE_UPDATE_SUCCESS = "Employee Update Successfully";
+
+
 	// project
 	public static final String PROJECT_ADDED_SUCCESS = "Project added successfully ";
 	public static final String PROJECT_UPDATE_SUCCESS = "Project update successfully";
@@ -31,6 +47,14 @@ public class Constants {
 	// Type
 	public static final String TYPE_ADDED_SUCCESS = "Type added successfully ";
 
+
+	public static final String EMPLOYEE_SUCCESSFULL_DELETE = "Employee Successfull Deleted";
+
+	public static final String EMPLOYEE_SUCCESSFULL_LOGIN = "Successfull Employee LogIn";
+
+	public static final String TYPE_ADDED_SUCCESS = "Type added successfully ";
+	// encaptulate constructor to restrict modification from outside
+	
   // project
 	public static final String PROJECT_ADDED_SUCCESS = "Project added successfully ";
 	public static final String PROJECT_UPDATE_SUCCESS = "Project update successfully";

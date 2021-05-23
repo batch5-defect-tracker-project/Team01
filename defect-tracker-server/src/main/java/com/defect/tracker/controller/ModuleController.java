@@ -67,7 +67,12 @@ public class ModuleController {
 	public ResponseEntity<Object> getAllModule() {
 		List<ModuleDto> moduleList = mapper.map(moduleService.getAllModule(), ModuleDto.class);
 		return new ResponseEntity<Object>(moduleList, HttpStatus.OK);
+
+  }
+	
+
 	}
+
 
 	// ------------------------- Delete By Id -API ------------------------- //
 	@DeleteMapping(value = EndpointURI.MODULE_BY_ID)
@@ -90,4 +95,5 @@ public class ModuleController {
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getModuleById()), HttpStatus.BAD_REQUEST);
 	}
+  
 }

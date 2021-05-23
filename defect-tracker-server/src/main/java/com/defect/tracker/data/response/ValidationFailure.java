@@ -15,15 +15,15 @@ public class ValidationFailure extends ApiResponse {
 	public void setValidationFailures(List<ValidationFailureResponse> validationFailures) {
 		this.validationFailures = validationFailures;
 	}
-	
-	public ValidationFailure(List<ValidationFailureResponse> validationErrors) {
-	    super(RestApiResponseStatus.VALIDATION_FAILURE);
-	    this.validationFailures = validationErrors;
-	  }
 
-	  public ValidationFailure(String field, String code) {
-	    super(RestApiResponseStatus.VALIDATION_FAILURE);
-	    ValidationFailureResponse validationFailureResponse = new ValidationFailureResponse(field, code);
-	    this.validationFailures = Collections.singletonList(validationFailureResponse);
-	  }
+	public ValidationFailure(List<ValidationFailureResponse> validationErrors) {
+		super(RestApiResponseStatus.VALIDATION_FAILURE);
+		this.validationFailures = validationErrors;
+	}
+
+	public ValidationFailure(String field, String code) {
+		super(RestApiResponseStatus.VALIDATION_FAILURE);
+		ValidationFailureResponse validationFailureResponse = new ValidationFailureResponse(field, code);
+		this.validationFailures = Collections.singletonList(validationFailureResponse);
+	}
 }

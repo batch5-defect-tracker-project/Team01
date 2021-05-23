@@ -17,11 +17,12 @@ public interface ModuleService {
 
 	void updateModule(Module module);
 
+	public List<Module> getAllModule();	
+
 	public List<Module> getAllModule();
 
-	public void deleteById(Long id);
 
-	public boolean existsById(Long id);
+	public void deleteById(Long id);
 
 	public Object getModuleById(Long id);
 

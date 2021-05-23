@@ -52,10 +52,12 @@ public class ModuleServiceImpl implements ModuleService {
 
 	}
 
+
 	@Override
 	public boolean existsById(Long id) {
 		return moduleRepository.existsById(id);
 	}
+
 
 	@Override
 	public Object getModuleById(Long id) {
