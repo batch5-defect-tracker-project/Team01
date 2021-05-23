@@ -1,10 +1,7 @@
 package com.defect.tracker.services;
 
 import java.util.List;
-
 import org.springframework.stereotype.Service;
-import org.springframework.util.MultiValueMap;
-
 import com.defect.tracker.data.entities.Module;
 
 @Service
@@ -22,7 +19,11 @@ public interface ModuleService {
 
 	public List<Module> getAllModule();	
 
+	public List<Module> getAllModule();
+
+
 	public void deleteById(Long id);
 
 	public Object getModuleById(Long id);
+
 }

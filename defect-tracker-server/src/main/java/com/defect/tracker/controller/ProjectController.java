@@ -42,7 +42,7 @@ public class ProjectController {
 		return new ResponseEntity<Object>(Constants.PROJECT_ADDED_SUCCESS, HttpStatus.OK);
 	}
 
-	@DeleteMapping(value = EndpointURI.ID)
+	@DeleteMapping(value = EndpointURI.PROJECT_BY_ID)
 	public ResponseEntity<Object> deleteProject(@PathVariable Long id) {
 		if (projectService.projectIdExits(id)) {
 			projectService.deleteProjectById(id);
@@ -52,7 +52,7 @@ public class ProjectController {
 				validationFailureStatusCodes.getProjectIdNotFound()), HttpStatus.BAD_REQUEST);
 	}
 
-	@GetMapping(value = EndpointURI.ID)
+	@GetMapping(value = EndpointURI.PROJECT_BY_ID)
 	public ResponseEntity<Object> getProjectId(@PathVariable Long id) {
 		if (projectService.projectIdExits(id)) {
 			return new ResponseEntity<Object>(mapper.map(projectService.getProjectById(id), ProjectDto.class),
