@@ -1,14 +1,19 @@
 package com.defect.tracker.data.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+
 
 @Entity
 @Table(name="defect")
@@ -16,40 +21,41 @@ public class Defect {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	
 	private Long id;
-	private Long project_id;
-	
-	@NotNull(message="moduleName is not null")
-	@NotBlank(message="moduleName is not blank")
-	@NotEmpty(message="moduleName is not empty")
-	@Pattern(regexp = "^[a-zA-Z.\\-\\/+=@_ ]*$",message="moduleName not allowed special character and number")
-	private String moduleName;
 	
 	private String severity;
 	private String priority;
 	private String description;
-	private String stepsToReCreateAssignedTo;
+	private String stepsToReCreate;
+	private String assignedTo;
 	private String comments;
 	private String File;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	 @JoinTable(name = "defect_type",
+	    joinColumns= {@JoinColumn(name="defect_id")},
+	    inverseJoinColumns = {@JoinColumn(name = "type_id")})
+	private List<Type> type;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	 @JoinTable(name = "defect_project",
+	    joinColumns= {@JoinColumn(name="defect_id")},
+	    inverseJoinColumns = {@JoinColumn(name = "project_id")})
+	private List<Project> project;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name= "module_id", nullable = false)
+	private Module module;
+	
+	
+	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getProject_id() {
-		return project_id;
-	}
-	public void setProject_id(Long project_id) {
-		this.project_id = project_id;
-	}
-	public String getModuleName() {
-		return moduleName;
-	}
-	public void setModuleName(String moduleName) {
-		this.moduleName = moduleName;
-	}
+	
 	public String getSeverity() {
 		return severity;
 	}
@@ -68,11 +74,18 @@ public class Defect {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getStepsToReCreateAssignedTo() {
-		return stepsToReCreateAssignedTo;
+	
+	public String getStepsToReCreate() {
+		return stepsToReCreate;
 	}
-	public void setStepsToReCreateAssignedTo(String stepsToReCreateAssignedTo) {
-		this.stepsToReCreateAssignedTo = stepsToReCreateAssignedTo;
+	public void setStepsToReCreate(String stepsToReCreate) {
+		this.stepsToReCreate = stepsToReCreate;
+	}
+	public String getAssignedTo() {
+		return assignedTo;
+	}
+	public void setAssignedTo(String assignedTo) {
+		this.assignedTo = assignedTo;
 	}
 	public String getComments() {
 		return comments;
