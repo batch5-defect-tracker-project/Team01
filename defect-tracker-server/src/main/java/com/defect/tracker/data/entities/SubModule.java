@@ -22,7 +22,12 @@ public class SubModule {
 	@JoinColumn(name = "module_id", nullable = false)
 	private Module module;
 
+
+	SubModule(){
+		
+
 	SubModule() {
+
 
 	}
 

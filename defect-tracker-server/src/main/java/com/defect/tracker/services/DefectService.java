@@ -8,7 +8,7 @@ import com.defect.tracker.data.entities.Defect;
 @Service
 public interface DefectService {
 
-	public boolean isModNameAlreadyExist(String modName);
+	public boolean isDefectExistsById(Long id);
 	
 	public void createDefect(Defect defect);
 	
@@ -21,5 +21,7 @@ public interface DefectService {
 	public void deleteDefectById(Long id);
 	
 	public Object getDefectById(Long id);
+
+	
 	
 }

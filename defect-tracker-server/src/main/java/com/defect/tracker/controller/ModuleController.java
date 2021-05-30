@@ -68,12 +68,17 @@ public class ModuleController {
 		List<ModuleDto> moduleList = mapper.map(moduleService.getAllModule(), ModuleDto.class);
 		return new ResponseEntity<Object>(moduleList, HttpStatus.OK);
 
+
+  }
+	
+
 	}
+
 
 	// ------------------------- Delete By Id -API ------------------------- //
 	@DeleteMapping(value = EndpointURI.MODULE_BY_ID)
 	public ResponseEntity<Object> deleteModule(@PathVariable Long id) {
-		if (!moduleService.existsById(id)) {
+		if (!moduleService.exitsById(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_DELETE_EXISTS_BY_ID,
 					validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
 		}
@@ -84,8 +89,8 @@ public class ModuleController {
 
 	// ------------------------- Get By Id -API ------------------------- //
 	@GetMapping(value = EndpointURI.MODULE_BY_ID)
-	public ResponseEntity<Object> findDefectById(@PathVariable Long id) {
-		if (moduleService.existsById(id)) {
+	public ResponseEntity<Object> findModuleById(@PathVariable Long id) {
+		if (moduleService.exitsById(id)) {
 			return new ResponseEntity<Object>(moduleService.getModuleById(id), HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
