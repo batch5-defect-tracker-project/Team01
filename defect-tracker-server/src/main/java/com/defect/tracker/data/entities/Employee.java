@@ -29,6 +29,20 @@ public class Employee {
 	@JoinColumn(name = "designation_id", nullable = false)
 	private Designation designation;
 
+	public Employee() {
+
+	}
+
+	public Employee(Employee employee) {
+		this.id = employee.getId();
+		this.name = employee.getName();
+		this.email = employee.getEmail();
+		this.password = employee.getPassword();
+		this.gender = employee.getGender();
+		this.contactNumber = employee.getContactNumber();
+		this.isEnabled = employee.isEnabled();
+	}
+
 	public Long getId() {
 		return id;
 	}

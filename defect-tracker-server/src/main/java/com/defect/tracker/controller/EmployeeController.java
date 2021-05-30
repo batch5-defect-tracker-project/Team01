@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,6 +29,7 @@ import com.defect.tracker.data.dto.EmployeeDto;
 import com.defect.tracker.data.dto.LogInDto;
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.entities.VerificationToken;
+import com.defect.tracker.services.CustomUserDetailsService;
 import com.defect.tracker.services.DesignationService;
 import com.defect.tracker.services.EmployeeService;
 import com.defect.tracker.services.VerificationService;
@@ -52,9 +54,18 @@ public class EmployeeController {
 	@Autowired
 	private DesignationService designationService;
 
+	@Autowired
+	private CustomUserDetailsService customUserDetailsService;
+
+	@Autowired
 	private Mapper mapper;
 
 	final String UPLOAD_DIR = "E:\\pro_defect___\\defect-tracker-server\\src\\main\\resources\\profiles";
+
+	@GetMapping(value = "/")
+	public String home() {
+		return ("<h1>WELCOME</h1>" + "<p>" + "<a href='http://localhost:1726/defect-tracker/logout'>logout</a>");
+	}
 
 	@PostMapping(value = EndpointURI.EMPLOYEE)
 	public ResponseEntity<Object> addEmployee(@Valid @RequestPart("employee") String employee,
@@ -119,7 +130,7 @@ public class EmployeeController {
 	public ResponseEntity<Object> updateEmployeeById(@Valid @RequestPart("employee") String employee,
 			@RequestPart("file") MultipartFile file) throws MessagingException, IOException {
 		EmployeeDto employeeDto = employeeService.getJson(employee);
-		Long id = employeeService.getEmployeeIdByEmail(employeeDto.getEmail());
+
 		if (!employeeService.isIdAlreadyExists(employeeDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_Id_NOT_AVAILABLE,
 					validationFailureStatusCode.getEmpIdNotAvailable()), HttpStatus.BAD_REQUEST);
@@ -136,12 +147,14 @@ public class EmployeeController {
 		}
 
 		if (employeeService.isEmailAlreadyExist(employeeDto.getEmail())) {
+			Long id = employeeService.getEmployeeIdByEmail(employeeDto.getEmail());
 			if (employeeDto.getId() == id) {
 				employeeService.updateEmployeeById(employeeDto);
 				if (!file.isEmpty()) {
 					if (!file.getContentType().equals("image/jpeg")) {
 						return new ResponseEntity<>(
-								new ValidationFailureResponse(ValidationConstance.EMPLOYEE_PROFILE_CONTANTTYPE_EXCEPTION,
+								new ValidationFailureResponse(
+										ValidationConstance.EMPLOYEE_PROFILE_CONTANTTYPE_EXCEPTION,
 										validationFailureStatusCode.getEmpProfileContenetTypeException()),
 								HttpStatus.BAD_REQUEST);
 					}
@@ -161,7 +174,8 @@ public class EmployeeController {
 								validationFailureStatusCode.getEmpProfileContenetTypeException()),
 						HttpStatus.BAD_REQUEST);
 			}
-			Files.copy(file.getInputStream(), Paths.get(UPLOAD_DIR + File.separator + id + ".jpg"),
+
+			Files.copy(file.getInputStream(), Paths.get(UPLOAD_DIR + File.separator + employeeDto.getId() + ".jpg"),
 					StandardCopyOption.REPLACE_EXISTING);
 		}
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATE_SUCCESS, HttpStatus.OK);
@@ -192,17 +206,25 @@ public class EmployeeController {
 		return new ResponseEntity<Object>(employeeDto, HttpStatus.OK);
 	}
 
+	/*
+	 * @PostMapping(value = EndpointURI.EMPLOYEE_LOGIN) public
+	 * ResponseEntity<Object> logIn(@Valid @RequestBody LogInDto logInDto) { if
+	 * (!employeeService.isEmailAlreadyExist(logInDto.getUserName())) { return new
+	 * ResponseEntity<>(new
+	 * ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMAIL_NOT_AVAILABLE,
+	 * validationFailureStatusCode.getEmpEmailNotAvailable()), HttpStatus.OK); } if
+	 * (employeeService.logIn(logInDto)) { return new
+	 * ResponseEntity<Object>(Constants.EMPLOYEE_SUCCESSFULL_LOGIN, HttpStatus.OK);
+	 * } return new ResponseEntity<>(new
+	 * ValidationFailureResponse(ValidationConstance.
+	 * EMPLOYEE_USERNAME_PASSWORD_ERROR,
+	 * validationFailureStatusCode.getEmpEmailNotAvailable()), HttpStatus.OK); }
+	 */
+
 	@PostMapping(value = EndpointURI.EMPLOYEE_LOGIN)
-	public ResponseEntity<Object> logIn(@Valid @RequestBody LogInDto logInDto) {
-		if (!employeeService.isEmailAlreadyExist(logInDto.getUserName())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMAIL_NOT_AVAILABLE,
-					validationFailureStatusCode.getEmpEmailNotAvailable()), HttpStatus.OK);
-		}
-		if (employeeService.logIn(logInDto)) {
-			return new ResponseEntity<Object>(Constants.EMPLOYEE_SUCCESSFULL_LOGIN, HttpStatus.OK);
-		}
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_USERNAME_PASSWORD_ERROR,
-				validationFailureStatusCode.getEmpEmailNotAvailable()), HttpStatus.OK);
+	public ResponseEntity<Object> logIn(String Username, String Password) {
+		customUserDetailsService.loadUserByUsername(Username);
+		return new ResponseEntity<Object>(Constants.EMPLOYEE_SUCCESSFULL_LOGIN, HttpStatus.OK);
 	}
 
 }
