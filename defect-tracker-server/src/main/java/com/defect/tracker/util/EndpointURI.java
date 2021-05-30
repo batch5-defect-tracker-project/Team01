@@ -13,27 +13,28 @@ public final class EndpointURI {
 	public static final String PROJECT_ALLOCATION = BASE_API_PATH + "projectAllocation";
 	public static final String PROJECT_ALLOCATION_BY_ID = BASE_API_PATH + "projectAllocation" + ID;
 
+	// Designation
+	public static final String DESIGNATION = BASE_API_PATH + "Designation";
+	public static final String DESIGNATION_BY_ID = BASE_API_PATH + "Designation" + ID;
+
 	// Module
 	public static final String MODULE = BASE_API_PATH + "module";
 	public static final String MODULE_BY_ID = BASE_API_PATH + "module" + ID;
 
-	// Sub Module
+	// Sub_Module
+
 	public static final String SUB_MODULE = BASE_API_PATH + "sub-module";
-	public static final String SUB_MODULE_BY_ID = BASE_API_PATH + "subModule" + ID;
+	public static final String SUB_MODULE_BY_ID = BASE_API_PATH + "sub-module" + ID;
+
+	// Defect
+	public static final String DEFECT = BASE_API_PATH + "Defect";
+	public static final String DEFECT_BY_ID = BASE_API_PATH + "Defect" + ID;
 
 	// Employee
 	public static final String EMPLOYEE = BASE_API_PATH + "employee";
 	public static final String EMPLOYEE_ID = BASE_API_PATH + "employee" + ID;
 	public static final String EMPLOYEE_ACTIVATION = BASE_API_PATH + "employee/activation";
 	public static final String EMPLOYEE_LOGIN = BASE_API_PATH + "employee/login";
-
-	// Designation
-	public static final String DESIGNATION = BASE_API_PATH + "Designation";
-	public static final String DESIGNATION_BY_ID = BASE_API_PATH + "Designation" + ID;
-
-	// Defect
-	public static final String DEFECT = BASE_API_PATH + "Defect";
-	public static final String DEFECT_BY_ID = BASE_API_PATH + "Defect" + ID;
 
 	// Type
 	public static final String TYPE = BASE_API_PATH + "Type";

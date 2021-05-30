@@ -1,5 +1,7 @@
 package com.defect.tracker.util;
 
+import org.springframework.util.MultiValueMap;
+
 public class Constants {
 
 	// employee
@@ -8,6 +10,7 @@ public class Constants {
 	public static final String EMPLOYEE_ACTIVATIN_SUCCESS = "Employee Email Verification Success";
 	public static final String EMPLOYEE_ALREADY_ACTIVATED = "Employee Already Verified";
 	public static final String EMPLOYEE_UPDATE_SUCCESS = "Employee Update Successfully";
+
 	public static final String EMPLOYEE_SUCCESSFULL_DELETE = "Employee Successfull Deleted";
 	public static final String EMPLOYEE_SUCCESSFULL_LOGIN = "Successfull Employee LogIn";
 
@@ -33,14 +36,13 @@ public class Constants {
 	public static final String MODULE_DELETED_SUCCESS = "Module Deleted successfully";
 
 	// Sub Module
-	public static final String SUB_MODULE_ADDED_SUCCESS = "Sub Module Added Successfully";
-	public static final String SUB_MODULE_UPDATE_SUCCESS = "Sub Module Update Successfully";
+	public static final String SUB_MODULE_UPDATE_SUCCESS = "Sub Module Updated Successfully";
 	public static final String SUB_MODULE_DELETED_SUCCESS = "Sub Module Deleted Successfully";
+	public static String SUB_MODULE_ADDED_SUCCESS = "Sub Module Added Successfully";
+	public static final String DEFECT_DELETED_SUCCESS = "Defect Deleted Successfully";
 
 	// Type
 	public static final String TYPE_ADDED_SUCCESS = "Type added successfully ";
-
-	public static final String DEFECT_DELETED_SUCCESS = "Defect Deleted Successfully";
 	public static final String DEFECT_UPDATED_SUCCESS = "Defect Updated Successfully";
 
 	public static final String DELETED_SUCCESS = "Deleted Successfully";

@@ -14,7 +14,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 public class Module {
 	@Id
+
 	@GeneratedValue(strategy = GenerationType.AUTO)
+
 	private Long id;
 	private Long projectId;
 	private String name;

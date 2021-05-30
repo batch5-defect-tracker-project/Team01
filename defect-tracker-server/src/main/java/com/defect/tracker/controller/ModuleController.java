@@ -67,7 +67,6 @@ public class ModuleController {
 	public ResponseEntity<Object> getAllModule() {
 		List<ModuleDto> moduleList = mapper.map(moduleService.getAllModule(), ModuleDto.class);
 		return new ResponseEntity<Object>(moduleList, HttpStatus.OK);
-
 	}
 
 	// ------------------------- Delete By Id -API ------------------------- //
@@ -84,7 +83,7 @@ public class ModuleController {
 
 	// ------------------------- Get By Id -API ------------------------- //
 	@GetMapping(value = EndpointURI.MODULE_BY_ID)
-	public ResponseEntity<Object> findDefectById(@PathVariable Long id) {
+	public ResponseEntity<Object> findModuleById(@PathVariable Long id) {
 		if (moduleService.existsById(id)) {
 			return new ResponseEntity<Object>(moduleService.getModuleById(id), HttpStatus.OK);
 		}
