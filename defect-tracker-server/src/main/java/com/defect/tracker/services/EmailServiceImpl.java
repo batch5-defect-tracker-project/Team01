@@ -18,7 +18,6 @@ public class EmailServiceImpl implements EmailService {
 	@Autowired
 	private VerificationService verificationService;
 
-	@Autowired
 	private JavaMailSender javaMailSender;
 
 	@Override
