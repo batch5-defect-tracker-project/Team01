@@ -20,11 +20,6 @@ public class ModuleServiceImpl implements ModuleService {
 	}
 
 	@Override
-	public boolean exitsById(Long id) {
-		return moduleRepository.existsById(id);
-	}
-
-	@Override
 	public boolean isModuleNameAlreadyExist(String name) {
 		return moduleRepository.existsByName(name);
 	}
@@ -52,8 +47,14 @@ public class ModuleServiceImpl implements ModuleService {
 
 	}
 
+	@Override
+
+	public boolean existsById(Long id) {
+		return moduleRepository.existsById(id);
+	}
 
 	@Override
+
 	public Object getModuleById(Long id) {
 
 		return moduleRepository.findById(id);

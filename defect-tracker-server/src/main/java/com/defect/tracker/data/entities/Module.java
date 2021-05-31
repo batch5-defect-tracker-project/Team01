@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Module {
 	@Id
 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 
 	private Long id;
 	private Long projectId;
@@ -40,8 +40,6 @@ public class Module {
 	public String getName() {
 		return name;
 	}
-
-  
 
 	public void setName(String name) {
 		this.name = name;
