@@ -11,8 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
@@ -28,8 +29,10 @@ public class Defect {
 	private String description;
 	private String stepsToReCreate;
 	private String assignedTo;
+	private String assignedBy;
+	private String status;
 	private String comments;
-	private String File;
+	private String file;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	 @JoinTable(name = "defect_type",
@@ -45,6 +48,7 @@ public class Defect {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name= "module_id", nullable = false)
+	@JsonIgnoreProperties(value = {"defect", "hibernateLazyInitializer"})
 	private Module module;
 	
 	
@@ -93,13 +97,42 @@ public class Defect {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
+	public String getAssignedBy() {
+		return assignedBy;
+	}
+	public void setAssignedBy(String assignedBy) {
+		this.assignedBy = assignedBy;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getFile() {
-		return File;
+		return file;
 	}
 	public void setFile(String file) {
-		File = file;
+		this.file = file;
 	}
-	
-	
+	public List<Type> getType() {
+		return type;
+	}
+	public void setType(List<Type> type) {
+		this.type = type;
+	}
+	public List<Project> getProject() {
+		return project;
+	}
+	public void setProject(List<Project> project) {
+		this.project = project;
+	}
+	public Module getModule() {
+		return module;
+	}
+	public void setModule(Module module) {
+		this.module = module;
+	}
+
 }
 
