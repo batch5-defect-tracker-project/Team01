@@ -2,6 +2,7 @@ package com.defect.tracker.controller;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import com.defect.tracker.data.entities.Defect;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.DefectService;
+import com.defect.tracker.services.EmailService;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
 import com.defect.tracker.util.ValidationConstance;
@@ -35,14 +37,16 @@ public class DefectController {
 	@Autowired
 	private Mapper mapper;
 
+	@Autowired
+	private EmailService emailservice;
+
 	@PostMapping(value = EndpointURI.DEFECT)
-	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) {
-		if (defectService.isDefectExistsById(defectDto.getId())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS,
-					validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
-		}
+	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) throws MessagingException {
+		System.out.println(defectDto.getAssignedToId());
 		Defect defect = mapper.map(defectDto, Defect.class);
 		defectService.createDefect(defect);
+		System.out.println(defect.getAssignedTo() + "not work");
+		emailservice.sendDefectStatusMail(defectDto);
 		return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
 	}
 
@@ -54,7 +58,7 @@ public class DefectController {
 	}
 
 	@PutMapping(value = EndpointURI.DEFECT)
-	public ResponseEntity<Object> editDefectById(@RequestBody DefectDto defectDto) {
+	public ResponseEntity<Object> editDefectById(@RequestBody DefectDto defectDto) throws MessagingException {
 		if (defectService.existsDefectById(defectDto.getId())) {
 			if (defectService.isDefectExistsById(defectDto.getId())) {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS,
@@ -62,6 +66,7 @@ public class DefectController {
 			}
 			Defect defect = mapper.map(defectDto, Defect.class);
 			defectService.createDefect(defect);
+			emailservice.sendDefectStatusMail(defectDto);
 			return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS,
@@ -73,7 +78,7 @@ public class DefectController {
 	public ResponseEntity<Object> deleteDefectById(@PathVariable Long id) {
 		if (!defectService.existsDefectById(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_DELETE_EXISTS_BY_ID,
-					validationFailureStatusCodes. getDefectExistsById()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
 
 		}
 

@@ -1,12 +1,11 @@
 package com.defect.tracker.data.entities;
 
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+@SuppressWarnings("serial")
 public class CustomUserDetails extends Employee implements UserDetails {
 
 	public CustomUserDetails(final Employee employee) {

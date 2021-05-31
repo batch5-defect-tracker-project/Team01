@@ -15,7 +15,6 @@ public interface ModuleService {
 
 	void updateModule(Module module);
 
-
 	public void deleteById(Long id);
 
 	public Object getModuleById(Long id);

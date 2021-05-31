@@ -47,14 +47,11 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.designation.AlreadyExists}")
 	private String desigNameAlreadyExists;
 
-
 	@Value("${validation.id.NotFound}")
 	private String projectIdNotFound;
 
 	@Value("${validation.Name.UseAnotherProject}")
 	private String getProjectNameAlreadyUseByAnotherProject;
-
-
 
 	// DESIGNATION
 
@@ -108,7 +105,6 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.defect.existsById}")
 	private String existsDefectById;
 
-
 	// Defect
 	@Value("${validation.defect.AlreadyExists}")
 	private String modNameAlreadyExists;
@@ -119,9 +115,8 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.defect.defectById}")
 	private String defectById;
 
-
 	@Value("${validation.projectName.AlreadyExists}")
-  private String projectNameAlreadyExists;
+	private String projectNameAlreadyExists;
 
 	@Value("${validation.defect.existsById}")
 	private String existsById;
@@ -418,6 +413,4 @@ public class ValidationFailureStatusCodes {
 		this.nameAlreadyExists = nameAlreadyExists;
 	}
 
-
-	
 }

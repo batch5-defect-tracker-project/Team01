@@ -10,6 +10,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.defect.tracker.data.dto.DefectDto;
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.entities.VerificationToken;
 
@@ -20,6 +21,9 @@ public class EmailServiceImpl implements EmailService {
 
 	@Autowired
 	private JavaMailSender javaMailSender;
+
+	@Autowired
+	private EmployeeService employeeService;
 
 	@Override
 	public void sendMail(Employee employee) throws MessagingException {
@@ -48,5 +52,30 @@ public class EmailServiceImpl implements EmailService {
 		simpleMail.setText("Your details update successful when " + date + "	" + time);
 		javaMailSender.send(simpleMail);
 
+	}
+
+	public void sendDefectStatusMail(DefectDto defectDto) throws MessagingException {
+		Employee assignedBy = employeeService.findById(defectDto.getAssignedById());
+		Employee assignedTo = employeeService.findById(defectDto.getAssignedToId());
+		SimpleMailMessage simpleMail = new SimpleMailMessage();
+		simpleMail.setFrom("meera10testmail@gmail.com");
+		simpleMail.setSubject("Defect Status Update Confirmation");
+		LocalTime time = LocalTime.now();
+		LocalDate date = LocalDate.now();
+		if (defectDto.getStatus().equalsIgnoreCase("New") || defectDto.getStatus().equalsIgnoreCase("Closed")
+				|| defectDto.getStatus().equalsIgnoreCase("ReOpen")) {
+			simpleMail.setTo(assignedTo.getEmail());
+			simpleMail.setText("Defect Status Changed To " + defectDto.getStatus() + "\n by - " + assignedBy.getName()
+					+ "\n" + date + "	" + time);
+		}
+
+		if (defectDto.getStatus().equalsIgnoreCase("Open") || defectDto.getStatus().equalsIgnoreCase("Fixed")
+				|| defectDto.getStatus().equalsIgnoreCase("Report")) {
+			simpleMail.setTo(assignedBy.getEmail());
+			simpleMail.setText("Defect Status Changed To " + defectDto.getStatus() + "\n by - " + assignedTo.getName()
+					+ "\n" + date + "	" + time);
+		}
+
+		javaMailSender.send(simpleMail);
 	}
 }

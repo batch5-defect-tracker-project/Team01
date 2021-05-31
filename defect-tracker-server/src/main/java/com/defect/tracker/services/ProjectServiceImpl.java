@@ -16,7 +16,6 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public void addProject(Project project) {
 		projectRepository.save(project);
-
 	}
 
 	@Override
@@ -47,12 +46,10 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public void updateProject(Project project) {
 		projectRepository.save(project);
-
 	}
 
 	@Override
 	public Object getProjectByName(Long id) {
 		return projectRepository.findById(id).get().getName();
-
 	}
 }

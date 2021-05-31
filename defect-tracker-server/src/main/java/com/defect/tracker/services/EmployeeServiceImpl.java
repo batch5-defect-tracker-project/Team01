@@ -1,7 +1,6 @@
 package com.defect.tracker.services;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import javax.mail.MessagingException;
@@ -75,7 +74,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Long getEmployeeIdByEmail(String email) {
-		Employee employee=employeeRepository.findByEmail(email).get();
+		Employee employee = employeeRepository.findByEmail(email).get();
 		EmployeeDto employeeDto = mapper.map(employee, EmployeeDto.class);
 		return employeeDto.getId();
 	}

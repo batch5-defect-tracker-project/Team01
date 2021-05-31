@@ -7,14 +7,13 @@ import javax.validation.constraints.Pattern;
 
 public class DesignationDto {
 	private Long id;
-	
-	@NotNull(message="name is not null")
-	@NotBlank(message="name is not blank")
-	@NotEmpty(message="name is not empty")
-	@Pattern(regexp = "^[a-zA-Z.\\-\\/+=@_ ]*$",message="name not allowed special character and number")
+
+	@NotNull(message = "name is not null")
+	@NotBlank(message = "name is not blank")
+	@NotEmpty(message = "name is not empty")
+	@Pattern(regexp = "^[a-zA-Z.\\-\\/+=@_ ]*$", message = "name not allowed special character and number")
 	private String name;
 
-	
 	public Long getId() {
 		return id;
 	}
@@ -30,6 +29,5 @@ public class DesignationDto {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
 }

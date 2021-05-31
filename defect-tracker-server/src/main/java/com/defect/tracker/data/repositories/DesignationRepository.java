@@ -10,6 +10,4 @@ public interface DesignationRepository extends JpaRepository<Designation, Long> 
 
 	boolean existsByName(String name);
 
-	
-
 }

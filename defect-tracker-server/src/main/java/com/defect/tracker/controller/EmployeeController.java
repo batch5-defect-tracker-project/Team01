@@ -18,18 +18,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.defect.tracker.data.dto.EmployeeDto;
-import com.defect.tracker.data.dto.LogInDto;
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.entities.VerificationToken;
-import com.defect.tracker.services.CustomUserDetailsService;
 import com.defect.tracker.services.DesignationService;
 import com.defect.tracker.services.EmployeeService;
 import com.defect.tracker.services.VerificationService;
@@ -53,9 +49,6 @@ public class EmployeeController {
 
 	@Autowired
 	private DesignationService designationService;
-
-	@Autowired
-	private CustomUserDetailsService customUserDetailsService;
 
 	@Autowired
 	private Mapper mapper;
@@ -166,7 +159,6 @@ public class EmployeeController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMAIL_EXISTS,
 					validationFailureStatusCode.getEmpEmailAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
-		Long id = employeeDto.getId();
 		employeeService.updateEmployeeById(employeeDto);
 		if (!file.isEmpty()) {
 			if (!file.getContentType().equals("image/jpeg")) {
@@ -205,27 +197,6 @@ public class EmployeeController {
 		}
 		EmployeeDto employeeDto = employeeService.findEmployeeById(id);
 		return new ResponseEntity<Object>(employeeDto, HttpStatus.OK);
-	}
-
-	/*
-	 * @PostMapping(value = EndpointURI.EMPLOYEE_LOGIN) public
-	 * ResponseEntity<Object> logIn(@Valid @RequestBody LogInDto logInDto) { if
-	 * (!employeeService.isEmailAlreadyExist(logInDto.getUserName())) { return new
-	 * ResponseEntity<>(new
-	 * ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMAIL_NOT_AVAILABLE,
-	 * validationFailureStatusCode.getEmpEmailNotAvailable()), HttpStatus.OK); } if
-	 * (employeeService.logIn(logInDto)) { return new
-	 * ResponseEntity<Object>(Constants.EMPLOYEE_SUCCESSFULL_LOGIN, HttpStatus.OK);
-	 * } return new ResponseEntity<>(new
-	 * ValidationFailureResponse(ValidationConstance.
-	 * EMPLOYEE_USERNAME_PASSWORD_ERROR,
-	 * validationFailureStatusCode.getEmpEmailNotAvailable()), HttpStatus.OK); }
-	 */
-
-	@PostMapping(value = EndpointURI.EMPLOYEE_LOGIN)
-	public ResponseEntity<Object> logIn(String Username, String Password) {
-		customUserDetailsService.loadUserByUsername(Username);
-		return new ResponseEntity<Object>(Constants.EMPLOYEE_SUCCESSFULL_LOGIN, HttpStatus.OK);
 	}
 
 }

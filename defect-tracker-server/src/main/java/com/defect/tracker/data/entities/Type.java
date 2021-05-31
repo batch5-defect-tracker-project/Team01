@@ -11,17 +11,17 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @Entity
-@Table(name="type")
+@Table(name = "type")
 public class Type {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@NotNull(message="name is not null")
-	@NotBlank(message="name is not blank")
-	@NotEmpty(message="name is not empty")
-	@Pattern(regexp = "^[a-zA-Z.\\-\\/+=@_ ]*$",message="name not allowed special character and number")
+
+	@NotNull(message = "name is not null")
+	@NotBlank(message = "name is not blank")
+	@NotEmpty(message = "name is not empty")
+	@Pattern(regexp = "^[a-zA-Z.\\-\\/+=@_ ]*$", message = "name not allowed special character and number")
 	private String name;
 
 	public Long getId() {
@@ -39,6 +39,5 @@ public class Type {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
 }

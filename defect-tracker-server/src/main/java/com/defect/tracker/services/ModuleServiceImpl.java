@@ -26,7 +26,6 @@ public class ModuleServiceImpl implements ModuleService {
 
 	@Override
 	public boolean moduleExits(String name) {
-
 		return moduleRepository.existsByName(name);
 	}
 
@@ -37,14 +36,12 @@ public class ModuleServiceImpl implements ModuleService {
 
 	@Override
 	public List<Module> getAllModule() {
-
 		return moduleRepository.findAll();
 	}
 
 	@Override
 	public void deleteById(Long id) {
 		moduleRepository.deleteById(id);
-
 	}
 
 	@Override
@@ -56,7 +53,6 @@ public class ModuleServiceImpl implements ModuleService {
 	@Override
 
 	public Object getModuleById(Long id) {
-
 		return moduleRepository.findById(id);
 	}
 

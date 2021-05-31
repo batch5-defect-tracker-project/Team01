@@ -1,11 +1,6 @@
 package com.defect.tracker.services;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,19 +20,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Optional<Employee> employeeOpt = employeeRepository.findByEmail(username);
-		employeeOpt
-		.orElseThrow(() -> new UsernameNotFoundException("username not found"));
-		
-		/*UserDetails user=Employee.withUserName(employeeOpt.get().getEmail())
-				.password(employeeOpt.get().getPassword())
-				.authorities("USER").build;
-				return user;*/
-
-       /* Collection role=list.stream()
-        .collect(Collectors.toList());
-		return new org.springframework.security.core.userdetails.User(employee.getEmail(),employee.getPassword(),role);*/
-		return employeeOpt
-			.map(CustomUserDetails::new).get();
+		employeeOpt.orElseThrow(() -> new UsernameNotFoundException("username not found"));
+		return employeeOpt.map(CustomUserDetails::new).get();
 	}
 
 }
