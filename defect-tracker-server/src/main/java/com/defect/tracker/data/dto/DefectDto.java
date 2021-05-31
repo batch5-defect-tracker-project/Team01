@@ -16,6 +16,7 @@ public class DefectDto {
 	private Long moduleId;
 	
 	
+	
 	public Long getModuleId() {
 		return moduleId;
 	}
@@ -84,7 +85,7 @@ public class DefectDto {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+//	
 	
 }
 

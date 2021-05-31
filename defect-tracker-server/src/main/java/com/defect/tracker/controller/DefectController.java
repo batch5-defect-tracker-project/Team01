@@ -76,7 +76,7 @@ public class DefectController {
 		defectService.deleteDefectById(id);
 		return new ResponseEntity<Object>(Constants.DEFECT_DELETED_SUCCESS, HttpStatus.OK);
 	}
-
+//GetById
 	@GetMapping(value = EndpointURI.DEFECT_BY_ID)
 	public ResponseEntity<Object> findDefectById(@PathVariable Long id) {
 		if (defectService.existsDefectById(id)) {

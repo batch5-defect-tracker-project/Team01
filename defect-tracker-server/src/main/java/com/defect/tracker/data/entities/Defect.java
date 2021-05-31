@@ -59,7 +59,6 @@ public class Defect {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
 	public String getSeverity() {
 		return severity;
 	}
