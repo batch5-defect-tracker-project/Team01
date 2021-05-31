@@ -5,20 +5,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@JsonIgnoreProperties("hibernateLazyInitializer")
 @Entity
-@Table(name = "module")
+@Table(name="type")
+public class Type {
 
-public class Module {
 	@Id
-
 	@GeneratedValue(strategy = GenerationType.AUTO)
-
 	private Long id;
-	private Long projectId;
+	
+	@NotNull(message="name is not null")
+	@NotBlank(message="name is not blank")
+	@NotEmpty(message="name is not empty")
+	@Pattern(regexp = "^[a-zA-Z.\\-\\/+=@_ ]*$",message="name not allowed special character and number")
 	private String name;
 
 	public Long getId() {
@@ -29,14 +32,6 @@ public class Module {
 		this.id = id;
 	}
 
-	public Long getProjectId() {
-		return projectId;
-	}
-
-	public void setProjectId(Long projectId) {
-		this.projectId = projectId;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -44,5 +39,6 @@ public class Module {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
+	
 }

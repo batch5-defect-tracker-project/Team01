@@ -166,6 +166,7 @@ public class EmployeeController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMAIL_EXISTS,
 					validationFailureStatusCode.getEmpEmailAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
+		Long id = employeeDto.getId();
 		employeeService.updateEmployeeById(employeeDto);
 		if (!file.isEmpty()) {
 			if (!file.getContentType().equals("image/jpeg")) {
