@@ -15,4 +15,6 @@ public interface EmailService {
 
 	public void sendDefectStatusMail(DefectDto defectDto) throws MessagingException;
 
+	public void sendDefectAddMail(DefectDto defectDto) throws MessagingException;
+
 }

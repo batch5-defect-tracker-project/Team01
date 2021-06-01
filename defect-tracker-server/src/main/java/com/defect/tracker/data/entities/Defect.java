@@ -98,14 +98,6 @@ public class Defect {
 		this.comments = comments;
 	}
 
-	public String getFile() {
-		return File;
-	}
-
-	public void setFile(String file) {
-		File = file;
-	}
-
 	public String getStatus() {
 		return status;
 	}
@@ -152,6 +144,14 @@ public class Defect {
 
 	public void setAssignedBy(Employee assignedBy) {
 		this.assignedBy = assignedBy;
+	}
+
+	public String getFile() {
+		return File;
+	}
+
+	public void setFile(String file) {
+		File = file;
 	}
 
 }

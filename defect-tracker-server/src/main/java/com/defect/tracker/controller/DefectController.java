@@ -42,11 +42,9 @@ public class DefectController {
 
 	@PostMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) throws MessagingException {
-		System.out.println(defectDto.getAssignedToId());
 		Defect defect = mapper.map(defectDto, Defect.class);
 		defectService.createDefect(defect);
-		System.out.println(defect.getAssignedTo() + "not work");
-		emailservice.sendDefectStatusMail(defectDto);
+		emailservice.sendDefectAddMail(defectDto);
 		return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
 	}
 
@@ -86,6 +84,7 @@ public class DefectController {
 		return new ResponseEntity<Object>(Constants.DEFECT_DELETED_SUCCESS, HttpStatus.OK);
 	}
 
+//GetById
 	@GetMapping(value = EndpointURI.DEFECT_BY_ID)
 	public ResponseEntity<Object> findDefectById(@PathVariable Long id) {
 		if (defectService.existsDefectById(id)) {

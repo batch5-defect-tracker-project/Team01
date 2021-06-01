@@ -54,6 +54,19 @@ public class EmailServiceImpl implements EmailService {
 
 	}
 
+	public void sendDefectAddMail(DefectDto defectDto) throws MessagingException {
+		Employee assignedBy = employeeService.findById(defectDto.getAssignedById());
+		Employee assignedTo = employeeService.findById(defectDto.getAssignedToId());
+		SimpleMailMessage simpleMail = new SimpleMailMessage();
+		simpleMail.setFrom("meera10testmail@gmail.com");
+		simpleMail.setSubject("Defect Status Update Confirmation");
+		LocalTime time = LocalTime.now();
+		LocalDate date = LocalDate.now();
+		simpleMail.setTo(assignedTo.getEmail());
+		simpleMail.setText("New Defect Added to you \n by - " + assignedBy.getName() + "\n" + date + "	" + time);
+		javaMailSender.send(simpleMail);
+	}
+
 	public void sendDefectStatusMail(DefectDto defectDto) throws MessagingException {
 		Employee assignedBy = employeeService.findById(defectDto.getAssignedById());
 		Employee assignedTo = employeeService.findById(defectDto.getAssignedToId());
@@ -62,8 +75,7 @@ public class EmailServiceImpl implements EmailService {
 		simpleMail.setSubject("Defect Status Update Confirmation");
 		LocalTime time = LocalTime.now();
 		LocalDate date = LocalDate.now();
-		if (defectDto.getStatus().equalsIgnoreCase("New") || defectDto.getStatus().equalsIgnoreCase("Closed")
-				|| defectDto.getStatus().equalsIgnoreCase("ReOpen")) {
+		if (defectDto.getStatus().equalsIgnoreCase("Closed") || defectDto.getStatus().equalsIgnoreCase("ReOpen")) {
 			simpleMail.setTo(assignedTo.getEmail());
 			simpleMail.setText("Defect Status Changed To " + defectDto.getStatus() + "\n by - " + assignedBy.getName()
 					+ "\n" + date + "	" + time);
