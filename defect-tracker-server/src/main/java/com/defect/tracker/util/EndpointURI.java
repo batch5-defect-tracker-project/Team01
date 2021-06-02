@@ -24,7 +24,7 @@ public final class EndpointURI {
 	public static final String SUB_MODULE =BASE_API_PATH + "sub-module";
 
   
-	public static final String PROJECT = BASE_API_PATH + "project";
+	
 
 	public static final String TYPE = BASE_API_PATH + "Type";
 
