@@ -14,4 +14,6 @@ public interface SubModuleService {
 
 	public boolean isSubModuleNameAlreadyExist(String name);
 
+	public boolean getModuleIdAndName(Long moduleId, String name);
+
 }

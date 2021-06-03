@@ -32,11 +32,11 @@ public class SubModuleController {
 	@Autowired
 	private Mapper mapper;
 	
-//ADD
+	// ------------------------------ Add -API ------------------------------ //
 	@PostMapping(value = EndpointURI.SUB_MODULE)
 	public ResponseEntity<Object> addSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
 		
-		if (subModuleService.subModuleExits(subModuleDto.getName()))
+		if (subModuleService.getModuleIdAndName(subModuleDto.getModuleId(), subModuleDto.getName()))
 		{
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
 					validationFailureStatusCodes.getSubModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
@@ -46,11 +46,11 @@ public class SubModuleController {
 		subModuleService.createSubModule(subModule);
 		return new ResponseEntity<Object>(Constants.SUB_MODULE_ADDED_SUCCESS, HttpStatus.OK);
 	}
-	//UPDATE
+	// ------------------------------ UpdateById -API ------------------------------ //
 	@PutMapping(value = EndpointURI.SUB_MODULE)
 	public ResponseEntity<Object> updateSubModule(@Valid @RequestBody  SubModuleDto subModuleDto) {
 		if (subModuleService.exitsSubModuleById(subModuleDto.getId())) {
-			if(subModuleService.isSubModuleNameAlreadyExist(subModuleDto.getName())){
+			if (subModuleService.getModuleIdAndName(subModuleDto.getModuleId(),subModuleDto.getName())){
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
 					validationFailureStatusCodes.getSubModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
