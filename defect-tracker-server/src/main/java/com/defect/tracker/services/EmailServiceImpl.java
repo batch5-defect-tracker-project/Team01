@@ -59,7 +59,7 @@ public class EmailServiceImpl implements EmailService {
 		Employee assignedTo = employeeService.findById(defectDto.getAssignedToId());
 		SimpleMailMessage simpleMail = new SimpleMailMessage();
 		simpleMail.setFrom("meera10testmail@gmail.com");
-		simpleMail.setSubject("Defect Status Update Confirmation");
+		simpleMail.setSubject("New Defect Addedd");
 		LocalTime time = LocalTime.now();
 		LocalDate date = LocalDate.now();
 		simpleMail.setTo(assignedTo.getEmail());

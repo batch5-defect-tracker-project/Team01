@@ -12,8 +12,8 @@ public class DefectDto {
 	private String status;
 	private String comments;
 	private String File;
-	private Long typeId;
-	private Long projectId;
+	private Long type_id;
+	private Long project_id;
 	private Long moduleId;
 
 	public Long getId() {
@@ -80,20 +80,20 @@ public class DefectDto {
 		this.status = status;
 	}
 
-	public Long getTypeId() {
-		return typeId;
+	public Long getType_id() {
+		return type_id;
 	}
 
-	public void setTypeId(Long typeId) {
-		this.typeId = typeId;
+	public void setType_id(Long type_id) {
+		this.type_id = type_id;
 	}
 
-	public Long getProjectId() {
-		return projectId;
+	public Long getProject_id() {
+		return project_id;
 	}
 
-	public void setProjectId(Long projectId) {
-		this.projectId = projectId;
+	public void setProject_id(Long project_id) {
+		this.project_id = project_id;
 	}
 
 	public Long getModuleId() {

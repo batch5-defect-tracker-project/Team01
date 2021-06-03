@@ -28,7 +28,7 @@ public class Defect {
 	private String comments;
 	private String File;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany
 	@JoinTable(name = "defect_type", joinColumns = { @JoinColumn(name = "defect_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "type_id") })
 	private List<Type> type;

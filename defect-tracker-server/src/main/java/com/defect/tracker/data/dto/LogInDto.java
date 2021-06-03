@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 public class LogInDto {
+
 	@NotNull(message = "{login.email.null}")
 	@NotEmpty(message = "{login.email.empty}")
 	@NotBlank(message = "{login.email.blank}")
@@ -17,6 +18,15 @@ public class LogInDto {
 	@NotEmpty(message = "{login.password.empty}")
 	@NotBlank(message = "{login.password.blank}")
 	private String password;
+
+	public LogInDto() {
+
+	}
+
+	public LogInDto(String userName, String password) {
+		this.setUserName(userName);
+		this.setPassword(password);
+	}
 
 	public String getUserName() {
 		return userName;

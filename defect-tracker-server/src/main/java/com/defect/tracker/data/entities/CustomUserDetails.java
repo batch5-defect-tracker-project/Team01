@@ -44,8 +44,7 @@ public class CustomUserDetails extends Employee implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		// return super.isEnabled();
-		return true;
+		return super.isEnabled();
 	}
 
 }

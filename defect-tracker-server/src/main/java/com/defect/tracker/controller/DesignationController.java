@@ -31,7 +31,6 @@ public class DesignationController {
 	@Autowired
 	private Mapper mapper;
 
-	// Add
 	@PostMapping(value = EndpointURI.DESIGNATION)
 	public ResponseEntity<Object> addDesignation(@Valid @RequestBody DesignationDto designationDto) {
 		if (designationService.isDesignationNameAlreadyExist(designationDto.getName())) {
