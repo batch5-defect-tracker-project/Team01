@@ -22,6 +22,7 @@ import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.DefectService;
 import com.defect.tracker.services.EmailService;
+import com.defect.tracker.services.ProjectService;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
 import com.defect.tracker.util.ValidationConstance;
@@ -39,6 +40,9 @@ public class DefectController {
 
 	@Autowired
 	private EmailService emailservice;
+
+	@Autowired
+	private ProjectService projectService;
 
 	@PostMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) throws MessagingException {
@@ -69,7 +73,6 @@ public class DefectController {
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS,
 				validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
-
 	}
 
 	@DeleteMapping(value = EndpointURI.DEFECT_BY_ID)
@@ -77,7 +80,6 @@ public class DefectController {
 		if (!defectService.existsDefectById(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_DELETE_EXISTS_BY_ID,
 					validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
-
 		}
 
 		defectService.deleteDefectById(id);
@@ -91,6 +93,15 @@ public class DefectController {
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getDefectById()), HttpStatus.BAD_REQUEST);
+	}
+
+	@GetMapping(value = "/count/{projectName}")
+	public ResponseEntity<Object> count(@PathVariable String projectName) {
+		if (projectService.exitsByProjectName(projectName)) {
+			return new ResponseEntity<Object>(defectService.countByProject(projectName), HttpStatus.OK);
+		}
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.NOT_AVAILABLE_PROJECT,
+				validationFailureStatusCodes.getProNameNotAvailable()), HttpStatus.BAD_REQUEST);
 	}
 
 }

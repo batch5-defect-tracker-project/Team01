@@ -13,7 +13,7 @@ public class DefectDto {
 	private String comments;
 	private String File;
 	private Long type_id;
-	private Long project_id;
+	private Long projectId;
 	private Long moduleId;
 
 	public Long getId() {
@@ -88,12 +88,12 @@ public class DefectDto {
 		this.type_id = type_id;
 	}
 
-	public Long getProject_id() {
-		return project_id;
+	public Long getProjectId() {
+		return projectId;
 	}
 
-	public void setProject_id(Long project_id) {
-		this.project_id = project_id;
+	public void setProjectId(Long projectId) {
+		this.projectId = projectId;
 	}
 
 	public Long getModuleId() {

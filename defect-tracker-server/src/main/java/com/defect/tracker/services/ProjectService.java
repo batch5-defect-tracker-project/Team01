@@ -21,4 +21,6 @@ public interface ProjectService {
 	public void updateProject(Project project);
 
 	public Object getProjectByName(Long id);
+
+	public Project findByName(String projectName);
 }

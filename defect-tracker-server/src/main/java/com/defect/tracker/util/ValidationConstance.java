@@ -6,9 +6,11 @@ public class ValidationConstance {
 	public static final String PROJECT_EXISTS = "Project  Already Exists";
 	public static final String PROJECT_UPDATE_EXISTS = "Project name already use another project";
 	public static final String ID_NOTFOUND = "Id  Not Found";
+	public static final String NOT_AVAILABLE_PROJECT = "This Project Not Available";
 
 	public static final String TYPE_EXISTS = "Type Already Exists";
 
+	public static final String DESIGNATION_NOT_FOUND = "Designation Not Found";
 	public static final String DESIGNATION_EXISTS = "Designation Already Exists";
 	public static final String DESIGNATION_DELETE_EXISTS_BY_ID = "Designation Not Exists";
 	public static final String DESIGNATION_NOT_EXISTS_BY_ID = "Designation Not Exist";
@@ -30,7 +32,6 @@ public class ValidationConstance {
 	public static final String PROJECT_ALLOCATION_NOT_EXISTS_BY_ID = "Project Allocation Id Not Exists";
 
 	// employee
-
 	public static final String EMPLOYEE_EMAIL_EXISTS = "Employee Email  Already Exists";
 	public static final String EMPLOYEE_Id_EXISTS = "Employee Id  Already Exists";
 	public static final String EMPLOYEE_Id_NOT_AVAILABLE = "Employee Id  Not Available";
@@ -42,8 +43,6 @@ public class ValidationConstance {
 	public static final String TOKEN_EXPIRED = "Token Expired";
 	public static final String EMPLOYEE_EMAIL_NOT_AVAILABLE = "Your Username / Email Not Much Please SignUp";
 	public static final String EMPLOYEE_USERNAME_PASSWORD_ERROR = "Username Or Password Incorrect";
-
-	public static final String DESIGNATION_NOT_FOUND = "Designation Not Found";
 
 	// SubModule
 	public static final String SUB_MODULE_DELETE_EXISTS_BY_ID = "SubModule Not Exists";

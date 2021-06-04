@@ -44,6 +44,9 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.project.AlreadyExists}")
 	private String proNameAlreadyExists;
 
+	@Value("${validation.project.NotAvalable}")
+	private String proNameNotAvailable;
+
 	@Value("${validation.designation.AlreadyExists}")
 	private String desigNameAlreadyExists;
 
@@ -411,6 +414,14 @@ public class ValidationFailureStatusCodes {
 
 	public void setNameAlreadyExists(String nameAlreadyExists) {
 		this.nameAlreadyExists = nameAlreadyExists;
+	}
+
+	public String getProNameNotAvailable() {
+		return proNameNotAvailable;
+	}
+
+	public void setProNameNotAvailable(String proNameNotAvailable) {
+		this.proNameNotAvailable = proNameNotAvailable;
 	}
 
 }

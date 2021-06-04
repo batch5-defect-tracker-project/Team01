@@ -33,10 +33,9 @@ public class Defect {
 			@JoinColumn(name = "type_id") })
 	private List<Type> type;
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "defect_project", joinColumns = { @JoinColumn(name = "defect_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "project_id") })
-	private List<Project> project;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "project_id", nullable = false)
+	private Project project;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "module_id", nullable = false)
@@ -114,11 +113,11 @@ public class Defect {
 		this.type = type;
 	}
 
-	public List<Project> getProject() {
+	public Project getProject() {
 		return project;
 	}
 
-	public void setProject(List<Project> project) {
+	public void setProject(Project project) {
 		this.project = project;
 	}
 

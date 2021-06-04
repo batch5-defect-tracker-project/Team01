@@ -52,4 +52,9 @@ public class ProjectServiceImpl implements ProjectService {
 	public Object getProjectByName(Long id) {
 		return projectRepository.findById(id).get().getName();
 	}
+
+	@Override
+	public Project findByName(String projectName) {
+		return projectRepository.findByName(projectName);
+	}
 }

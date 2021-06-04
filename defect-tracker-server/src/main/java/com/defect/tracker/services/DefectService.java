@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.defect.tracker.data.dto.DefectCountByPriotryAndProjectDto;
 import com.defect.tracker.data.entities.Defect;
 
 @Service
@@ -22,5 +23,7 @@ public interface DefectService {
 	public void deleteDefectById(Long id);
 
 	public Object getDefectById(Long id);
+
+	public DefectCountByPriotryAndProjectDto countByProject(String projectName);
 
 }
