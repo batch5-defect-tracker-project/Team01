@@ -95,7 +95,7 @@ public class DefectController {
 				validationFailureStatusCodes.getDefectById()), HttpStatus.BAD_REQUEST);
 	}
 
-	@GetMapping(value = "/count/{projectName}")
+	@GetMapping(value = EndpointURI.DEFECT_COUNT_BY_PROJECT_NAME)
 	public ResponseEntity<Object> count(@PathVariable String projectName) {
 		if (projectService.exitsByProjectName(projectName)) {
 			return new ResponseEntity<Object>(defectService.countByProject(projectName), HttpStatus.OK);
