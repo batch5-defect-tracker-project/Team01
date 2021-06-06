@@ -215,8 +215,7 @@ public class EmployeeController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_Id_NOT_AVAILABLE,
 					validationFailureStatusCode.getEmpIdNotAvailable()), HttpStatus.BAD_REQUEST);
 		}
-		EmployeeDto employeeDto = employeeService.findEmployeeById(id);
-		return new ResponseEntity<Object>(employeeDto, HttpStatus.OK);
+		return new ResponseEntity<Object>(employeeService.findEmployeeById(id), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = EndpointURI.EMPLOYEE_LOGIN, method = RequestMethod.POST)

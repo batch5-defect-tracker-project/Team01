@@ -30,7 +30,7 @@ public final class EndpointURI {
 	// Defect
 	public static final String DEFECT = BASE_API_PATH + "Defect";
 	public static final String DEFECT_BY_ID = BASE_API_PATH + "Defect" + ID;
-	public static final String DEFECT_COUNT_BY_PROJECT_NAME = BASE_API_PATH + "project" + PROJECT_NAME;
+	public static final String DEFECT_COUNT_BY_PROJECT_NAME = BASE_API_PATH + "defect/count" + PROJECT_NAME;
 
 	// Employee
 	public static final String EMPLOYEE = BASE_API_PATH + "employee";
@@ -41,6 +41,7 @@ public final class EndpointURI {
 	// Type
 	public static final String TYPE = BASE_API_PATH + "Type";
 	public static final String TYPE_BY_ID = BASE_API_PATH + "Type" + ID;
+	
 
 	private EndpointURI() {
 

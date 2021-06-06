@@ -4,14 +4,12 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.mail.MessagingException;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.defect.tracker.data.dto.EmployeeDto;
-import com.defect.tracker.data.dto.LogInDto;
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.EmployeeRepository;
@@ -115,16 +113,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public EmployeeDto findEmployeeById(Long id) {
 		return mapper.map(employeeRepository.findById(id).get(), EmployeeDto.class);
-	}
-
-	@Override
-	public boolean logIn(@Valid LogInDto logInDto) {
-		Employee employee = employeeRepository.findByEmail(logInDto.getUserName()).get();
-		if (logInDto.getUserName().equalsIgnoreCase(employee.getEmail())
-				&& bCryptPasswordEncoder.matches(logInDto.getPassword(), employee.getPassword())) {
-			return true;
-		}
-		return false;
 	}
 
 }
