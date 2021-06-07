@@ -9,6 +9,7 @@ public class ModuleDto {
 	@NotNull(message = "{moduleDto.moduleName.null}")
 	@NotEmpty(message = "{moduleDto.moduleName.empty}")
 	private String name;
+	
 	public Long getId() {
 		return id;
 	}

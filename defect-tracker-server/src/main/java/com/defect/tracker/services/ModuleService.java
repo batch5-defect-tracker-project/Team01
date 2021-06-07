@@ -15,15 +15,11 @@ public interface ModuleService  {
 	
 	public boolean moduleExits(String name);
 
-	public boolean exitsById(Long id);
-
 	void updateModule(Module module);
 
 	public List<Module> getAllModule();
 
-	
-
-	public void deleteById(Long id);
+    public void deleteById(Long id);
 
 	public boolean existsById(Long id);
 

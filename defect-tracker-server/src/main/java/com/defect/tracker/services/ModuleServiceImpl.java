@@ -21,11 +21,7 @@ public class ModuleServiceImpl  implements ModuleService{
 	public void createModule(Module module) {
 		moduleRepository.save(module);
 	}
-    @Override
-	public boolean exitsById(Long id) {
-		return moduleRepository.existsById(id);
-		}
-
+    
 
 	@Override
 	public boolean isModuleNameAlreadyExist(String name) {

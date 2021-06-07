@@ -34,6 +34,7 @@ public class ModuleController {
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	private Mapper mapper;
+	
 
 	// ------------------------------ Add -API ------------------------------ //
 	@PostMapping(value = EndpointURI.MODULE)
@@ -67,6 +68,7 @@ public class ModuleController {
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
 				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
 	}
+	
 
 	// ------------------------- Get All -API ------------------------- //
 	@GetMapping(value = EndpointURI.MODULE)
