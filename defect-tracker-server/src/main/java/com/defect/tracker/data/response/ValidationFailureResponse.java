@@ -24,4 +24,5 @@ public class ValidationFailureResponse {
 		this.message = message;
 		this.statusCode = statusCode;
 	}
+
 }

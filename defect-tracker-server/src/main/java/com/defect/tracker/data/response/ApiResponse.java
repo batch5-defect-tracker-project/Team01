@@ -8,7 +8,7 @@ public class ApiResponse {
 	private String status;
 
 	private Integer statusCode;
-	
+
 	public ApiResponse(RestApiResponseStatus restApiResponseStatus) {
 		this.status = restApiResponseStatus.getStatus();
 		this.statusCode = restApiResponseStatus.getCode();

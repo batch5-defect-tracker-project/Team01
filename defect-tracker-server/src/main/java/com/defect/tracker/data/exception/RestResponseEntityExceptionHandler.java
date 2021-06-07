@@ -25,6 +25,6 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 		List<ValidationFailureResponse> validationErrors = results.getFieldErrors().stream()
 				.map(item -> new ValidationFailureResponse(item.getField(), item.getDefaultMessage()))
 				.collect(Collectors.toList());
-		return handleExceptionInternal(ex,new ValidationFailure(validationErrors), headers, status, request);
+		return handleExceptionInternal(ex, new ValidationFailure(validationErrors), headers, status, request);
 	}
 }
