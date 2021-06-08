@@ -13,36 +13,38 @@ import javax.persistence.Table;
 @Table(name = "module")
 
 public class Module {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private  Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-private String name;
+	private String name;
 
-public Project getProject() {
-	return project;
-}
-public void setProject(Project project) {
-	this.project = project;
-}
+	public Project getProject() {
+		return project;
+	}
 
-@ManyToOne(fetch = FetchType.LAZY)
-@JoinColumn(name = "project_id", nullable = false)
-private Project project;
+	public void setProject(Project project) {
+		this.project = project;
+	}
 
-public Long getId() {
-	return id;
-}
-public void setId(Long id) {
-	this.id = id;
-}
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "project_id", nullable = false)
+	private Project project;
 
-public String getName() {
-	return name;
-}
-public void setName(String name) {
-	this.name = name;
-}
+	public Long getId() {
+		return id;
+	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 }
