@@ -9,7 +9,7 @@ import com.defect.tracker.data.entities.Designation;
 @Service
 public interface DesignationService {
 
-	public boolean isDesigNameAlreadyExist(String name);
+	public boolean isDesignationNameAlreadyExist(String name);
 
 	public void createDesignation(Designation designation);
 
