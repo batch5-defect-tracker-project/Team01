@@ -31,4 +31,6 @@ public interface SubModuleService {
 
 	public void deleteById(Long id);
 
+	public boolean getModuleIdAndName(Long moduleId, String name);
+
 }

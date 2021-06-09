@@ -10,6 +10,7 @@ public class ModuleDto {
 	@NotEmpty(message = "{moduleDto.moduleName.empty}")
 	private String name;
 
+	
 	public Long getId() {
 		return id;
 	}

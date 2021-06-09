@@ -33,6 +33,15 @@ public class SubModuleController {
 	@Autowired
 	private Mapper mapper;
 
+
+	// ------------------------------ Add -API ------------------------------ //
+	@PostMapping(value = EndpointURI.SUB_MODULE)
+	public ResponseEntity<Object> addSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
+		if (subModuleService.getModuleIdAndName(subModuleDto.getModuleId(), subModuleDto.getName())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
+					validationFailureStatusCodes.getSubModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+		}
+
 //ADD
 	@PostMapping(value = EndpointURI.SUB_MODULE)
 	public ResponseEntity<Object> addSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
@@ -42,16 +51,26 @@ public class SubModuleController {
 					validationFailureStatusCodes.getSubModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
 
+
 		SubModule subModule = mapper.map(subModuleDto, SubModule.class);
 		subModuleService.createSubModule(subModule);
 		return new ResponseEntity<Object>(Constants.SUB_MODULE_ADDED_SUCCESS, HttpStatus.OK);
 	}
+
+
+	// ------------------------------ UpdateById -API ------------------------------
+
+	@PutMapping(value = EndpointURI.SUB_MODULE)
+	public ResponseEntity<Object> updateSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
+		if (subModuleService.exitsSubModuleById(subModuleDto.getId())) {
+			if (subModuleService.getModuleIdAndName(subModuleDto.getModuleId(), subModuleDto.getName())) {
 
 	// UPDATE
 	@PutMapping(value = EndpointURI.SUB_MODULE)
 	public ResponseEntity<Object> updateSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
 		if (subModuleService.exitsSubModuleById(subModuleDto.getId())) {
 			if (subModuleService.isSubModuleNameAlreadyExist(subModuleDto.getName())) {
+
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
 						validationFailureStatusCodes.getSubModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 			}
@@ -59,6 +78,10 @@ public class SubModuleController {
 			subModuleService.createSubModule(subModule);
 			return new ResponseEntity<Object>(Constants.SUB_MODULE_UPDATE_SUCCESS, HttpStatus.OK);
 		}
+
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
+				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+
 
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
 				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
@@ -88,6 +111,7 @@ public class SubModuleController {
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getSubModuleById()), HttpStatus.BAD_REQUEST);
+
 
 	}
 
