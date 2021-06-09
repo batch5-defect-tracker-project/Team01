@@ -8,6 +8,8 @@ import com.defect.tracker.data.entities.Defect;
 @Service
 public interface DefectService {
 
+	
+
 	public boolean isDefectExistsById(Long id);
 	
 	public void createDefect(Defect defect);
@@ -21,6 +23,9 @@ public interface DefectService {
 	public void deleteDefectById(Long id);
 	
 	public Object getDefectById(Long id);
+
+	
+	
 
 	
 	

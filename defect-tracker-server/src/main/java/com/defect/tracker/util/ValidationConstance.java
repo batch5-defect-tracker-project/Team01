@@ -17,7 +17,10 @@ public class ValidationConstance {
 	public static final String DEFECT_EXISTS = "Defect Id Already Exists";
 	public static final String DEFECT_DELETE_EXISTS_BY_ID = "Defect Delete Exists By Id";
 	public static final String DEFECT_NOT_EXISTS_BY_ID = "Defect Not Exists";
-
+	public static final String PROJECT_NOT_EXISTS ="Project Not Exists";
+	public static final String MODULE_NOT_EXISTS ="Module Not Exists";
+	public static final String ASSIGNED_BY_ID_NOT_EXISTS ="Assigned By Id Not Exists";
+	public static final String ASSIGNED_TO_ID_NOT_EXISTS ="Assigned To Id Not Exists";
 	// Module
 	public static final String MODULE_EXISTS = "Module  Already Exists";
 	public static final String MODULE_DELETE_EXISTS_BY_ID = "Module  is not Exists";

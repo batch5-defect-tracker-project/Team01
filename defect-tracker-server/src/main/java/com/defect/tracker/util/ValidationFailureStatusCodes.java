@@ -47,15 +47,13 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.designation.AlreadyExists}")
 	private String desigNameAlreadyExists;
 
-
 	@Value("${validation.id.NotFound}")
 	private String projectIdNotFound;
 
 	@Value("${validation.Name.UseAnotherProject}")
 	private String getProjectNameAlreadyUseByAnotherProject;
 
-
-
+	
 	// DESIGNATION
 
 	@Value("${validation.designation.AlreadyExists}")
@@ -108,7 +106,6 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.defect.existsById}")
 	private String existsDefectById;
 
-
 	// Defect
 	@Value("${validation.defect.AlreadyExists}")
 	private String modNameAlreadyExists;
@@ -119,12 +116,20 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.defect.defectById}")
 	private String defectById;
 
-
 	@Value("${validation.projectName.AlreadyExists}")
-  private String projectNameAlreadyExists;
+	private String projectNameAlreadyExists;
 
 	@Value("${validation.defect.existsById}")
 	private String existsById;
+	
+	@Value("${validation.project.existsById}")
+	private String projectExistsById;
+	
+	@Value("${validation.defect.existsById}")
+	private String assignedByExistsById;
+	
+	@Value("${validation.employee.existsById}")
+	private String assignedToExistsById;
 
 	// Type
 	@Value("${validation.type.AlreadyExists}")
@@ -418,6 +423,30 @@ public class ValidationFailureStatusCodes {
 		this.nameAlreadyExists = nameAlreadyExists;
 	}
 
+	public String getProjectExistsById() {
+		return projectExistsById;
+	}
 
-	
+	public void setProjectExistsById(String projectExistsById) {
+		this.projectExistsById = projectExistsById;
+	}
+
+	public String getAssignedByExistsById() {
+		return assignedByExistsById;
+	}
+
+	public void setAssignedByExistsById(String assignedByExistsById) {
+		this.assignedByExistsById = assignedByExistsById;
+	}
+
+	public String getAssignedToExistsById() {
+		return assignedToExistsById;
+	}
+
+	public void setAssignedToExistsById(String assignedToExistsById) {
+		this.assignedToExistsById = assignedToExistsById;
+	}
+
+
+
 }

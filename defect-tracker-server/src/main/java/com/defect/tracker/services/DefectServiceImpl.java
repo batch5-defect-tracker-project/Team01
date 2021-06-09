@@ -1,6 +1,7 @@
 package com.defect.tracker.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,6 +55,6 @@ public class DefectServiceImpl implements DefectService {
 		return defectRepository.existsById(id);
 	}
 
-
+	
 }
 

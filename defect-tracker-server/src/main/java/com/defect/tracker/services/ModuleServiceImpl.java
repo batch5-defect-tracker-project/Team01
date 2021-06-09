@@ -1,6 +1,7 @@
 package com.defect.tracker.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,5 +60,19 @@ public class ModuleServiceImpl implements ModuleService {
 
 		return moduleRepository.findById(id);
 	}
+
+	@Override
+	public Object findById(Long id) {
+		
+		return moduleRepository.findById(id).get().getName();
+	}
+
+	@Override
+	public boolean existsModuleById(Long id) {
+		
+		return moduleRepository.existsById(id);
+	}
+
+	
 
 }
