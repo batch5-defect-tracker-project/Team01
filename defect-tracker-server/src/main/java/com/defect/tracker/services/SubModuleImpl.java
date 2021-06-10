@@ -40,7 +40,7 @@ public class SubModuleImpl implements SubModuleService {
 	public boolean getModuleIdAndName(Long moduleId, String name) {
 		
 		return subModuleRepository.existsByModuleIdAndName(moduleId,name);
-
+	}
 
 	public boolean existsById(Long id) {
 		return subModuleRepository.existsById(id);

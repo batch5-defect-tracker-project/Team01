@@ -17,10 +17,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 public class Module {
 	@Id
-
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
 	private String name;
 
 	public Project getProject() {
@@ -35,13 +33,7 @@ public class Module {
 	@JoinColumn(name = "project_id", nullable = false)
 	private Project project;
 
-	@GeneratedValue(strategy = GenerationType.AUTO)
-
-	private Long id;
-	private Long projectId;
-	private String name;
-
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -49,17 +41,7 @@ public class Module {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public Long getProjectId() {
-		return projectId;
-	}
-
-	public void setProjectId(Long projectId) {
-		this.projectId = projectId;
-	}
-
-
-	public String getName() {
+    public String getName() {
 		return name;
 	}
 
