@@ -34,7 +34,16 @@ public class ValidationFailureStatusCodes {
 	public void setNameAlreadyExists(String nameAlreadyExists) {
 		this.nameAlreadyExists = nameAlreadyExists;
 	}
+	@Value("${validation.type.AlreadyIdExists}")
+	private String TypeExistsById;
 
+	public String getTypeExistsById() {
+		return TypeExistsById;
+	}
+
+	public void setTypeExistsById(String typeExistsById) {
+		TypeExistsById = typeExistsById;
+	}
 
 }
 
