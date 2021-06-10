@@ -24,6 +24,8 @@ public interface DefectService {
 	
 	public Object getDefectById(Long id);
 
+	public String getDefectStatusById(Long id);
+
 	
 	
 

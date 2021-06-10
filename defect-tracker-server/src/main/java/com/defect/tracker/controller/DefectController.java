@@ -21,7 +21,7 @@ import com.defect.tracker.data.dto.DefectDto;
 import com.defect.tracker.data.entities.Defect;
 import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.mapper.Mapper;
-import com.defect.tracker.data.repositories.ModuleRepository;
+
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.DefectService;
 import com.defect.tracker.services.EmployeeService;
@@ -77,7 +77,9 @@ public class DefectController {
 		simpleMail.setFrom("meera10testmail@gmail.com");
 		simpleMail.setTo(assignedTo.getEmail());
 		simpleMail.setSubject("New Defect Added");
-		simpleMail.setText("New Defect Added to:" + defectDto.getAssignedToId() +"\n" +"ModuleName:"+ moduleService.findById(defectDto.getModuleId()) + "\n" +"ProjectName:" + projectService.findById(defectDto.getProjectId()) + "\n"+ "Status:" + defectDto.getStatus());
+		simpleMail.setText("New Defect Added to:" + defectDto.getAssignedToId() + "\n" + "ModuleName:"
+				+ moduleService.findById(defectDto.getModuleId()) + "\n" + "ProjectName:"
+				+ projectService.findById(defectDto.getProjectId()) + "\n" + "Status:" + defectDto.getStatus());
 		javaMailSender.send(simpleMail);
 
 		return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
@@ -112,7 +114,8 @@ public class DefectController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.ASSIGNED_TO_ID_NOT_EXISTS,
 					validationFailureStatusCodes.getAssignedToExistsById()), HttpStatus.BAD_REQUEST);
 		}
-		if (defectService.getDefectById(defectDto.getId()).equals(defectDto.getStatus())) {
+		String status = defectService.getDefectStatusById(defectDto.getId());
+		if (!status.equals(defectDto.getStatus())) {
 			defectService.createDefect(mapper.map(defectDto, Defect.class));
 			Employee assignedTo = employeeService.findById(defectDto.getAssignedToId());
 			if ("New".equalsIgnoreCase(defectDto.getStatus()) || "Closed".equalsIgnoreCase(defectDto.getStatus())
@@ -138,11 +141,9 @@ public class DefectController {
 						+ defectDto.getStatus());
 				javaMailSender.send(simpleMail);
 			}
-
 			return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS, HttpStatus.OK);
-
 		}
-
+		defectService.createDefect(mapper.map(defectDto, Defect.class));
 		return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS, HttpStatus.OK);
 	}
 

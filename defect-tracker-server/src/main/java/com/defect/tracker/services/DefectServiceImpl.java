@@ -55,6 +55,11 @@ public class DefectServiceImpl implements DefectService {
 		return defectRepository.existsById(id);
 	}
 
+	@Override
+	public String getDefectStatusById(Long id) {
+		return defectRepository.findById(id).get().getStatus();
+	}
+
 	
 }
 
