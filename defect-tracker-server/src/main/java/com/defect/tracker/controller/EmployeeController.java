@@ -52,6 +52,7 @@ public class EmployeeController {
 	@Autowired
 	private DesignationService designationService;
 
+	@Autowired
 	private Mapper mapper;
 
 	final String UPLOAD_DIR = "E:\\pro_defect___\\defect-tracker-server\\src\\main\\resources\\profiles";
@@ -119,7 +120,7 @@ public class EmployeeController {
 	public ResponseEntity<Object> updateEmployeeById(@Valid @RequestPart("employee") String employee,
 			@RequestPart("file") MultipartFile file) throws MessagingException, IOException {
 		EmployeeDto employeeDto = employeeService.getJson(employee);
-		Long id = employeeService.getEmployeeIdByEmail(employeeDto.getEmail());
+		Long id = employeeDto.getId();
 		if (!employeeService.isIdAlreadyExists(employeeDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_Id_NOT_AVAILABLE,
 					validationFailureStatusCode.getEmpIdNotAvailable()), HttpStatus.BAD_REQUEST);
@@ -136,6 +137,7 @@ public class EmployeeController {
 		}
 
 		if (employeeService.isEmailAlreadyExist(employeeDto.getEmail())) {
+			id = employeeService.getEmployeeIdByEmail(employeeDto.getEmail());
 			if (employeeDto.getId() == id) {
 				employeeService.updateEmployeeById(employeeDto);
 				if (!file.isEmpty()) {
