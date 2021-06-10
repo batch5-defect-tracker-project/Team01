@@ -1,5 +1,9 @@
 package com.defect.tracker.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +17,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.defect.tracker.data.dto.DefectDto;
 import com.defect.tracker.data.dto.ProjectDto;
+import com.defect.tracker.data.entities.Defect;
 import com.defect.tracker.data.entities.Project;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
+import com.defect.tracker.services.DefectService;
 import com.defect.tracker.services.ProjectService;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
@@ -32,11 +39,32 @@ public class ProjectController {
 	@Autowired
 	private Mapper mapper;
 
+	@Autowired
+	DefectService defectService;
+
+	@GetMapping(value = EndpointURI.DEFECT_COUNT_BY_ID_AND_STATUS)
+	public ResponseEntity<Object> getDefectCount(@PathVariable Long id, @PathVariable("status") String status) {
+		if (!projectService.projectIdExits(id)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.ID_NOTFOUND,
+					validationFailureStatusCodes.getProjectIdNotFound()), HttpStatus.BAD_REQUEST);
+		}
+		if (defectService.getDefectStatus(id) == null) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_NULL,
+					validationFailureStatusCodes.getDefectStatusNull()), HttpStatus.BAD_REQUEST);
+		}
+		List<Long> defect = defectService.getDefectStatus(id);
+		List<Long> count = new ArrayList<Long>();
+		for (Long y : defect) {
+			count.add(defectService.getDefectCount(y, status));
+		}
+		return new ResponseEntity<Object>(count, HttpStatus.OK);
+	}
+
 	@PostMapping(value = EndpointURI.PROJECT)
 	public ResponseEntity<Object> addProject(@Valid @RequestBody ProjectDto projectDto) {
 		if (projectService.exitsByProjectName(projectDto.getName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS,
-					validationFailureStatusCodes.getProjectNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getProNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
 		projectService.addProject(mapper.map(projectDto, Project.class));
 		return new ResponseEntity<Object>(Constants.PROJECT_ADDED_SUCCESS, HttpStatus.OK);

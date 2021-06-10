@@ -13,17 +13,20 @@ public interface ModuleService {
 
 	public boolean moduleExits(String name);
 
-	public boolean exitsById(Long id);
-
 	void updateModule(Module module);
-
-	public List<Module> getAllModule();	
-
-	public List<Module> getAllModule();
-
 
 	public void deleteById(Long id);
 
 	public Object getModuleById(Long id);
+
+	boolean existsById(Long id);
+
+	List<Module> getAllModule();
+	
+	public List<Long> getProjectId(String name);
+	
+	public Object getModuleName(Long id);
+	
+	public Object getModuleId(Long id);
 
 }

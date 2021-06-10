@@ -6,6 +6,7 @@ import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.defect.tracker.data.dto.EmployeeDto;
 import com.defect.tracker.data.dto.LogInDto;
@@ -20,7 +21,7 @@ public interface EmployeeService {
 
 	boolean isIdAlreadyExists(Long id);
 
-	void registerEmployee(EmployeeDto employeedto) throws MessagingException;
+	void registerEmployee(@Valid @RequestBody EmployeeDto employeedto) throws MessagingException;
 
 	void activateEmployee(EmployeeDto employeeDto);
 
@@ -28,7 +29,7 @@ public interface EmployeeService {
 
 	Long getEmployeeIdByEmail(String email);
 
-	void updateEmployeeById(EmployeeDto employeeDto) throws MessagingException;
+	void updateEmployeeById(@Valid @RequestBody EmployeeDto employeeDto) throws MessagingException;
 
 	boolean getEmployeeStatus(Long id);
 
@@ -41,5 +42,6 @@ public interface EmployeeService {
 	List<EmployeeDto> findAll();
 
 	boolean logIn(@Valid LogInDto logInDto);
+	
 
 }

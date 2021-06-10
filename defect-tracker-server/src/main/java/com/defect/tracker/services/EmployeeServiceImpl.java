@@ -74,9 +74,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Long getEmployeeIdByEmail(String email) {
+		System.out.println(email);
 		Employee employee = employeeRepository.findByEmail(email);
-		EmployeeDto employeeDto = mapper.map(employee, EmployeeDto.class);
-		return employeeDto.getId();
+		System.out.println(employee.getId());
+		return employee.getId();
 	}
 
 	@Override
@@ -126,5 +127,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 		return false;
 	}
+
 
 }

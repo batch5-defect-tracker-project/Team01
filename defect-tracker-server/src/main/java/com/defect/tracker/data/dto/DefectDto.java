@@ -1,44 +1,47 @@
 package com.defect.tracker.data.dto;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 public class DefectDto {
 
 	private Long id;
-	private Long project_id;
-	
-	@NotNull(message="{defectDto.moduleName.null")
-	@NotBlank(message="{defectDto.moduleName.blank")
-	@NotEmpty(message="moduleName is not empty")
-	@Pattern(regexp = "^[a-zA-Z.\\-\\/+=@_ ]*$",message="moduleName not allowed special character and number")
-	private String moduleName;
 	private String severity;
 	private String priority;
 	private String description;
-	private String stepsToReCreateAssignedTo;
+	private String stepsToReCreate;
+	private Long assignedToId;
+	private Long assignedById;
+	private String status;
 	private String comments;
 	private String File;
+	public Long getAssignedToId() {
+		return assignedToId;
+	}
+	public void setAssignedToId(Long assignedToId) {
+		this.assignedToId = assignedToId;
+	}
+	public Long getAssignedById() {
+		return assignedById;
+	}
+	public void setAssignedById(Long assignedById) {
+		this.assignedById = assignedById;
+	}
+	private Long moduleId;
+	
+	
+	
+	public Long getModuleId() {
+		return moduleId;
+	}
+	public void setModuleId(Long moduleId) {
+		this.moduleId = moduleId;
+	}
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getProject_id() {
-		return project_id;
-	}
-	public void setProject_id(Long project_id) {
-		this.project_id = project_id;
-	}
-	public String getModuleName() {
-		return moduleName;
-	}
-	public void setModuleName(String moduleName) {
-		this.moduleName = moduleName;
-	}
+	
 	public String getSeverity() {
 		return severity;
 	}
@@ -57,12 +60,14 @@ public class DefectDto {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getStepsToReCreateAssignedTo() {
-		return stepsToReCreateAssignedTo;
+	
+	public String getStepsToReCreate() {
+		return stepsToReCreate;
 	}
-	public void setStepsToReCreateAssignedTo(String stepsToReCreateAssignedTo) {
-		this.stepsToReCreateAssignedTo = stepsToReCreateAssignedTo;
+	public void setStepsToReCreate(String stepsToReCreate) {
+		this.stepsToReCreate = stepsToReCreate;
 	}
+
 	public String getComments() {
 		return comments;
 	}
@@ -75,7 +80,14 @@ public class DefectDto {
 	public void setFile(String file) {
 		File = file;
 	}
-	
+
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+//	
 	
 }
 

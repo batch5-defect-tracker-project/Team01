@@ -1,14 +1,20 @@
 package com.defect.tracker.data.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 @Table(name="defect")
@@ -16,39 +22,48 @@ public class Defect {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	
 	private Long id;
-	private Long project_id;
-	
-	@NotNull(message="moduleName is not null")
-	@NotBlank(message="moduleName is not blank")
-	@NotEmpty(message="moduleName is not empty")
-	@Pattern(regexp = "^[a-zA-Z.\\-\\/+=@_ ]*$",message="moduleName not allowed special character and number")
-	private String moduleName;
 	
 	private String severity;
 	private String priority;
 	private String description;
-	private String stepsToReCreateAssignedTo;
+	private String stepsToReCreate;
+	private String status;
 	private String comments;
-	private String File;
+	private String file;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	 @JoinTable(name = "defect_type",
+	    joinColumns= {@JoinColumn(name="defect_id")},
+	    inverseJoinColumns = {@JoinColumn(name = "type_id")})
+	private List<Type> type;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	 @JoinTable(name = "defect_project",
+	    joinColumns= {@JoinColumn(name="defect_id")},
+	    inverseJoinColumns = {@JoinColumn(name = "project_id")})
+	private List<Project> project;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name= "moduleId", nullable = false)
+	@JsonIgnoreProperties(value = {"defect", "hibernateLazyInitializer"})
+	private Module module;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name= "assignedTo", nullable = false)
+	@JsonIgnoreProperties(value = {"defect", "hibernateLazyInitializer"})
+	private Employee assignedTo;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name= "assignedBy", nullable = false)
+	@JsonIgnoreProperties(value = {"defect", "hibernateLazyInitializer"})
+	private Employee assignedBy;
+	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public Long getProject_id() {
-		return project_id;
-	}
-	public void setProject_id(Long project_id) {
-		this.project_id = project_id;
-	}
-	public String getModuleName() {
-		return moduleName;
-	}
-	public void setModuleName(String moduleName) {
-		this.moduleName = moduleName;
 	}
 	public String getSeverity() {
 		return severity;
@@ -68,11 +83,25 @@ public class Defect {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getStepsToReCreateAssignedTo() {
-		return stepsToReCreateAssignedTo;
+	
+	public String getStepsToReCreate() {
+		return stepsToReCreate;
 	}
-	public void setStepsToReCreateAssignedTo(String stepsToReCreateAssignedTo) {
-		this.stepsToReCreateAssignedTo = stepsToReCreateAssignedTo;
+	public void setStepsToReCreate(String stepsToReCreate) {
+		this.stepsToReCreate = stepsToReCreate;
+	}
+
+	public Employee getAssignedTo() {
+		return assignedTo;
+	}
+	public void setAssignedTo(Employee assignedTo) {
+		this.assignedTo = assignedTo;
+	}
+	public Employee getAssignedBy() {
+		return assignedBy;
+	}
+	public void setAssignedBy(Employee assignedBy) {
+		this.assignedBy = assignedBy;
 	}
 	public String getComments() {
 		return comments;
@@ -80,13 +109,37 @@ public class Defect {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getFile() {
-		return File;
+		return file;
 	}
 	public void setFile(String file) {
-		File = file;
+		this.file = file;
 	}
-	
-	
+	public List<Type> getType() {
+		return type;
+	}
+	public void setType(List<Type> type) {
+		this.type = type;
+	}
+	public List<Project> getProject() {
+		return project;
+	}
+	public void setProject(List<Project> project) {
+		this.project = project;
+	}
+	public Module getModule() {
+		return module;
+	}
+	public void setModule(Module module) {
+		this.module = module;
+	}
+
 }
 
