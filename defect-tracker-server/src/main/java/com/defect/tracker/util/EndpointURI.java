@@ -39,6 +39,7 @@ public final class EndpointURI {
 	public static final String TYPE = BASE_API_PATH + "Type";
 	public static final String TYPE_BY_ID = BASE_API_PATH + "Type" + ID;
 
+
 	private EndpointURI() {
 
 	}

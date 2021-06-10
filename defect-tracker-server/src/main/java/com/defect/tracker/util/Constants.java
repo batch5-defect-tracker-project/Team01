@@ -1,7 +1,5 @@
 package com.defect.tracker.util;
 
-import org.springframework.util.MultiValueMap;
-
 public class Constants {
 
 	// employee
@@ -44,12 +42,16 @@ public class Constants {
 
 	// Type
 	public static final String TYPE_ADDED_SUCCESS = "Type added successfully ";
+	public static final String TYPE_DELETED_SUCCESS = "Type Deleted successfully ";
+	public static final String TYPE_UPDATED_SUCCESS = "Type Updated successfully ";
+	// encaptulate constructor to restrict modification from outside
+
 	public static final String DEFECT_UPDATED_SUCCESS = "Defect Updated Successfully";
 
 	public static final String DELETED_SUCCESS = "Deleted Successfully";
 	public static final String UPDATED_SUCCESS = "Updated Successfully";
-
-	private Constants() {
+	
+	Constants() {
 
 	}
 }
