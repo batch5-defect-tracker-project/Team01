@@ -138,6 +138,18 @@ public class ValidationFailureStatusCodes {
 	// Type
 	@Value("${validation.type.AlreadyExists}")
 	private String nameAlreadyExists;
+	
+	@Value("${validation.type.TypeIdAlreadyExists}")
+	private String typeIdNotExists;
+
+	
+	public String getTypeIdNotExists() {
+		return typeIdNotExists;
+	}
+
+	public void setTypeIdNotExists(String typeIdNotExists) {
+		this.typeIdNotExists = typeIdNotExists;
+	}
 
 	public String getEmpNotActive() {
 		return empNotActive;
@@ -544,8 +556,6 @@ public class ValidationFailureStatusCodes {
 	public void setAssignedToExistsById(String assignedToExistsById) {
 		this.assignedToExistsById = assignedToExistsById;
 	}
-
-
 
 	
 }

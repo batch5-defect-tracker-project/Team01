@@ -7,7 +7,9 @@ public class ValidationConstance {
 	public static final String PROJECT_UPDATE_EXISTS = "Project name already use another project";
 	public static final String ID_NOTFOUND = "Id  Not Found";
 
+	//Type
 	public static final String TYPE_EXISTS = "Type Already Exists";
+	public static final String TYPE_ID_NOT_EXISTS = "Type Id Not Exists";
 
 	public static final String DESIGNATION_EXISTS = "Designation Already Exists";
 	public static final String DESIGNATION_DELETE_EXISTS_BY_ID = "Designation Not Exists";
@@ -61,6 +63,7 @@ public class ValidationConstance {
 
 	// SubModule
 	public static final String SUB_MODULE_DELETE_EXISTS_BY_ID = "SubModule Not Exists";
+	
 
 	private ValidationConstance() {
 	}

@@ -48,10 +48,13 @@ public class Constants {
 	
 	// Type
 	public static final String TYPE_ADDED_SUCCESS = "Type added successfully ";
-
-
+	public static final String TYPE_UPDATED_SUCCESS ="Type Updated Successfully";
+	public static final String TYPE_DELETED_SUCCESS ="Type Deleted Successfully";
+	
 	public static final String DELETED_SUCCESS = "Deleted Successfully";
 	public static final String UPDATED_SUCCESS = "Updated Successfully";
+
+	
 
 	private Constants() {
 

@@ -77,7 +77,7 @@ public class DefectController {
 		simpleMail.setFrom("meera10testmail@gmail.com");
 		simpleMail.setTo(assignedTo.getEmail());
 		simpleMail.setSubject("New Defect Added");
-		simpleMail.setText("New Defect Added to " + defectDto.getAssignedToId() +"\n" +"ModuleName:"+ moduleService.findById(defectDto.getModuleId()) + "\n" +"ProjectName:" + projectService.findById(defectDto.getProjectId()) + "\n"+ "Status:" + defectDto.getStatus());
+		simpleMail.setText("New Defect Added to:" + defectDto.getAssignedToId() +"\n" +"ModuleName:"+ moduleService.findById(defectDto.getModuleId()) + "\n" +"ProjectName:" + projectService.findById(defectDto.getProjectId()) + "\n"+ "Status:" + defectDto.getStatus());
 		javaMailSender.send(simpleMail);
 
 		return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
