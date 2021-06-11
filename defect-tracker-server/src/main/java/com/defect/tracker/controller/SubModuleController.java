@@ -34,13 +34,13 @@ public class SubModuleController {
 	private Mapper mapper;
 
 
-	// ------------------------------ Add -API ------------------------------ //
-	@PostMapping(value = EndpointURI.SUB_MODULE)
-	public ResponseEntity<Object> addSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
-		if (subModuleService.getModuleIdAndName(subModuleDto.getModuleId(), subModuleDto.getName())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
-					validationFailureStatusCodes.getSubModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
-		}
+//	// ------------------------------ Add -API ------------------------------ //
+//	@PostMapping(value = EndpointURI.SUB_MODULE)
+//	public ResponseEntity<Object> addSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
+//		if (subModuleService.getModuleIdAndName(subModuleDto.getModuleId(), subModuleDto.getName())) {
+//			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
+//					validationFailureStatusCodes.getSubModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+//		}
 
 //ADD
 	@PostMapping(value = EndpointURI.SUB_MODULE)
@@ -58,12 +58,12 @@ public class SubModuleController {
 	}
 
 
-	// ------------------------------ UpdateById -API ------------------------------
-
-	@PutMapping(value = EndpointURI.SUB_MODULE)
-	public ResponseEntity<Object> updateSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
-		if (subModuleService.exitsSubModuleById(subModuleDto.getId())) {
-			if (subModuleService.getModuleIdAndName(subModuleDto.getModuleId(), subModuleDto.getName())) {
+//	// ------------------------------ UpdateById -API ------------------------------
+//
+//	@PutMapping(value = EndpointURI.SUB_MODULE)
+//	public ResponseEntity<Object> updateSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
+//		if (subModuleService.exitsSubModuleById(subModuleDto.getId())) {
+//			if (subModuleService.getModuleIdAndName(subModuleDto.getModuleId(), subModuleDto.getName())) {
 
 	// UPDATE
 	@PutMapping(value = EndpointURI.SUB_MODULE)
@@ -82,9 +82,9 @@ public class SubModuleController {
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
 				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
 
-
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
-				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+//
+//		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
+//				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
 	@DeleteMapping(value = EndpointURI.SUB_MODULE_BY_ID)
