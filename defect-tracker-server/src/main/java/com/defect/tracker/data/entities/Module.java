@@ -36,7 +36,6 @@ public class Module {
 		this.project = project;
 	}
 
-	
 	public Long getId() {
 		return id;
 	}
@@ -44,8 +43,6 @@ public class Module {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
 
 	public String getName() {
 		return name;
