@@ -25,6 +25,8 @@ public interface ModuleService  {
 
 	boolean isModuleNameAlreadyExist(String name);
 
+	public boolean existsByModuleId(Long moduleId);
+
 	
 	
 

@@ -13,25 +13,17 @@ public class SubModuleImpl implements SubModuleService {
 	@Autowired
 	private SubModuleRepository subModuleRepository;
 	
-	@Override
-	public boolean subModuleExits(String name) {
-		
-		return subModuleRepository.existsByName(name);
-	}
 
 	@Override
 	public void createSubModule(SubModule subModule) {
 		subModuleRepository.save(subModule);
-		
-	}
-
+		}
 
 	@Override
 	public boolean isSubModuleNameAlreadyExist(String name) {
 		
 		return  subModuleRepository.existsByName(name) ;
-		
-	}
+		}
 
 	@Override
 	public boolean exitsSubModuleById(Long id) {

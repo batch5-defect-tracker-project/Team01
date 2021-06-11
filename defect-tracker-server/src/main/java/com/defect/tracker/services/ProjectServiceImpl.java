@@ -20,4 +20,9 @@ public class ProjectServiceImpl implements ProjectService {
 	public void createProject(Project project) {
 		projectRepository.save(project);
 	}
+
+	@Override
+	public boolean exsistByProjectId(Long projectId) {
+		return projectRepository.existsById(projectId);
+	}
 }

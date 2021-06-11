@@ -7,4 +7,6 @@ public interface ProjectService {
 	public boolean isProNameAlreadyExist(String proName);
 
 	public void createProject(Project project);
+
+	public boolean exsistByProjectId(Long projectId);
 }
