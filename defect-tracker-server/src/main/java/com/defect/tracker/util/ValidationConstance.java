@@ -27,10 +27,8 @@ public class ValidationConstance {
 	//SubModule
 	public static final String SUB_MODULE_EXISTS = "SubModule Name Alredy Exists";
 	public static final String SUB_MODULE_NOT_EXISTS_BY_ID =" SubModule Id is not Exists";
-	public static final String SUB_MODULE_ID_NOT_EXIT =" SubModule Id is not Exists";
-	
 
-	
+	public static final String SUB_MODULE_ID_NOT_EXIT =" SubModule Id is not Exists";
 
 	// Project Allocation
 	public static final String PROJECT_ALLOCATION_EXISTS = "Project Allocation Already Exists";
