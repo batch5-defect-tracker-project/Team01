@@ -6,18 +6,10 @@ import org.springframework.stereotype.Repository;
 import com.defect.tracker.data.entities.Module;
 
 @Repository
-public interface ModuleRepository extends JpaRepository<Module, Long>{
+public interface ModuleRepository extends JpaRepository<Module, Long> {
 
 	boolean existsByName(String name);
 
 	boolean existsByProjectIdAndName(Long projectId, String name);
-
-	
-
-	
-
-	
-
-
 
 }

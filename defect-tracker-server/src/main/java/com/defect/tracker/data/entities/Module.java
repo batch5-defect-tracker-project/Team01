@@ -9,24 +9,26 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties("hibernateLazyInitializer")
 @Entity
 @Table(name = "module")
 
 public class Module {
 	@Id
+
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String name;
 
-
-	@ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "project_id", nullable = false)
 	private Project project;
 	
 	
-
-	public Project getProject() {
+    public Project getProject() {
 		return project;
 	}
 
@@ -34,6 +36,7 @@ public class Module {
 		this.project = project;
 	}
 
+	
 	public Long getId() {
 		return id;
 	}
@@ -41,6 +44,8 @@ public class Module {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+
 
 	public String getName() {
 		return name;

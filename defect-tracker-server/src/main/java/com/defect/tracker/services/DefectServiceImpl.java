@@ -14,10 +14,7 @@ public class DefectServiceImpl implements DefectService {
 	@Autowired
 	private DefectRepository defectRepository;
 
-	@Override
-	public boolean isModNameAlreadyExist(String modName){
-		return defectRepository.existsByModuleName(modName);
-	}
+	
 
 	@Override
 	public void createDefect(Defect defect) {
@@ -49,6 +46,12 @@ public class DefectServiceImpl implements DefectService {
 	@Override
 	public Object getDefectById(Long id) {
 		return defectRepository.findById(id);
+	}
+
+	@Override
+	public boolean isDefectExistsById(Long id) {
+		
+		return defectRepository.existsById(id);
 	}
 
 

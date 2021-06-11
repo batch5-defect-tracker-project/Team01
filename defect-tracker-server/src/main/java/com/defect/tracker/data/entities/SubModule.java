@@ -9,38 +9,44 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
-
 @Entity
 @Table(name = "sub_module")
 public class SubModule {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private  Long id;
+
 	private String name;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "module_id", nullable = false)
-    private Module module;
-	
+	@JoinColumn(name = "module_id", nullable = false)
+	private Module module;
+
+
 	public Module getModule() {
 		return module;
 	}
+
 	public void setModule(Module module) {
 		this.module = module;
 	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 }
