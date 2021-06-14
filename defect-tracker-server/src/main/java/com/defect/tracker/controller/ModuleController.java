@@ -77,8 +77,6 @@ public class ModuleController {
 				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
-	}
-
 
 	// ------------------------- Get All -API ------------------------- //
 	@GetMapping(value = EndpointURI.MODULE)

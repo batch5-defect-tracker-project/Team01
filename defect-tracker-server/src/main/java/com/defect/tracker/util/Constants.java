@@ -1,7 +1,5 @@
 package com.defect.tracker.util;
 
-import org.springframework.util.MultiValueMap;
-
 public class Constants {
 
 	// employee
@@ -10,7 +8,6 @@ public class Constants {
 	public static final String EMPLOYEE_ACTIVATIN_SUCCESS = "Employee Email Verification Success";
 	public static final String EMPLOYEE_ALREADY_ACTIVATED = "Employee Already Verified";
 	public static final String EMPLOYEE_UPDATE_SUCCESS = "Employee Update Successfully";
-
 	public static final String EMPLOYEE_SUCCESSFULL_DELETE = "Employee Successfull Deleted";
 	public static final String EMPLOYEE_SUCCESSFULL_LOGIN = "Successfull Employee LogIn";
 

@@ -35,8 +35,6 @@ public class EmployeeDto {
 	@NotNull(message = "{employee.status.blank}")
 	private boolean isEnabled;
 	@NotNull(message = "{employee.designationId.null}")
-	@NotEmpty(message = "{employee.designationId.empty}")
-	@NotBlank(message = "{employee.designationId.blank}")
 	private Long designationId;
 
 	public Long getDesignationId() {

@@ -34,6 +34,7 @@ public final class EndpointURI {
 	public static final String EMPLOYEE_ID = BASE_API_PATH + "employee" + ID;
 	public static final String EMPLOYEE_ACTIVATION = BASE_API_PATH + "employee/activation";
 	public static final String EMPLOYEE_LOGIN = BASE_API_PATH + "employee/login";
+	public static final String EMPLOYEE_REGISTER = BASE_API_PATH + "employee/registration";
 
 	// Type
 	public static final String TYPE = BASE_API_PATH + "type";
