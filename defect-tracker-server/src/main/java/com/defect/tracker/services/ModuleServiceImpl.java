@@ -53,7 +53,13 @@ public class ModuleServiceImpl implements ModuleService {
 	@Override
 
 	public Object getModuleById(Long id) {
-		return moduleRepository.findById(id);
+		return moduleRepository.findById(id).get();
+	}
+
+	@Override
+	public boolean getModuleByProjectIdAndName(Long projectId, String name) {
+		return moduleRepository.existsByProjectIdAndName(projectId, name);
+
 	}
 
 }

@@ -1,4 +1,3 @@
-
 package com.defect.tracker.util;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -72,6 +71,7 @@ public class ValidationFailureStatusCodes {
 	private String designationNameAlreadyExists;
 
 	@Value("${validation.designation.AlreadyExistsById}")
+
 	private String designationExistsById;
 
 	@Value("${validation.designation.designationById}")

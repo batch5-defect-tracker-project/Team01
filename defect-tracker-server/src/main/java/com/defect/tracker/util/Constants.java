@@ -23,6 +23,7 @@ public class Constants {
 	public static final String PROJECT_ALLOCATION_UPDATED_SUCCESS = "Project Allocation Updated Successfully...!";
 
 	// Designation
+
 	public static final String DESIGNATION_ADDED_SUCCESS = "Designation Added Successfully";
 	public static final String DESIGNATION_DELETED_SUCCESS = "Designation Delete Successfully";
 	public static final String DESIGNATION_UPDATED_SUCCESS = "Designation Update Successfully";

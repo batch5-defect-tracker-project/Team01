@@ -7,20 +7,22 @@ import com.defect.tracker.data.entities.Module;
 @Service
 public interface ModuleService {
 
-	public boolean isModuleNameAlreadyExist(String name);
-
 	public void createModule(Module module);
 
-	public boolean moduleExits(String name);
-
-	void updateModule(Module module);
+	public List<Module> getAllModule();
 
 	public void deleteById(Long id);
 
 	public Object getModuleById(Long id);
 
+	public boolean getModuleByProjectIdAndName(Long projectId, String name);
+
+	boolean isModuleNameAlreadyExist(String name);
+
 	boolean existsById(Long id);
 
-	List<Module> getAllModule();
+	void updateModule(Module module);
+
+	boolean moduleExits(String name);
 
 }
