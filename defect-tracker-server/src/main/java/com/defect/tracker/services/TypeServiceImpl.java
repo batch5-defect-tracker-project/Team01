@@ -38,12 +38,16 @@ public class TypeServiceImpl implements TypeService {
 
 	@Override
 	public void deleteTypeById(Long id) {
-		typeRepository.deleteById(id);
-		
+		typeRepository.deleteById(id);		
 }
 	@Override
 	public List<Type> getType() {
 		return typeRepository.findAll();
+	}
+
+	@Override
+	public Object getTypeById(Long id) {
+		return typeRepository.findById(id);
 	}
 
 }

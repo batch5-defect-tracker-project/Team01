@@ -21,6 +21,8 @@ public interface TypeService {
 
 	public List<Type> getType();
 	
+	public Object getTypeById(Long id);
+	
 	
 
 }
