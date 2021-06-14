@@ -30,4 +30,7 @@ public interface SubModuleService {
 
 	public boolean getModuleIdAndName(Long moduleId, String name);
 
+
+	public boolean getSubModuleByIdAndName(Long moduleId, String name);
+
 }

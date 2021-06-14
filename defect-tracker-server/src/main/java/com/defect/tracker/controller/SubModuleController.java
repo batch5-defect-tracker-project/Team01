@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.defect.tracker.data.dto.ModuleDto;
 import com.defect.tracker.data.dto.ProjectDto;
 import com.defect.tracker.data.dto.SubModuleDto;
+import com.defect.tracker.data.entities.Module;
 import com.defect.tracker.data.entities.SubModule;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
@@ -40,14 +41,20 @@ public class SubModuleController {
 	ModuleService moduleService;
 
 
+
 	// ------------------------------ Add -API ------------------------------ //
+	
+	
+
+
+//ADD
 	@PostMapping(value = EndpointURI.SUB_MODULE)
 	public ResponseEntity<Object> addSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
-		if(!moduleService.existsByModuleId(subModuleDto.getModuleId())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_ID_NOT_EXIT,
-					validationFailureStatusCodes.getSubModuleByIdAlreadyExist()), HttpStatus.BAD_REQUEST);
+		if(!moduleService.exsistByModuleId(subModuleDto.getModuleId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
+					validationFailureStatusCodes.getModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
-		if (subModuleService.getModuleIdAndName(subModuleDto.getModuleId(), subModuleDto.getName())) {
+		if (subModuleService.getSubModuleByIdAndName(subModuleDto.getModuleId(), subModuleDto.getName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
 					validationFailureStatusCodes.getSubModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
@@ -57,7 +64,8 @@ public class SubModuleController {
 	}
 
 
-	// ------------------------------ UpdateById -API ------------------------------
+
+//	// ------------------------------ UpdateById -API ------------------------------
 
 
 	@PutMapping(value = EndpointURI.SUB_MODULE)
@@ -72,9 +80,14 @@ public class SubModuleController {
 			subModuleService.createSubModule(subModule);
 			return new ResponseEntity<Object>(Constants.SUB_MODULE_UPDATE_SUCCESS, HttpStatus.OK);
 		}
+
       return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
 				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
 	
+
+
+		
+
 	}
 	// ------------------------------ Delete -API ------------------------------
 

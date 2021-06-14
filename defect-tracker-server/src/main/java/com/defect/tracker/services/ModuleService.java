@@ -25,6 +25,8 @@ public interface ModuleService {
 
 	public boolean exitsModuleById(Long id);
 
+	public boolean exsistByModuleId(Long moduleId);
+
 	
 
 }

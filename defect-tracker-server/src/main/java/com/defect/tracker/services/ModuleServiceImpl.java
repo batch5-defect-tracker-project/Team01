@@ -55,15 +55,19 @@ public class ModuleServiceImpl implements ModuleService {
 	}
 
 	@Override
+	public boolean exitsModuleById(Long id) {
+		return moduleRepository.existsById(id);
+	}
+
+	@Override
 	public boolean existsByModuleId(Long moduleId) {
 		return moduleRepository.existsById(moduleId);
 	}
 
 	@Override
-	public boolean exitsModuleById(Long id) {
-		return moduleRepository.existsById(id);
+	public boolean exsistByModuleId(Long moduleId) {
+		return moduleRepository.existsById(moduleId);
 	}
-	
 
 
 }

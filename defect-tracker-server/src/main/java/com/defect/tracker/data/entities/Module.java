@@ -17,10 +17,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 public class Module {
 	@Id
-
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
 	private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -36,6 +34,7 @@ public class Module {
 		this.project = project;
 	}
 
+
 	public Long getId() {
 		return id;
 	}
@@ -44,9 +43,7 @@ public class Module {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
-	}
+
 
 	public void setName(String name) {
 		this.name = name;

@@ -73,8 +73,9 @@ public class ModuleController {
 		}
       return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
 				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
-	
 	}
+
+
 
 	// ------------------------- Get All -API ------------------------- //
 	@GetMapping(value = EndpointURI.MODULE)
@@ -95,6 +96,7 @@ public class ModuleController {
 	}
 
 	// ------------------------- Get By Id -API ------------------------- //
+
 
 	@GetMapping(value = EndpointURI.MODULE_BY_ID)
 	public ResponseEntity<Object> findModuleById(@PathVariable Long id) {
