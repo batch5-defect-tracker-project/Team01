@@ -24,6 +24,8 @@ public interface DefectService {
 
 	public Object getDefectById(Long id);
 
-	public DefectCountByPriotryAndProjectDto countByProject(String projectName);
+	public DefectCountByPriotryAndProjectDto prioritySeverityDefectCountByProjectName(String projectName);
+
+	public String getStatusById(Long id);
 
 }

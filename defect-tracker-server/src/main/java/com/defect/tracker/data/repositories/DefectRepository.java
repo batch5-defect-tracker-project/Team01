@@ -4,17 +4,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.defect.tracker.data.entities.Defect;
-import com.defect.tracker.data.entities.Project;
 
 @Repository
 public interface DefectRepository extends JpaRepository<Defect, Long> {
 
-	Long countByPriorityAndProject(String string, Project project);
+	Long countByPriorityAndProjectName(String string, String projectName);
 
-	Long countBySeverityAndProject(String string, Project project);
+	Long countBySeverityAndProjectName(String string, String projectName);
 
-	Long countByPriorityAndSeverityAndProject(String string, String string2, Project project);
+	Long countByPriorityAndSeverityAndProjectName(String string, String string2, String projectName);
 
-	Long countByProject(Project project);
+	Long countByProjectName(String projectName);
 
 }

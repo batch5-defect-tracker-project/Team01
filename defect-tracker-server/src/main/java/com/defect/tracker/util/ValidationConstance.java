@@ -38,11 +38,13 @@ public class ValidationConstance {
 	public static final String EMPLOYEE_NOT_ACTIVE = "Employee Not Active Please Activate Your Account";
 	public static final String EMPLOYEE_PROFILE_SIZE_EXCEPTION = "Profile Image Maximum Size 1mb";
 	public static final String EMPLOYEE_PROFILE_CONTANTTYPE_EXCEPTION = "Please Select Only Image File";
-	public static final String EMPLOYEE_PROFILE_EMPTY = "Profile Picture Empty So Please Select He Photo";
+	public static final String EMPLOYEE_PROFILE_EMPTY = "Profile Picture Empty So Please Select Your Photo";
 	public static final String TOKEN_INVALID = "Invalid Token Please Sign Up";
 	public static final String TOKEN_EXPIRED = "Token Expired";
 	public static final String EMPLOYEE_EMAIL_NOT_AVAILABLE = "Your Username / Email Not Much Please SignUp";
 	public static final String EMPLOYEE_USERNAME_PASSWORD_ERROR = "Username Or Password Incorrect";
+	public static final String EMPLOYEE_SOMEFIELDS_NULL_OR_EMPTY = "Some Fields Are Null Or Empty";
+	public static final String EMPLOYEE_EMAIL_SYNTAX_ERROR = "Email Syntax Error Please Insert Correct Email";
 
 	// SubModule
 	public static final String SUB_MODULE_DELETE_EXISTS_BY_ID = "SubModule Not Exists";

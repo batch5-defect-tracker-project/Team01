@@ -9,11 +9,11 @@ import com.defect.tracker.data.entities.Employee;
 
 @Service
 public interface EmailService {
-	public void sendMail(Employee employee) throws MessagingException;
+	public void sendEmployeeRegisteredMail(Employee employee) throws MessagingException;
 
-	public void sendUpdatedMail(Employee employee) throws MessagingException;
+	public void sendEmployeeUpdatedMail(Employee employee) throws MessagingException;
 
-	public void sendDefectStatusMail(DefectDto defectDto) throws MessagingException;
+	public void sendDefectStatusUpdatedMail(DefectDto defectDto) throws MessagingException;
 
 	public void sendDefectAddMail(DefectDto defectDto) throws MessagingException;
 

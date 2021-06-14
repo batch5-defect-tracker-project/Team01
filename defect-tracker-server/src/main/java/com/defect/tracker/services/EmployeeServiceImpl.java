@@ -2,6 +2,7 @@ package com.defect.tracker.services;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 import javax.mail.MessagingException;
 
@@ -16,6 +17,7 @@ import com.defect.tracker.data.repositories.EmployeeRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mysql.cj.util.StringUtils;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -49,7 +51,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		String token = UUID.randomUUID().toString();
 		verificationService.addVerificationToken(employee, token);
-		emailService.sendMail(employee);
+		emailService.sendEmployeeRegisteredMail(employee);
 	}
 
 	@Override
@@ -58,22 +60,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public void activateEmployee(EmployeeDto employeeDto) {
-		employeeDto.setEnabled(true);
-		employeeRepository.save(mapper.map(employeeDto, Employee.class));
+	public void activateEmployee(Employee employee) {
+		employee.setEnabled(true);
+		employeeRepository.save(employee);
 	}
 
 	@Override
 	public EmployeeDto getJson(String employee) throws JsonMappingException, JsonProcessingException {
-		EmployeeDto employeeDto = new EmployeeDto();
-		employeeDto = objectMapper.readValue(employee, EmployeeDto.class);
-		return employeeDto;
+		return objectMapper.readValue(employee, EmployeeDto.class);
 	}
 
 	@Override
 	public Long getEmployeeIdByEmail(String email) {
-		Employee employee = employeeRepository.findByEmail(email).get();
-		EmployeeDto employeeDto = mapper.map(employee, EmployeeDto.class);
+		EmployeeDto employeeDto = mapper.map(employeeRepository.findByEmail(email).get(), EmployeeDto.class);
 		return employeeDto.getId();
 	}
 
@@ -83,13 +82,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		employeeDto.setEnabled(true);
 		Employee employee = mapper.map(employeeDto, Employee.class);
 		employeeRepository.save(employee);
-		emailService.sendUpdatedMail(employee);
+		emailService.sendEmployeeUpdatedMail(employee);
 	}
 
 	@Override
 	public boolean getEmployeeStatus(Long id) {
-		Employee employee = employeeRepository.findById(id).get();
-		return employee.isEnabled();
+		return employeeRepository.findById(id).get().isEnabled();
 	}
 
 	@Override
@@ -113,6 +111,26 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public EmployeeDto findEmployeeById(Long id) {
 		return mapper.map(employeeRepository.findById(id).get(), EmployeeDto.class);
+	}
+
+	@Override
+	public boolean employeeObjectValidation(EmployeeDto employeeDto) {
+		if (StringUtils.isNullOrEmpty(employeeDto.getEmail()) || StringUtils.isNullOrEmpty(employeeDto.getGender())
+				|| StringUtils.isNullOrEmpty(employeeDto.getName())
+				|| StringUtils.isNullOrEmpty(employeeDto.getPassword()) || employeeDto.getDesignationId() == null
+				|| employeeDto.getContactNumber() == null) {
+			System.out.println("some fields are null");
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public boolean isValidEmail(String email) {
+		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
+				+ "A-Z]{2,7}$";
+		Pattern pat = Pattern.compile(emailRegex);
+		return pat.matcher(email).matches();
 	}
 
 }

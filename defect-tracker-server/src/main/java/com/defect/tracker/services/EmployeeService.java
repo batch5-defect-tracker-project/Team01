@@ -22,7 +22,7 @@ public interface EmployeeService {
 
 	void registerEmployee(@Valid @RequestBody EmployeeDto employeedto) throws MessagingException;
 
-	void activateEmployee(EmployeeDto employeeDto);
+	void activateEmployee(Employee employee);
 
 	EmployeeDto getJson(String employee) throws JsonMappingException, JsonProcessingException;
 
@@ -39,5 +39,9 @@ public interface EmployeeService {
 	EmployeeDto findEmployeeById(Long id);
 
 	List<EmployeeDto> findAll();
+
+	boolean employeeObjectValidation(EmployeeDto employeeDto);
+
+	boolean isValidEmail(String email);
 
 }

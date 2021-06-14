@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.defect.tracker.data.dto.DefectCountByPriotryAndProjectDto;
 import com.defect.tracker.data.entities.Defect;
-import com.defect.tracker.data.entities.Project;
 import com.defect.tracker.data.repositories.DefectRepository;
 
 @Service
@@ -15,9 +14,6 @@ public class DefectServiceImpl implements DefectService {
 
 	@Autowired
 	private DefectRepository defectRepository;
-
-	@Autowired
-	private ProjectService projectService;
 
 	@Override
 	public void createDefect(Defect defect) {
@@ -55,19 +51,23 @@ public class DefectServiceImpl implements DefectService {
 	}
 
 	@Override
-	public DefectCountByPriotryAndProjectDto countByProject(String projectName) {
-		Project project = projectService.findByName(projectName);
+	public DefectCountByPriotryAndProjectDto prioritySeverityDefectCountByProjectName(String projectName) {
 		DefectCountByPriotryAndProjectDto defectCountDto = new DefectCountByPriotryAndProjectDto();
-		defectCountDto.setPriorityHigh(defectRepository.countByPriorityAndProject("high", project));
-		defectCountDto.setPriorityMedium(defectRepository.countByPriorityAndProject("medium", project));
-		defectCountDto.setPriorityLow(defectRepository.countByPriorityAndProject("low", project));
-		defectCountDto.setSeverityHigh(defectRepository.countBySeverityAndProject("high", project));
-		defectCountDto.setSeverityMedium(defectRepository.countBySeverityAndProject("medium", project));
-		defectCountDto.setSeverityLow(defectRepository.countBySeverityAndProject("low", project));
+		defectCountDto.setPriorityHigh(defectRepository.countByPriorityAndProjectName("high", projectName));
+		defectCountDto.setPriorityMedium(defectRepository.countByPriorityAndProjectName("medium", projectName));
+		defectCountDto.setPriorityLow(defectRepository.countByPriorityAndProjectName("low", projectName));
+		defectCountDto.setSeverityHigh(defectRepository.countBySeverityAndProjectName("high", projectName));
+		defectCountDto.setSeverityMedium(defectRepository.countBySeverityAndProjectName("medium", projectName));
+		defectCountDto.setSeverityLow(defectRepository.countBySeverityAndProjectName("low", projectName));
 		defectCountDto.setPrioritySeverityHigh(
-				defectRepository.countByPriorityAndSeverityAndProject("high", "high", project));
-		defectCountDto.setTotalDefect(defectRepository.countByProject(project));
+				defectRepository.countByPriorityAndSeverityAndProjectName("high", "high", projectName));
+		defectCountDto.setTotalDefect(defectRepository.countByProjectName(projectName));
 		return defectCountDto;
+	}
+
+	@Override
+	public String getStatusById(Long id) {
+		return defectRepository.findById(id).get().getStatus();
 	}
 
 }
