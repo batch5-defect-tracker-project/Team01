@@ -44,13 +44,18 @@ public class SubModuleController {
 	// ------------------------------ Add -API ------------------------------ //
 
 
+//	@PostMapping(value = EndpointURI.SUB_MODULE)
+//	public ResponseEntity<Object> addSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
+//		if(!moduleService.exsistByModuleId(subModuleDto.getModuleId())) {
+//			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
+//					validationFailureStatusCodes.getModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+//		}
+//		if (subModuleService.getSubModuleByIdAndName(subModuleDto.getModuleId(), subModuleDto.getName())) {
+	// ------------------------------ Add -API ------------------------------ //
 	@PostMapping(value = EndpointURI.SUB_MODULE)
 	public ResponseEntity<Object> addSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
-		if(!moduleService.exsistByModuleId(subModuleDto.getModuleId())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
-					validationFailureStatusCodes.getModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
-		}
-		if (subModuleService.getSubModuleByIdAndName(subModuleDto.getModuleId(), subModuleDto.getName())) {
+
+		if (subModuleService.getModuleIdAndName(subModuleDto.getModuleId(), subModuleDto.getName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
 					validationFailureStatusCodes.getSubModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
@@ -59,9 +64,7 @@ public class SubModuleController {
 		return new ResponseEntity<Object>(Constants.SUB_MODULE_ADDED_SUCCESS, HttpStatus.OK);
 	}
 
-
-// ------------------------------ UpdateById -API ------------------------------//
-
+//	// ------------------------------ UpdateById -API ------------------------------
 
 	@PutMapping(value = EndpointURI.SUB_MODULE)
 	public ResponseEntity<Object> updateSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
@@ -78,9 +81,11 @@ public class SubModuleController {
 
 	return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
 				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
-
+//
+//		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
+//				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
 	}
-                                                            
+
 	// ------------------------------ Delete -API ------------------------------
 
 	@DeleteMapping(value = EndpointURI.SUB_MODULE_BY_ID)

@@ -75,7 +75,6 @@ public class ModuleController {
 				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
-
 	// ------------------------- Get All -API ------------------------- //
 	@GetMapping(value = EndpointURI.MODULE)
 	public ResponseEntity<Object> getAllModule() {
@@ -98,6 +97,7 @@ public class ModuleController {
 
 
 	@GetMapping(value = EndpointURI.MODULE_BY_ID)
+
 //	public ResponseEntity<Object> findModuleById(@PathVariable Long id) {
 //		if (moduleService.existsById(id)) {
 //
@@ -118,6 +118,14 @@ public class ModuleController {
 					validationFailureStatusCodes.getSubModuleById()), HttpStatus.BAD_REQUEST);
 
 		}
+
+	public ResponseEntity<Object> findModuleById(@PathVariable Long id) {
+		if (moduleService.existsById(id)) {
+			return new ResponseEntity<Object>(mapper.map(moduleService.getModuleById(id), ModuleDto.class),HttpStatus.OK);
+		}
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
+				validationFailureStatusCodes.getModuleById()), HttpStatus.BAD_REQUEST);
+	}
 	}
 	
 		

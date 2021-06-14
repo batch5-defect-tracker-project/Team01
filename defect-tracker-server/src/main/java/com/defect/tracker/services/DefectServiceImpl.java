@@ -15,7 +15,6 @@ public class DefectServiceImpl implements DefectService {
 	@Autowired
 	private DefectRepository defectRepository;
 
-	
 
 	@Override
 	public void createDefect(Defect defect) {

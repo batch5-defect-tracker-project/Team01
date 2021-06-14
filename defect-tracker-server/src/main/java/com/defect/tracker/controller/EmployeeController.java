@@ -55,14 +55,26 @@ public class EmployeeController {
 	@Autowired
 	private Mapper mapper;
 
-
 	final String UPLOAD_DIR = "E:\\pro_defect___\\defect-tracker-server\\src\\main\\resources\\profiles";
 
 
-	@PostMapping(value = EndpointURI.EMPLOYEE)
+//	@PostMapping(value = EndpointURI.EMPLOYEE)
+	@PostMapping(value = EndpointURI.EMPLOYEE_REGISTER)
 	public ResponseEntity<Object> addEmployee(@Valid @RequestPart("employee") String employee,
 			@RequestPart("file") MultipartFile file) throws IllegalStateException, IOException, MessagingException {
 		EmployeeDto employeeDto = employeeService.getJson(employee);
+
+		if (!employeeService.employeeObjectValidation(employeeDto)) {
+			return new ResponseEntity<>(
+					new ValidationFailureResponse(ValidationConstance.EMPLOYEE_SOMEFIELDS_NULL_OR_EMPTY,
+							validationFailureStatusCode.getEmpFieldsNullOrEmpty()),
+					HttpStatus.BAD_REQUEST);
+		}
+
+		if (!employeeService.isValidEmail(employeeDto.getEmail())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMAIL_SYNTAX_ERROR,
+					validationFailureStatusCode.getEmpEmailSynatxError()), HttpStatus.BAD_REQUEST);
+		}
 
 		if (employeeService.isEmailAlreadyExist(employeeDto.getEmail())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMAIL_EXISTS,
@@ -75,7 +87,6 @@ public class EmployeeController {
 		}
 
 		if (!file.getContentType().equals("image/jpeg")) {
-			System.out.println(validationFailureStatusCode.getEmpProfileContenetTypeException());
 			return new ResponseEntity<>(
 					new ValidationFailureResponse(ValidationConstance.EMPLOYEE_PROFILE_CONTANTTYPE_EXCEPTION,
 							validationFailureStatusCode.getEmpProfileContenetTypeException()),
@@ -92,8 +103,7 @@ public class EmployeeController {
 
 		Files.copy(file.getInputStream(), Paths.get(UPLOAD_DIR + File.separator + id + ".jpg"),
 				StandardCopyOption.REPLACE_EXISTING);
-		return new ResponseEntity<Object>(
-				Constants.EMPLOYEE_REGISTERED_SUCCESS + "\n" + Constants.EMPLOYEE_PROFILE_ADDED_SUCCESS, HttpStatus.OK);
+		return new ResponseEntity<Object>(Constants.EMPLOYEE_REGISTERED_SUCCESS, HttpStatus.OK);
 	}
 
 	@GetMapping(value = EndpointURI.EMPLOYEE_ACTIVATION)
@@ -110,8 +120,7 @@ public class EmployeeController {
 					return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TOKEN_EXPIRED,
 							validationFailureStatusCode.getExpiredToken()), HttpStatus.BAD_REQUEST);
 				}
-				EmployeeDto employeeDto = mapper.map(employee, EmployeeDto.class);
-				employeeService.activateEmployee(employeeDto);
+				employeeService.activateEmployee(employee);
 				return new ResponseEntity<Object>(Constants.EMPLOYEE_ACTIVATIN_SUCCESS, HttpStatus.OK);
 			}
 			return new ResponseEntity<Object>(Constants.EMPLOYEE_ALREADY_ACTIVATED, HttpStatus.OK);
@@ -122,7 +131,19 @@ public class EmployeeController {
 	public ResponseEntity<Object> updateEmployeeById(@Valid @RequestPart("employee") String employee,
 			@RequestPart("file") MultipartFile file) throws MessagingException, IOException {
 		EmployeeDto employeeDto = employeeService.getJson(employee);
-		Long id = employeeDto.getId();
+
+		if (!employeeService.employeeObjectValidation(employeeDto)) {
+			return new ResponseEntity<>(
+					new ValidationFailureResponse(ValidationConstance.EMPLOYEE_SOMEFIELDS_NULL_OR_EMPTY,
+							validationFailureStatusCode.getEmpFieldsNullOrEmpty()),
+					HttpStatus.BAD_REQUEST);
+		}
+
+		if (!employeeService.isValidEmail(employeeDto.getEmail())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMAIL_SYNTAX_ERROR,
+					validationFailureStatusCode.getEmpEmailSynatxError()), HttpStatus.BAD_REQUEST);
+		}
+
 		if (!employeeService.isIdAlreadyExists(employeeDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_Id_NOT_AVAILABLE,
 					validationFailureStatusCode.getEmpIdNotAvailable()), HttpStatus.BAD_REQUEST);
@@ -139,13 +160,14 @@ public class EmployeeController {
 		}
 
 		if (employeeService.isEmailAlreadyExist(employeeDto.getEmail())) {
-			id = employeeService.getEmployeeIdByEmail(employeeDto.getEmail());
+			Long id = employeeService.getEmployeeIdByEmail(employeeDto.getEmail());
 			if (employeeDto.getId() == id) {
 				employeeService.updateEmployeeById(employeeDto);
 				if (!file.isEmpty()) {
 					if (!file.getContentType().equals("image/jpeg")) {
 						return new ResponseEntity<>(
-								new ValidationFailureResponse(ValidationConstance.EMPLOYEE_PROFILE_CONTANTTYPE_EXCEPTION,
+								new ValidationFailureResponse(
+										ValidationConstance.EMPLOYEE_PROFILE_CONTANTTYPE_EXCEPTION,
 										validationFailureStatusCode.getEmpProfileContenetTypeException()),
 								HttpStatus.BAD_REQUEST);
 					}
@@ -165,7 +187,8 @@ public class EmployeeController {
 								validationFailureStatusCode.getEmpProfileContenetTypeException()),
 						HttpStatus.BAD_REQUEST);
 			}
-			Files.copy(file.getInputStream(), Paths.get(UPLOAD_DIR + File.separator + id + ".jpg"),
+
+			Files.copy(file.getInputStream(), Paths.get(UPLOAD_DIR + File.separator + employeeDto.getId() + ".jpg"),
 					StandardCopyOption.REPLACE_EXISTING);
 		}
 		return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATE_SUCCESS, HttpStatus.OK);
@@ -192,8 +215,7 @@ public class EmployeeController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_Id_NOT_AVAILABLE,
 					validationFailureStatusCode.getEmpIdNotAvailable()), HttpStatus.BAD_REQUEST);
 		}
-		EmployeeDto employeeDto = employeeService.findEmployeeById(id);
-		return new ResponseEntity<Object>(employeeDto, HttpStatus.OK);
+		return new ResponseEntity<Object>(employeeService.findEmployeeById(id), HttpStatus.OK);
 	}
 
 	@PostMapping(value = EndpointURI.EMPLOYEE_LOGIN)

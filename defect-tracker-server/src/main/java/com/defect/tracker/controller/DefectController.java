@@ -53,7 +53,7 @@ public class DefectController {
 
 	@PostMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) {
-    
+
 		if (!moduleService.existsModuleById(defectDto.getModuleId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS,
 					validationFailureStatusCodes.getModuleById()), HttpStatus.BAD_REQUEST);
@@ -71,7 +71,6 @@ public class DefectController {
 					validationFailureStatusCodes.getAssignedToExistsById()), HttpStatus.BAD_REQUEST);
 		}
 
-
 		Defect defect = mapper.map(defectDto, Defect.class);
 		defectService.createDefect(defect);
 		Employee assignedTo = employeeService.findById(defectDto.getAssignedToId());
@@ -79,8 +78,8 @@ public class DefectController {
 		simpleMail.setFrom("meera10testmail@gmail.com");
 		simpleMail.setTo(assignedTo.getEmail());
 		simpleMail.setSubject("New Defect Added");
-		simpleMail.setText( "ProjectName:"
-				+ projectService.findById(defectDto.getProjectId())+ "\n" + "ModuleName:"+ moduleService.findById(defectDto.getModuleId()));
+		simpleMail.setText("ProjectName:" + projectService.findById(defectDto.getProjectId()) + "\n" + "ModuleName:"
+				+ moduleService.findById(defectDto.getModuleId()));
 		javaMailSender.send(simpleMail);
 
 		return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
@@ -97,10 +96,13 @@ public class DefectController {
 	public ResponseEntity<Object> editDefectById(@RequestBody DefectDto defectDto) {
 
 		if (defectService.existsDefectById(defectDto.getId())) {
-			if (defectService.isDefectExistsById(defectDto.getId())) {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS,
 						validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
 			}
+		
+		if (!defectService.existsDefectById(defectDto.getId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS_BY_ID,
+					validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
 		}
 		if (!moduleService.existsModuleById(defectDto.getModuleId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS,
@@ -164,7 +166,7 @@ public class DefectController {
 		return new ResponseEntity<Object>(Constants.DEFECT_DELETED_SUCCESS, HttpStatus.OK);
 	}
 
-      //GetById
+	// GetById
 	@GetMapping(value = EndpointURI.DEFECT_BY_ID)
 	public ResponseEntity<Object> findDefectById(@PathVariable Long id) {
 		if (defectService.existsDefectById(id)) {

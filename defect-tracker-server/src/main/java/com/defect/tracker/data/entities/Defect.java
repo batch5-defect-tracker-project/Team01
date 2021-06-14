@@ -39,6 +39,7 @@ public class Defect {
 	    inverseJoinColumns = {@JoinColumn(name = "type_id")})
 	private List<Type> type;
 	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name= "project_id", nullable = false)
 	@JsonIgnoreProperties(value = {"defect", "hibernateLazyInitializer"})
@@ -47,7 +48,7 @@ public class Defect {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name= "module_id", nullable = false)
 	@JsonIgnoreProperties(value = {"defect", "hibernateLazyInitializer"})
-	private Module module;
+    private Module module;	
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name= "assignedBy", nullable = false)
@@ -164,5 +165,7 @@ public class Defect {
 	}
 
 
+	
+	
     
 }
