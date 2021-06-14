@@ -13,12 +13,13 @@ public interface ModuleService {
 
   public void deleteById(Long id);
 
- 
-  public Object getModuleById(Long id);
+   public Object getModuleById(Long id);
 
-  public boolean getModuleByProjectIdAndName(Long projectId, String name);
+    public boolean getModuleByProjectIdAndName(Long projectId, String name);
 
 	boolean isModuleNameAlreadyExist(String name);
+
+	public boolean existsByModuleId(Long moduleId);
 
 	boolean existsById(Long id);
 
