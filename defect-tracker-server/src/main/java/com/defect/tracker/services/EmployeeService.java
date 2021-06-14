@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.defect.tracker.data.dto.EmployeeDto;
-import com.defect.tracker.data.dto.LogInDto;
 import com.defect.tracker.data.entities.Employee;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -23,7 +22,7 @@ public interface EmployeeService {
 
 	void registerEmployee(@Valid @RequestBody EmployeeDto employeedto) throws MessagingException;
 
-	void activateEmployee(EmployeeDto employeeDto);
+	void activateEmployee(Employee employee);
 
 	EmployeeDto getJson(String employee) throws JsonMappingException, JsonProcessingException;
 
@@ -41,6 +40,8 @@ public interface EmployeeService {
 
 	List<EmployeeDto> findAll();
 
-	boolean logIn(@Valid LogInDto logInDto);
+	boolean employeeObjectValidation(EmployeeDto employeeDto);
+
+	boolean isValidEmail(String email);
 
 }

@@ -2,6 +2,7 @@ package com.defect.tracker.controller;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ import com.defect.tracker.data.entities.Defect;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.DefectService;
+import com.defect.tracker.services.EmailService;
+import com.defect.tracker.services.ProjectService;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
 import com.defect.tracker.util.ValidationConstance;
@@ -30,15 +33,24 @@ public class DefectController {
 
 	@Autowired
 	DefectService defectService;
+
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
+
 	@Autowired
 	private Mapper mapper;
 
+	@Autowired
+	private EmailService emailservice;
+
+	@Autowired
+	private ProjectService projectService;
+
 	@PostMapping(value = EndpointURI.DEFECT)
-	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) {
+	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) throws MessagingException {
 		Defect defect = mapper.map(defectDto, Defect.class);
 		defectService.createDefect(defect);
+		emailservice.sendDefectAddMail(defectDto);
 		return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
 	}
 
@@ -50,18 +62,16 @@ public class DefectController {
 	}
 
 	@PutMapping(value = EndpointURI.DEFECT)
-	public ResponseEntity<Object> editDefectById(@RequestBody DefectDto defectDto) {
-		if (defectService.existsDefectById(defectDto.getId())) {
-			if (defectService.isDefectExistsById(defectDto.getId())) {
-				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS,
-						validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
-			}
-			Defect defect = mapper.map(defectDto, Defect.class);
+	public ResponseEntity<Object> editDefectById(@RequestBody DefectDto defectDto) throws MessagingException {
+		String status = defectService.getStatusById(defectDto.getId());
+		Defect defect = mapper.map(defectDto, Defect.class);
+		if (status.equalsIgnoreCase(defectDto.getStatus())) {
 			defectService.createDefect(defect);
 			return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS, HttpStatus.OK);
 		}
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS,
-				validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
+		defectService.createDefect(defect);
+		emailservice.sendDefectStatusUpdatedMail(defectDto);
+		return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS, HttpStatus.OK);
 
 	}
 
@@ -69,14 +79,12 @@ public class DefectController {
 	public ResponseEntity<Object> deleteDefectById(@PathVariable Long id) {
 		if (!defectService.existsDefectById(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_DELETE_EXISTS_BY_ID,
-					validationFailureStatusCodes. getDefectExistsById()), HttpStatus.BAD_REQUEST);
-
+					validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
 		}
-
 		defectService.deleteDefectById(id);
 		return new ResponseEntity<Object>(Constants.DEFECT_DELETED_SUCCESS, HttpStatus.OK);
 	}
-//GetById
+
 	@GetMapping(value = EndpointURI.DEFECT_BY_ID)
 	public ResponseEntity<Object> findDefectById(@PathVariable Long id) {
 		if (defectService.existsDefectById(id)) {
@@ -84,6 +92,16 @@ public class DefectController {
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getDefectById()), HttpStatus.BAD_REQUEST);
+	}
+
+	@GetMapping(value = EndpointURI.PRIORITY_SEVERITY_DEFECT_COUNT_BY_PROJECT_NAME)
+	public ResponseEntity<Object> count(@PathVariable String projectName) {
+		if (projectService.exitsByProjectName(projectName)) {
+			return new ResponseEntity<Object>(defectService.prioritySeverityDefectCountByProjectName(projectName),
+					HttpStatus.OK);
+		}
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.NOT_AVAILABLE_PROJECT,
+				validationFailureStatusCodes.getProNameNotAvailable()), HttpStatus.BAD_REQUEST);
 	}
 
 }

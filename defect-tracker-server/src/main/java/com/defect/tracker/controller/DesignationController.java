@@ -31,7 +31,6 @@ public class DesignationController {
 	@Autowired
 	private Mapper mapper;
 
-	// Add
 	@PostMapping(value = EndpointURI.DESIGNATION)
 	public ResponseEntity<Object> addDesignation(@Valid @RequestBody DesignationDto designationDto) {
 		if (designationService.isDesignationNameAlreadyExist(designationDto.getName())) {
@@ -48,7 +47,7 @@ public class DesignationController {
 		List<DesignationDto> designationList = mapper.map(designationService.getAllDesignation(), DesignationDto.class);
 		return new ResponseEntity<Object>(designationList, HttpStatus.OK);
 	}
-	
+
 	@DeleteMapping(value = EndpointURI.DESIGNATION_BY_ID)
 	public ResponseEntity<Object> deleteDesignation(@PathVariable Long id) {
 		if (!designationService.designationExistsById(id)) {
@@ -74,8 +73,10 @@ public class DesignationController {
 	public ResponseEntity<Object> editDesignationById(@RequestBody DesignationDto designationDto) {
 		if (designationService.designationExistsById(designationDto.getId())) {
 			if (designationService.isDesignationNameAlreadyExist(designationDto.getName())) {
-				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_EXISTS,
-						validationFailureStatusCodes.getDesignationNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<>(
+						new ValidationFailureResponse(ValidationConstance.DESIGNATION_EXISTS,
+								validationFailureStatusCodes.getDesignationNameAlreadyExists()),
+						HttpStatus.BAD_REQUEST);
 			}
 			Designation designation = mapper.map(designationDto, Designation.class);
 			designationService.createDesignation(designation);

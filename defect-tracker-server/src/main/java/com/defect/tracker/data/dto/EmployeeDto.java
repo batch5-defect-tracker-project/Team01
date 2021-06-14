@@ -7,6 +7,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class EmployeeDto {
 	private Long id;
 	@NotNull(message = "{employee.name.null}")
@@ -35,72 +40,6 @@ public class EmployeeDto {
 	@NotNull(message = "{employee.status.blank}")
 	private boolean isEnabled;
 	@NotNull(message = "{employee.designationId.null}")
-	@NotEmpty(message = "{employee.designationId.empty}")
-	@NotBlank(message = "{employee.designationId.blank}")
 	private Long designationId;
-
-	public Long getDesignationId() {
-		return designationId;
-	}
-
-	public void setDesignationId(Long designationId) {
-		this.designationId = designationId;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public Long getContactNumber() {
-		return contactNumber;
-	}
-
-	public void setContactNumber(Long contactNumber) {
-		this.contactNumber = contactNumber;
-	}
-
-	public boolean isEnabled() {
-		return isEnabled;
-	}
-
-	public void setEnabled(boolean isEnabled) {
-		this.isEnabled = isEnabled;
-	}
 
 }

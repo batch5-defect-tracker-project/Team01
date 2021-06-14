@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 import com.defect.tracker.data.entities.Project;
 
 @Repository
-public interface ProjectRepository  extends JpaRepository<Project, Long>{
+public interface ProjectRepository extends JpaRepository<Project, Long> {
 	boolean existsByName(String name);
+
+	Project findByName(String projectName);
 }

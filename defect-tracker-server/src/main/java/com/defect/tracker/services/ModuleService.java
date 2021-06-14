@@ -11,17 +11,18 @@ public interface ModuleService {
 
 	public List<Module> getAllModule();
 
-  public void deleteById(Long id);
+	public void deleteById(Long id);
 
- 
-  public Object getModuleById(Long id);
+	public Object getModuleById(Long id);
 
-  public boolean getModuleByProjectIdAndName(Long projectId, String name);
+	public boolean getModuleByProjectIdAndName(Long projectId, String name);
 
 	boolean isModuleNameAlreadyExist(String name);
 
 	boolean existsById(Long id);
 
-	
+	void updateModule(Module module);
+
+	boolean moduleExits(String name);
 
 }

@@ -28,9 +28,9 @@ public class TypeController {
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	private Mapper mapper;
-	
+
 	@PostMapping(value = EndpointURI.TYPE)
-	public ResponseEntity<Object> addType(@Valid @RequestBody TypeDto typeDto) {	
+	public ResponseEntity<Object> addType(@Valid @RequestBody TypeDto typeDto) {
 		if (typeService.isNameAlreadyExists(typeDto.getName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_EXISTS,
 					validationFailureStatusCodes.getNameAlreadyExists()), HttpStatus.BAD_REQUEST);
@@ -38,6 +38,6 @@ public class TypeController {
 		Type type = mapper.map(typeDto, Type.class);
 		typeService.createType(type);
 		return new ResponseEntity<Object>(Constants.TYPE_ADDED_SUCCESS, HttpStatus.OK);
-}
+	}
 
 }
