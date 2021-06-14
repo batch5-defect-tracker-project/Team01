@@ -48,6 +48,7 @@ public class ValidationFailureStatusCodes {
 	private String desigNameAlreadyExists;
 
 
+//	@Value("${validation.designation.existsById}")
 
 	@Value("${validation.designation.existsById}")
     private String desigExistsById;
@@ -59,6 +60,7 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.Name.UseAnotherProject}")
 	private String getProjectNameAlreadyUseByAnotherProject;
 
+	
 	// DESIGNATION
 
 	@Value("${validation.designation.AlreadyExists}")
@@ -119,7 +121,6 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.defect.existsById}")
 	private String existsDefectById;
 
-
 	// Defect
 	@Value("${validation.defect.AlreadyExists}")
 	private String modNameAlreadyExists;
@@ -130,16 +131,36 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.defect.defectById}")
 	private String defectById;
 
-
 	@Value("${validation.projectName.AlreadyExists}")
-  private String projectNameAlreadyExists;
+	private String projectNameAlreadyExists;
 
 	@Value("${validation.defect.existsById}")
 	private String existsById;
+	
+	@Value("${validation.project.existsById}")
+	private String projectExistsById;
+	
+	@Value("${validation.defect.existsById}")
+	private String assignedByExistsById;
+	
+	@Value("${validation.employee.existsById}")
+	private String assignedToExistsById;
 
 	// Type
 	@Value("${validation.type.AlreadyExists}")
 	private String nameAlreadyExists;
+	
+	@Value("${validation.type.TypeIdAlreadyExists}")
+	private String typeIdNotExists;
+
+	
+	public String getTypeIdNotExists() {
+		return typeIdNotExists;
+	}
+
+	public void setTypeIdNotExists(String typeIdNotExists) {
+		this.typeIdNotExists = typeIdNotExists;
+	}
 
 	public String getEmpNotActive() {
 		return empNotActive;
@@ -262,9 +283,9 @@ public class ValidationFailureStatusCodes {
 		this.desigExistsById = desigExistsById;
 	}
 
-//	public String getDesignationExistsById() {
-//		return designationExistsById;
-//	}
+	public String getDesignationExistsById() {
+		return designationExistsById;
+	}
 
 
 	public String getProjectIdNotFound() {
@@ -290,10 +311,10 @@ public class ValidationFailureStatusCodes {
 	public void setDesignationNameAlreadyExists(String designationNameAlreadyExists) {
 		this.designationNameAlreadyExists = designationNameAlreadyExists;
 	}
-
-	public String getDesignationExistsById() {
-		return designationExistsById;
-	}
+//
+//	public String getDesignationExistsById() {
+//		return designationExistsById;
+//	}
 
 	public void setDesignationExistsById(String designationExistsById) {
 		this.designationExistsById = designationExistsById;
@@ -323,6 +344,7 @@ public class ValidationFailureStatusCodes {
 //	public void setModuleNameAlreadyExists(String moduleNameAlreadyExists) {
 //		this.moduleNameAlreadyExists = moduleNameAlreadyExists;
 //	}
+
 //
 //	public String getModuleExistsById() {
 //		return moduleExistsById;
@@ -335,6 +357,7 @@ public class ValidationFailureStatusCodes {
 //	public String getModuleById() {
 //		return ModuleById;
 //	}
+//
 
 //	public void setModuleById(String moduleById) {
 //		ModuleById = moduleById;
@@ -353,6 +376,8 @@ public class ValidationFailureStatusCodes {
 //	}
 //
 //	public void setExitsSubModuleById(String exitsSubModuleById) {
+//		this.exitsSubModuleById = exitsSubModuleById;
+//}
 //		this.exitsSubMod
 	public String getDesignationNotFound() {
 		return designationNotFound;
@@ -411,6 +436,17 @@ public class ValidationFailureStatusCodes {
 //		this.employeeIdAlreadyExists = employeeIdAlreadyExists;
 //	}
 
+//	public void setProjectAllocationExistsById(String projectAllocationExistsById) {
+//		this.projectAllocationExistsById = projectAllocationExistsById;
+//	}
+//
+//	public String getEmployeeIdAlreadyExists() {
+//		return employeeIdAlreadyExists;
+//	}
+//
+//	public void setEmployeeIdAlreadyExists(String employeeIdAlreadyExists) {
+//		this.employeeIdAlreadyExists = employeeIdAlreadyExists;
+//	}
 
 	public void setModuleById(String moduleById) {
 		ModuleById = moduleById;
@@ -503,6 +539,7 @@ public class ValidationFailureStatusCodes {
 //
 //	public void setExistsById(String existsById) {
 //		this.existsById = existsById;
+//}
 
 
 	public String getDefectExistsById() {
@@ -545,6 +582,29 @@ public class ValidationFailureStatusCodes {
 		this.nameAlreadyExists = nameAlreadyExists;
 	}
 
+	public String getProjectExistsById() {
+		return projectExistsById;
+	}
+
+	public void setProjectExistsById(String projectExistsById) {
+		this.projectExistsById = projectExistsById;
+	}
+
+	public String getAssignedByExistsById() {
+		return assignedByExistsById;
+	}
+
+	public void setAssignedByExistsById(String assignedByExistsById) {
+		this.assignedByExistsById = assignedByExistsById;
+	}
+
+	public String getAssignedToExistsById() {
+		return assignedToExistsById;
+	}
+
+	public void setAssignedToExistsById(String assignedToExistsById) {
+		this.assignedToExistsById = assignedToExistsById;
+	}
 	
 
 	

@@ -7,7 +7,9 @@ public class ValidationConstance {
 	public static final String PROJECT_UPDATE_EXISTS = "Project name already use another project";
 	public static final String ID_NOTFOUND = "Id  Not Found";
 
+	//Type
 	public static final String TYPE_EXISTS = "Type Already Exists";
+	public static final String TYPE_ID_NOT_EXISTS = "Type Id Not Exists";
 	public static final String PROJECT_ID_NOT_EXISTS ="Project Id Not Exists";
 
 	public static final String DESIGNATION_EXISTS = "Designation Already Exists";
@@ -18,6 +20,10 @@ public class ValidationConstance {
 	public static final String DEFECT_EXISTS = "Defect Id Already Exists";
 	public static final String DEFECT_DELETE_EXISTS_BY_ID = "Defect Delete Exists By Id";
 	public static final String DEFECT_NOT_EXISTS_BY_ID = "Defect Not Exists";
+	public static final String PROJECT_NOT_EXISTS ="Project Not Exists";
+	public static final String MODULE_NOT_EXISTS ="Module Not Exists";
+	public static final String ASSIGNED_BY_ID_NOT_EXISTS ="Assigned By Id Not Exists";
+	public static final String ASSIGNED_TO_ID_NOT_EXISTS ="Assigned To Id Not Exists";
 		
 	//Module
 	public static final String MODULE_EXISTS = "Module Name  Already Exists";
@@ -27,6 +33,13 @@ public class ValidationConstance {
 	//SubModule
 	public static final String SUB_MODULE_EXISTS = "SubModule Name Alredy Exists";
 	public static final String SUB_MODULE_NOT_EXISTS_BY_ID =" SubModule Id is not Exists";
+//
+//	// Module
+//	public static final String MODULE_EXISTS = "Module  Already Exists";
+//	public static final String MODULE_DELETE_EXISTS_BY_ID = "Module  is not Exists";
+//	public static final String MODULE_NOT_EXISTS_BY_ID = " Module Id is not Exists";
+//	public static final String SUB_MODULE_EXISTS = "SubModule Alredy Exists";
+//	public static final String SUB_MODULE_NOT_EXISTS_BY_ID = "Sub Module Id is not Exists";
 
 	public static final String SUB_MODULE_ID_NOT_EXIT =" SubModule Id is not Exists";
 
@@ -53,6 +66,7 @@ public class ValidationConstance {
 
 	// SubModule
 	public static final String SUB_MODULE_DELETE_EXISTS_BY_ID = "SubModule Not Exists";
+	
 
 	private ValidationConstance() {
 	}

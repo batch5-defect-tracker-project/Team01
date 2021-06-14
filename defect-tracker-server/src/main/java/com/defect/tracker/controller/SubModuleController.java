@@ -39,13 +39,23 @@ public class SubModuleController {
 
 
 	// ------------------------------ Add -API ------------------------------ //
-	@PostMapping(value = EndpointURI.SUB_MODULE)
-	public ResponseEntity<Object> addSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
-		if(!moduleService.existsByModuleId(subModuleDto.getModuleId())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_ID_NOT_EXIT,
-					validationFailureStatusCodes.getSubModuleByIdAlreadyExist()), HttpStatus.BAD_REQUEST);
-		}
-		if (subModuleService.getModuleIdAndName(subModuleDto.getModuleId(), subModuleDto.getName())) {
+//	@PostMapping(value = EndpointURI.SUB_MODULE)
+//	public ResponseEntity<Object> addSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
+//		if(!moduleService.existsByModuleId(subModuleDto.getModuleId())) {
+//			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_ID_NOT_EXIT,
+//					validationFailureStatusCodes.getSubModuleByIdAlreadyExist()), HttpStatus.BAD_REQUEST);
+//		}
+//		if (subModuleService.getModuleIdAndName(subModuleDto.getModuleId(), subModuleDto.getName())) {
+
+
+////ADD
+//	@PostMapping(value = EndpointURI.SUB_MODULE)
+//	public ResponseEntity<Object> addSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
+//
+//		if (subModuleService.subModuleExits(subModuleDto.getName())) {
+//			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
+//					validationFailureStatusCodes.getSubModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+//		}
 
 
 //ADD
@@ -64,6 +74,10 @@ public class SubModuleController {
 
 
 
+//	@PutMapping(value = EndpointURI.SUB_MODULE)
+//	public ResponseEntity<Object> updateSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
+//		if (subModuleService.exitsSubModuleById(subModuleDto.getId())) {
+//			if (subModuleService.getModuleIdAndName(subModuleDto.getModuleId(), subModuleDto.getName())) {
 //	// ------------------------------ UpdateById -API ------------------------------
 
 
@@ -85,8 +99,10 @@ public class SubModuleController {
 	
 
 
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
-				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+//		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
+//				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+//		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
+//				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
 
 
 	}

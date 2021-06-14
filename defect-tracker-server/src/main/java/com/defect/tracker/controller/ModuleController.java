@@ -7,7 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -75,9 +75,10 @@ public class ModuleController {
 	}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
 				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+	
 	}
 
-	}
+	
 
 
 	// ------------------------- Get All -API ------------------------- //
@@ -104,8 +105,16 @@ public class ModuleController {
 	@GetMapping(value = EndpointURI.MODULE_BY_ID)
 	public ResponseEntity<Object> findModuleById(@PathVariable Long id) {
 		if (moduleService.existsById(id)) {
-			return new ResponseEntity<Object>(moduleService.getModuleById(id), HttpStatus.OK);
-           }
+			return new ResponseEntity<Object>(mapper.map(moduleService.getModuleById(id), ModuleDto.class),HttpStatus.OK);
+//
+//	@GetMapping(value = EndpointURI.MODULE_BY_ID)
+//	public ResponseEntity<Object> findModuleById(@PathVariable Long id) {
+//		if (moduleService.existsById(id)) {
+//			return new ResponseEntity<Object>(moduleService.getModuleById(id), HttpStatus.OK);
+
+		}
+//			return new ResponseEntity<Object>(moduleService.getModuleById(id), HttpStatus.OK);
+//           }
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getModuleById()), HttpStatus.BAD_REQUEST);
 	}

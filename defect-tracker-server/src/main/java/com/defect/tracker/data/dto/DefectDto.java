@@ -8,15 +8,28 @@ public class DefectDto {
 	private String priority;
 	private String description;
 	private String stepsToReCreate;
-	private String assignedTo;
-	private String assignedBy;
 	private String status;
 	private String comments;
 	private String File;
-	private Long moduleId;
+	private Long moduleId;	
+	private Long assignedToId;
+	private Long assignedById;
+	private Long projectId;
 	
 	
 	
+	public Long getAssignedToId() {
+		return assignedToId;
+	}
+	public void setAssignedToId(Long assignedToId) {
+		this.assignedToId = assignedToId;
+	}
+	public Long getAssignedById() {
+		return assignedById;
+	}
+	public void setAssignedById(Long assignedById) {
+		this.assignedById = assignedById;
+	}
 	public Long getModuleId() {
 		return moduleId;
 	}
@@ -55,12 +68,7 @@ public class DefectDto {
 	public void setStepsToReCreate(String stepsToReCreate) {
 		this.stepsToReCreate = stepsToReCreate;
 	}
-	public String getAssignedTo() {
-		return assignedTo;
-	}
-	public void setAssignedTo(String assignedTo) {
-		this.assignedTo = assignedTo;
-	}
+	
 	public String getComments() {
 		return comments;
 	}
@@ -73,19 +81,20 @@ public class DefectDto {
 	public void setFile(String file) {
 		File = file;
 	}
-	public String getAssignedBy() {
-		return assignedBy;
-	}
-	public void setAssignedBy(String assignedBy) {
-		this.assignedBy = assignedBy;
-	}
+	
 	public String getStatus() {
 		return status;
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	
 	}
-//	
+	public Long getProjectId() {
+		return projectId;
+	}
+	public void setProjectId(Long projectId) {
+		this.projectId = projectId;
+	}
 	
 }
 
