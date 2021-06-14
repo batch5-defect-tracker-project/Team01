@@ -37,7 +37,7 @@ public class Defect {
 	    joinColumns= {@JoinColumn(name="defect_id")},
 	    inverseJoinColumns = {@JoinColumn(name = "type_id")})
 	private List<Type> type;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name= "project_id", nullable = false)
 	@JsonIgnoreProperties(value = {"defect", "hibernateLazyInitializer"})
@@ -46,7 +46,7 @@ public class Defect {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name= "module_id", nullable = false)
 	@JsonIgnoreProperties(value = {"defect", "hibernateLazyInitializer"})
-	private Module module;
+	private Module module;	
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name= "assignedBy", nullable = false)
@@ -57,79 +57,79 @@ public class Defect {
 	@JoinColumn(name= "assignedTo", nullable = false)
 	@JsonIgnoreProperties(value = {"defect", "hibernateLazyInitializer"})
 	private Employee assignedTo;
-	
-	
-	public Employee getAssignedBy() {
-		return assignedBy;
-	}
-	
-	public void setAssignedBy(Employee assignedBy) {
-		this.assignedBy = assignedBy;
-	}
-	public Employee getAssignedTo() {
-		return assignedTo;
-	}
-	public void setAssignedTo(Employee assignedTo) {
-		this.assignedTo = assignedTo;
-	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getSeverity() {
 		return severity;
 	}
+
 	public void setSeverity(String severity) {
 		this.severity = severity;
 	}
+
 	public String getPriority() {
 		return priority;
 	}
+
 	public void setPriority(String priority) {
 		this.priority = priority;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	public String getStepsToReCreate() {
 		return stepsToReCreate;
 	}
+
 	public void setStepsToReCreate(String stepsToReCreate) {
 		this.stepsToReCreate = stepsToReCreate;
 	}
-	
-	public String getComments() {
-		return comments;
-	}
-	public void setComments(String comments) {
-		this.comments = comments;
-	}
-	
+
 	public String getStatus() {
 		return status;
 	}
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
 	public String getFile() {
 		return file;
 	}
+
 	public void setFile(String file) {
 		this.file = file;
 	}
+
 	public List<Type> getType() {
 		return type;
 	}
+
 	public void setType(List<Type> type) {
 		this.type = type;
 	}
-	
+
 	public Project getProject() {
 		return project;
 	}
@@ -141,10 +141,27 @@ public class Defect {
 	public Module getModule() {
 		return module;
 	}
+
 	public void setModule(Module module) {
 		this.module = module;
 	}
 
+	public Employee getAssignedBy() {
+		return assignedBy;
+	}
 
+	public void setAssignedBy(Employee assignedBy) {
+		this.assignedBy = assignedBy;
+	}
+
+	public Employee getAssignedTo() {
+		return assignedTo;
+	}
+
+	public void setAssignedTo(Employee assignedTo) {
+		this.assignedTo = assignedTo;
+	}
+	
+	
+    
 }
-

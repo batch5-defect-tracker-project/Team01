@@ -13,7 +13,9 @@ public interface ModuleService {
 
 	public List<Module> getAllModule();
 
-  public void deleteById(Long id);
+	public void deleteById(Long id);
+
+ 	void updateModule(Module module);
 
    public Object getModuleById(Long id);
 
@@ -24,8 +26,6 @@ public interface ModuleService {
 	public boolean existsByModuleId(Long moduleId);
 
 	boolean existsById(Long id);
-
-	
 
 	public Object findById(Long id);
 

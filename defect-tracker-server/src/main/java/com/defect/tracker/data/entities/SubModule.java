@@ -15,12 +15,10 @@ public class SubModule {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
-
-	
-    private Long id;
-
+ 
+	private Long id;
 	private String name;
+ 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "module_id", nullable = false)
 	private Module module;

@@ -15,7 +15,6 @@ public class DefectServiceImpl implements DefectService {
 	@Autowired
 	private DefectRepository defectRepository;
 
-	
 
 	@Override
 	public void createDefect(Defect defect) {
@@ -50,11 +49,9 @@ public class DefectServiceImpl implements DefectService {
 	}
 
 	@Override
-	public boolean isDefectExistsById(Long id) {
-		
-		return defectRepository.existsById(id);
+	public boolean isDefectExistsById(Long id) {		
+	  return defectRepository.existsById(id);
 	}
-
 	@Override
 	public String getDefectStatusById(Long id) {
 		return defectRepository.findById(id).get().getStatus();

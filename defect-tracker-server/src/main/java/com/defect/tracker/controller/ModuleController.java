@@ -103,15 +103,7 @@ public class ModuleController {
 	public ResponseEntity<Object> findModuleById(@PathVariable Long id) {
 		if (moduleService.existsById(id)) {
 			return new ResponseEntity<Object>(mapper.map(moduleService.getModuleById(id), ModuleDto.class),HttpStatus.OK);
-//
-//	@GetMapping(value = EndpointURI.MODULE_BY_ID)
-//	public ResponseEntity<Object> findModuleById(@PathVariable Long id) {
-//		if (moduleService.existsById(id)) {
-//			return new ResponseEntity<Object>(moduleService.getModuleById(id), HttpStatus.OK);
-
 		}
-//			return new ResponseEntity<Object>(moduleService.getModuleById(id), HttpStatus.OK);
-//           }
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getModuleById()), HttpStatus.BAD_REQUEST);
 	}

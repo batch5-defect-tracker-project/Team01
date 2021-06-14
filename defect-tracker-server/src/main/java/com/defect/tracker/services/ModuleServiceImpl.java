@@ -72,6 +72,12 @@ public class ModuleServiceImpl implements ModuleService {
 	public boolean existsByModuleId(Long moduleId) {
 		return moduleRepository.existsById(moduleId);
 	}
+
+	@Override
+	public void updateModule(Module module) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 
