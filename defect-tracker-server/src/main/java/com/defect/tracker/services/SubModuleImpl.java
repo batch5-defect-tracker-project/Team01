@@ -65,4 +65,10 @@ public class SubModuleImpl implements SubModuleService {
 
 	}
 
+	@Override
+	public boolean getSubModuleByIdAndName(Long moduleId, String name) {
+	
+		return subModuleRepository.existsByModuleIdAndName(moduleId,name);
+	}
+
 }

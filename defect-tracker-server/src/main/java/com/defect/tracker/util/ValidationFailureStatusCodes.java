@@ -43,13 +43,20 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.employee.email.NotAvailable}")
 	private String empEmailNotAvailable;
 
+	// Project
+	@Value("${validation.project.AlreadyExists}")
+	private String proNameAlreadyExists;
+
+	@Value("${validation.designation.AlreadyExists}")
+	private String desigNameAlreadyExists;
+
+
+	@Value("${validation.designation.existsById}")
+  private String desigExistsById;
+
 	@Value("${validation.employee.object.fields.NullOrEmpty}")
 	private String empFieldsNullOrEmpty;	
 
-	//Project
-	@Value("${validation.project.AlreadyExists}")
-	private String proNameAlreadyExists;
-	
 	@Value("${validation.id.NotFound}")
 	private String projectIdNotFound;
 
@@ -120,6 +127,8 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.defect.existsById}")
 	private String existsDefectById;
 
+
+	// Defect
 	@Value("${validation.defect.AlreadyExists}")
 	private String modNameAlreadyExists;
 
@@ -237,6 +246,30 @@ public class ValidationFailureStatusCodes {
 
 	public void setEmpEmailNotAvailable(String empEmailNotAvailable) {
 		this.empEmailNotAvailable = empEmailNotAvailable;
+	}
+
+	public String getProNameAlreadyExists() {
+		return proNameAlreadyExists;
+	}
+
+	public void setProNameAlreadyExists(String proNameAlreadyExists) {
+		this.proNameAlreadyExists = proNameAlreadyExists;
+	}
+
+	public String getDesigNameAlreadyExists() {
+		return desigNameAlreadyExists;
+	}
+
+	public void setDesigNameAlreadyExists(String desigNameAlreadyExists) {
+		this.desigNameAlreadyExists = desigNameAlreadyExists;
+	}
+
+	public String getDesigExistsById() {
+		return desigExistsById;
+	}
+
+	public void setDesigExistsById(String desigExistsById) {
+		this.desigExistsById = desigExistsById;
 	}
 
 	public String getEmpFieldsNullOrEmpty() {
@@ -495,15 +528,7 @@ public class ValidationFailureStatusCodes {
 		this.typeIdNotExists = typeIdNotExists;
 	}
 
-	public String getProNameAlreadyExists() {
-		return proNameAlreadyExists;
-	}
 
-	public void setProNameAlreadyExists(String proNameAlreadyExists) {
-		this.proNameAlreadyExists = proNameAlreadyExists;
-	}
 
-	
-	
 
 }

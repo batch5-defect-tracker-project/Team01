@@ -8,8 +8,6 @@ public class DefectDto {
 	private String priority;
 	private String description;
 	private String stepsToReCreate;
-	private String assignedTo;
-	private String assignedBy;
 	private String status;
 	private String comments;
 	private String File;
@@ -47,18 +45,7 @@ public class DefectDto {
 	public void setStepsToReCreate(String stepsToReCreate) {
 		this.stepsToReCreate = stepsToReCreate;
 	}
-	public String getAssignedTo() {
-		return assignedTo;
-	}
-	public void setAssignedTo(String assignedTo) {
-		this.assignedTo = assignedTo;
-	}
-	public String getAssignedBy() {
-		return assignedBy;
-	}
-	public void setAssignedBy(String assignedBy) {
-		this.assignedBy = assignedBy;
-	}
+	
 	public String getStatus() {
 		return status;
 	}
@@ -101,6 +88,7 @@ public class DefectDto {
 	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
 	}
+	
 	
 	
 

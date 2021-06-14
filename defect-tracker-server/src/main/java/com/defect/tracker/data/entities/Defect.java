@@ -32,11 +32,13 @@ public class Defect {
 	private String comments;
 	private String file;
 	
+	
 	@ManyToMany(fetch = FetchType.LAZY)
 	 @JoinTable(name = "defect_type",
 	    joinColumns= {@JoinColumn(name="defect_id")},
 	    inverseJoinColumns = {@JoinColumn(name = "type_id")})
 	private List<Type> type;
+	
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name= "project_id", nullable = false)
@@ -46,7 +48,7 @@ public class Defect {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name= "module_id", nullable = false)
 	@JsonIgnoreProperties(value = {"defect", "hibernateLazyInitializer"})
-	private Module module;	
+    private Module module;	
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name= "assignedBy", nullable = false)
@@ -161,6 +163,8 @@ public class Defect {
 	public void setAssignedTo(Employee assignedTo) {
 		this.assignedTo = assignedTo;
 	}
+
+
 	
 	
     

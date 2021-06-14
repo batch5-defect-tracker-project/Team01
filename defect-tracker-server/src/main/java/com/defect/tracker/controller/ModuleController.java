@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.defect.tracker.data.entities.Module;
+import com.defect.tracker.data.entities.SubModule;
 import com.defect.tracker.data.dto.ModuleDto;
+import com.defect.tracker.data.dto.SubModuleDto;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.ModuleService;
@@ -57,11 +59,9 @@ public class ModuleController {
 
 	// ------------------------- Update By Id -API ------------------------- //
 	@PutMapping(value = EndpointURI.MODULE)
+	
 	public ResponseEntity<Object> updateModule(@Valid @RequestBody ModuleDto moduleDto) {
-		if (moduleService.existsById(moduleDto.getId())) {
-
-			if (moduleService.getModuleByProjectIdAndName(moduleDto.getProjectId(), moduleDto.getName())) {
-
+		if (moduleService.exitsModuleById(moduleDto.getId())) {
 			if (moduleService.isModuleNameAlreadyExist(moduleDto.getName())) {
 
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
@@ -69,13 +69,10 @@ public class ModuleController {
 			}
 			Module module = mapper.map(moduleDto, Module.class);
 			moduleService.createModule(module);
-			return new ResponseEntity<Object>(Constants.UPDATE_SUCCESS, HttpStatus.OK);
+			return new ResponseEntity<Object>(Constants.MODULE_UPDATE_SUCCESS, HttpStatus.OK);
 		}
-		
-	}
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
+      return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
 				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
-	
 	}
 
 	// ------------------------- Get All -API ------------------------- //
@@ -100,6 +97,28 @@ public class ModuleController {
 
 
 	@GetMapping(value = EndpointURI.MODULE_BY_ID)
+
+//	public ResponseEntity<Object> findModuleById(@PathVariable Long id) {
+//		if (moduleService.existsById(id)) {
+//
+//			return new ResponseEntity<Object>(mapper.map(moduleService.getModuleById(id),ModuleDto.class), HttpStatus.OK);
+//           }
+//		return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
+//
+//			return new ResponseEntity<Object>(mapper.map(moduleService.getModuleById(id), ModuleDto.class),HttpStatus.OK);
+//-------------------------------
+		public ResponseEntity<Object> findSubModuleById(@PathVariable Long id) {
+			if (moduleService.exitsModuleById(id)) {
+				if (moduleService.exitsModuleById(id)) {
+					return new ResponseEntity<Object>(mapper.map(moduleService.getModuleById(id),SubModuleDto.class), HttpStatus.OK);
+		           }
+
+			}
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS_BY_ID,
+					validationFailureStatusCodes.getSubModuleById()), HttpStatus.BAD_REQUEST);
+
+		}
+
 	public ResponseEntity<Object> findModuleById(@PathVariable Long id) {
 		if (moduleService.existsById(id)) {
 			return new ResponseEntity<Object>(mapper.map(moduleService.getModuleById(id), ModuleDto.class),HttpStatus.OK);
@@ -107,5 +126,6 @@ public class ModuleController {
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getModuleById()), HttpStatus.BAD_REQUEST);
 	}
-
-}
+	}
+	
+		

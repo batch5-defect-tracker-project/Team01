@@ -57,6 +57,8 @@ public class EmployeeController {
 
 	final String UPLOAD_DIR = "E:\\pro_defect___\\defect-tracker-server\\src\\main\\resources\\profiles";
 
+
+//	@PostMapping(value = EndpointURI.EMPLOYEE)
 	@PostMapping(value = EndpointURI.EMPLOYEE_REGISTER)
 	public ResponseEntity<Object> addEmployee(@Valid @RequestPart("employee") String employee,
 			@RequestPart("file") MultipartFile file) throws IllegalStateException, IOException, MessagingException {
