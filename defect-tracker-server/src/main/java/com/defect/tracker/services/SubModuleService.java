@@ -12,6 +12,7 @@ import com.defect.tracker.data.entities.SubModule;
 @Service
 public interface SubModuleService {
 
+	
 	public boolean subModuleExits(String name);
 
 	public void createSubModule(SubModule subModule);
@@ -26,9 +27,10 @@ public interface SubModuleService {
 	public List<SubModule> getAllSubModule();
 
 
-
 	public boolean existsById(Long id);
 
 	public void deleteById(Long id);
+
+	public boolean getModuleIdAndName(Long moduleId, String name);
 
 }

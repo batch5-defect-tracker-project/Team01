@@ -45,14 +45,46 @@ public class Defect {
 	    joinColumns= {@JoinColumn(name="defect_id")},
 	    inverseJoinColumns = {@JoinColumn(name = "project_id")})
 	private List<Project> project;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name= "project_id", nullable = false)
+	@JsonIgnoreProperties(value = {"defect", "hibernateLazyInitializer"})
+	private Project project;
+ 
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name= "module_id", nullable = false)
 	@JsonIgnoreProperties(value = {"defect", "hibernateLazyInitializer"})
-	private Module module;
+	private Module module;	
+	
+	public Long getId() {
+		return id;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name= "assignedBy", nullable = false)
+	@JsonIgnoreProperties(value = {"defect", "hibernateLazyInitializer"})
+	private Employee assignedBy;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name= "assignedTo", nullable = false)
+	@JsonIgnoreProperties(value = {"defect", "hibernateLazyInitializer"})
+	private Employee assignedTo;
 	
 	
+	public Employee getAssignedBy() {
+		return assignedBy;
+ 	}
 	
+	public void setAssignedBy(Employee assignedBy) {
+		this.assignedBy = assignedBy;
+	}
+ 
+	public Employee getAssignedTo() {
+		return assignedTo;
+	}
+	public void setAssignedTo(Employee assignedTo) {
+		this.assignedTo = assignedTo;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -76,20 +108,19 @@ public class Defect {
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	
+	}	
 	public String getStepsToReCreate() {
 		return stepsToReCreate;
 	}
 	public void setStepsToReCreate(String stepsToReCreate) {
-		this.stepsToReCreate = stepsToReCreate;
+		this.stepsToReCreate = stepsToReCreate; 
 	}
 	public String getAssignedTo() {
 		return assignedTo;
 	}
 	public void setAssignedTo(String assignedTo) {
-		this.assignedTo = assignedTo;
-	}
+		this.assignedTo = assignedTo; 
+  }	
 	public String getComments() {
 		return comments;
 	}
@@ -101,7 +132,7 @@ public class Defect {
 	}
 	public void setAssignedBy(String assignedBy) {
 		this.assignedBy = assignedBy;
-	}
+  } 
 	public String getStatus() {
 		return status;
 	}
@@ -113,6 +144,7 @@ public class Defect {
 	}
 	public void setFile(String file) {
 		this.file = file;
+ 
 	}
 	public List<Type> getType() {
 		return type;
@@ -126,12 +158,23 @@ public class Defect {
 	public void setProject(List<Project> project) {
 		this.project = project;
 	}
-	public Module getModule() {
+	public List<Type> getType() {
+		return type;
+	}
+	public void setType(List<Type> type) {
+		this.type = type;
+	}	
+	public Project getProject() {
+		return project;
+	}
+	public void setProject(Project project) {
+		this.project = project;
+	}
+ 	public Module getModule() {
 		return module;
 	}
 	public void setModule(Module module) {
 		this.module = module;
 	}
-
+    
 }
-
