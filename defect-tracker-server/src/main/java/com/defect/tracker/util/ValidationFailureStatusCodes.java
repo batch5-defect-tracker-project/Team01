@@ -62,6 +62,7 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.Name.UseAnotherProject}")
 	private String getProjectNameAlreadyUseByAnotherProject;
 
+	
 	// DESIGNATION
 
 	@Value("${validation.designation.AlreadyExists}")
@@ -137,10 +138,31 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.defect.existsById}")
 	private String existsById;
+	
+	@Value("${validation.project.existsById}")
+	private String projectExistsById;
+	
+	@Value("${validation.defect.existsById}")
+	private String assignedByExistsById;
+	
+	@Value("${validation.employee.existsById}")
+	private String assignedToExistsById;
 
 	// Type
 	@Value("${validation.type.AlreadyExists}")
 	private String nameAlreadyExists;
+	
+	@Value("${validation.type.TypeIdAlreadyExists}")
+	private String typeIdNotExists;
+
+	
+	public String getTypeIdNotExists() {
+		return typeIdNotExists;
+	}
+
+	public void setTypeIdNotExists(String typeIdNotExists) {
+		this.typeIdNotExists = typeIdNotExists;
+	}
 
 	public String getEmpNotActive() {
 		return empNotActive;
@@ -469,5 +491,30 @@ public class ValidationFailureStatusCodes {
 	public void setNameAlreadyExists(String nameAlreadyExists) {
 		this.nameAlreadyExists = nameAlreadyExists;
 	}
+
+	public String getProjectExistsById() {
+		return projectExistsById;
+	}
+
+	public void setProjectExistsById(String projectExistsById) {
+		this.projectExistsById = projectExistsById;
+	}
+
+	public String getAssignedByExistsById() {
+		return assignedByExistsById;
+	}
+
+	public void setAssignedByExistsById(String assignedByExistsById) {
+		this.assignedByExistsById = assignedByExistsById;
+	}
+
+	public String getAssignedToExistsById() {
+		return assignedToExistsById;
+	}
+
+	public void setAssignedToExistsById(String assignedToExistsById) {
+		this.assignedToExistsById = assignedToExistsById;
+	}
+	
 
 }

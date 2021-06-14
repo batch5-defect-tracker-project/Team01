@@ -70,7 +70,7 @@ public class ProjectController {
 
 	@PutMapping(value = EndpointURI.PROJECT)
 	public ResponseEntity<Object> updateProject(@Valid @RequestBody ProjectDto projectDto) {
-		if (projectService.projectIdExits(projectDto.getId())) {
+		if (!projectService.projectIdExits(projectDto.getId())) {
 			if (projectService.exitsByProjectName(projectDto.getName())) {
 				if (projectService.getProjectByName(projectDto.getId()).equals(projectDto.getName())) {
 					projectService.updateProject(mapper.map(projectDto, Project.class));
