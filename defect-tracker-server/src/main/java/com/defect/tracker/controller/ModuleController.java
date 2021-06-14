@@ -49,7 +49,7 @@ public class ModuleController {
 	// ------------------------- Update By Id -API ------------------------- //
 	@PutMapping(value = EndpointURI.MODULE)
 	public ResponseEntity<Object> updateModule(@Valid @RequestBody ModuleDto moduleDto) {
-		if (moduleService.exitsById(moduleDto.getId())) {
+		if (moduleService.existsById(moduleDto.getId())) {
 			if (moduleService.isModuleNameAlreadyExist(moduleDto.getName())) {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
 						validationFailureStatusCodes.getModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
@@ -83,11 +83,12 @@ public class ModuleController {
 
 	// ------------------------- Get By Id -API ------------------------- //
 	@GetMapping(value = EndpointURI.MODULE_BY_ID)
-	public ResponseEntity<Object> findDefectById(@PathVariable Long id) {
+	public ResponseEntity<Object> findModuleById(@PathVariable Long id) {
 		if (moduleService.existsById(id)) {
 			return new ResponseEntity<Object>(moduleService.getModuleById(id), HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getModuleById()), HttpStatus.BAD_REQUEST);
 	}
+
 }
