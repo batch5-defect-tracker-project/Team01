@@ -23,6 +23,8 @@ public interface ModuleService {
 
 	boolean existsById(Long id);
 
+	public boolean exitsModuleById(Long id);
+
 	
 
 }

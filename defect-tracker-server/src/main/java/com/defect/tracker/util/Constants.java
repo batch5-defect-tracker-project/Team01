@@ -33,7 +33,7 @@ public class Constants {
 
 	// Module
 	public static final String MODULE_ADDED_SUCCESS = "Module added successfully";
-	public static final String UPDATE_SUCCESS = "Module Update successfully";
+	public static final String MODULE_UPDATE_SUCCESS = "Module Update successfully";
 	public static final String MODULE_DELETED_SUCCESS = "Module Deleted successfully";
 
 	// Sub Module

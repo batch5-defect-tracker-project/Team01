@@ -21,12 +21,9 @@ public interface SubModuleService {
 
 	public boolean isSubModuleNameAlreadyExist(String name);
 	
-
-	public SubModule getSubModuleById(Long id);
-
 	public List<SubModule> getAllSubModule();
 
-
+	 public Object getSubModuleById(Long id);
 	public boolean existsById(Long id);
 
 	public void deleteById(Long id);
