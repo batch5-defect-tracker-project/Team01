@@ -55,6 +55,9 @@ public class EmployeeController {
 	@Autowired
 	private Mapper mapper;
 
+
+	final String UPLOAD_DIR = "E:\\pro_defect___\\defect-tracker-server\\src\\main\\resources\\profiles";
+
 	final String UPLOAD_DIR = "C:\\Users\\Hp\\Desktop";
 //E:\\pro_defect___\\defect-tracker-server\\src\\main\\resources\\profiles
 	@PostMapping(value = EndpointURI.EMPLOYEE)

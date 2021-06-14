@@ -78,8 +78,6 @@ public class ModuleController {
 	
 	}
 
-	
-
 
 	// ------------------------- Get All -API ------------------------- //
 	@GetMapping(value = EndpointURI.MODULE)

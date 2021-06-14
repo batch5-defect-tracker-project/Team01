@@ -50,10 +50,8 @@ public class DefectServiceImpl implements DefectService {
 	}
 
 	@Override
-	public boolean isDefectExistsById(Long id) {
-		
-		return defectRepository.existsById(id);
-	}
+	public boolean isDefectExistsById(Long id) {		
+	  return defectRepository.existsById(id);
 
 	@Override
 	public String getDefectStatusById(Long id) {

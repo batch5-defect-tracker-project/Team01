@@ -15,6 +15,8 @@ public interface ModuleService {
 
   public void deleteById(Long id);
 
+ 	void updateModule(Module module);
+
    public Object getModuleById(Long id);
 
     public boolean getModuleByProjectIdAndName(Long projectId, String name);
@@ -24,11 +26,15 @@ public interface ModuleService {
 	public boolean existsByModuleId(Long moduleId);
 
 	boolean existsById(Long id);
-
 	
+	public Object getModuleById(Long id);
 
 	public Object findById(Long id);
 
 	public boolean existsModuleById(Long id);
+
+	boolean existsById(Long id);
+
+	List<Module> getAllModule();
 
 }
