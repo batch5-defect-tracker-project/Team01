@@ -66,4 +66,9 @@ public class ProjectServiceImpl implements ProjectService {
 		
 		return projectRepository.existsById(id);
 	}
+	public boolean exsistByProjectId(Long projectId) {
+		return projectRepository.existsById(projectId);
+	}
+
+	
 }

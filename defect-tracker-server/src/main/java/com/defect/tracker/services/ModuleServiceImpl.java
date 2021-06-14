@@ -69,4 +69,10 @@ public class ModuleServiceImpl implements ModuleService {
 
 	
 
+	public boolean existsByModuleId(Long moduleId) {
+		return moduleRepository.existsById(moduleId);
+	}
+	
+
+
 }

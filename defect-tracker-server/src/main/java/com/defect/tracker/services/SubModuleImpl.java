@@ -14,6 +14,7 @@ public class SubModuleImpl implements SubModuleService {
 
 	@Autowired
 	private SubModuleRepository subModuleRepository;
+	
 
 	@Override
 	public boolean subModuleExits(String name) {
@@ -23,12 +24,13 @@ public class SubModuleImpl implements SubModuleService {
 	@Override
 	public void createSubModule(SubModule subModule) {
 		subModuleRepository.save(subModule);
-	}
+		}
 
 	@Override
 	public boolean isSubModuleNameAlreadyExist(String name) {
-		return subModuleRepository.existsByName(name);
-	}
+		return  subModuleRepository.existsByName(name) ;
+		}
+	
 
 	@Override
 	public boolean exitsSubModuleById(Long id) {
@@ -41,6 +43,7 @@ public class SubModuleImpl implements SubModuleService {
 		
 		return subModuleRepository.existsByModuleIdAndName(moduleId,name);
 	}
+
 
 	public boolean existsById(Long id) {
 		return subModuleRepository.existsById(id);

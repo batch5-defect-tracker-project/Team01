@@ -7,7 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +21,7 @@ import com.defect.tracker.data.dto.ModuleDto;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.ModuleService;
+import com.defect.tracker.services.ProjectService;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
 import com.defect.tracker.util.ValidationConstance;
@@ -34,10 +35,17 @@ public class ModuleController {
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	private Mapper mapper;
+	
+	@Autowired
+	ProjectService projectService;
 
 	// ------------------------------ Add -API ------------------------------ //
 	@PostMapping(value = EndpointURI.MODULE)
 	public ResponseEntity<Object> addModule(@Valid @RequestBody ModuleDto moduleDto) {
+		if(!projectService.exsistByProjectId(moduleDto.getProjectId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ID_NOT_EXISTS,
+					validationFailureStatusCodes.getProjectByIdAlreadyExist()), HttpStatus.BAD_REQUEST);
+		}
 		if (moduleService.getModuleByProjectIdAndName(moduleDto.getProjectId(), moduleDto.getName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
 					validationFailureStatusCodes.getModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
@@ -63,11 +71,16 @@ public class ModuleController {
 			moduleService.createModule(module);
 			return new ResponseEntity<Object>(Constants.UPDATE_SUCCESS, HttpStatus.OK);
 		}
+		
+	}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
 				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+	
 	}
-		return null;
-	}
+
+	
+
+
 	// ------------------------- Get All -API ------------------------- //
 	@GetMapping(value = EndpointURI.MODULE)
 	public ResponseEntity<Object> getAllModule() {
@@ -100,6 +113,8 @@ public class ModuleController {
 //			return new ResponseEntity<Object>(moduleService.getModuleById(id), HttpStatus.OK);
 
 		}
+//			return new ResponseEntity<Object>(moduleService.getModuleById(id), HttpStatus.OK);
+//           }
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getModuleById()), HttpStatus.BAD_REQUEST);
 	}
