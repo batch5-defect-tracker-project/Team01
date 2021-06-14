@@ -1,20 +1,32 @@
 package com.defect.tracker.data.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "projectAllocation")
 public class ProjectAllocation {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Long projectId;
-	private Long moduleId;
-	private Long employeeId;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "project_id", nullable = false)
+	private Project project;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "module_id", nullable = false)
+	private Module module;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "employee_id", nullable = false)
+	private Employee employee;
 
 	public Long getId() {
 		return id;
@@ -24,28 +36,28 @@ public class ProjectAllocation {
 		this.id = id;
 	}
 
-	public Long getProjectId() {
-		return projectId;
+	public Project getProject() {
+		return project;
 	}
 
-	public void setProjectId(Long projectId) {
-		this.projectId = projectId;
+	public void setProject(Project project) {
+		this.project = project;
 	}
 
-	public Long getModuleId() {
-		return moduleId;
+	public Module getModule() {
+		return module;
 	}
 
-	public void setModuleId(Long moduleId) {
-		this.moduleId = moduleId;
+	public void setModule(Module module) {
+		this.module = module;
 	}
 
-	public Long getEmployeeId() {
-		return employeeId;
+	public Employee getEmployee() {
+		return employee;
 	}
 
-	public void setEmployeeId(Long employeeId) {
-		this.employeeId = employeeId;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 }

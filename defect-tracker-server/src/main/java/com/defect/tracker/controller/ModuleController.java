@@ -7,7 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -76,7 +76,6 @@ public class ModuleController {
 	}
 
 
-
 	// ------------------------- Get All -API ------------------------- //
 	@GetMapping(value = EndpointURI.MODULE)
 	public ResponseEntity<Object> getAllModule() {
@@ -99,12 +98,26 @@ public class ModuleController {
 
 
 	@GetMapping(value = EndpointURI.MODULE_BY_ID)
-	public ResponseEntity<Object> findModuleById(@PathVariable Long id) {
-		if (moduleService.existsById(id)) {
-			return new ResponseEntity<Object>(mapper.map(moduleService.getModuleById(id),ModuleDto.class), HttpStatus.OK);
-           }
-		return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
-				validationFailureStatusCodes.getModuleById()), HttpStatus.BAD_REQUEST);
-	}
+//	public ResponseEntity<Object> findModuleById(@PathVariable Long id) {
+//		if (moduleService.existsById(id)) {
+//
+//			return new ResponseEntity<Object>(mapper.map(moduleService.getModuleById(id),ModuleDto.class), HttpStatus.OK);
+//           }
+//		return new ResponseEntity<Object>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
+//
+//			return new ResponseEntity<Object>(mapper.map(moduleService.getModuleById(id), ModuleDto.class),HttpStatus.OK);
+//-------------------------------
+		public ResponseEntity<Object> findSubModuleById(@PathVariable Long id) {
+			if (moduleService.exitsModuleById(id)) {
+				if (moduleService.exitsModuleById(id)) {
+					return new ResponseEntity<Object>(mapper.map(moduleService.getModuleById(id),SubModuleDto.class), HttpStatus.OK);
+		           }
 
-}
+			}
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS_BY_ID,
+					validationFailureStatusCodes.getSubModuleById()), HttpStatus.BAD_REQUEST);
+
+		}
+	}
+	
+		

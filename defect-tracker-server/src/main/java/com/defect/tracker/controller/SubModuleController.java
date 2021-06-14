@@ -41,13 +41,9 @@ public class SubModuleController {
 	ModuleService moduleService;
 
 
-
 	// ------------------------------ Add -API ------------------------------ //
-	
-	
 
 
-//ADD
 	@PostMapping(value = EndpointURI.SUB_MODULE)
 	public ResponseEntity<Object> addSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
 		if(!moduleService.exsistByModuleId(subModuleDto.getModuleId())) {
@@ -64,8 +60,7 @@ public class SubModuleController {
 	}
 
 
-
-//	// ------------------------------ UpdateById -API ------------------------------
+// ------------------------------ UpdateById -API ------------------------------//
 
 
 	@PutMapping(value = EndpointURI.SUB_MODULE)
@@ -81,14 +76,11 @@ public class SubModuleController {
 			return new ResponseEntity<Object>(Constants.SUB_MODULE_UPDATE_SUCCESS, HttpStatus.OK);
 		}
 
-      return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
+	return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
 				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
-	
-
-
-		
 
 	}
+                                                            
 	// ------------------------------ Delete -API ------------------------------
 
 	@DeleteMapping(value = EndpointURI.SUB_MODULE_BY_ID)
@@ -115,6 +107,7 @@ public class SubModuleController {
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getSubModuleById()), HttpStatus.BAD_REQUEST);
+
 	}
 	
 		
