@@ -32,7 +32,6 @@ import com.defect.tracker.services.DesignationService;
 import com.defect.tracker.services.EmployeeService;
 import com.defect.tracker.services.VerificationService;
 import com.defect.tracker.util.EndpointURI;
-import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.ValidationConstance;
@@ -52,13 +51,8 @@ public class EmployeeController {
 	@Autowired
 	private DesignationService designationService;
 
-	@Autowired
-	private Mapper mapper;
-
 	final String UPLOAD_DIR = "E:\\pro_defect___\\defect-tracker-server\\src\\main\\resources\\profiles";
 
-
-//	@PostMapping(value = EndpointURI.EMPLOYEE)
 	@PostMapping(value = EndpointURI.EMPLOYEE_REGISTER)
 	public ResponseEntity<Object> addEmployee(@Valid @RequestPart("employee") String employee,
 			@RequestPart("file") MultipartFile file) throws IllegalStateException, IOException, MessagingException {
@@ -70,32 +64,32 @@ public class EmployeeController {
 							validationFailureStatusCode.getEmpFieldsNullOrEmpty()),
 					HttpStatus.BAD_REQUEST);
 		}
-
 		if (!employeeService.isValidEmail(employeeDto.getEmail())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMAIL_SYNTAX_ERROR,
 					validationFailureStatusCode.getEmpEmailSynatxError()), HttpStatus.BAD_REQUEST);
 		}
-
 		if (employeeService.isEmailAlreadyExist(employeeDto.getEmail())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMAIL_EXISTS,
 					validationFailureStatusCode.getEmpEmailAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
-
 		if (file.isEmpty()) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_PROFILE_EMPTY,
 					validationFailureStatusCode.getEmpProfileIsEmpty()), HttpStatus.BAD_REQUEST);
 		}
-
 		if (!file.getContentType().equals("image/jpeg")) {
 			return new ResponseEntity<>(
 					new ValidationFailureResponse(ValidationConstance.EMPLOYEE_PROFILE_CONTANTTYPE_EXCEPTION,
 							validationFailureStatusCode.getEmpProfileContenetTypeException()),
 					HttpStatus.BAD_REQUEST);
 		}
-
 		if (!designationService.designationExistsById(employeeDto.getDesignationId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_FOUND,
 					validationFailureStatusCode.getDesignationNotFound()), HttpStatus.BAD_REQUEST);
+		}
+
+		if (!employeeService.isValidContactNubmer(employeeDto.getContactNumber())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.CONTACT_NUMBER_NOT_VALID,
+					validationFailureStatusCode.getEmpContactNumberNotValid()), HttpStatus.BAD_REQUEST);
 		}
 
 		employeeService.registerEmployee(employeeDto);
@@ -138,27 +132,26 @@ public class EmployeeController {
 							validationFailureStatusCode.getEmpFieldsNullOrEmpty()),
 					HttpStatus.BAD_REQUEST);
 		}
-
 		if (!employeeService.isValidEmail(employeeDto.getEmail())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMAIL_SYNTAX_ERROR,
 					validationFailureStatusCode.getEmpEmailSynatxError()), HttpStatus.BAD_REQUEST);
 		}
-
 		if (!employeeService.isIdAlreadyExists(employeeDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_Id_NOT_AVAILABLE,
 					validationFailureStatusCode.getEmpIdNotAvailable()), HttpStatus.BAD_REQUEST);
 		}
-
 		if (!employeeService.getEmployeeStatus(employeeDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_ACTIVE,
 					validationFailureStatusCode.getEmpNotActive()), HttpStatus.BAD_REQUEST);
 		}
-
 		if (!designationService.designationExistsById(employeeDto.getDesignationId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_FOUND,
 					validationFailureStatusCode.getDesignationNotFound()), HttpStatus.BAD_REQUEST);
 		}
-
+		if (!employeeService.isValidContactNubmer(employeeDto.getContactNumber())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.CONTACT_NUMBER_NOT_VALID,
+					validationFailureStatusCode.getEmpContactNumberNotValid()), HttpStatus.BAD_REQUEST);
+		}
 		if (employeeService.isEmailAlreadyExist(employeeDto.getEmail())) {
 			Long id = employeeService.getEmployeeIdByEmail(employeeDto.getEmail());
 			if (employeeDto.getId() == id) {

@@ -43,6 +43,9 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.employee.email.NotAvailable}")
 	private String empEmailNotAvailable;
 
+	@Value("${validation.employee.contactNumber.NotValid}")
+	private String empContactNumberNotValid;
+
 	// Project
 	@Value("${validation.project.AlreadyExists}")
 	private String proNameAlreadyExists;
@@ -50,12 +53,11 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.designation.AlreadyExists}")
 	private String desigNameAlreadyExists;
 
-
 	@Value("${validation.designation.existsById}")
-  private String desigExistsById;
+	private String desigExistsById;
 
 	@Value("${validation.employee.object.fields.NullOrEmpty}")
-	private String empFieldsNullOrEmpty;	
+	private String empFieldsNullOrEmpty;
 
 	@Value("${validation.id.NotFound}")
 	private String projectIdNotFound;
@@ -63,7 +65,7 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.Name.UseAnotherProject}")
 	private String getProjectNameAlreadyUseByAnotherProject;
 
- 	@Value("${validation.project.id.NotAvailable}")
+	@Value("${validation.project.id.NotAvailable}")
 	private String projectIdNotAvailable;
 
 	// Designation
@@ -71,7 +73,6 @@ public class ValidationFailureStatusCodes {
 	private String designationNameAlreadyExists;
 
 	@Value("${validation.designation.AlreadyExistsById}")
-
 	private String designationExistsById;
 
 	@Value("${validation.designation.designationById}")
@@ -109,7 +110,6 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.subModule.AlreadyExists}")
 	private String exitsSubModuleById;
 
-	// SubModule
 	@Value("${validation.subModule.subModuleIdAlreadyExist}")
 	private String subModuleByIdAlreadyExist;
 
@@ -123,12 +123,10 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.projectAllocation.AlreadyExistsId}")
 	private String projectAllocationById;
 
- 	// Defect
+	// Defect
 	@Value("${validation.defect.existsById}")
 	private String existsDefectById;
 
-
-	// Defect
 	@Value("${validation.defect.AlreadyExists}")
 	private String modNameAlreadyExists;
 
@@ -143,17 +141,17 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.defect.existsById}")
 	private String existsById;
-	
+
 	@Value("${validation.project.existsById}")
 	private String projectExistsById;
-	
+
 	@Value("${validation.defect.existsById}")
 	private String assignedByExistsById;
-	
+
 	@Value("${validation.employee.existsById}")
 	private String assignedToExistsById;
 
-  // Type
+	// Type
 	@Value("${validation.type.AlreadyExists}")
 	private String nameAlreadyExists;
 
@@ -528,7 +526,12 @@ public class ValidationFailureStatusCodes {
 		this.typeIdNotExists = typeIdNotExists;
 	}
 
+	public String getEmpContactNumberNotValid() {
+		return empContactNumberNotValid;
+	}
 
-
+	public void setEmpContactNumberNotValid(String empContactNumberNotVali) {
+		this.empContactNumberNotValid = empContactNumberNotVali;
+	}
 
 }

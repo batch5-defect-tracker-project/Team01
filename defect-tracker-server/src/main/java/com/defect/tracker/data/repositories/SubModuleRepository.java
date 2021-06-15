@@ -12,6 +12,4 @@ public interface SubModuleRepository extends JpaRepository<SubModule, Long> {
 
 	boolean existsByModuleIdAndName(Long moduleId, String name);
 
-
-
 }

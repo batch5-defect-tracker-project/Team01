@@ -10,10 +10,9 @@ import com.defect.tracker.data.repositories.TypeRepository;
 
 @Service
 public class TypeServiceImpl implements TypeService {
-
 	@Autowired
 	private TypeRepository typeRepository;
-	
+
 	@Override
 	public boolean isNameAlreadyExists(String name) {
 		return typeRepository.existsByName(name);
@@ -22,13 +21,11 @@ public class TypeServiceImpl implements TypeService {
 	@Override
 	public void createType(Type type) {
 		typeRepository.save(type);
-		
 	}
 
 	@Override
 	public void editTypeById(Type type) {
 		typeRepository.save(type);
-		
 	}
 
 	@Override
@@ -38,8 +35,9 @@ public class TypeServiceImpl implements TypeService {
 
 	@Override
 	public void deleteTypeById(Long id) {
-		typeRepository.deleteById(id);		
-}
+		typeRepository.deleteById(id);
+	}
+
 	@Override
 	public List<Type> getType() {
 		return typeRepository.findAll();

@@ -15,15 +15,12 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
 @Entity
-@Table(name="defect")
+@Table(name = "defect")
 public class Defect {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
 	private String severity;
 	private String priority;
 	private String description;
@@ -31,33 +28,30 @@ public class Defect {
 	private String status;
 	private String comments;
 	private String file;
-	
-	
+
 	@ManyToMany(fetch = FetchType.LAZY)
-	 @JoinTable(name = "defect_type",
-	    joinColumns= {@JoinColumn(name="defect_id")},
-	    inverseJoinColumns = {@JoinColumn(name = "type_id")})
+	@JoinTable(name = "defect_type", joinColumns = { @JoinColumn(name = "defect_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "type_id") })
 	private List<Type> type;
-	
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name= "project_id", nullable = false)
-	@JsonIgnoreProperties(value = {"defect", "hibernateLazyInitializer"})
+	@JoinColumn(name = "project_id", nullable = false)
+	@JsonIgnoreProperties(value = { "defect", "hibernateLazyInitializer" })
 	private Project project;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name= "module_id", nullable = false)
-	@JsonIgnoreProperties(value = {"defect", "hibernateLazyInitializer"})
-    private Module module;	
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name= "assignedBy", nullable = false)
-	@JsonIgnoreProperties(value = {"defect", "hibernateLazyInitializer"})
-	private Employee assignedBy;
-	
+	@JoinColumn(name = "module_id", nullable = false)
+	@JsonIgnoreProperties(value = { "defect", "hibernateLazyInitializer" })
+	private Module module;
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name= "assignedTo", nullable = false)
-	@JsonIgnoreProperties(value = {"defect", "hibernateLazyInitializer"})
+	@JoinColumn(name = "assignedBy", nullable = false)
+	@JsonIgnoreProperties(value = { "defect", "hibernateLazyInitializer" })
+	private Employee assignedBy;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "assignedTo", nullable = false)
+	@JsonIgnoreProperties(value = { "defect", "hibernateLazyInitializer" })
 	private Employee assignedTo;
 
 	public Long getId() {
@@ -164,8 +158,4 @@ public class Defect {
 		this.assignedTo = assignedTo;
 	}
 
-
-	
-	
-    
 }

@@ -1,7 +1,6 @@
 package com.defect.tracker.util;
 
 public final class EndpointURI {
-
 	private static final String BASE_API_PATH = "/api/v1/";
 	private static final String ID = "/{id}";
 
@@ -22,7 +21,7 @@ public final class EndpointURI {
 	public static final String MODULE_BY_ID = BASE_API_PATH + "module" + ID;
 
 	// Sub_Module
-  public static final String SUB_MODULE = BASE_API_PATH + "sub-module";
+	public static final String SUB_MODULE = BASE_API_PATH + "sub-module";
 	public static final String SUB_MODULE_BY_ID = BASE_API_PATH + "sub-module" + ID;
 
 	// Defect
@@ -39,6 +38,5 @@ public final class EndpointURI {
 	// Type
 	public static final String TYPE = BASE_API_PATH + "type";
 	public static final String TYPE_BY_ID = BASE_API_PATH + "type" + ID;
-
 
 }
