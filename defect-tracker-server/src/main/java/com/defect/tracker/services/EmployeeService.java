@@ -47,4 +47,6 @@ public interface EmployeeService {
 
 	boolean logIn(@Valid LogInDto logInDto);
 
+	boolean isValidContactNubmer(String contactNumber);
+
 }

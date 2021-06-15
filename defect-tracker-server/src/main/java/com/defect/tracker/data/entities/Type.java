@@ -7,13 +7,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="type")
+@Table(name = "type")
 public class Type {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
 	private String name;
 
 	public Long getId() {
@@ -31,6 +29,5 @@ public class Type {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
 }

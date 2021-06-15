@@ -22,7 +22,7 @@ public class Employee {
 	private String email;
 	private String password;
 	private String gender;
-	private Long contactNumber;
+	private String contactNumber;
 	private boolean isEnabled;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -83,11 +83,11 @@ public class Employee {
 		this.gender = gender;
 	}
 
-	public Long getContactNumber() {
+	public String getContactNumber() {
 		return contactNumber;
 	}
 
-	public void setContactNumber(Long contactNumber) {
+	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 

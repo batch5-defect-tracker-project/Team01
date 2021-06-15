@@ -134,6 +134,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 		Pattern pat = Pattern.compile(emailRegex);
 		return pat.matcher(email).matches();
 	}
+	
+	@Override
+	public boolean isValidContactNubmer(String contactNumber) {
+		String contactRegex = "^$|[0-9]{10}";
+		Pattern pat = Pattern.compile(contactRegex);
+		return pat.matcher(contactNumber).matches();
+	}
+
 	@Override
 	public boolean logIn(@Valid LogInDto logInDto) {
 		Employee employee = employeeRepository.findByEmail(logInDto.getUserName()).get();
