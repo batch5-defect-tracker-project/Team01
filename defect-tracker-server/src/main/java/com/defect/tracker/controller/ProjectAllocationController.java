@@ -29,7 +29,8 @@ import com.defect.tracker.util.ValidationConstance;
 import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @RestController
-public class ProjectAllocationController {
+public class ProjectAllocationController { 
+	
 	@Autowired
 	ProjectService projectService;
 	@Autowired
@@ -83,8 +84,13 @@ public class ProjectAllocationController {
 	}
 
 	@PutMapping(value = EndpointURI.PROJECT_ALLOCATION)
-	public ResponseEntity<Object> updateprojectAllocation(
-			@Valid @RequestBody ProjectAllocationDto projectAllocationDto) {
+	public ResponseEntity<Object> updateprojectAllocation(@Valid @RequestBody ProjectAllocationDto projectAllocationDto) {
+		if (projectAllocationService.existsById(projectAllocationDto.getId())) {
+			if (projectAllocationService.existsById(projectAllocationDto.getEmployeeId())) {
+				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_EXISTS,
+						validationFailureStatusCodes.getEmpIdAlreadyExists()), HttpStatus.BAD_REQUEST);
+			}
+	
 		if (!projectAllocationService.existsById(projectAllocationDto.getId())) {
 			return new ResponseEntity<>(
 					new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_NOT_EXISTS_BY_ID,
@@ -108,12 +114,12 @@ public class ProjectAllocationController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_EXISTS,
 					validationFailureStatusCodes.getProjectAllocationExistsById()), HttpStatus.BAD_REQUEST);
 		}
-
 		ProjectAllocation projectAllocation = mapper.map(projectAllocationDto, ProjectAllocation.class);
 		projectAllocationService.updateprojectAllocation(projectAllocation);
 		return new ResponseEntity<Object>(Constants.PROJECT_ALLOCATION_UPDATED_SUCCESS, HttpStatus.OK);
+}
+		return null;
 	}
-
 	@GetMapping(value = EndpointURI.PROJECT_ALLOCATION_BY_ID)
 	public ResponseEntity<Object> findProjectAllocationById(@PathVariable Long id) {
 		if (projectAllocationService.existsById(id)) {

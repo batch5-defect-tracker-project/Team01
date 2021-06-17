@@ -31,6 +31,7 @@ public class DesignationController {
 	@Autowired
 	private Mapper mapper;
 
+// Add
 	@PostMapping(value = EndpointURI.DESIGNATION)
 	public ResponseEntity<Object> addDesignation(@Valid @RequestBody DesignationDto designationDto) {
 		if (designationService.isDesignationNameAlreadyExist(designationDto.getName())) {
@@ -41,34 +42,35 @@ public class DesignationController {
 		designationService.createDesignation(designation);
 		return new ResponseEntity<Object>(Constants.DESIGNATION_ADDED_SUCCESS, HttpStatus.OK);
 	}
-
+//	GetAll
 	@GetMapping(value = EndpointURI.DESIGNATION)
 	public ResponseEntity<Object> getAllDesigntion() {
 		List<DesignationDto> designationList = mapper.map(designationService.getAllDesignation(), DesignationDto.class);
 		return new ResponseEntity<Object>(designationList, HttpStatus.OK);
 	}
+//Delete	
 
 	@DeleteMapping(value = EndpointURI.DESIGNATION_BY_ID)
 	public ResponseEntity<Object> deleteDesignation(@PathVariable Long id) {
 		if (!designationService.designationExistsById(id)) {
-			return new ResponseEntity<>(
-					new ValidationFailureResponse(ValidationConstance.DESIGNATION_DELETE_EXISTS_BY_ID,
-							validationFailureStatusCodes.getDesignationExistsById()),
-					HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_EXISTS_BY_ID,
+					validationFailureStatusCodes.getDesignationExistsById()), HttpStatus.BAD_REQUEST);
 		}
 		designationService.designationDeleteById(id);
 		return new ResponseEntity<Object>(Constants.DESIGNATION_DELETED_SUCCESS, HttpStatus.OK);
 	}
 
+//GetById
 	@GetMapping(value = EndpointURI.DESIGNATION_BY_ID)
 	public ResponseEntity<Object> findDesignationById(@PathVariable Long id) {
 		if (designationService.designationExistsById(id)) {
 			return new ResponseEntity<Object>(designationService.getDesignationById(id), HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_EXISTS_BY_ID,
-				validationFailureStatusCodes.getDesignationById()), HttpStatus.BAD_REQUEST);
+				validationFailureStatusCodes.getDesignationExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
+//Update
 	@PutMapping(value = EndpointURI.DESIGNATION)
 	public ResponseEntity<Object> editDesignationById(@RequestBody DesignationDto designationDto) {
 		if (designationService.designationExistsById(designationDto.getId())) {
@@ -82,7 +84,7 @@ public class DesignationController {
 			designationService.createDesignation(designation);
 			return new ResponseEntity<Object>(Constants.DESIGNATION_UPDATED_SUCCESS, HttpStatus.OK);
 		}
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_EXISTS,
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getDesignationExistsById()), HttpStatus.BAD_REQUEST);
 	}
 }
