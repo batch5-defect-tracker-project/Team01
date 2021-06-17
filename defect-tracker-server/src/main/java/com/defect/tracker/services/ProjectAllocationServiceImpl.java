@@ -1,5 +1,7 @@
 package com.defect.tracker.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +14,8 @@ public class ProjectAllocationServiceImpl implements ProjectAllocationService {
 	private ProjectAllocationRepository projectAllocationRepository;
 
 	@Override
-	public void createProjectAllocation(ProjectAllocation projectAllocation) {
+	public void addProjectAllocation(ProjectAllocation projectAllocation) {
 		projectAllocationRepository.save(projectAllocation);
-
 	}
 
 	@Override
@@ -25,23 +26,26 @@ public class ProjectAllocationServiceImpl implements ProjectAllocationService {
 	@Override
 	public void deleteById(Long id) {
 		projectAllocationRepository.deleteById(id);
-
-	}
-
-	@Override
-	public boolean isEmployeeIdAlreadyExist(Long employeeId) {
-		return projectAllocationRepository.existsById(employeeId);
 	}
 
 	@Override
 	public void updateprojectAllocation(ProjectAllocation projectAllocation) {
 		projectAllocationRepository.save(projectAllocation);
-
 	}
 
 	@Override
 	public Object getProjectAllocationById(Long id) {
-		return projectAllocationRepository.findById(id);
+		return projectAllocationRepository.findById(id).get();
+	}
+
+	@Override
+	public List<ProjectAllocation> getAllProjectAllocation() {
+		return projectAllocationRepository.findAll();
+	}
+
+	@Override
+	public boolean existsByProjectIdAndEmployeeIdAndModuleId(Long projectId, Long employeeId, Long moduleId) {
+		return projectAllocationRepository.existsByProjectIdAndEmployeeIdAndModuleId(projectId, employeeId, moduleId);
 	}
 
 }

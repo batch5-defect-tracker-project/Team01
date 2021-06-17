@@ -20,5 +20,11 @@ public interface ProjectService {
 
 	public void updateProject(Project project);
 
+	public boolean exsistByProjectId(Long projectId);
+
 	public Object getProjectByName(Long id);
+
+	public Object findById(Long id);
+
+	public boolean existsProjectById(Long id);
 }

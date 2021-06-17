@@ -13,6 +13,7 @@ public class DesignationDto {
 	@Pattern(regexp = "^[a-zA-Z.\\-\\/+=@_ ]*$",message="{designationDto.designationName.notAllowedSpecialCharacters}")
 	private String name;
 	
+
 	public Long getId() {
 		return id;
 	}
@@ -26,4 +27,5 @@ public class DesignationDto {
 		this.name = name;
 	}
 		
+
 }

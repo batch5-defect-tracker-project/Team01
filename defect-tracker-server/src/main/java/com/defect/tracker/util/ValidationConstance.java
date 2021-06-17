@@ -1,7 +1,6 @@
 package com.defect.tracker.util;
 
 public class ValidationConstance {
-
 	// Project
 	public static final String PROJECT_EXISTS = "Project  Already Exists";
 	public static final String PROJECT_UPDATE_EXISTS = "Project name already use another project";
@@ -13,19 +12,23 @@ public class ValidationConstance {
 	public static final String TYPE_ID_NOT_EXISTS = "Type Id Not Exists";
 	public static final String PROJECT_ID_NOT_EXISTS ="Project Id Not Exists";
 
-  // Designation
+
+	// Designation
 	public static final String DESIGNATION_EXISTS = "Designation Already Exists";
 	public static final String DESIGNATION_NOT_EXISTS_BY_ID = "Designation Not Exist";
 	public static final String DESIGNATION_NOT_FOUND = "Designation Not Found";
   
+
 	// Defect
 	public static final String DEFECT_EXISTS = "Defect Id Already Exists";
 	public static final String DEFECT_DELETE_EXISTS_BY_ID = "Defect Delete Exists By Id";
 	public static final String DEFECT_NOT_EXISTS_BY_ID = "Defect Not Exists";
-	public static final String MODULE_NOT_EXISTS ="Module Not Exists";
-	public static final String ASSIGNED_BY_ID_NOT_EXISTS ="Assigned By Id Not Exists";
-	public static final String ASSIGNED_TO_ID_NOT_EXISTS ="Assigned To Id Not Exists";
+	
 		
+	public static final String MODULE_NOT_EXISTS = "Module Not Exists";
+	public static final String ASSIGNED_BY_ID_NOT_EXISTS = "Assigned By Id Not Exists";
+	public static final String ASSIGNED_TO_ID_NOT_EXISTS = "Assigned To Id Not Exists";
+
 	// Module
 	public static final String MODULE_EXISTS = "Module Name  Already Exists";
 	public static final String MODULE_DELETE_EXISTS_BY_ID = "Module  is not Exists";
@@ -64,4 +67,8 @@ public class ValidationConstance {
 	}
 	public static final String EMPLOYEE_EXISTS = "Employee Already Exists";
   
+	public static final String CONTACT_NUMBER_NOT_VALID = "Contact Number Not Valid";
+
+	
+
 }

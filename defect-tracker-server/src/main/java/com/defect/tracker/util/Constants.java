@@ -1,7 +1,6 @@
 package com.defect.tracker.util;
 
 public class Constants {
-
 	// employee
 	public static final String EMPLOYEE_REGISTERED_SUCCESS = "Employee Register Successfully And Verification Email Sended ";
 	public static final String EMPLOYEE_PROFILE_ADDED_SUCCESS = "Employee Profile Picture Added Successfully";
@@ -26,9 +25,10 @@ public class Constants {
 	public static final String DESIGNATION_DELETED_SUCCESS = "Designation Delete Successfully";
 	public static final String DESIGNATION_UPDATED_SUCCESS = "Designation Update Successfully";
 	
+
 	// Module
 	public static final String MODULE_ADDED_SUCCESS = "Module added successfully";
-	public static final String UPDATE_SUCCESS = "Module Update successfully";
+	public static final String MODULE_UPDATE_SUCCESS = "Module Update successfully";
 	public static final String MODULE_DELETED_SUCCESS = "Module Deleted successfully";
 
 	// Sub Module
@@ -46,4 +46,5 @@ public class Constants {
 	public static final String TYPE_UPDATED_SUCCESS ="Type Updated Successfully";
 	public static final String TYPE_DELETED_SUCCESS ="Type Deleted Successfully";
 	
+
 }

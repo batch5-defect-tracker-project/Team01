@@ -1,19 +1,23 @@
 package com.defect.tracker.services;
 
+import java.util.List;
+
 import com.defect.tracker.data.entities.ProjectAllocation;
 
 public interface ProjectAllocationService {
 
-	public void createProjectAllocation(ProjectAllocation projectAllocation);
+	public void addProjectAllocation(ProjectAllocation projectAllocation);
 
 	public boolean existsById(Long id);
 
 	public void deleteById(Long id);
 
-	public boolean isEmployeeIdAlreadyExist(Long employeeId);
-
 	public void updateprojectAllocation(ProjectAllocation projectAllocation);
 
 	public Object getProjectAllocationById(Long id);
+
+	public List<ProjectAllocation> getAllProjectAllocation();
+
+	public boolean existsByProjectIdAndEmployeeIdAndModuleId(Long projectId, Long employeeId, Long moduleId);
 
 }

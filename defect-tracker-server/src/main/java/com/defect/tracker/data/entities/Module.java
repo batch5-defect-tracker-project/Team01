@@ -21,6 +21,10 @@ public class Module {
 	private Long id;
 	private String name;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "project_id", nullable = false)
+	private Project project;
+
 	public Project getProject() {
 		return project;
 	}
@@ -29,11 +33,6 @@ public class Module {
 		this.project = project;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "project_id", nullable = false)
-	private Project project;
-
-	
 	public Long getId() {
 		return id;
 	}
@@ -41,7 +40,8 @@ public class Module {
 	public void setId(Long id) {
 		this.id = id;
 	}
-    public String getName() {
+
+	public String getName() {
 		return name;
 	}
 

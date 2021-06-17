@@ -8,7 +8,4 @@ import com.defect.tracker.data.entities.Defect;
 @Repository
 public interface DefectRepository extends JpaRepository<Defect, Long> {
 
-	
-
-
 }
