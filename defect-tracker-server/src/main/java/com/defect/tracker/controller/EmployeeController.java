@@ -55,11 +55,8 @@ public class EmployeeController {
 	@Autowired
 	private Mapper mapper;
 
-
 	final String UPLOAD_DIR = "E:\\pro_defect___\\defect-tracker-server\\src\\main\\resources\\profiles";
 
-	final String UPLOAD_DIR = "C:\\Users\\Hp\\Desktop";
-//E:\\pro_defect___\\defect-tracker-server\\src\\main\\resources\\profiles
 	@PostMapping(value = EndpointURI.EMPLOYEE)
 	public ResponseEntity<Object> addEmployee(@Valid @RequestPart("employee") String employee,
 			@RequestPart("file") MultipartFile file) throws IllegalStateException, IOException, MessagingException {
@@ -146,7 +143,8 @@ public class EmployeeController {
 				if (!file.isEmpty()) {
 					if (!file.getContentType().equals("image/jpeg")) {
 						return new ResponseEntity<>(
-								new ValidationFailureResponse(ValidationConstance.EMPLOYEE_PROFILE_CONTANTTYPE_EXCEPTION,
+								new ValidationFailureResponse(
+										ValidationConstance.EMPLOYEE_PROFILE_CONTANTTYPE_EXCEPTION,
 										validationFailureStatusCode.getEmpProfileContenetTypeException()),
 								HttpStatus.BAD_REQUEST);
 					}

@@ -15,6 +15,9 @@ public class ProjectAllocationDto {
 	@NotNull(message = "{projectAllocationDto.employeeId.null}")
 	private Long employeeId;
 
+	@NotNull(message = "{projectAllocationDto.subModuleId.null}")
+	private Long subModuleId;
+
 	public Long getId() {
 		return id;
 	}
@@ -45,6 +48,14 @@ public class ProjectAllocationDto {
 
 	public void setEmployeeId(Long employeeId) {
 		this.employeeId = employeeId;
+	}
+
+	public Long getSubModuleId() {
+		return subModuleId;
+	}
+
+	public void setSubModuleId(Long subModuleId) {
+		this.subModuleId = subModuleId;
 	}
 
 }

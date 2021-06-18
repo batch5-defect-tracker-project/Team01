@@ -45,7 +45,6 @@ public class DefectController {
 	private JavaMailSender javaMailSender;
 	@Autowired
 	EmployeeService employeeService;
-
 	@Autowired
 	ModuleService moduleService;
 	@Autowired
@@ -53,7 +52,7 @@ public class DefectController {
 
 	@PostMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) {
-    
+
 		if (!moduleService.existsModuleById(defectDto.getModuleId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS,
 					validationFailureStatusCodes.getModuleById()), HttpStatus.BAD_REQUEST);
@@ -71,7 +70,6 @@ public class DefectController {
 					validationFailureStatusCodes.getAssignedToExistsById()), HttpStatus.BAD_REQUEST);
 		}
 
-
 		Defect defect = mapper.map(defectDto, Defect.class);
 		defectService.createDefect(defect);
 		Employee assignedTo = employeeService.findById(defectDto.getAssignedToId());
@@ -79,10 +77,9 @@ public class DefectController {
 		simpleMail.setFrom("meera10testmail@gmail.com");
 		simpleMail.setTo(assignedTo.getEmail());
 		simpleMail.setSubject("New Defect Added");
-		simpleMail.setText( "ProjectName:"
-				+ projectService.findById(defectDto.getProjectId())+ "\n" + "ModuleName:"+ moduleService.findById(defectDto.getModuleId()));
+		simpleMail.setText("ProjectName:" + projectService.findById(defectDto.getProjectId()) + "\n" + "ModuleName:"
+				+ moduleService.findById(defectDto.getModuleId()));
 		javaMailSender.send(simpleMail);
-
 		return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
 	}
 
@@ -90,16 +87,10 @@ public class DefectController {
 	public ResponseEntity<Object> getAllDefect() {
 		List<DefectDto> defectList = mapper.map(defectService.getAllDefect(), DefectDto.class);
 		return new ResponseEntity<Object>(defectList, HttpStatus.OK);
-
 	}
 
 	@PutMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> editDefectById(@RequestBody DefectDto defectDto) {
-
-		if (defectService.existsDefectById(defectDto.getId())) {
-			if (defectService.isDefectExistsById(defectDto.getId())) {
-				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS,
-						validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
 
 		if (!defectService.existsDefectById(defectDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS_BY_ID,
@@ -130,9 +121,10 @@ public class DefectController {
 				SimpleMailMessage simpleMail = new SimpleMailMessage();
 				simpleMail.setFrom("meera10testmail@gmail.com");
 				simpleMail.setTo(assignedTo.getEmail());
-				simpleMail.setSubject("Defect" + " " + defectDto.getStatus()+"ed");
-				simpleMail.setText( "ProjectName:" + projectService.findById(defectDto.getProjectId()) + "\n" + "ModuleName:" + moduleService.findById(defectDto.getModuleId()) 
-						 + "\n" + "Status:" + defectDto.getStatus());
+				simpleMail.setSubject("Defect" + " " + defectDto.getStatus() + "ed");
+				simpleMail.setText("ProjectName:" + projectService.findById(defectDto.getProjectId()) + "\n"
+						+ "ModuleName:" + moduleService.findById(defectDto.getModuleId()) + "\n" + "Status:"
+						+ defectDto.getStatus());
 				javaMailSender.send(simpleMail);
 			}
 			Employee assignedBy = employeeService.findById(defectDto.getAssignedById());
@@ -141,11 +133,11 @@ public class DefectController {
 				SimpleMailMessage simpleMail = new SimpleMailMessage();
 				simpleMail.setFrom("meera10testmail@gmail.com");
 				simpleMail.setTo(assignedBy.getEmail());
-				simpleMail.setSubject("Defect" + " " + defectDto.getStatus()+"ed");
-				simpleMail.setText( "ProjectName:" + projectService.findById(defectDto.getProjectId()) + "\n" + "ModuleName:" + moduleService.findById(defectDto.getModuleId()) 
-				 + "\n" + "Status:" + defectDto.getStatus());
+				simpleMail.setSubject("Defect" + " " + defectDto.getStatus() + "ed");
+				simpleMail.setText("ProjectName:" + projectService.findById(defectDto.getProjectId()) + "\n"
+						+ "ModuleName:" + moduleService.findById(defectDto.getModuleId()) + "\n" + "Status:"
+						+ defectDto.getStatus());
 				javaMailSender.send(simpleMail);
-
 			}
 			return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS, HttpStatus.OK);
 		}
@@ -158,14 +150,12 @@ public class DefectController {
 		if (!defectService.existsDefectById(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_DELETE_EXISTS_BY_ID,
 					validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
-
 		}
-
 		defectService.deleteDefectById(id);
 		return new ResponseEntity<Object>(Constants.DEFECT_DELETED_SUCCESS, HttpStatus.OK);
 	}
 
-      //GetById
+	// GetById
 	@GetMapping(value = EndpointURI.DEFECT_BY_ID)
 	public ResponseEntity<Object> findDefectById(@PathVariable Long id) {
 		if (defectService.existsDefectById(id)) {

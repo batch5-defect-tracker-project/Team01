@@ -2,7 +2,6 @@ package com.defect.tracker.services;
 
 import java.util.List;
 
-
 import org.springframework.stereotype.Service;
 import com.defect.tracker.data.entities.Module;
 
@@ -13,28 +12,26 @@ public interface ModuleService {
 
 	public List<Module> getAllModule();
 
-  public void deleteById(Long id);
+	public void deleteById(Long id);
 
- 	void updateModule(Module module);
+	void updateModule(Module module);
 
-   public Object getModuleById(Long id);
+	public Object getModuleById(Long id);
 
-    public boolean getModuleByProjectIdAndName(Long projectId, String name);
+	public boolean getModuleByProjectIdAndName(Long projectId, String name);
 
 	boolean isModuleNameAlreadyExist(String name);
 
 	public boolean existsByModuleId(Long moduleId);
 
 	boolean existsById(Long id);
-	
-	public Object getModuleById(Long id);
+
+	public boolean exsistByModuleId(Long moduleId);
 
 	public Object findById(Long id);
 
 	public boolean existsModuleById(Long id);
 
-	boolean existsById(Long id);
-
-	List<Module> getAllModule();
+	public boolean exitsModuleById(Long id);
 
 }
