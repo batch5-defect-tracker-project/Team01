@@ -46,21 +46,18 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.employee.contactNumber.NotValid}")
 	private String empContactNumberNotValid;
 
+	@Value("${validation.employee.object.fields.NullOrEmpty}")
+	private String empFieldsNullOrEmpty;
+
+	@Value("${validation.employee.designation.NotFound}")
+	private String empDesignationNotFound;
+
 	// Project
 	@Value("${validation.project.AlreadyExists}")
 	private String proNameAlreadyExists;
 
-	@Value("${validation.designation.AlreadyExists}")
-	private String desigNameAlreadyExists;
-
 	@Value("${validation.project.projectIdAlreadyExist}")
 	private String projectByIdAlreadyExist;
-
-	@Value("${validation.designation.existsById}")
-	private String desigExistsById;
-
-	@Value("${validation.employee.object.fields.NullOrEmpty}")
-	private String empFieldsNullOrEmpty;
 
 	@Value("${validation.id.NotFound}")
 	private String projectIdNotFound;
@@ -75,20 +72,14 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.designation.AlreadyExists}")
 	private String designationNameAlreadyExists;
 
+	@Value("${validation.designation.existsById}")
+	private String desigExistsById;
+
 	@Value("${validation.designation.AlreadyExistsById}")
 	private String designationExistsById;
 
 	@Value("${validation.designation.designationById}")
 	private String designationById;
-
-	@Value("${validation.designation.NotFound}")
-	private String designationNotFound;
-
-	@Value("${validation.designation.id.NotFound}")
-	private String designationIdNotFound;
-
-	@Value("${validation.designation.existsById}")
-	private String designationExistById;
 
 	// Module
 	@Value("${validation.module.AlreadyExists}")
@@ -96,14 +87,6 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.module.IdAlreadyExists}")
 	private String moduleExistsById;
-
-	public String getDesignationExistById() {
-		return designationExistById;
-	}
-
-	public void setDesignationExistById(String designationExistById) {
-		this.designationExistById = designationExistById;
-	}
 
 	@Value("${validation.module.IdAlreadyExists}")
 	private String ModuleById;
@@ -118,7 +101,6 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.subModule.AlreadyExists}")
 	private String exitsSubModuleById;
 
-	// SubModule
 	@Value("${validation.subModule.subModuleIdAlreadyExist}")
 	private String subModuleByIdAlreadyExist;
 
@@ -264,14 +246,6 @@ public class ValidationFailureStatusCodes {
 		this.proNameAlreadyExists = proNameAlreadyExists;
 	}
 
-	public String getDesigNameAlreadyExists() {
-		return desigNameAlreadyExists;
-	}
-
-	public void setDesigNameAlreadyExists(String desigNameAlreadyExists) {
-		this.desigNameAlreadyExists = desigNameAlreadyExists;
-	}
-
 	public String getDesigExistsById() {
 		return desigExistsById;
 	}
@@ -342,22 +316,6 @@ public class ValidationFailureStatusCodes {
 
 	public void setProjectByIdAlreadyExist(String projectByIdAlreadyExist) {
 		this.projectByIdAlreadyExist = projectByIdAlreadyExist;
-	}
-
-	public String getDesignationNotFound() {
-		return designationNotFound;
-	}
-
-	public void setDesignationNotFound(String designationNotFound) {
-		this.designationNotFound = designationNotFound;
-	}
-
-	public String getDesignationIdNotFound() {
-		return designationIdNotFound;
-	}
-
-	public void setDesignationIdNotFound(String designationIdNotFound) {
-		this.designationIdNotFound = designationIdNotFound;
 	}
 
 	public String getModuleNameAlreadyExists() {
@@ -534,7 +492,14 @@ public class ValidationFailureStatusCodes {
 
 	public void setEmpContactNumberNotValid(String empContactNumberNotVali) {
 		this.empContactNumberNotValid = empContactNumberNotVali;
+	}
 
+	public String getEmpDesignationNotFound() {
+		return empDesignationNotFound;
+	}
+
+	public void setEmpDesignationNotFound(String empDesignationNotFound) {
+		this.empDesignationNotFound = empDesignationNotFound;
 	}
 
 }

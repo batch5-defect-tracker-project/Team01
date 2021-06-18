@@ -49,4 +49,6 @@ public interface EmployeeService {
 
 	boolean isValidContactNubmer(String contactNumber);
 
+	boolean updateEmailAlreadyExist(String email, Long id);
+
 }

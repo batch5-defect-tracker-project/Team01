@@ -84,10 +84,9 @@ public class EmployeeController {
 		}
 		if (!designationService.designationExistsById(employeeDto.getDesignationId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_FOUND,
-					validationFailureStatusCode.getDesignationNotFound()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCode.getEmpDesignationNotFound()), HttpStatus.BAD_REQUEST);
 		}
-
-		if (!employeeService.isValidContactNubmer(employeeDto.getContactNumber())) {
+		if (employeeService.isValidContactNubmer(employeeDto.getContactNumber())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.CONTACT_NUMBER_NOT_VALID,
 					validationFailureStatusCode.getEmpContactNumberNotValid()), HttpStatus.BAD_REQUEST);
 		}
@@ -132,10 +131,6 @@ public class EmployeeController {
 							validationFailureStatusCode.getEmpFieldsNullOrEmpty()),
 					HttpStatus.BAD_REQUEST);
 		}
-		if (!employeeService.isValidEmail(employeeDto.getEmail())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMAIL_SYNTAX_ERROR,
-					validationFailureStatusCode.getEmpEmailSynatxError()), HttpStatus.BAD_REQUEST);
-		}
 		if (!employeeService.isIdAlreadyExists(employeeDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_Id_NOT_AVAILABLE,
 					validationFailureStatusCode.getEmpIdNotAvailable()), HttpStatus.BAD_REQUEST);
@@ -146,29 +141,13 @@ public class EmployeeController {
 		}
 		if (!designationService.designationExistsById(employeeDto.getDesignationId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_FOUND,
-					validationFailureStatusCode.getDesignationNotFound()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCode.getEmpDesignationNotFound()), HttpStatus.BAD_REQUEST);
 		}
 		if (!employeeService.isValidContactNubmer(employeeDto.getContactNumber())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.CONTACT_NUMBER_NOT_VALID,
 					validationFailureStatusCode.getEmpContactNumberNotValid()), HttpStatus.BAD_REQUEST);
 		}
-		if (employeeService.isEmailAlreadyExist(employeeDto.getEmail())) {
-			Long id = employeeService.getEmployeeIdByEmail(employeeDto.getEmail());
-			if (employeeDto.getId() == id) {
-				employeeService.updateEmployeeById(employeeDto);
-				if (!file.isEmpty()) {
-					if (!file.getContentType().equals("image/jpeg")) {
-						return new ResponseEntity<>(
-								new ValidationFailureResponse(
-										ValidationConstance.EMPLOYEE_PROFILE_CONTANTTYPE_EXCEPTION,
-										validationFailureStatusCode.getEmpProfileContenetTypeException()),
-								HttpStatus.BAD_REQUEST);
-					}
-					Files.copy(file.getInputStream(), Paths.get(UPLOAD_DIR + File.separator + id + ".jpg"),
-							StandardCopyOption.REPLACE_EXISTING);
-				}
-				return new ResponseEntity<Object>(Constants.EMPLOYEE_UPDATE_SUCCESS, HttpStatus.OK);
-			}
+		if (!employeeService.updateEmailAlreadyExist(employeeDto.getEmail(), employeeDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMAIL_EXISTS,
 					validationFailureStatusCode.getEmpEmailAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
@@ -215,13 +194,13 @@ public class EmployeeController {
 	public ResponseEntity<Object> logIn(@Valid @RequestBody LogInDto logInDto) {
 		if (!employeeService.isEmailAlreadyExist(logInDto.getUserName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_EMAIL_NOT_AVAILABLE,
-					validationFailureStatusCode.getEmpEmailNotAvailable()), HttpStatus.OK);
+					validationFailureStatusCode.getEmpEmailNotAvailable()), HttpStatus.BAD_REQUEST);
 		}
 		if (employeeService.logIn(logInDto)) {
 			return new ResponseEntity<Object>(Constants.EMPLOYEE_SUCCESSFULL_LOGIN, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_USERNAME_PASSWORD_ERROR,
-				validationFailureStatusCode.getEmpEmailNotAvailable()), HttpStatus.OK);
+				validationFailureStatusCode.getEmpEmailNotAvailable()), HttpStatus.BAD_REQUEST);
 	}
 
 }
