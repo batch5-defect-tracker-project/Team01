@@ -1,23 +1,23 @@
 package com.defect.tracker.util;
 
 public class ValidationConstance {
+
 	// Project
 	public static final String PROJECT_EXISTS = "Project  Already Exists";
 	public static final String PROJECT_UPDATE_EXISTS = "Project name already use another project";
 	public static final String ID_NOTFOUND = "Id  Not Found";
 	public static final String PROJECT_NOT_EXISTS = "Project Not Exists";
-  
+	public static final String PROJECT_ID_NOT_EXISTS = "Project Id Not Exists";
+
 	// Type
 	public static final String TYPE_EXISTS = "Type Already Exists";
 	public static final String TYPE_ID_NOT_EXISTS = "Type Id Not Exists";
-	public static final String PROJECT_ID_NOT_EXISTS ="Project Id Not Exists";
-
 
 	// Designation
 	public static final String DESIGNATION_EXISTS = "Designation Already Exists";
+	public static final String DESIGNATION_DELETE_EXISTS_BY_ID = "Designation Not Exists";
 	public static final String DESIGNATION_NOT_EXISTS_BY_ID = "Designation Not Exist";
 	public static final String DESIGNATION_NOT_FOUND = "Designation Not Found";
-  
 
 	// Defect
 	public static final String DEFECT_EXISTS = "Defect Id Already Exists";
@@ -25,8 +25,6 @@ public class ValidationConstance {
 	public static final String DEFECT_NOT_EXISTS_BY_ID = "Defect Not Exists";
 	public static final String ONLY_ALLOWED_NEW_STATUS="Only Allowed New Status";
 	public static final String NOT_ALLOWED_NEW_STATUS="Not Allowed New Status";
-		
-	public static final String MODULE_NOT_EXISTS = "Module Not Exists";
 	public static final String ASSIGNED_BY_ID_NOT_EXISTS = "Assigned By Id Not Exists";
 	public static final String ASSIGNED_TO_ID_NOT_EXISTS = "Assigned To Id Not Exists";
 
@@ -34,13 +32,15 @@ public class ValidationConstance {
 	public static final String MODULE_EXISTS = "Module Name  Already Exists";
 	public static final String MODULE_DELETE_EXISTS_BY_ID = "Module  is not Exists";
 	public static final String MODULE_NOT_EXISTS_BY_ID = " Module Id is not Exists";
-	public static final String SUB_MODULE_EXISTS = "SubModule Alredy Exists";
-	public static final String SUB_MODULE_NOT_EXISTS_BY_ID = "Sub Module Id is not Exists";
+	public static final String MODULE_NOT_EXISTS = "Module Not Exists";
 
 	// SubModule
 	public static final String MODULE_ID_NOT_EXISTS ="Project Id Not Exists";
     public static final String SUB_MODULE_ID_NOT_EXIT =" SubModule Id is not Exists";
 	public static final String SUB_MODULE_DELETE_EXISTS_BY_ID = "SubModule Not Exists";
+	public static final String SUB_MODULE_EXISTS_BY_MODULE_ID = "SubModule Id not Exists By Module Id";
+	public static final String SUB_MODULE_EXISTS = "SubModule Name Already Exists";
+	public static final String SUB_MODULE_NOT_EXISTS_BY_ID = "Sub Module Id is not Exists";
 
 	// Project Allocation
 	public static final String PROJECT_ALLOCATION_EXISTS = "Project Allocation Already Exists";
@@ -61,14 +61,10 @@ public class ValidationConstance {
 	public static final String EMPLOYEE_USERNAME_PASSWORD_ERROR = "Username Or Password Incorrect";
 	public static final String EMPLOYEE_SOMEFIELDS_NULL_OR_EMPTY = "Some Fields Are Null Or Empty";
 	public static final String EMPLOYEE_EMAIL_SYNTAX_ERROR = "Email Syntax Error Please Insert Correct Email";
-
+	public static final String EMPLOYEE_EXISTS = "Employee Already Exists";
+	public static final String CONTACT_NUMBER_NOT_VALID = "Contact Number Not Valid";
 
 	private ValidationConstance() {
 	}
-	public static final String EMPLOYEE_EXISTS = "Employee Already Exists";
-  
-	public static final String CONTACT_NUMBER_NOT_VALID = "Contact Number Not Valid";
-
-	
 
 }

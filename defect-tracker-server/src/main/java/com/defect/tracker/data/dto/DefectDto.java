@@ -30,6 +30,8 @@ public class DefectDto {
 	@NotNull(message = "{defectDto.defectStatus.null}")
 	@NotBlank(message = "{defectDto.defectStatus.blank}")
 	@NotEmpty(message = "{defectDto.defectStatus.empty}")
+	private String assignedTo;
+	private String assignedBy;
 	private String status;
 	
 	@NotNull(message = "{defectDto.defectComments.null}")
@@ -96,6 +98,23 @@ public class DefectDto {
 	public void setStepsToReCreate(String stepsToReCreate) {
 		this.stepsToReCreate = stepsToReCreate;
 	}
+
+	public String getAssignedTo() {
+		return assignedTo;
+	}
+
+	public void setAssignedTo(String assignedTo) {
+		this.assignedTo = assignedTo;
+	}
+
+	public String getAssignedBy() {
+		return assignedBy;
+	}
+
+	public void setAssignedBy(String assignedBy) {
+		this.assignedBy = assignedBy;
+	}
+
 	public String getStatus() {
 		return status;
 	}

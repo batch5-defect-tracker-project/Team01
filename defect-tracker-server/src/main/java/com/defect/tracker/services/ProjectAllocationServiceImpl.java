@@ -44,8 +44,10 @@ public class ProjectAllocationServiceImpl implements ProjectAllocationService {
 	}
 
 	@Override
-	public boolean existsByProjectIdAndEmployeeIdAndModuleId(Long projectId, Long employeeId, Long moduleId) {
-		return projectAllocationRepository.existsByProjectIdAndEmployeeIdAndModuleId(projectId, employeeId, moduleId);
+	public boolean existsByProjectIdAndEmployeeIdAndModuleIdAndSubModuleId(Long projectId, Long employeeId,
+			Long moduleId, Long subModuleId) {
+		return projectAllocationRepository.existsByProjectIdAndEmployeeIdAndModuleIdAndSubModuleId(projectId,
+				employeeId, moduleId, subModuleId);
 	}
 
 }

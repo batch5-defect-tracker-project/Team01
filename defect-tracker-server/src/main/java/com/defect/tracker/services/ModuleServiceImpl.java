@@ -46,15 +46,18 @@ public class ModuleServiceImpl implements ModuleService {
 	@Override
 	public boolean getModuleByProjectIdAndName(Long projectId, String name) {
 		return moduleRepository.existsByProjectIdAndName(projectId, name);
+
 	}
 
 	@Override
 	public Object findById(Long id) {
+
 		return moduleRepository.findById(id).get().getName();
 	}
 
 	@Override
 	public boolean existsModuleById(Long id) {
+
 		return moduleRepository.existsById(id);
 	}
 
@@ -70,6 +73,7 @@ public class ModuleServiceImpl implements ModuleService {
 	@Override
 	public void updateModule(Module module) {
 		moduleRepository.save(module);
+
 	}
 
 	@Override

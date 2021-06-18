@@ -35,19 +35,14 @@ public class DefectController {
 
 	@Autowired
 	DefectService defectService;
-
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
-
 	@Autowired
 	private Mapper mapper;
-
 	@Autowired
 	private JavaMailSender javaMailSender;
-
 	@Autowired
 	EmployeeService employeeService;
-
 	@Autowired
 	ModuleService moduleService;
 	
@@ -101,7 +96,6 @@ public class DefectController {
 		simpleMail.setText("ProjectName:" + projectService.findById(defectDto.getProjectId()) + "\n" + "ModuleName:"
 				+ moduleService.findById(defectDto.getModuleId()));
 		javaMailSender.send(simpleMail);
-
 		return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
 	}
 	
@@ -113,6 +107,7 @@ public class DefectController {
 	
 	@PutMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> editDefectById(@RequestBody DefectDto defectDto) {
+
 		if (!defectService.existsDefectById(defectDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS_BY_ID,
 					validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
@@ -167,7 +162,6 @@ public class DefectController {
 						+ "ModuleName:" + moduleService.findById(defectDto.getModuleId()) + "\n" + "Status:"
 						+ defectDto.getStatus());
 				javaMailSender.send(simpleMail);
-
 			}
 			return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS, HttpStatus.OK);
 		}
@@ -180,13 +174,12 @@ public class DefectController {
 		if (!defectService.existsDefectById(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_DELETE_EXISTS_BY_ID,
 					validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
-
 		}
-
 		defectService.deleteDefectById(id);
 		return new ResponseEntity<Object>(Constants.DEFECT_DELETED_SUCCESS, HttpStatus.OK);
 	}
 
+	// GetById
 	@GetMapping(value = EndpointURI.DEFECT_BY_ID)
 	public ResponseEntity<Object> findDefectByID(@PathVariable Long id) {
 		if (defectService.existsDefectById(id)) {
