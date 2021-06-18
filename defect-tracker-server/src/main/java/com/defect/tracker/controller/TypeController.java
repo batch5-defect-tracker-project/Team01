@@ -49,10 +49,11 @@ public class TypeController {
 	public ResponseEntity<Object> editTypeById(@Valid @RequestBody TypeDto typeDto) {
 		if (typeService.typeIdExists(typeDto.getId())) {
 			if (typeService.isNameAlreadyExists(typeDto.getName())) {
-				typeService.editTypeById(mapper.map(typeDto, Type.class));
-				return new ResponseEntity<Object>(Constants.TYPE_UPDATED_SUCCESS, HttpStatus.OK);
+				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_EXISTS,
+						validationFailureStatusCodes.getNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 			}
-			typeService.editTypeById(mapper.map(typeDto, Type.class));
+			Type type = mapper.map(typeDto, Type.class);
+			typeService.createType(type);
 			return new ResponseEntity<Object>(Constants.TYPE_UPDATED_SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_ID_NOT_EXISTS,

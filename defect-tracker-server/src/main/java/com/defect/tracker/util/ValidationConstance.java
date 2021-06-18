@@ -21,7 +21,6 @@ public class ValidationConstance {
 
 	// Defect
 	public static final String DEFECT_EXISTS = "Defect Id Already Exists";
-	public static final String DEFECT_DELETE_EXISTS_BY_ID = "Defect Delete Exists By Id";
 	public static final String DEFECT_NOT_EXISTS_BY_ID = "Defect Not Exists";
 	public static final String ONLY_ALLOWED_NEW_STATUS="Only Allowed New Status";
 	public static final String NOT_ALLOWED_NEW_STATUS="Not Allowed New Status";

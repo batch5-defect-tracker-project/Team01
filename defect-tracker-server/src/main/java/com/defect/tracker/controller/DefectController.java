@@ -172,7 +172,7 @@ public class DefectController {
 	@DeleteMapping(value = EndpointURI.DEFECT_BY_ID)
 	public ResponseEntity<Object> deleteDefectById(@PathVariable Long id) {
 		if (!defectService.existsDefectById(id)) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_DELETE_EXISTS_BY_ID,
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS_BY_ID,
 					validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
 		}
 		defectService.deleteDefectById(id);
