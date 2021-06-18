@@ -15,7 +15,6 @@ public class ProjectAllocation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "project_id", nullable = false)
 	private Project project;
@@ -27,6 +26,10 @@ public class ProjectAllocation {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "employee_id", nullable = false)
 	private Employee employee;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "subModule_id", nullable = true)
+	private SubModule subModule;
 
 	public Long getId() {
 		return id;
@@ -58,6 +61,14 @@ public class ProjectAllocation {
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+
+	public SubModule getSubModule() {
+		return subModule;
+	}
+
+	public void setSubModule(SubModule subModule) {
+		this.subModule = subModule;
 	}
 
 }

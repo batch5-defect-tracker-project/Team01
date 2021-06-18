@@ -29,8 +29,7 @@ public class SubModuleImpl implements SubModuleService {
 	@Override
 	public boolean isSubModuleNameAlreadyExist(String name) {
 		return  subModuleRepository.existsByName(name) ;
-		}
-	
+		}	
 
 	@Override
 	public boolean exitsSubModuleById(Long id) {
@@ -61,14 +60,11 @@ public class SubModuleImpl implements SubModuleService {
 	@Override
   public List<SubModule> getAllSubModule() {
 		return subModuleRepository.findAll();
-
-
 	}
 
 	@Override
-	public boolean getSubModuleByIdAndName(Long moduleId, String name) {
-	
-		return subModuleRepository.existsByModuleIdAndName(moduleId,name);
+	public boolean existsByIdAndModuleId(Long subModuleId, Long moduleId) {
+		return subModuleRepository.existsByIdAndModuleId(subModuleId,moduleId);
 	}
 
 }

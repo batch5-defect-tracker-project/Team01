@@ -45,7 +45,6 @@ public class DefectController {
 	private JavaMailSender javaMailSender;
 	@Autowired
 	EmployeeService employeeService;
-
 	@Autowired
 	ModuleService moduleService;
 	@Autowired
@@ -81,7 +80,6 @@ public class DefectController {
 		simpleMail.setText("ProjectName:" + projectService.findById(defectDto.getProjectId()) + "\n" + "ModuleName:"
 				+ moduleService.findById(defectDto.getModuleId()));
 		javaMailSender.send(simpleMail);
-
 		return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
 	}
 
@@ -89,17 +87,11 @@ public class DefectController {
 	public ResponseEntity<Object> getAllDefect() {
 		List<DefectDto> defectList = mapper.map(defectService.getAllDefect(), DefectDto.class);
 		return new ResponseEntity<Object>(defectList, HttpStatus.OK);
-
 	}
 
 	@PutMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> editDefectById(@RequestBody DefectDto defectDto) {
 
-		if (defectService.existsDefectById(defectDto.getId())) {
-				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS,
-						validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
-			}
-		
 		if (!defectService.existsDefectById(defectDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS_BY_ID,
 					validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
@@ -129,9 +121,10 @@ public class DefectController {
 				SimpleMailMessage simpleMail = new SimpleMailMessage();
 				simpleMail.setFrom("meera10testmail@gmail.com");
 				simpleMail.setTo(assignedTo.getEmail());
-				simpleMail.setSubject("Defect" + " " + defectDto.getStatus()+"ed");
-				simpleMail.setText( "ProjectName:" + projectService.findById(defectDto.getProjectId()) + "\n" + "ModuleName:" + moduleService.findById(defectDto.getModuleId()) 
-						 + "\n" + "Status:" + defectDto.getStatus());
+				simpleMail.setSubject("Defect" + " " + defectDto.getStatus() + "ed");
+				simpleMail.setText("ProjectName:" + projectService.findById(defectDto.getProjectId()) + "\n"
+						+ "ModuleName:" + moduleService.findById(defectDto.getModuleId()) + "\n" + "Status:"
+						+ defectDto.getStatus());
 				javaMailSender.send(simpleMail);
 			}
 			Employee assignedBy = employeeService.findById(defectDto.getAssignedById());
@@ -140,28 +133,24 @@ public class DefectController {
 				SimpleMailMessage simpleMail = new SimpleMailMessage();
 				simpleMail.setFrom("meera10testmail@gmail.com");
 				simpleMail.setTo(assignedBy.getEmail());
-				simpleMail.setSubject("Defect" + " " + defectDto.getStatus()+"ed");
-				simpleMail.setText( "ProjectName:" + projectService.findById(defectDto.getProjectId()) + "\n" + "ModuleName:" + moduleService.findById(defectDto.getModuleId()) 
-				 + "\n" + "Status:" + defectDto.getStatus());
+				simpleMail.setSubject("Defect" + " " + defectDto.getStatus() + "ed");
+				simpleMail.setText("ProjectName:" + projectService.findById(defectDto.getProjectId()) + "\n"
+						+ "ModuleName:" + moduleService.findById(defectDto.getModuleId()) + "\n" + "Status:"
+						+ defectDto.getStatus());
 				javaMailSender.send(simpleMail);
-
 			}
 			return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS, HttpStatus.OK);
 		}
 		defectService.createDefect(mapper.map(defectDto, Defect.class));
 		return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS, HttpStatus.OK);
-			}
-		
-	
+	}
 
 	@DeleteMapping(value = EndpointURI.DEFECT_BY_ID)
 	public ResponseEntity<Object> deleteDefectById(@PathVariable Long id) {
 		if (!defectService.existsDefectById(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_DELETE_EXISTS_BY_ID,
 					validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
-
 		}
-
 		defectService.deleteDefectById(id);
 		return new ResponseEntity<Object>(Constants.DEFECT_DELETED_SUCCESS, HttpStatus.OK);
 	}

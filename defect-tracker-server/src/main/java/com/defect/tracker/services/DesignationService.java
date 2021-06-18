@@ -1,12 +1,11 @@
 package com.defect.tracker.services;
 
 import java.util.List;
-
 import org.springframework.stereotype.Service;
-
 import com.defect.tracker.data.entities.Designation;
 
 @Service
+
 public interface DesignationService {
 
 	public boolean isDesignationNameAlreadyExist(String name);
@@ -22,5 +21,4 @@ public interface DesignationService {
 	public Object getDesignationById(Long id);
 
 	public void editDesignationById(Designation designation);
-
 }
