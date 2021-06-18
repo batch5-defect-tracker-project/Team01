@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.defect.tracker.data.dto.DefectDto;
+import com.defect.tracker.data.dto.DefectStatusCountDto;
 import com.defect.tracker.data.entities.Defect;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
@@ -62,6 +63,22 @@ public class DefectController {
 
 	@PostMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) {
+		if (!defectService.existsDefectById(defectDto.getId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_ID_NOT_FOUND,
+					validationFailureStatusCodes.getDefectIdNotFound()), HttpStatus.BAD_REQUEST);
+		}
+		if (!defectService.existsAssignedTo(defectDto.getAssignedToId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.ASSIGNEDTO_ID_NOT_FOUND,
+					validationFailureStatusCodes.getAssignedToIdNotFound()), HttpStatus.BAD_REQUEST);
+		}
+		if (!defectService.existsAssignedBy(defectDto.getAssignedById())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.ASSIGNEDBY_ID_NOT_FOUND,
+					validationFailureStatusCodes.getAssignedByIdNotFound()), HttpStatus.BAD_REQUEST);
+		}
+		if (!defectService.existsModuleId(defectDto.getModuleId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_ID_NOT_FOUND,
+					validationFailureStatusCodes.getModuleIdNotFound()), HttpStatus.BAD_REQUEST);
+		}
 		if (!(defectDto.getStatus().equals("new") || defectDto.getStatus().equals("New"))) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_CHANGE_NEW,
 					validationFailureStatusCodes.getDefectStatusChange()), HttpStatus.BAD_REQUEST);
@@ -79,8 +96,8 @@ public class DefectController {
 
 	}
 
-	@PutMapping(value = EndpointURI.DEFECT)
-	public ResponseEntity<Object> editDefectById(@RequestBody DefectDto defectDto) {
+	@PutMapping(value = EndpointURI.DEFECT_UPDATE)
+	public ResponseEntity<Object> updateDefect(@RequestBody DefectDto defectDto) {
 		if (!defectService.existsDefectById(defectDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_ID_NOT_FOUND,
 					validationFailureStatusCodes.getDefectIdNotFound()), HttpStatus.BAD_REQUEST);

@@ -1,12 +1,15 @@
 package com.defect.tracker.services;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import com.defect.tracker.data.dto.DefectDto;
 import com.defect.tracker.data.dto.DefectStatusCountDto;
+import com.defect.tracker.data.dto.ProjectDto;
 import com.defect.tracker.data.entities.Defect;
 import com.defect.tracker.data.entities.Project;
 import com.defect.tracker.data.mapper.Mapper;
