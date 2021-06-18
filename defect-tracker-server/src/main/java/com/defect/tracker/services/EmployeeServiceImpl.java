@@ -62,9 +62,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public void activateEmployee(Employee employee) {
-		employee.setEnabled(true);
-		employeeRepository.save(employee);
+	public void activateEmployee(EmployeeDto employeeDto) {
+		employeeDto.setEnabled(true);
+		employeeRepository.save(mapper.map(employeeDto, Employee.class));
 	}
 
 	@Override
@@ -121,7 +121,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 				|| StringUtils.isNullOrEmpty(employeeDto.getName())
 				|| StringUtils.isNullOrEmpty(employeeDto.getPassword()) || employeeDto.getDesignationId() == null
 				|| employeeDto.getContactNumber() == null) {
-			System.out.println("some fields are null");
 			return false;
 		}
 		return true;
@@ -134,7 +133,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		Pattern pat = Pattern.compile(emailRegex);
 		return pat.matcher(email).matches();
 	}
-	
+
 	@Override
 	public boolean isValidContactNubmer(String contactNumber) {
 		String contactRegex = "^$|[0-9]{10}";
@@ -150,6 +149,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public boolean updateEmailAlreadyExist(String email, Long id) {
+		if (isEmailAlreadyExist(email)) {
+			if (employeeRepository.existsByEmailAndId(email, id)) {
+				return true;
+			}
+			return false;
+		}
+		return true;
 	}
 
 }

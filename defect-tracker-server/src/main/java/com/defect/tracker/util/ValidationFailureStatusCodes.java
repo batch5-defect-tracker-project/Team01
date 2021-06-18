@@ -46,18 +46,21 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.employee.contactNumber.NotValid}")
 	private String empContactNumberNotValid;
 
+	@Value("${validation.employee.object.fields.NullOrEmpty}")
+	private String empFieldsNullOrEmpty;
+
+	@Value("${validation.employee.designation.NotFound}")
+	private String empDesignationNotFound;
+
 	// Project
 	@Value("${validation.project.AlreadyExists}")
 	private String proNameAlreadyExists;
 
+	@Value("${validation.project.projectIdAlreadyExist}")
+	private String projectByIdAlreadyExist;
+
 	@Value("${validation.designation.AlreadyExists}")
 	private String desigNameAlreadyExists;
-
-	@Value("${validation.designation.existsById}")
-	private String desigExistsById;
-
-	@Value("${validation.employee.object.fields.NullOrEmpty}")
-	private String empFieldsNullOrEmpty;
 
 	@Value("${validation.id.NotFound}")
 	private String projectIdNotFound;
@@ -72,23 +75,17 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.designation.AlreadyExists}")
 	private String designationNameAlreadyExists;
 
+	@Value("${validation.designation.existsById}")
+	private String desigExistsById;
+
 	@Value("${validation.designation.AlreadyExistsById}")
 	private String designationExistsById;
 
 	@Value("${validation.designation.designationById}")
 	private String designationById;
 
-	@Value("${validation.project.projectIdAlreadyExist}")
-	private String projectByIdAlreadyExist;
-
-	@Value("${validation.designation.NotFound}")
-	private String designationNotFound;
-
 	@Value("${validation.designation.AlreadyExists}")
 	private String designationAlreadyExists;
-
-	@Value("${validation.designation.id.NotFound}")
-	private String designationIdNotFound;
 
 	// Module
 	@Value("${validation.module.AlreadyExists}")
@@ -249,28 +246,12 @@ public class ValidationFailureStatusCodes {
 		this.empEmailNotAvailable = empEmailNotAvailable;
 	}
 
-	public String getProNameAlreadyExists() {
-		return proNameAlreadyExists;
+	public String getEmpContactNumberNotValid() {
+		return empContactNumberNotValid;
 	}
 
-	public void setProNameAlreadyExists(String proNameAlreadyExists) {
-		this.proNameAlreadyExists = proNameAlreadyExists;
-	}
-
-	public String getDesigNameAlreadyExists() {
-		return desigNameAlreadyExists;
-	}
-
-	public void setDesigNameAlreadyExists(String desigNameAlreadyExists) {
-		this.desigNameAlreadyExists = desigNameAlreadyExists;
-	}
-
-	public String getDesigExistsById() {
-		return desigExistsById;
-	}
-
-	public void setDesigExistsById(String desigExistsById) {
-		this.desigExistsById = desigExistsById;
+	public void setEmpContactNumberNotValid(String empContactNumberNotValid) {
+		this.empContactNumberNotValid = empContactNumberNotValid;
 	}
 
 	public String getEmpFieldsNullOrEmpty() {
@@ -279,6 +260,38 @@ public class ValidationFailureStatusCodes {
 
 	public void setEmpFieldsNullOrEmpty(String empFieldsNullOrEmpty) {
 		this.empFieldsNullOrEmpty = empFieldsNullOrEmpty;
+	}
+
+	public String getEmpDesignationNotFound() {
+		return empDesignationNotFound;
+	}
+
+	public void setEmpDesignationNotFound(String empDesignationNotFound) {
+		this.empDesignationNotFound = empDesignationNotFound;
+	}
+
+	public String getProNameAlreadyExists() {
+		return proNameAlreadyExists;
+	}
+
+	public void setProNameAlreadyExists(String proNameAlreadyExists) {
+		this.proNameAlreadyExists = proNameAlreadyExists;
+	}
+
+	public String getProjectByIdAlreadyExist() {
+		return projectByIdAlreadyExist;
+	}
+
+	public void setProjectByIdAlreadyExist(String projectByIdAlreadyExist) {
+		this.projectByIdAlreadyExist = projectByIdAlreadyExist;
+	}
+
+	public String getDesigNameAlreadyExists() {
+		return desigNameAlreadyExists;
+	}
+
+	public void setDesigNameAlreadyExists(String desigNameAlreadyExists) {
+		this.desigNameAlreadyExists = desigNameAlreadyExists;
 	}
 
 	public String getProjectIdNotFound() {
@@ -313,6 +326,14 @@ public class ValidationFailureStatusCodes {
 		this.designationNameAlreadyExists = designationNameAlreadyExists;
 	}
 
+	public String getDesigExistsById() {
+		return desigExistsById;
+	}
+
+	public void setDesigExistsById(String desigExistsById) {
+		this.desigExistsById = desigExistsById;
+	}
+
 	public String getDesignationExistsById() {
 		return designationExistsById;
 	}
@@ -329,36 +350,12 @@ public class ValidationFailureStatusCodes {
 		this.designationById = designationById;
 	}
 
-	public String getProjectByIdAlreadyExist() {
-		return projectByIdAlreadyExist;
-	}
-
-	public void setProjectByIdAlreadyExist(String projectByIdAlreadyExist) {
-		this.projectByIdAlreadyExist = projectByIdAlreadyExist;
-	}
-
-	public String getDesignationNotFound() {
-		return designationNotFound;
-	}
-
-	public void setDesignationNotFound(String designationNotFound) {
-		this.designationNotFound = designationNotFound;
-	}
-
 	public String getDesignationAlreadyExists() {
 		return designationAlreadyExists;
 	}
 
 	public void setDesignationAlreadyExists(String designationAlreadyExists) {
 		this.designationAlreadyExists = designationAlreadyExists;
-	}
-
-	public String getDesignationIdNotFound() {
-		return designationIdNotFound;
-	}
-
-	public void setDesignationIdNotFound(String designationIdNotFound) {
-		this.designationIdNotFound = designationIdNotFound;
 	}
 
 	public String getModuleNameAlreadyExists() {
@@ -439,6 +436,14 @@ public class ValidationFailureStatusCodes {
 
 	public void setProjectAllocationById(String projectAllocationById) {
 		this.projectAllocationById = projectAllocationById;
+	}
+
+	public String getModuleIdExistsBySubModuleId() {
+		return moduleIdExistsBySubModuleId;
+	}
+
+	public void setModuleIdExistsBySubModuleId(String moduleIdExistsBySubModuleId) {
+		this.moduleIdExistsBySubModuleId = moduleIdExistsBySubModuleId;
 	}
 
 	public String getExistsDefectById() {
@@ -527,22 +532,6 @@ public class ValidationFailureStatusCodes {
 
 	public void setTypeIdNotExists(String typeIdNotExists) {
 		this.typeIdNotExists = typeIdNotExists;
-	}
-
-	public String getEmpContactNumberNotValid() {
-		return empContactNumberNotValid;
-	}
-
-	public void setEmpContactNumberNotValid(String empContactNumberNotVali) {
-		this.empContactNumberNotValid = empContactNumberNotVali;
-	}
-
-	public String getModuleIdExistsBySubModuleId() {
-		return moduleIdExistsBySubModuleId;
-	}
-
-	public void setModuleIdExistsBySubModuleId(String moduleIdExistsBySubModuleId) {
-		this.moduleIdExistsBySubModuleId = moduleIdExistsBySubModuleId;
 	}
 
 }

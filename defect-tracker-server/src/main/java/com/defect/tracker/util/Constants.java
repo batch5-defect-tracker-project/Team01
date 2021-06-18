@@ -1,7 +1,5 @@
 package com.defect.tracker.util;
 
-import org.springframework.util.MultiValueMap;
-
 public class Constants {
 
 	// employee
@@ -31,8 +29,8 @@ public class Constants {
 
 	// Module
 	public static final String MODULE_ADDED_SUCCESS = "Module added successfully";
-	public static final String UPDATE_SUCCESS = "Module Update successfully";
 	public static final String MODULE_DELETED_SUCCESS = "Module Deleted successfully";
+	public static final String MODULE_UPDATE_SUCCESS = "Module Update successfully ";
 
 	// Sub Module
 	public static final String SUB_MODULE_UPDATE_SUCCESS = "Sub Module Updated Successfully";
