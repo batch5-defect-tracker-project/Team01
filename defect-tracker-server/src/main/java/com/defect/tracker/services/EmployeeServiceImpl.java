@@ -62,9 +62,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public void activateEmployee(Employee employee) {
-		employee.setEnabled(true);
-		employeeRepository.save(employee);
+	public void activateEmployee(EmployeeDto employeeDto) {
+		employeeDto.setEnabled(true);
+		employeeRepository.save(mapper.map(employeeDto, Employee.class));
 	}
 
 	@Override

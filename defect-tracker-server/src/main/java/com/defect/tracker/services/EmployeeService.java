@@ -23,7 +23,7 @@ public interface EmployeeService {
 
 	void registerEmployee(@Valid @RequestBody EmployeeDto employeedto) throws MessagingException;
 
-	void activateEmployee(Employee employee);
+	void activateEmployee(EmployeeDto employeeDto);
 
 	EmployeeDto getJson(String employee) throws JsonMappingException, JsonProcessingException;
 

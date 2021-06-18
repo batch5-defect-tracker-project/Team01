@@ -11,8 +11,10 @@ import com.defect.tracker.data.repositories.SubModuleRepository;
 
 @Service
 public class SubModuleImpl implements SubModuleService {
+
 	@Autowired
 	private SubModuleRepository subModuleRepository;
+	
 
 	@Override
 	public boolean subModuleExits(String name) {
@@ -22,12 +24,12 @@ public class SubModuleImpl implements SubModuleService {
 	@Override
 	public void createSubModule(SubModule subModule) {
 		subModuleRepository.save(subModule);
-	}
+		}
 
 	@Override
 	public boolean isSubModuleNameAlreadyExist(String name) {
-		return subModuleRepository.existsByName(name);
-	}
+		return  subModuleRepository.existsByName(name) ;
+		}	
 
 	@Override
 	public boolean exitsSubModuleById(Long id) {
@@ -35,8 +37,8 @@ public class SubModuleImpl implements SubModuleService {
 	}
 
 	@Override
-	public boolean getModuleIdAndName(Long moduleId, String name) {
-		return subModuleRepository.existsByModuleIdAndName(moduleId, name);
+	public boolean getModuleIdAndName(Long moduleId, String name) {		
+		return subModuleRepository.existsByModuleIdAndName(moduleId,name);
 	}
 
 	public boolean existsById(Long id) {
@@ -48,21 +50,21 @@ public class SubModuleImpl implements SubModuleService {
 		subModuleRepository.deleteById(id);
 	}
 
-	@Override
+  @Override
 	public SubModule getSubModuleById(Long id) {
 		SubModule subModule = subModuleRepository.findById(id).get();
 		System.out.println(subModule.getModule());
 		return subModule;
 	}
-
+  
 	@Override
-	public List<SubModule> getAllSubModule() {
+  public List<SubModule> getAllSubModule() {
 		return subModuleRepository.findAll();
 	}
 
 	@Override
-	public boolean getSubModuleByIdAndName(Long moduleId, String name) {
-		return subModuleRepository.existsByModuleIdAndName(moduleId, name);
+	public boolean existsByIdAndModuleId(Long subModuleId, Long moduleId) {
+		return subModuleRepository.existsByIdAndModuleId(subModuleId,moduleId);
 	}
 
 }
