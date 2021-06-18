@@ -1,11 +1,10 @@
 package com.defect.tracker.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.defect.tracker.data.dto.DefectDto;
+import com.defect.tracker.data.dto.DefectStatusCountDto;
 import com.defect.tracker.data.entities.Defect;
 @Service
 public interface DefectService {
@@ -24,8 +23,6 @@ public interface DefectService {
 	
 	public Object getDefectById(Long id);
 	
-	public List<Long> getDefectStatus(Long id);
-	
 	public Object getDefectStatusById(Long id);
 	
 	public boolean existsAssignedTo(Long id);
@@ -34,5 +31,7 @@ public interface DefectService {
 	
 	public boolean existsAssignedBy(Long id);
 	
-	public Long getDefectCount(Long id,String status);
+	public DefectStatusCountDto getDefectCount(String projectName);
+	
+	public boolean existsstatus(String status);
 }

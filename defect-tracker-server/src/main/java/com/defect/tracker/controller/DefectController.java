@@ -23,6 +23,7 @@ import com.defect.tracker.services.DefectService;
 import com.defect.tracker.services.EmailService;
 import com.defect.tracker.services.EmployeeService;
 import com.defect.tracker.services.ModuleService;
+import com.defect.tracker.services.ProjectService;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
 import com.defect.tracker.util.ValidationConstance;
@@ -47,10 +48,27 @@ public class DefectController {
 	@Autowired
 	EmailService emailService;
 
+	@Autowired
+	ProjectService projectService;
+
+	@GetMapping(value = EndpointURI.DEFECT_STATUS_COUNT_BY_PROJECT_NAME)
+	public ResponseEntity<Object> getDefect(@PathVariable String projectName) {
+		if (!projectService.exitsByProjectName(projectName)) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECTNAME_NOTFOUND,
+					validationFailureStatusCodes.getProjectNameNotFound()), HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Object>(defectService.getDefectCount(projectName), HttpStatus.OK);
+	}
+
 	@PostMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) {
-		Defect defect = mapper.map(defectDto, Defect.class);
-		defectService.createDefect(defect);
+		if (!(defectDto.getStatus().equals("new") || defectDto.getStatus().equals("New"))) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_CHANGE_NEW,
+					validationFailureStatusCodes.getDefectStatusChange()), HttpStatus.BAD_REQUEST);
+			
+		}
+		defectService.createDefect(mapper.map(defectDto, Defect.class));
+		emailService.sendDefectStatusAddEmail(defectDto);
 		return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
 	}
 
@@ -81,7 +99,7 @@ public class DefectController {
 		}
 		if (!defectService.getDefectStatusById(defectDto.getId()).equals(defectDto.getStatus())) {
 			defectService.createDefect(mapper.map(defectDto, Defect.class));
-			emailService.sendDefectStatusChangeEmail(defectDto);
+			emailService.sendDefectStatusUpdateEmail(defectDto);
 			return new ResponseEntity<Object>(Constants.MAIL_SEND_SUCCESS, HttpStatus.OK);
 		}
 		defectService.createDefect(mapper.map(defectDto, Defect.class));

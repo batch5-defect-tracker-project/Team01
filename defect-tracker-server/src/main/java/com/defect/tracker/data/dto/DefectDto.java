@@ -12,7 +12,14 @@ public class DefectDto {
 	private Long assignedById;
 	private String status;
 	private String comments;
+	public Long getProjectId() {
+		return ProjectId;
+	}
+	public void setProjectId(Long projectId) {
+		ProjectId = projectId;
+	}
 	private String File;
+	private Long ProjectId;
 	public Long getAssignedToId() {
 		return assignedToId;
 	}

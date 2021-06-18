@@ -6,6 +6,7 @@ public class ValidationConstance {
 	public static final String PROJECT_EXISTS = "Project  Already Exists";
 	public static final String PROJECT_UPDATE_EXISTS = "Project name already use another project";
 	public static final String ID_NOTFOUND = "Id  Not Found";
+	public static final String PROJECTNAME_NOTFOUND = "projectName not found";
 	public static final String DEFECT_STATUS_NULL = "defect status null";
 	
 
@@ -24,6 +25,7 @@ public class ValidationConstance {
 	public static final String ASSIGNEDBY_ID_NOT_FOUND = "assignedby Id not found";
 	public static final String ASSIGNEDTO_ID_NOT_FOUND = "assignedto Id not found";
 	public static final String MODULE_ID_NOT_FOUND = "assignedto Id not found";
+	public static final String DEFECT_STATUS_CHANGE_NEW = "Defect Status change New";
 	
 	
 

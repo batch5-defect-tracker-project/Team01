@@ -14,8 +14,5 @@ public class DefectTracker {
 		SpringApplication.run(DefectTracker.class, args);
 	}
 	
-//	@Bean
-//	public JavaMailSenderImpl javamail() {
-//		return new JavaMailSenderImpl();
-//	}
+
 }

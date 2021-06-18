@@ -4,13 +4,13 @@ public final class EndpointURI {
 
 	private static final String BASE_API_PATH = "/api/v1/";
 	private static final String ID = "/{id}";
-	private static final String STATUS = "/{status}";
+	private static final String PROJECTNAME = "/{projectName}";
 
 
 	// Project
 	public static final String PROJECT = BASE_API_PATH + "project";
 	public static final String PROJECT_BY_ID = BASE_API_PATH + "project" + ID;
-	public static final String DEFECT_COUNT_BY_ID_AND_STATUS = BASE_API_PATH + "Defect_Count" +ID+ STATUS ;
+	public static final String DEFECT_STATUS_COUNT_BY_PROJECT_NAME = BASE_API_PATH + "Defect_Count" + PROJECTNAME ;
 
 	// Project Allocation
 	public static final String PROJECT_ALLOCATION = BASE_API_PATH + "projectAllocation";

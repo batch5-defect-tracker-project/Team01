@@ -102,6 +102,14 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.projectAllocation.AlreadyExistsId}")
 	private String employeeIdAlreadyExists;
 
+	public String getProjectNameNotFound() {
+		return projectNameNotFound;
+	}
+
+	public void setProjectNameNotFound(String projectNameNotFound) {
+		this.projectNameNotFound = projectNameNotFound;
+	}
+
 	@Value("${validation.projectAllocation.AlreadyExistsId}")
 	private String projectAllocationById;
 
@@ -113,6 +121,10 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.defect.AlreadyExists}")
 	private String modNameAlreadyExists;
 
+	@Value("${validation.projectName.NotFound}")
+	private String projectNameNotFound;
+	
+	
 	public String getDefectStatusNoChange() {
 		return defectStatusNoChange;
 	}
@@ -184,7 +196,17 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.defect.assignedToIdNotFound}")
 	private String assignedToIdNotFound;
 	
+	@Value("${defect.Status.Change.New}")
+	private String defectStatusChange;
 	
+	public String getDefectStatusChange() {
+		return defectStatusChange;
+	}
+
+	public void setDefectStatusChange(String defectStatusChange) {
+		this.defectStatusChange = defectStatusChange;
+	}
+
 	public String getDefectIdNotFound() {
 		return defectIdNotFound;
 	}

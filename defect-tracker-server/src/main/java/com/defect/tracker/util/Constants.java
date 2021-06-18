@@ -30,6 +30,7 @@ public class Constants {
 	public static final String DESIGNATION_DELETED_SUCCESS = "Designation Delete Successfully";
 	public static final String DESIGNATION_UPDATED_SUCCESS = "Designation Update Successfully";
 	public static final String DEFECT_ADDED_SUCCESS = "Defect Added Successfully";
+	
 
 	// Module
 	public static final String MODULE_ADDED_SUCCESS = "Module added successfully";
