@@ -24,7 +24,6 @@ public class Constants {
 	public static final String DESIGNATION_ADDED_SUCCESS = "Designation Added Successfully";
 	public static final String DESIGNATION_DELETED_SUCCESS = "Designation Delete Successfully";
 	public static final String DESIGNATION_UPDATED_SUCCESS = "Designation Update Successfully";
-	
 
 	// Module
 	public static final String MODULE_ADDED_SUCCESS = "Module added successfully";
@@ -34,17 +33,16 @@ public class Constants {
 	// Sub Module
 	public static final String SUB_MODULE_UPDATE_SUCCESS = "Sub Module Updated Successfully";
 	public static final String SUB_MODULE_DELETED_SUCCESS = "Sub Module Deleted Successfully";
-	public static String SUB_MODULE_ADDED_SUCCESS = "Sub Module Added Successfully";
-	
-   //	Defect
+	public static final String SUB_MODULE_ADDED_SUCCESS = "Sub Module Added Successfully";
+
+	// Defect
 	public static final String DEFECT_ADDED_SUCCESS = "Defect Added Successfully";
 	public static final String DEFECT_DELETED_SUCCESS = "Defect Deleted Successfully";
 	public static final String DEFECT_UPDATED_SUCCESS = "Defect Updated Successfully";
-  	
+
 	// Type
 	public static final String TYPE_ADDED_SUCCESS = "Type added successfully ";
-	public static final String TYPE_UPDATED_SUCCESS ="Type Updated Successfully";
-	public static final String TYPE_DELETED_SUCCESS ="Type Deleted Successfully";
-	
+	public static final String TYPE_UPDATED_SUCCESS = "Type Updated Successfully";
+	public static final String TYPE_DELETED_SUCCESS = "Type Deleted Successfully";
 
 }
