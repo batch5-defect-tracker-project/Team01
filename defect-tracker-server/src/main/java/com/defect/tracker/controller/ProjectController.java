@@ -27,8 +27,10 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 public class ProjectController {
 	@Autowired
 	ProjectService projectService;
+	
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
+	
 	@Autowired
 	private Mapper mapper;
 

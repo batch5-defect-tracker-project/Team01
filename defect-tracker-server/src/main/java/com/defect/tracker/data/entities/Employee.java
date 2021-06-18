@@ -22,12 +22,26 @@ public class Employee {
 	private String email;
 	private String password;
 	private String gender;
-	private Long contactNumber;
+	private String contactNumber;
 	private boolean isEnabled;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "designation_id", nullable = false)
 	private Designation designation;
+
+	public Employee() {
+
+	}
+
+	public Employee(Employee employee) {
+		this.id = employee.getId();
+		this.name = employee.getName();
+		this.email = employee.getEmail();
+		this.password = employee.getPassword();
+		this.gender = employee.getGender();
+		this.contactNumber = employee.getContactNumber();
+		this.isEnabled = employee.isEnabled();
+	}
 
 	public Long getId() {
 		return id;
@@ -69,11 +83,11 @@ public class Employee {
 		this.gender = gender;
 	}
 
-	public Long getContactNumber() {
+	public String getContactNumber() {
 		return contactNumber;
 	}
 
-	public void setContactNumber(Long contactNumber) {
+	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 

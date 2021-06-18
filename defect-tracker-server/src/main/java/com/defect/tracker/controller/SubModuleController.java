@@ -49,11 +49,12 @@ public class SubModuleController {
 		return new ResponseEntity<Object>(Constants.SUB_MODULE_ADDED_SUCCESS, HttpStatus.OK);
 	}
 
-	// ------------------------------ UpdateById -API ------------------------------//
+// ------------------------------ UpdateById -API ------------------------------
 	@PutMapping(value = EndpointURI.SUB_MODULE)
 	public ResponseEntity<Object> updateSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
 		if (subModuleService.exitsSubModuleById(subModuleDto.getId())) {
-			if (subModuleService.isSubModuleNameAlreadyExist(subModuleDto.getName())) {
+			if(moduleService.exsistByModuleId(subModuleDto.getModuleId())) {
+  			if (subModuleService.isSubModuleNameAlreadyExist(subModuleDto.getName())) {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
 						validationFailureStatusCodes.getSubModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 			}
@@ -61,7 +62,10 @@ public class SubModuleController {
 			subModuleService.createSubModule(subModule);
 			return new ResponseEntity<Object>(Constants.SUB_MODULE_UPDATE_SUCCESS, HttpStatus.OK);
 		}
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
+				validationFailureStatusCodes.getModuleIdNotAvailable()), HttpStatus.BAD_REQUEST);
+	  }
+    return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
 	}
 

@@ -89,11 +89,9 @@ public class ProjectAllocationController {
 	}
 
 	// ------------------------- Update By Id -API ------------------------- //
-
 	@PutMapping(value = EndpointURI.PROJECT_ALLOCATION)
 	public ResponseEntity<Object> updateprojectAllocation(
 			@Valid @RequestBody ProjectAllocationDto projectAllocationDto) {
-
 		if (!projectAllocationService.existsById(projectAllocationDto.getId())) {
 			return new ResponseEntity<>(
 					new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_NOT_EXISTS_BY_ID,

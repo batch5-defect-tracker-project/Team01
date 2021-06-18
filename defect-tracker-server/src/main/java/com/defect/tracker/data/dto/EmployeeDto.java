@@ -31,12 +31,10 @@ public class EmployeeDto {
 	private String gender;
 	@NotNull(message = "{employee.contactnumber.null}")
 	@Positive(message = "{employee.contactnumber.onlypositive.number}")
-	private Long contactNumber;
+	private String contactNumber;
 	@NotNull(message = "{employee.status.blank}")
 	private boolean isEnabled;
 	@NotNull(message = "{employee.designationId.null}")
-	@NotEmpty(message = "{employee.designationId.empty}")
-	@NotBlank(message = "{employee.designationId.blank}")
 	private Long designationId;
 
 	public Long getDesignationId() {
@@ -87,11 +85,11 @@ public class EmployeeDto {
 		this.gender = gender;
 	}
 
-	public Long getContactNumber() {
+	public String getContactNumber() {
 		return contactNumber;
 	}
 
-	public void setContactNumber(Long contactNumber) {
+	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 
