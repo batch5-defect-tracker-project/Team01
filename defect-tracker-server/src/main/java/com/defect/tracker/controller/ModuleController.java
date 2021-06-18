@@ -62,7 +62,7 @@ public class ModuleController {
 			}
 			Module module = mapper.map(moduleDto, Module.class);
 			moduleService.createModule(module);
-			return new ResponseEntity<Object>(Constants.UPDATE_SUCCESS, HttpStatus.OK);
+			return new ResponseEntity<Object>(Constants.UPDATED_SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
 				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);

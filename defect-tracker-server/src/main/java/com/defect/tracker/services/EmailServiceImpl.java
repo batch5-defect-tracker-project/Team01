@@ -37,7 +37,7 @@ public class EmailServiceImpl implements EmailService {
 	ProjectService projectService;
 
 	@Override
-	public void sendMail(Employee employee) throws MessagingException {
+	public void sendEmployeeRegisteredMail(Employee employee) throws MessagingException {
 		VerificationToken verificationToken = verificationService.findByEmployee(employee);
 		if (verificationToken != null) {
 			String token = verificationToken.getToken();
@@ -53,7 +53,7 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	@Override
-	public void sendUpdatedMail(Employee employee) throws MessagingException {
+	public void sendEmployeeUpdatedMail(Employee employee) throws MessagingException {
 		SimpleMailMessage simpleMail = new SimpleMailMessage();
 		simpleMail.setFrom("meera10testmail@gmail.com");
 		simpleMail.setTo(employee.getEmail());

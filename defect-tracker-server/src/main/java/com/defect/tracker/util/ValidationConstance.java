@@ -53,11 +53,14 @@ public class ValidationConstance {
 	public static final String TOKEN_EXPIRED = "Token Expired";
 	public static final String EMPLOYEE_EMAIL_NOT_AVAILABLE = "Your Username / Email Not Much Please SignUp";
 	public static final String EMPLOYEE_USERNAME_PASSWORD_ERROR = "Username Or Password Incorrect";
+	public static final String CONTACT_NUMBER_NOT_VALID = "Contact Number Not Valid";
+	public static final String EMPLOYEE_SOMEFIELDS_NULL_OR_EMPTY = "Some Fields Are Null Or Empty";
 
 	public static final String DESIGNATION_NOT_FOUND = "Designation Not Found";
 
 	// SubModule
 	public static final String SUB_MODULE_DELETE_EXISTS_BY_ID = "SubModule Not Exists";
+
 
 	private ValidationConstance() {
 	}

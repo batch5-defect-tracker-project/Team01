@@ -43,5 +43,12 @@ public interface EmployeeService {
 
 	boolean logIn(@Valid LogInDto logInDto);
 	
+	public boolean isValidEmail(String email);
+	
+	public boolean employeeObjectValidation(EmployeeDto employeeDto);
+	
+	public boolean isValidContactNubmer(String contactNumber);
+
+	boolean updateEmailAlreadyExist(String email, Long id);
 
 }
