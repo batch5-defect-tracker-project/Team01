@@ -6,13 +6,13 @@ import javax.validation.constraints.NotNull;
 
 public class ModuleDto {
 	private Long id;
-	
-    @NotNull(message = "{moduleDto.projectId.null}")
+
+	@NotNull(message = "{moduleDto.projectId.null}")
 	private Long projectId;
 	@NotNull(message = "{moduleDto.moduleName.null}")
 	@NotEmpty(message = "{moduleDto.moduleName.empty}")
 	@NotBlank(message = "{moduleDto.moduleName.blank}")
-	
+
 	private String name;
 
 	public Long getId() {

@@ -25,7 +25,7 @@ public class ModuleServiceImpl implements ModuleService {
 		return moduleRepository.existsByName(name);
 	}
 
-  @Override
+	@Override
 	public List<Module> getAllModule() {
 
 		return moduleRepository.findAll();
@@ -46,28 +46,27 @@ public class ModuleServiceImpl implements ModuleService {
 	@Override
 
 	public Object getModuleById(Long id) {
-	return moduleRepository.findById(id).get() ;
+		return moduleRepository.findById(id).get();
 	}
-  
+
 	@Override
-	public boolean getModuleByProjectIdAndName(Long projectId, String name) {	
-		return moduleRepository.existsByProjectIdAndName(projectId,name);
-  
+	public boolean getModuleByProjectIdAndName(Long projectId, String name) {
+		return moduleRepository.existsByProjectIdAndName(projectId, name);
+
 	}
 
 	@Override
 
 	public Object findById(Long id) {
-		
+
 		return moduleRepository.findById(id).get().getName();
 	}
 
 	@Override
 	public boolean existsModuleById(Long id) {
-		
+
 		return moduleRepository.existsById(id);
 	}
-
 
 	public boolean existsByModuleId(Long moduleId) {
 		return moduleRepository.existsById(moduleId);
@@ -81,13 +80,12 @@ public class ModuleServiceImpl implements ModuleService {
 	@Override
 	public void updateModule(Module module) {
 		moduleRepository.save(module);
-		
+
 	}
 
 	@Override
 	public boolean exitsModuleById(Long id) {
-		// TODO Auto-generated method stub
 		return moduleRepository.existsById(id);
 	}
-	
+
 }

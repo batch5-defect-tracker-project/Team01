@@ -50,12 +50,11 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.designation.AlreadyExists}")
 	private String desigNameAlreadyExists;
 
-
 	@Value("${validation.designation.existsById}")
-  private String desigExistsById;
+	private String desigExistsById;
 
 	@Value("${validation.employee.object.fields.NullOrEmpty}")
-	private String empFieldsNullOrEmpty;	
+	private String empFieldsNullOrEmpty;
 
 	@Value("${validation.id.NotFound}")
 	private String projectIdNotFound;
@@ -63,7 +62,7 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.Name.UseAnotherProject}")
 	private String getProjectNameAlreadyUseByAnotherProject;
 
- 	@Value("${validation.project.id.NotAvailable}")
+	@Value("${validation.project.id.NotAvailable}")
 	private String projectIdNotAvailable;
 
 	// Designation
@@ -123,10 +122,12 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.projectAllocation.AlreadyExistsId}")
 	private String projectAllocationById;
 
- 	// Defect
+	@Value("${validation.projectAllocation.moduleIdExistsBySubModuleId}")
+	private String moduleIdExistsBySubModuleId;
+
+	// Defect
 	@Value("${validation.defect.existsById}")
 	private String existsDefectById;
-
 
 	// Defect
 	@Value("${validation.defect.AlreadyExists}")
@@ -143,17 +144,17 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.defect.existsById}")
 	private String existsById;
-	
+
 	@Value("${validation.project.existsById}")
 	private String projectExistsById;
-	
+
 	@Value("${validation.defect.existsById}")
 	private String assignedByExistsById;
-	
+
 	@Value("${validation.employee.existsById}")
 	private String assignedToExistsById;
 
-  // Type
+	// Type
 	@Value("${validation.type.AlreadyExists}")
 	private String nameAlreadyExists;
 
@@ -528,7 +529,12 @@ public class ValidationFailureStatusCodes {
 		this.typeIdNotExists = typeIdNotExists;
 	}
 
+	public String getModuleIdExistsBySubModuleId() {
+		return moduleIdExistsBySubModuleId;
+	}
 
-
+	public void setModuleIdExistsBySubModuleId(String moduleIdExistsBySubModuleId) {
+		this.moduleIdExistsBySubModuleId = moduleIdExistsBySubModuleId;
+	}
 
 }
