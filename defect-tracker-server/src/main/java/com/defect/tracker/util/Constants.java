@@ -35,7 +35,8 @@ public class Constants {
 	// Sub Module
 	public static final String SUB_MODULE_UPDATE_SUCCESS = "Sub Module Updated Successfully";
 	public static final String SUB_MODULE_DELETED_SUCCESS = "Sub Module Deleted Successfully";
-	public static String SUB_MODULE_ADDED_SUCCESS = "Sub Module Added Successfully";
+	public static final String SUB_MODULE_ADDED_SUCCESS = "Sub Module Added Successfully";
+	
 
 	// Defect
 	public static final String DEFECT_ADDED_SUCCESS = "Defect Added Successfully";

@@ -1,19 +1,13 @@
 package com.defect.tracker.data.entities;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "defect")
@@ -29,29 +23,28 @@ public class Defect {
 	private String comments;
 	private String file;
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "defect_type", joinColumns = { @JoinColumn(name = "defect_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "type_id") })
-	private List<Type> type;
-
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "type_id", nullable = false)
+	private Type type;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "project_id", nullable = false)
-	@JsonIgnoreProperties(value = { "defect", "hibernateLazyInitializer" })
 	private Project project;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "module_id", nullable = false)
-	@JsonIgnoreProperties(value = { "defect", "hibernateLazyInitializer" })
 	private Module module;
-
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "subModule_id", nullable = false)
+	private SubModule subModule;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "assignedBy", nullable = false)
-	@JsonIgnoreProperties(value = { "defect", "hibernateLazyInitializer" })
 	private Employee assignedBy;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "assignedTo", nullable = false)
-	@JsonIgnoreProperties(value = { "defect", "hibernateLazyInitializer" })
 	private Employee assignedTo;
 
 	public Long getId() {
@@ -118,11 +111,11 @@ public class Defect {
 		this.file = file;
 	}
 
-	public List<Type> getType() {
+	public Type getType() {
 		return type;
 	}
 
-	public void setType(List<Type> type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 
@@ -140,6 +133,14 @@ public class Defect {
 
 	public void setModule(Module module) {
 		this.module = module;
+	}
+
+	public SubModule getSubModule() {
+		return subModule;
+	}
+
+	public void setSubModule(SubModule subModule) {
+		this.subModule = subModule;
 	}
 
 	public Employee getAssignedBy() {

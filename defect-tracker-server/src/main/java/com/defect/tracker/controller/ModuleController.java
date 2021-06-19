@@ -74,9 +74,6 @@ public class ModuleController {
 		}
 
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
-
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
-
 				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
@@ -100,20 +97,13 @@ public class ModuleController {
 	// ------------------------- Get By Id -API ------------------------- //
 	@GetMapping(value = EndpointURI.MODULE_BY_ID)
 	public ResponseEntity<Object> findModuleById(@PathVariable Long id) {
-		if (moduleService.exitsModuleById(id)) {
 			if (moduleService.exitsModuleById(id)) {
 				return new ResponseEntity<Object>(mapper.map(moduleService.getModuleById(id), ModuleDto.class),
 						HttpStatus.OK);
 			}
 
-	@GetMapping(value = EndpointURI.MODULE_BY_ID)
-	public ResponseEntity<Object> findModuleById(@PathVariable Long id) {
-		if (moduleService.existsById(id)) {
-			return new ResponseEntity<Object>(mapper.map(moduleService.getModuleById(id), ModuleDto.class),
-					HttpStatus.OK);
-
-		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getModuleById()), HttpStatus.BAD_REQUEST);
 	}
-}
+	}
+

@@ -66,10 +66,11 @@ public class ProjectAllocationController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_EXISTS,
 					validationFailureStatusCodes.getProjectAllocationExistsById()), HttpStatus.BAD_REQUEST);
 		}
-		if(!subModuleService.existsByIdAndModuleId(projectAllocationDto.getSubModuleId(),projectAllocationDto.getModuleId())) {
+		if(!subModuleService.existsByIdAndModuleId(projectAllocationDto.getSubModuleId(),projectAllocationDto.getModuleId()) && projectAllocationDto.getId()!=null) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS_BY_MODULE_ID, 
 					validationFailureStatusCodes.getModuleIdExistsBySubModuleId()),HttpStatus.BAD_REQUEST);
 		}
+
 		ProjectAllocation projectAllocation = mapper.map(projectAllocationDto, ProjectAllocation.class);
 		projectAllocationService.addProjectAllocation(projectAllocation);
 		return new ResponseEntity<Object>(Constants.PROJECT_ALLOCATION_ADDED_SUCCESS, HttpStatus.OK);
@@ -116,7 +117,7 @@ public class ProjectAllocationController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_EXISTS,
 					validationFailureStatusCodes.getProjectAllocationExistsById()), HttpStatus.BAD_REQUEST);
 		}
-		if(!subModuleService.existsByIdAndModuleId(projectAllocationDto.getSubModuleId(),projectAllocationDto.getModuleId())) {
+		if(!subModuleService.existsByIdAndModuleId(projectAllocationDto.getSubModuleId(),projectAllocationDto.getModuleId()) && projectAllocationDto.getId()!=null) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS_BY_MODULE_ID, 
 					validationFailureStatusCodes.getModuleIdExistsBySubModuleId()),HttpStatus.BAD_REQUEST);
 		}

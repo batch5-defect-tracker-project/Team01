@@ -82,8 +82,9 @@ public class EmployeeController {
 
 		if (!designationService.designationExistsById(employeeDto.getDesignationId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_FOUND,
-					validationFailureStatusCode.getEmpDesignationNotFound()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCode.getDesignationNotFound()), HttpStatus.BAD_REQUEST);
 		}
+
 		if (employeeService.isValidContactNubmer(employeeDto.getContactNumber())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.CONTACT_NUMBER_NOT_VALID,
 					validationFailureStatusCode.getEmpContactNumberNotValid()), HttpStatus.BAD_REQUEST);
@@ -143,8 +144,9 @@ public class EmployeeController {
 
 		if (!designationService.designationExistsById(employeeDto.getDesignationId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_FOUND,
-					validationFailureStatusCode.getEmpDesignationNotFound()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCode.getDesignationNotFound()), HttpStatus.BAD_REQUEST);
 		}
+
 		if (!employeeService.isValidContactNubmer(employeeDto.getContactNumber())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.CONTACT_NUMBER_NOT_VALID,
 					validationFailureStatusCode.getEmpContactNumberNotValid()), HttpStatus.BAD_REQUEST);
