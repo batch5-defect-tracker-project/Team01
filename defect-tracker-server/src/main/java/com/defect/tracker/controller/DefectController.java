@@ -61,7 +61,7 @@ public class DefectController {
 		return new ResponseEntity<Object>(defectService.getDefectCount(projectName), HttpStatus.OK);
 	}
 
-	@PostMapping(value = EndpointURI.DEFECT)
+	@PostMapping(value = EndpointURI.DEFECT_ADD)
 	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) {
 		if (!defectService.existsDefectById(defectDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_ID_NOT_FOUND,
