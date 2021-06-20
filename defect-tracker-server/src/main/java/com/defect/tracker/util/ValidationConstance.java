@@ -9,8 +9,11 @@ public class ValidationConstance {
 	public static final String PROJECTNAME_NOTFOUND = "projectName not found";
 	public static final String DEFECT_STATUS_NULL = "defect status null";
 	
+	public static final String PROJECT_NOT_EXISTS = "Project Not Exists";
+	public static final String PROJECT_ID_NOT_EXISTS = "Project Id Not Exists";
 
 	public static final String TYPE_EXISTS = "Type Already Exists";
+	public static final String TYPE_ID_NOT_EXISTS = "Type Id Not Exists";
 
 	public static final String DESIGNATION_EXISTS = "Designation Already Exists";
 	public static final String DESIGNATION_DELETE_EXISTS_BY_ID = "Designation Not Exists";
@@ -28,6 +31,8 @@ public class ValidationConstance {
 	public static final String DEFECT_STATUS_CHANGE_NEW = "Defect Status change New";
 	
 	
+	public static final String ASSIGNED_BY_ID_NOT_EXISTS = "Assigned By Id Not Exists";
+	public static final String ASSIGNED_TO_ID_NOT_EXISTS = "Assigned To Id Not Exists";
 
 	// Module
 	public static final String MODULE_EXISTS = "Module  Already Exists";
@@ -35,6 +40,14 @@ public class ValidationConstance {
 	public static final String MODULE_NOT_EXISTS_BY_ID = " Module Id is not Exists";
 	public static final String SUB_MODULE_EXISTS = "SubModule Alredy Exists";
 	public static final String SUB_MODULE_NOT_EXISTS_BY_ID = "Sub Module Id is not Exists";
+	public static final String MODULE_NOT_EXISTS = "Module Not Exists";
+
+	// SubModule
+	public static final String SUB_MODULE_ID_NOT_EXIT = "SubModule Id is not Exists";
+	public static final String SUB_MODULE_DELETE_EXISTS_BY_ID = "SubModule Not Exists";
+	public static final String SUB_MODULE_EXISTS_BY_MODULE_ID = "SubModule Id not Exists By Module Id";
+	
+
 	// Project Allocation
 	public static final String PROJECT_ALLOCATION_EXISTS = "Project Allocation Already Exists";
 	public static final String PROJECT_ALLOCATION_EXISTS_BY_ID = "Project Allocation Id Already Exists";
@@ -59,7 +72,6 @@ public class ValidationConstance {
 	public static final String DESIGNATION_NOT_FOUND = "Designation Not Found";
 
 	// SubModule
-	public static final String SUB_MODULE_DELETE_EXISTS_BY_ID = "SubModule Not Exists";
 
 
 	private ValidationConstance() {

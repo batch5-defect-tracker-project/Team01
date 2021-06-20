@@ -28,5 +28,11 @@ public interface ModuleService {
 	public Object getModuleName(Long id);
 	
 	public Object getModuleId(Long id);
+	
+	public Object findById(Long id);
+	
+	public boolean existsModuleById(Long id);
+	
+	public boolean getModuleByProjectIdAndName(Long projectId, String name);
 
 }
