@@ -1,5 +1,7 @@
 package com.defect.tracker.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,28 @@ public class TypeServiceImpl implements TypeService {
 		typeRepository.save(type);
 		
 	}
+	
+	@Override
+	public List<Type> getType() {
+		return typeRepository.findAll();
+	}
+
+	@Override
+	public boolean typeExistsById(Long id) {
+		return typeRepository.existsById(id);
+	}
+
+	@Override
+	public void typeDeleteById(Long id) {
+		typeRepository.deleteById(id);
+		
+	}
+
+	@Override
+	public Object getTypeById(Long id) {
+		return typeRepository.findById(id).get();
+	}
+	
 
 
 }

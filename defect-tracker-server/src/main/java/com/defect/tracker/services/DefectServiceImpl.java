@@ -18,6 +18,7 @@ import com.defect.tracker.data.repositories.DefectRepository;
 @Service
 public class DefectServiceImpl implements DefectService {
 
+	
 	@Autowired
 	private DefectRepository defectRepository;
 

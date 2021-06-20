@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -31,33 +29,38 @@ public class Defect {
 	private String status;
 	private String comments;
 	private String file;
-	
-	@ManyToMany(fetch = FetchType.LAZY)
-	 @JoinTable(name = "defect_type",
-	    joinColumns= {@JoinColumn(name="defect_id")},
-	    inverseJoinColumns = {@JoinColumn(name = "type_id")})
-	private List<Type> type;
-	
-	@ManyToMany(fetch = FetchType.LAZY)
-	 @JoinTable(name = "defect_project",
-	    joinColumns= {@JoinColumn(name="defect_id")},
-	    inverseJoinColumns = {@JoinColumn(name = "project_id")})
-	private List<Project> project;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "type_id", nullable = false)
+	private Type type;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name= "moduleId", nullable = false)
-	@JsonIgnoreProperties(value = {"defect", "hibernateLazyInitializer"})
+	@JoinColumn(name = "project_id", nullable = false)
+	private Project project;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "module_id", nullable = false)
 	private Module module;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name= "assignedTo", nullable = false)
-	@JsonIgnoreProperties(value = {"defect", "hibernateLazyInitializer"})
+	@JoinColumn(name = "subModule_id", nullable = false)
+	private SubModule subModule;
+	
+	public Project getProject() {
+		return project;
+	}
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "assignedBy", nullable = false)
+	private Employee assignedBy;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "assignedTo", nullable = false)
 	private Employee assignedTo;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name= "assignedBy", nullable = false)
-	@JsonIgnoreProperties(value = {"defect", "hibernateLazyInitializer"})
-	private Employee assignedBy;
 	
 	public Long getId() {
 		return id;
@@ -91,18 +94,6 @@ public class Defect {
 		this.stepsToReCreate = stepsToReCreate;
 	}
 
-	public Employee getAssignedTo() {
-		return assignedTo;
-	}
-	public void setAssignedTo(Employee assignedTo) {
-		this.assignedTo = assignedTo;
-	}
-	public Employee getAssignedBy() {
-		return assignedBy;
-	}
-	public void setAssignedBy(Employee assignedBy) {
-		this.assignedBy = assignedBy;
-	}
 	public String getComments() {
 		return comments;
 	}
@@ -122,23 +113,44 @@ public class Defect {
 	public void setFile(String file) {
 		this.file = file;
 	}
-	public List<Type> getType() {
+
+	public Type getType() {
 		return type;
 	}
-	public void setType(List<Type> type) {
+
+	public void setType(Type type) {
 		this.type = type;
 	}
-	public List<Project> getProject() {
-		return project;
-	}
-	public void setProject(List<Project> project) {
-		this.project = project;
-	}
+	
 	public Module getModule() {
 		return module;
 	}
 	public void setModule(Module module) {
 		this.module = module;
+	}
+
+	public SubModule getSubModule() {
+		return subModule;
+	}
+
+	public void setSubModule(SubModule subModule) {
+		this.subModule = subModule;
+	}
+
+	public Employee getAssignedBy() {
+		return assignedBy;
+	}
+
+	public void setAssignedBy(Employee assignedBy) {
+		this.assignedBy = assignedBy;
+	}
+
+	public Employee getAssignedTo() {
+		return assignedTo;
+	}
+
+	public void setAssignedTo(Employee assignedTo) {
+		this.assignedTo = assignedTo;
 	}
 
 }

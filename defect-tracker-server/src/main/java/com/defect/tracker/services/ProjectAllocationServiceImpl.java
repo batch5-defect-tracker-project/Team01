@@ -44,4 +44,10 @@ public class ProjectAllocationServiceImpl implements ProjectAllocationService {
 		return projectAllocationRepository.findById(id);
 	}
 
+	@Override
+	public boolean existsByProjectIdAndEmployeeIdAndModuleIdAndSubModuleId(Long projectId, Long employeeId,
+			Long moduleId) {
+		return false;
+	}
+
 }

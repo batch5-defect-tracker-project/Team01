@@ -1,12 +1,12 @@
 package com.defect.tracker.controller;
 
 import java.util.List;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.defect.tracker.data.dto.DefectDto;
-import com.defect.tracker.data.dto.DefectStatusCountDto;
 import com.defect.tracker.data.entities.Defect;
+import com.defect.tracker.data.entities.Employee;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.DefectService;
@@ -25,6 +24,8 @@ import com.defect.tracker.services.EmailService;
 import com.defect.tracker.services.EmployeeService;
 import com.defect.tracker.services.ModuleService;
 import com.defect.tracker.services.ProjectService;
+import com.defect.tracker.services.SubModuleService;
+import com.defect.tracker.services.TypeService;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
 import com.defect.tracker.util.ValidationConstance;
@@ -50,7 +51,16 @@ public class DefectController {
 	EmailService emailService;
 
 	@Autowired
+	SubModuleService subModuleService;
+
+	@Autowired
 	ProjectService projectService;
+
+	@Autowired
+	TypeService typeService;
+	
+	@Autowired
+	JavaMailSender javaMailSender;
 
 	@GetMapping(value = EndpointURI.DEFECT_STATUS_COUNT_BY_PROJECT_NAME)
 	public ResponseEntity<Object> getDefect(@PathVariable String projectName) {
@@ -60,13 +70,9 @@ public class DefectController {
 		}
 		return new ResponseEntity<Object>(defectService.getDefectCount(projectName), HttpStatus.OK);
 	}
-
+	
 	@PostMapping(value = EndpointURI.DEFECT_ADD)
-	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) {
-		if (!defectService.existsDefectById(defectDto.getId())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_ID_NOT_FOUND,
-					validationFailureStatusCodes.getDefectIdNotFound()), HttpStatus.BAD_REQUEST);
-		}
+	public ResponseEntity<Object> createDefect(@Valid @RequestBody DefectDto defectDto) {
 		if (!defectService.existsAssignedTo(defectDto.getAssignedToId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.ASSIGNEDTO_ID_NOT_FOUND,
 					validationFailureStatusCodes.getAssignedToIdNotFound()), HttpStatus.BAD_REQUEST);
@@ -89,6 +95,45 @@ public class DefectController {
 		return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
 	}
 
+	@PostMapping(value = EndpointURI.DEFECT)
+	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) {
+		if (!defectService.existsAssignedTo(defectDto.getAssignedToId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.ASSIGNEDTO_ID_NOT_FOUND,
+					validationFailureStatusCodes.getAssignedToIdNotFound()), HttpStatus.BAD_REQUEST);
+		}if (!moduleService.existsModuleById(defectDto.getModuleId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
+					validationFailureStatusCodes.getDefectModuleById()), HttpStatus.BAD_REQUEST);
+		}
+		if (!subModuleService.exitsSubModuleById(defectDto.getSubModuleId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_ID_NOT_EXIT,
+					validationFailureStatusCodes.getDefectSubModuleById()), HttpStatus.BAD_REQUEST);
+		}
+		if (!projectService.projectIdExits(defectDto.getProjectId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ID_NOT_EXISTS,
+					validationFailureStatusCodes.getDefectProjectById()), HttpStatus.BAD_REQUEST);
+		}
+		if (!typeService.typeExistsById(defectDto.getTypeId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_ID_NOT_EXISTS,
+					validationFailureStatusCodes.getDefectTypeById()), HttpStatus.BAD_REQUEST);
+		}
+		if(!defectDto.getStatus().equalsIgnoreCase("New")) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.ONLY_ALLOWED_NEW_STATUS,
+					validationFailureStatusCodes.getStatusExist()), HttpStatus.BAD_REQUEST);
+		}
+		Defect defect = mapper.map(defectDto, Defect.class);
+		defectService.createDefect(defect);
+		Employee assignedTo = employeeService.findById(defectDto.getAssignedToId());
+		SimpleMailMessage simpleMail = new SimpleMailMessage();
+		simpleMail.setFrom("meera10testmail@gmail.com");
+		simpleMail.setTo(assignedTo.getEmail());
+		simpleMail.setSubject("Defect" + " " + defectDto.getStatus() + " " + "Added");
+		simpleMail.setText("ProjectName:" + projectService.getProjectById(defectDto.getProjectId()) + "\n" + "ModuleName:"
+				+ moduleService.findById(defectDto.getModuleId()));
+		javaMailSender.send(simpleMail);
+		return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
+	
+}
+
 	@GetMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> getAllDefect() {
 		List<DefectDto> defectList = mapper.map(defectService.getAllDefect(), DefectDto.class);
@@ -96,8 +141,71 @@ public class DefectController {
 
 	}
 
+
+
+	@PutMapping(value = EndpointURI.DEFECT)
+	public ResponseEntity<Object> editDefectById(@RequestBody DefectDto defectDto) {
+		if (!defectService.existsDefectById(defectDto.getId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_ID_NOT_FOUND,
+					validationFailureStatusCodes.getDefectIdNotFound()), HttpStatus.BAD_REQUEST);
+		}
+		if (!defectService.existsAssignedTo(defectDto.getAssignedToId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.ASSIGNEDTO_ID_NOT_FOUND,
+					validationFailureStatusCodes.getAssignedToIdNotFound()), HttpStatus.BAD_REQUEST);
+		}
+		if (!moduleService.existsModuleById(defectDto.getModuleId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
+					validationFailureStatusCodes.getDefectModuleById()), HttpStatus.BAD_REQUEST);
+		}
+		if (!subModuleService.exitsSubModuleById(defectDto.getSubModuleId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_ID_NOT_EXIT,
+					validationFailureStatusCodes.getDefectSubModuleById()), HttpStatus.BAD_REQUEST);
+		}
+		if (!projectService.projectIdExits(defectDto.getProjectId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ID_NOT_EXISTS,
+					validationFailureStatusCodes.getDefectProjectById()), HttpStatus.BAD_REQUEST);
+		}
+		if (!typeService.typeExistsById(defectDto.getTypeId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_ID_NOT_EXISTS,
+					validationFailureStatusCodes.getDefectTypeById()), HttpStatus.BAD_REQUEST);
+		}
+		String status = (String) defectService.getDefectStatusById(defectDto.getId());
+		if (!status.equals(defectDto.getStatus())) {
+			defectService.createDefect(mapper.map(defectDto, Defect.class));
+			Employee assignedTo = employeeService.findById(defectDto.getAssignedToId());
+			if ("Closed".equalsIgnoreCase(defectDto.getStatus())
+					|| "Reopen".equalsIgnoreCase(defectDto.getStatus())) {
+				SimpleMailMessage simpleMail = new SimpleMailMessage();
+				simpleMail.setFrom("meera10testmail@gmail.com");
+				simpleMail.setTo(assignedTo.getEmail());
+				simpleMail.setSubject("Defect" + " " + defectDto.getStatus() + "ed");
+				simpleMail.setText("ProjectName:" + projectService.getProjectById(defectDto.getProjectId()) + "\n"
+						+ "ModuleName:" + moduleService.findById(defectDto.getModuleId()) + "\n" + "Status:"
+						+ defectDto.getStatus());
+				javaMailSender.send(simpleMail);
+			}
+			Employee assignedBy = employeeService.findById(defectDto.getAssignedById());
+			if ("Open".equalsIgnoreCase(defectDto.getStatus()) || "Fixed".equalsIgnoreCase(defectDto.getStatus())
+					|| "Reject".equalsIgnoreCase(defectDto.getStatus())) {
+				SimpleMailMessage simpleMail = new SimpleMailMessage();
+				simpleMail.setFrom("meera10testmail@gmail.com");
+				simpleMail.setTo(assignedBy.getEmail());
+				simpleMail.setSubject("Defect" + " " + defectDto.getStatus() + "ed");
+				simpleMail.setText("ProjectName:" + projectService.getProjectById(defectDto.getProjectId()) + "\n"
+						+ "ModuleName:" + moduleService.findById(defectDto.getModuleId()) + "\n" + "Status:"
+						+ defectDto.getStatus());
+				javaMailSender.send(simpleMail);
+			}
+			return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS, HttpStatus.OK);
+		}
+		defectService.createDefect(mapper.map(defectDto, Defect.class));
+		return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS, HttpStatus.OK);
+
+	}
+
+
 	@PutMapping(value = EndpointURI.DEFECT_UPDATE)
-	public ResponseEntity<Object> updateDefect(@RequestBody DefectDto defectDto) {
+	public ResponseEntity<Object> updateDefectById(@RequestBody DefectDto defectDto) {
 		if (!defectService.existsDefectById(defectDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_ID_NOT_FOUND,
 					validationFailureStatusCodes.getDefectIdNotFound()), HttpStatus.BAD_REQUEST);
@@ -123,11 +231,12 @@ public class DefectController {
 		return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS, HttpStatus.OK);
 
 	}
-
+	
+	
 	@DeleteMapping(value = EndpointURI.DEFECT_BY_ID)
 	public ResponseEntity<Object> deleteDefectById(@PathVariable Long id) {
 		if (!defectService.existsDefectById(id)) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_DELETE_EXISTS_BY_ID,
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS_BY_ID,
 					validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
 
 		}
@@ -138,12 +247,12 @@ public class DefectController {
 
 //GetById
 	@GetMapping(value = EndpointURI.DEFECT_BY_ID)
-	public ResponseEntity<Object> findDefectById(@PathVariable Long id) {
+	public ResponseEntity<Object> findDefectByID(@PathVariable Long id) {
 		if (defectService.existsDefectById(id)) {
 			return new ResponseEntity<Object>(defectService.getDefectById(id), HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS_BY_ID,
-				validationFailureStatusCodes.getDefectById()), HttpStatus.BAD_REQUEST);
+				validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
 }

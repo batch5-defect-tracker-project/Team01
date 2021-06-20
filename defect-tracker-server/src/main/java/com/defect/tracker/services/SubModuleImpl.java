@@ -57,11 +57,14 @@ public class SubModuleImpl implements SubModuleService {
 	}
 
 
-
-
 	public List<SubModule> getAllSubModule() {
 		return subModuleRepository.findAll();
 
+	}
+
+	@Override
+	public boolean existsByIdAndModuleId(Long moduleId) {
+		return false;
 	}
 
 }

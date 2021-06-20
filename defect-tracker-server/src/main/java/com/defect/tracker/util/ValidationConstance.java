@@ -31,6 +31,8 @@ public class ValidationConstance {
 	public static final String DEFECT_STATUS_CHANGE_NEW = "Defect Status change New";
 	
 	
+	public static final String ONLY_ALLOWED_NEW_STATUS="Only Allowed New Status";
+	public static final String NOT_ALLOWED_NEW_STATUS="Not Allowed New Status";
 	public static final String ASSIGNED_BY_ID_NOT_EXISTS = "Assigned By Id Not Exists";
 	public static final String ASSIGNED_TO_ID_NOT_EXISTS = "Assigned To Id Not Exists";
 
@@ -43,7 +45,8 @@ public class ValidationConstance {
 	public static final String MODULE_NOT_EXISTS = "Module Not Exists";
 
 	// SubModule
-	public static final String SUB_MODULE_ID_NOT_EXIT = "SubModule Id is not Exists";
+	public static final String MODULE_ID_NOT_EXISTS ="Project Id Not Exists";
+    public static final String SUB_MODULE_ID_NOT_EXIT =" SubModule Id is not Exists";
 	public static final String SUB_MODULE_DELETE_EXISTS_BY_ID = "SubModule Not Exists";
 	public static final String SUB_MODULE_EXISTS_BY_MODULE_ID = "SubModule Id not Exists By Module Id";
 	

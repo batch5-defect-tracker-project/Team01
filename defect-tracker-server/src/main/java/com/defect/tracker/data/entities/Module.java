@@ -1,14 +1,13 @@
 package com.defect.tracker.data.entities;
 
 import javax.persistence.Entity;
+
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@JsonIgnoreProperties("hibernateLazyInitializer")
 @Entity
 @Table(name = "module")
 
