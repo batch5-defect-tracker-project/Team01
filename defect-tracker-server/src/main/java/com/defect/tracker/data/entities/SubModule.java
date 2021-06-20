@@ -12,6 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "sub_module")
 public class SubModule {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -20,6 +21,14 @@ public class SubModule {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "module_id", nullable = false)
 	private Module module;
+
+	SubModule() {
+
+	}
+
+	SubModule(String name, Module module) {
+
+	}
 
 	public Module getModule() {
 		return module;

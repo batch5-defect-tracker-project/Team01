@@ -41,13 +41,13 @@ public interface EmployeeService {
 
 	List<EmployeeDto> findAll();
 
-	boolean employeeObjectValidation(EmployeeDto employeeDto);
-
-	boolean isValidEmail(String email);
-
 	boolean logIn(@Valid LogInDto logInDto);
-
-	boolean isValidContactNubmer(String contactNumber);
+	
+	public boolean isValidEmail(String email);
+	
+	public boolean employeeObjectValidation(EmployeeDto employeeDto);
+	
+	public boolean isValidContactNubmer(String contactNumber);
 
 	boolean updateEmailAlreadyExist(String email, Long id);
 

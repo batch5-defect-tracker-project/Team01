@@ -7,7 +7,4 @@ import com.defect.tracker.data.entities.ProjectAllocation;
 @Repository
 public interface ProjectAllocationRepository extends JpaRepository<ProjectAllocation, Long> {
 
-	boolean existsByProjectIdAndEmployeeIdAndModuleIdAndSubModuleId(Long projectId, Long employeeId, Long moduleId,
-			Long subModuleId);
-
 }

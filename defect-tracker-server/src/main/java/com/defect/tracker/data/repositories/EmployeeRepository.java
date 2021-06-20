@@ -1,7 +1,5 @@
 package com.defect.tracker.data.repositories;
 
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +10,9 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
 	boolean existsByEmail(String email);
 
-	Optional<Employee> findByEmail(String email);
+	Employee findByEmail(String email);
+
+	Employee findByName(String name);
 
 	boolean existsByEmailAndId(String email, Long id);
 }

@@ -3,6 +3,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+
 public class DefectDto {
 
 	private Long id;
@@ -63,39 +64,32 @@ public class DefectDto {
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
 	public String getSeverity() {
 		return severity;
 	}
-
 	public void setSeverity(String severity) {
 		this.severity = severity;
 	}
-
 	public String getPriority() {
 		return priority;
 	}
-
 	public void setPriority(String priority) {
 		this.priority = priority;
 	}
-
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	
 	public String getStepsToReCreate() {
 		return stepsToReCreate;
 	}
-
 	public void setStepsToReCreate(String stepsToReCreate) {
 		this.stepsToReCreate = stepsToReCreate;
 	}
@@ -104,22 +98,15 @@ public class DefectDto {
 		return status;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
 	public String getComments() {
 		return comments;
 	}
-
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-
 	public String getFile() {
 		return File;
 	}
-
 	public void setFile(String file) {
 		File = file;
 	}
@@ -159,9 +146,8 @@ public class DefectDto {
 	public Long getProjectId() {
 		return projectId;
 	}
-
-	public void setProjectId(Long projectId) {
-		this.projectId = projectId;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Long getTypeId() {
@@ -174,3 +160,4 @@ public class DefectDto {
 
 
 }
+

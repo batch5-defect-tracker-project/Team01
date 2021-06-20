@@ -7,14 +7,12 @@ import com.defect.tracker.data.entities.Designation;
 import com.defect.tracker.data.repositories.DesignationRepository;
 
 @Service
-
-public class DesignationServiceImpl implements DesignationService {
-	@Autowired
-	private DesignationRepository designationRepository;
-
+public class DesignationServiceImpl implements DesignationService{
+	 @Autowired
+		private  DesignationRepository designationRepository ;
 	@Override
 	public boolean isDesignationNameAlreadyExist(String name) {
-		return designationRepository.existsByName(name);
+        return designationRepository.existsByName(name);
 	}
 
 	@Override
@@ -29,7 +27,7 @@ public class DesignationServiceImpl implements DesignationService {
 
 	@Override
 	public boolean designationExistsById(Long id) {
-		return designationRepository.existsById(id);
+	    return designationRepository.existsById(id);
 	}
 
 	@Override
@@ -47,3 +45,9 @@ public class DesignationServiceImpl implements DesignationService {
 		designationRepository.save(designation);
 	}
 }
+
+	
+
+	
+
+	

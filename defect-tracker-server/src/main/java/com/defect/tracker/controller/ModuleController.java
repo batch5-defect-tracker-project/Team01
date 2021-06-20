@@ -7,7 +7,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,36 +30,37 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 public class ModuleController {
 	@Autowired
 	ModuleService moduleService;
-
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
-
+	
+	@Autowired
+	ProjectService projectService;
 	@Autowired
 	private Mapper mapper;
 
-	@Autowired
-	ProjectService projectService;
-
+	// ------------------------------ Add -API ------------------------------ //
 	@PostMapping(value = EndpointURI.MODULE)
-	public ResponseEntity<Object> addModule(@Valid @RequestBody ModuleDto moduleDto) {
-		if (!projectService.exsistByProjectId(moduleDto.getProjectId())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ID_NOT_EXISTS,
-					validationFailureStatusCodes.getProjectByIdAlreadyExist()), HttpStatus.BAD_REQUEST);
+	public ResponseEntity<Object> addModule(@RequestBody ModuleDto moduleDto) {
+		if (moduleService.moduleExits(moduleDto.getName())) {
+			List<Long> idProject = moduleService.getProjectId(moduleDto.getName());
+			if (idProject.contains(moduleDto.getProjectId())) {
+				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
+						validationFailureStatusCodes.getModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+			}
+			moduleService.createModule(mapper.map(moduleDto, Module.class));
+			return new ResponseEntity<Object>(Constants.MODULE_ADDED_SUCCESS, HttpStatus.OK);
 		}
-		if (moduleService.getModuleByProjectIdAndName(moduleDto.getProjectId(), moduleDto.getName())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
-					validationFailureStatusCodes.getModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
-		}
-		Module module = mapper.map(moduleDto, Module.class);
-		moduleService.createModule(module);
+		moduleService.createModule(mapper.map(moduleDto, Module.class));
 		return new ResponseEntity<Object>(Constants.MODULE_ADDED_SUCCESS, HttpStatus.OK);
 	}
+	
 
+
+	// ------------------------- Update By Id -API ------------------------- //
 	@PutMapping(value = EndpointURI.MODULE)
-
 	public ResponseEntity<Object> updateModule(@Valid @RequestBody ModuleDto moduleDto) {
-		if (moduleService.exitsModuleById(moduleDto.getId())) {
-			if (projectService.exsistByProjectId(moduleDto.getProjectId())) {
+		if (moduleService.existsModuleById(moduleDto.getId())) {
+			if (projectService.projectIdExits(moduleDto.getProjectId())) {
 				if (moduleService.isModuleNameAlreadyExist(moduleDto.getName())) {
 					return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
 							validationFailureStatusCodes.getModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
@@ -75,20 +75,24 @@ public class ModuleController {
 
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
-	}
+	
+}
 
+	// ------------------------- Get All -API ------------------------- //
 	@GetMapping(value = EndpointURI.MODULE)
 	public ResponseEntity<Object> getAllModule() {
 		List<ModuleDto> moduleList = mapper.map(moduleService.getAllModule(), ModuleDto.class);
 		return new ResponseEntity<Object>(moduleList, HttpStatus.OK);
 	}
 
+	// ------------------------- Delete By Id -API ------------------------- //
 	@DeleteMapping(value = EndpointURI.MODULE_BY_ID)
 	public ResponseEntity<Object> deleteModule(@PathVariable Long id) {
 		if (!moduleService.existsById(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_DELETE_EXISTS_BY_ID,
 					validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
 		}
+
 		moduleService.deleteById(id);
 		return new ResponseEntity<Object>(Constants.MODULE_DELETED_SUCCESS, HttpStatus.OK);
 	}
@@ -97,7 +101,7 @@ public class ModuleController {
 	// ------------------------- Get By Id -API ------------------------- //
 	@GetMapping(value = EndpointURI.MODULE_BY_ID)
 	public ResponseEntity<Object> findModuleById(@PathVariable Long id) {
-			if (moduleService.exitsModuleById(id)) {
+			if (moduleService.existsById(id)) {
 				return new ResponseEntity<Object>(mapper.map(moduleService.getModuleById(id), ModuleDto.class),
 						HttpStatus.OK);
 			}

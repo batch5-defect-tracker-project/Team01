@@ -1,35 +1,20 @@
 package com.defect.tracker.data.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "projectAllocation")
 public class ProjectAllocation {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "project_id", nullable = false)
-	private Project project;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "module_id", nullable = false)
-	private Module module;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "employee_id", nullable = false)
-	private Employee employee;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "subModule_id", nullable = true)
-	private SubModule subModule;
+	private Long projectId;
+	private Long moduleId;
+	private Long employeeId;
 
 	public Long getId() {
 		return id;
@@ -39,36 +24,28 @@ public class ProjectAllocation {
 		this.id = id;
 	}
 
-	public Project getProject() {
-		return project;
+	public Long getProjectId() {
+		return projectId;
 	}
 
-	public void setProject(Project project) {
-		this.project = project;
+	public void setProjectId(Long projectId) {
+		this.projectId = projectId;
 	}
 
-	public Module getModule() {
-		return module;
+	public Long getModuleId() {
+		return moduleId;
 	}
 
-	public void setModule(Module module) {
-		this.module = module;
+	public void setModuleId(Long moduleId) {
+		this.moduleId = moduleId;
 	}
 
-	public Employee getEmployee() {
-		return employee;
+	public Long getEmployeeId() {
+		return employeeId;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
-	public SubModule getSubModule() {
-		return subModule;
-	}
-
-	public void setSubModule(SubModule subModule) {
-		this.subModule = subModule;
+	public void setEmployeeId(Long employeeId) {
+		this.employeeId = employeeId;
 	}
 
 }
