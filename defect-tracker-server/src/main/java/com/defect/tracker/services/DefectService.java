@@ -25,12 +25,6 @@ public interface DefectService {
 	
 	public Object getDefectStatusById(Long id);
 	
-	public boolean existsAssignedTo(Long id);
-	
-	public boolean existsModuleId(Long id);
-	
-	public boolean existsAssignedBy(Long id);
-	
 	public DefectStatusCountDto getDefectCount(String projectName);
 	
 	public boolean existsstatus(String status);

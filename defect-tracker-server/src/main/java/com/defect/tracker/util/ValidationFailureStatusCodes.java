@@ -117,8 +117,6 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.projectAllocation.AlreadyExistsId}")
 	private String projectAllocationById;
 
-	// Defect
-
 	@Value("${validation.projectName.NotFound}")
 	private String projectNameNotFound;
 
@@ -127,18 +125,6 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.module.existsModuleById}")
 	private String existsModuleById;
-
-	@Value("${validation.defect.defectIdNotFound}")
-	private String defectIdNotFound;
-
-	@Value("${validation.defect.assignedByIdNotFound}")
-	private String assignedByIdNotFound;
-
-	@Value("${validation.defect.moduleIdNotFound}")
-	private String moduleIdNotFound;
-
-	@Value("${validation.defect.assignedToIdNotFound}")
-	private String assignedToIdNotFound;
 
 	@Value("${defect.Status.Change.New}")
 	private String defectStatusChange;
@@ -183,7 +169,8 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.defect.statusExist}")
 	private String statusExist;
-
+    //EndDefect
+	
 	public String getEmpNotActive() {
 		return empNotActive;
 	}
@@ -470,38 +457,6 @@ public class ValidationFailureStatusCodes {
 
 	public void setExistsModuleById(String existsModuleById) {
 		this.existsModuleById = existsModuleById;
-	}
-
-	public String getDefectIdNotFound() {
-		return defectIdNotFound;
-	}
-
-	public void setDefectIdNotFound(String defectIdNotFound) {
-		this.defectIdNotFound = defectIdNotFound;
-	}
-
-	public String getAssignedByIdNotFound() {
-		return assignedByIdNotFound;
-	}
-
-	public void setAssignedByIdNotFound(String assignedByIdNotFound) {
-		this.assignedByIdNotFound = assignedByIdNotFound;
-	}
-
-	public String getModuleIdNotFound() {
-		return moduleIdNotFound;
-	}
-
-	public void setModuleIdNotFound(String moduleIdNotFound) {
-		this.moduleIdNotFound = moduleIdNotFound;
-	}
-
-	public String getAssignedToIdNotFound() {
-		return assignedToIdNotFound;
-	}
-
-	public void setAssignedToIdNotFound(String assignedToIdNotFound) {
-		this.assignedToIdNotFound = assignedToIdNotFound;
 	}
 
 	public String getDefectStatusChange() {

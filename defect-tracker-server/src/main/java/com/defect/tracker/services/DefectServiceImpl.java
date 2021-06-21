@@ -70,22 +70,6 @@ public class DefectServiceImpl implements DefectService {
 	public Object getDefectStatusById(Long id) {
 		return defectRepository.findById(id).get().getStatus();
 	}
-
-	@Override
-	public boolean existsAssignedTo(Long id) {
-		return defectRepository.existsByAssignedToId(id);
-	}
-
-	@Override
-	public boolean existsModuleId(Long id) {
-		return defectRepository.existsByModuleId(id);
-	}
-
-	@Override
-	public boolean existsAssignedBy(Long id) {
-		return defectRepository.existsByAssignedById(id);
-	}
-
 	@Override
 	public DefectStatusCountDto getDefectCount(String projectName) {
 		Project project = projectService.findProjectByName(projectName);
