@@ -14,7 +14,8 @@ public class ValidationConstance {
 
 	public static final String TYPE_EXISTS = "Type Already Exists";
 	public static final String TYPE_ID_NOT_EXISTS = "Type Id Not Exists";
-
+	
+    //Designation
 	public static final String DESIGNATION_EXISTS = "Designation Already Exists";
 	public static final String DESIGNATION_DELETE_EXISTS_BY_ID = "Designation Not Exists";
 	public static final String DESIGNATION_NOT_EXISTS_BY_ID = "Designation Not Exist";

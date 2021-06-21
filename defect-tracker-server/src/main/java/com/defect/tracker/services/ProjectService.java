@@ -26,5 +26,4 @@ public interface ProjectService {
 	
 	public Project findProjectByName(String projectName);
 		
-
 }

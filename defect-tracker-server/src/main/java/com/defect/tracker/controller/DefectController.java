@@ -137,7 +137,7 @@ public class DefectController {
 		simpleMail.setFrom("meera10testmail@gmail.com");
 		simpleMail.setTo(assignedTo.getEmail());
 		simpleMail.setSubject("Defect" + " " + defectDto.getStatus() + " " + "Added");
-		simpleMail.setText("ProjectName:" + projectService.getProjectById(defectDto.getProjectId()) + "\n" + "ModuleName:"
+		simpleMail.setText("ProjectName:" + projectService.getProjectByName(defectDto.getProjectId()) + "\n" + "ModuleName:"
 				+ moduleService.findById(defectDto.getModuleId()));
 		javaMailSender.send(simpleMail);
 		return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
@@ -190,7 +190,7 @@ public class DefectController {
 				simpleMail.setFrom("meera10testmail@gmail.com");
 				simpleMail.setTo(assignedTo.getEmail());
 				simpleMail.setSubject("Defect" + " " + defectDto.getStatus() + "ed");
-				simpleMail.setText("ProjectName:" + projectService.getProjectById(defectDto.getProjectId()) + "\n"
+				simpleMail.setText("ProjectName:" + projectService.getProjectByName(defectDto.getProjectId()) + "\n"
 						+ "ModuleName:" + moduleService.findById(defectDto.getModuleId()) + "\n" + "Status:"
 						+ defectDto.getStatus());
 				javaMailSender.send(simpleMail);
@@ -202,7 +202,7 @@ public class DefectController {
 				simpleMail.setFrom("meera10testmail@gmail.com");
 				simpleMail.setTo(assignedBy.getEmail());
 				simpleMail.setSubject("Defect" + " " + defectDto.getStatus() + "ed");
-				simpleMail.setText("ProjectName:" + projectService.getProjectById(defectDto.getProjectId()) + "\n"
+				simpleMail.setText("ProjectName:" + projectService.getProjectByName(defectDto.getProjectId()) + "\n"
 						+ "ModuleName:" + moduleService.findById(defectDto.getModuleId()) + "\n" + "Status:"
 						+ defectDto.getStatus());
 				javaMailSender.send(simpleMail);

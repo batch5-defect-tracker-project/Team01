@@ -79,12 +79,6 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.designation.AlreadyExistsById}")
 	private String designationExistsById;
 
-	@Value("${validation.designation.designationById}")
-	private String designationById;
-
-	@Value("${validation.designation.AlreadyExists}")
-	private String designationAlreadyExists;
-
 	// Module
 	@Value("${validation.module.AlreadyExists}")
 	private String moduleNameAlreadyExists;
@@ -345,22 +339,6 @@ public class ValidationFailureStatusCodes {
 
 	public void setDesignationExistsById(String designationExistsById) {
 		this.designationExistsById = designationExistsById;
-	}
-
-	public String getDesignationById() {
-		return designationById;
-	}
-
-	public void setDesignationById(String designationById) {
-		this.designationById = designationById;
-	}
-
-	public String getDesignationAlreadyExists() {
-		return designationAlreadyExists;
-	}
-
-	public void setDesignationAlreadyExists(String designationAlreadyExists) {
-		this.designationAlreadyExists = designationAlreadyExists;
 	}
 
 	public String getModuleNameAlreadyExists() {

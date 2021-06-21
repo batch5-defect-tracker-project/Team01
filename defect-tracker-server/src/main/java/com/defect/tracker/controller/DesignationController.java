@@ -67,7 +67,7 @@ public class DesignationController {
 			return new ResponseEntity<Object>(designationService.getDesignationById(id), HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_EXISTS_BY_ID,
-				validationFailureStatusCodes.getDesignationById()), HttpStatus.BAD_REQUEST);
+				validationFailureStatusCodes.getDesignationExistsById()), HttpStatus.BAD_REQUEST);
 	}
 
 	@PutMapping(value = EndpointURI.DESIGNATION)
