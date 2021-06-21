@@ -114,6 +114,9 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.subModule.subModuleById}")
 	private String subModuleById;
+	
+	@Value("${validation.subModule.subModuleIdAlreadyExist}")
+	private String getModuleByIdAlreadyExist;
 
 	// Project Allocation
 	@Value("${validation.projectAllocation.AlreadyExistsId}")
@@ -536,5 +539,13 @@ public class ValidationFailureStatusCodes {
 	public void setModuleIdExistsBySubModuleId(String moduleIdExistsBySubModuleId) {
 		this.moduleIdExistsBySubModuleId = moduleIdExistsBySubModuleId;
 	}
+
+	public String getModuleByIdAlreadyExist() {
+		return getModuleByIdAlreadyExist;
+	}
+	public void setGetModuleByIdAlreadyExist(String getModuleByIdAlreadyExist) {
+		this.getModuleByIdAlreadyExist = getModuleByIdAlreadyExist;
+	}
+	
 
 }
