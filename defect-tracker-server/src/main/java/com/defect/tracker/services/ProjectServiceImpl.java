@@ -48,22 +48,16 @@ public class ProjectServiceImpl implements ProjectService {
 	public List<Project> getProject() {
 		return projectRepository.findAll();
 	}
-
 	@Override
 	public void updateProject(Project project) {
 		projectRepository.save(project);
-
 	}
-
 	@Override
 	public Object getProjectByName(Long id) {
-		return projectRepository.findById(id).get();
+		return projectRepository.findById(id).get().getName();
 	}
-
 	@Override
 	public Project findProjectByName(String projectName) {
 		return projectRepository.findByName(projectName);
 	}
-
-
 }
