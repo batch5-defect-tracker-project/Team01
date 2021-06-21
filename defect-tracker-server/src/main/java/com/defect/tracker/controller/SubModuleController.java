@@ -18,6 +18,7 @@ import com.defect.tracker.data.dto.SubModuleDto;
 import com.defect.tracker.data.entities.SubModule;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
+import com.defect.tracker.services.ModuleService;
 import com.defect.tracker.services.SubModuleService;
 import com.defect.tracker.util.Constants;
 import com.defect.tracker.util.EndpointURI;
@@ -32,12 +33,17 @@ public class SubModuleController {
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	private Mapper mapper;
+	@Autowired
+	ModuleService moduleService;
 
-//ADD
+	// ------------------------------ Add -API ------------------------------ //
 	@PostMapping(value = EndpointURI.SUB_MODULE)
 	public ResponseEntity<Object> addSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
-
-		if (subModuleService.subModuleExits(subModuleDto.getName())) {
+		if (!moduleService.existsById(subModuleDto.getModuleId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_ID_NOT_EXISTS,
+					validationFailureStatusCodes.getModuleByIdAlreadyExist()), HttpStatus.BAD_REQUEST);
+		}
+		if (subModuleService.getSubModuleByModuleIdAndName(subModuleDto.getModuleId(), subModuleDto.getName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
 					validationFailureStatusCodes.getSubModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
@@ -47,51 +53,53 @@ public class SubModuleController {
 		return new ResponseEntity<Object>(Constants.SUB_MODULE_ADDED_SUCCESS, HttpStatus.OK);
 	}
 
-	// UPDATE
+	// ------------------------------ UpdateById -API---------------------//
 	@PutMapping(value = EndpointURI.SUB_MODULE)
 	public ResponseEntity<Object> updateSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
 		if (subModuleService.exitsSubModuleById(subModuleDto.getId())) {
-			if (subModuleService.isSubModuleNameAlreadyExist(subModuleDto.getName())) {
-				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
-						validationFailureStatusCodes.getSubModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+			if (moduleService.existsById(subModuleDto.getModuleId())) {
+				if (subModuleService.getSubModuleByModuleIdAndName(subModuleDto.getModuleId(),
+						subModuleDto.getName())) {
+					return new ResponseEntity<>(
+							new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
+									validationFailureStatusCodes.getSubModuleNameAlreadyExists()),
+							HttpStatus.BAD_REQUEST);
+				}
+				SubModule subModule = mapper.map(subModuleDto, SubModule.class);
+				subModuleService.createSubModule(subModule);
+				return new ResponseEntity<Object>(Constants.SUB_MODULE_UPDATE_SUCCESS, HttpStatus.OK);
 			}
-			SubModule subModule = mapper.map(subModuleDto, SubModule.class);
-			subModuleService.createSubModule(subModule);
-			return new ResponseEntity<Object>(Constants.SUB_MODULE_UPDATE_SUCCESS, HttpStatus.OK);
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_ID_NOT_EXISTS,
+					validationFailureStatusCodes.getModuleByIdAlreadyExist()), HttpStatus.BAD_REQUEST);
 		}
-
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
-				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS_BY_ID,
+				validationFailureStatusCodes.getExitsSubModuleById()), HttpStatus.BAD_REQUEST);
 	}
 
+	// ------------------------------ Delete -API ------------------------------//
 	@DeleteMapping(value = EndpointURI.SUB_MODULE_BY_ID)
 	public ResponseEntity<Object> deleteSubModule(@PathVariable Long id) {
 		if (!subModuleService.existsById(id)) {
 			return new ResponseEntity<>(
 					new ValidationFailureResponse(ValidationConstance.SUB_MODULE_DELETE_EXISTS_BY_ID,
-							validationFailureStatusCodes.getExistsById()),
+							validationFailureStatusCodes.getExitsSubModuleById()),
 					HttpStatus.BAD_REQUEST);
 		}
 		subModuleService.deleteById(id);
 		return new ResponseEntity<Object>(Constants.SUB_MODULE_DELETED_SUCCESS, HttpStatus.OK);
 	}
 
-	// GetById
-
+	// ------------------------------ GetById -API ------------------------------//
 	@GetMapping(value = EndpointURI.SUB_MODULE_BY_ID)
 	public ResponseEntity<Object> findSubModuleById(@PathVariable Long id) {
 		if (subModuleService.exitsSubModuleById(id)) {
-			System.out.println("Controller");
-			SubModule subModule = subModuleService.getSubModuleById(id);
-			System.out.println(subModule.getName() + "SubModuleController");
-			return new ResponseEntity<Object>(subModule, HttpStatus.OK);
+			return new ResponseEntity<Object>(subModuleService.getSubModuleById(id), HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getSubModuleById()), HttpStatus.BAD_REQUEST);
-
 	}
 
-//	GETALL
+	// ------------------------------ GetAll -API ------------------------------//
 	@GetMapping(value = EndpointURI.SUB_MODULE)
 	public ResponseEntity<Object> getAllSubModule() {
 		List<SubModuleDto> subModuleList = mapper.map(subModuleService.getAllSubModule(), SubModuleDto.class);

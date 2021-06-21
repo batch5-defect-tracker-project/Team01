@@ -74,7 +74,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Long getEmployeeIdByEmail(String email) {
-		EmployeeDto employeeDto = mapper.map(employeeRepository.findByEmail(email), EmployeeDto.class);
+		EmployeeDto employeeDto = mapper.map(employeeRepository.findByEmail(email).get(), EmployeeDto.class);
 		return employeeDto.getId();
 	}
 
@@ -143,7 +143,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public boolean logIn(@Valid LogInDto logInDto) {
-		Employee employee = employeeRepository.findByEmail(logInDto.getUserName());
+		Employee employee = employeeRepository.findByEmail(logInDto.getUserName()).get();
 		if (logInDto.getUserName().equalsIgnoreCase(employee.getEmail())
 				&& bCryptPasswordEncoder.matches(logInDto.getPassword(), employee.getPassword())) {
 			return true;

@@ -4,9 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-
-
-
 import com.defect.tracker.data.entities.SubModule;
 
 @Service
@@ -19,17 +16,21 @@ public interface SubModuleService {
 	public boolean exitsSubModuleById(Long id);
 
 	public boolean isSubModuleNameAlreadyExist(String name);
-	
-	public SubModule getSubModuleById(Long id);
 
 	public List<SubModule> getAllSubModule();
+
+	public Object getSubModuleById(Long id);
 
 	public boolean existsById(Long id);
 
 	public void deleteById(Long id);
 
-	public boolean existsByIdAndModuleId(Long moduleId);
-	
-	
+	public boolean getModuleIdAndName(Long moduleId, String name);
+
+	public boolean getSubModuleByIdAndName(Long moduleId, String name);
+
+	public boolean existsByIdAndModuleId(Long id, Long moduleId);
+
+	public boolean getSubModuleByModuleIdAndName(Long moduleId, String name);
 
 }

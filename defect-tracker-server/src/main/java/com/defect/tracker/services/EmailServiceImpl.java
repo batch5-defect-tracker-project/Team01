@@ -69,13 +69,14 @@ public class EmailServiceImpl implements EmailService {
 	public void sendDefectStatusAddEmail(DefectDto defectDto) {
 		Employee assignTo = mapper.map(employeeService.findEmployeeById(defectDto.getAssignedToId()), Employee.class);
 		Project project = mapper.map(projectService.getProjectByName(defectDto.getProjectId()), Project.class);
+		Module module=(Module) moduleService.getModuleById(defectDto.getModuleId());
 
 		SimpleMailMessage mailmessage = new SimpleMailMessage();
 		mailmessage.setFrom("meera10testmail@gmail.com");
 		mailmessage.setTo(assignTo.getEmail());
 		mailmessage.setSubject(defectDto.getStatus()+"Defect Add");
 		mailmessage.setText("assigenedToEmployeeId : " + defectDto.getAssignedToId() + "  moduleName : "
-				+ moduleService.getModuleName(defectDto.getModuleId()) + "  projectName : " + project.getName());
+				+module.getName()+ "  projectName : " + project.getName());
 		javaMailSender.send(mailmessage);
 
 	}
@@ -85,6 +86,7 @@ public class EmailServiceImpl implements EmailService {
 		Employee assignBy = mapper.map(employeeService.findEmployeeById(defectDto.getAssignedById()), Employee.class);
 		Employee assignTo = mapper.map(employeeService.findEmployeeById(defectDto.getAssignedToId()), Employee.class);
 		Project project = mapper.map(projectService.getProjectByName(defectDto.getProjectId()), Project.class);
+		Module module=(Module) moduleService.getModuleById(defectDto.getModuleId());
 
 		SimpleMailMessage mailmessage = new SimpleMailMessage();
 		mailmessage.setFrom("meera10testmail@gmail.com");
@@ -96,7 +98,7 @@ public class EmailServiceImpl implements EmailService {
 		}
 		mailmessage.setSubject(" Defect Status Change - defectType : "+ defectDto.getStatus());
 		mailmessage.setText("assigenedToEmployeeId : " + defectDto.getAssignedToId() + "  moduleName : "
-				+ moduleService.getModuleName(defectDto.getModuleId()) + "  projectName : " + project.getName());
+				+ module.getName() + "  projectName : " + project.getName());
 		javaMailSender.send(mailmessage);
 
 	}
