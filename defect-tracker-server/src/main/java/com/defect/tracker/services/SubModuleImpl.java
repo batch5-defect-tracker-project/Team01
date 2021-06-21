@@ -46,7 +46,11 @@ public class SubModuleImpl implements SubModuleService {
 
 	@Override
 	public void deleteById(Long id) {
+
+		subModuleRepository.deleteById(id);		
+
 		subModuleRepository.deleteById(id);
+
 	}
 
 	@Override

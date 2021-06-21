@@ -1,6 +1,5 @@
 package com.defect.tracker.data.dto;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -10,7 +9,6 @@ public class LogInDto {
 	@NotNull(message = "{login.email.null}")
 	@NotEmpty(message = "{login.email.empty}")
 	@NotBlank(message = "{login.email.blank}")
-	@Email(message = "{login.email.invalid}")
 	@Pattern(regexp = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$", message = "{login.email.syntaxerror}")
 	private String userName;
 	@NotNull(message = "{login.password.null}")

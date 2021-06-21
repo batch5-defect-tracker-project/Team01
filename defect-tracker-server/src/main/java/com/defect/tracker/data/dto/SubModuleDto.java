@@ -8,7 +8,7 @@ public class SubModuleDto {
 	private Long id;
 	@NotNull(message = "{SubModuleDto.SubModuleName.null}")
 	@NotEmpty(message = "{SubModuleDto.SubModuleName.empty}")
-	@NotBlank(message = "{SubModuleDto.SubModuleName.blank}")
+	@NotBlank(message = "{SubModuleDto.SubModuleName.Blank}")
 	private String name;
 	@NotNull(message = "{SubModuleDto.moduleId.null}")
 	private Long moduleId;

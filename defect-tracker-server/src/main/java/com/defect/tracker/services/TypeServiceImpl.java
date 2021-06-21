@@ -24,30 +24,28 @@ public class TypeServiceImpl implements TypeService {
 		typeRepository.save(type);
 		
 	}
-
-	@Override
-	public void editTypeById(Type type) {
-		typeRepository.save(type);
-		
-	}
-
-	@Override
-	public boolean typeIdExists(Long id) {
-		return typeRepository.existsById(id);
-	}
-
-	@Override
-	public void deleteTypeById(Long id) {
-		typeRepository.deleteById(id);		
-}
+	
 	@Override
 	public List<Type> getType() {
 		return typeRepository.findAll();
 	}
 
 	@Override
-	public Object getTypeById(Long id) {
-		return typeRepository.findById(id);
+	public boolean typeExistsById(Long id) {
+		return typeRepository.existsById(id);
 	}
+
+	@Override
+	public void typeDeleteById(Long id) {
+		typeRepository.deleteById(id);
+		
+	}
+
+	@Override
+	public Object getTypeById(Long id) {
+		return typeRepository.findById(id).get();
+	}
+	
+
 
 }

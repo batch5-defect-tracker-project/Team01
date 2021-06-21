@@ -14,11 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.defect.tracker.data.dto.ModuleDto;
-import com.defect.tracker.data.dto.ProjectDto;
 import com.defect.tracker.data.dto.SubModuleDto;
-import com.defect.tracker.data.entities.Module;
 import com.defect.tracker.data.entities.SubModule;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
@@ -43,7 +39,7 @@ public class SubModuleController {
 	// ------------------------------ Add -API ------------------------------ //
 	@PostMapping(value = EndpointURI.SUB_MODULE)
 	public ResponseEntity<Object> addSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
-		if (!moduleService.exsistByModuleId(subModuleDto.getModuleId())) {
+		if (!moduleService.existsById(subModuleDto.getModuleId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_ID_NOT_EXISTS,
 					validationFailureStatusCodes.getModuleByIdAlreadyExist()), HttpStatus.BAD_REQUEST);
 		}
@@ -51,6 +47,7 @@ public class SubModuleController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
 					validationFailureStatusCodes.getSubModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
+
 		SubModule subModule = mapper.map(subModuleDto, SubModule.class);
 		subModuleService.createSubModule(subModule);
 		return new ResponseEntity<Object>(Constants.SUB_MODULE_ADDED_SUCCESS, HttpStatus.OK);
@@ -60,8 +57,9 @@ public class SubModuleController {
 	@PutMapping(value = EndpointURI.SUB_MODULE)
 	public ResponseEntity<Object> updateSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
 		if (subModuleService.exitsSubModuleById(subModuleDto.getId())) {
-			if (moduleService.exsistByModuleId(subModuleDto.getModuleId())) {
-				if (subModuleService.isSubModuleNameAlreadyExist(subModuleDto.getName())) {
+			if (moduleService.existsById(subModuleDto.getModuleId())) {
+				if (subModuleService.getSubModuleByModuleIdAndName(subModuleDto.getModuleId(),
+						subModuleDto.getName())) {
 					return new ResponseEntity<>(
 							new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
 									validationFailureStatusCodes.getSubModuleNameAlreadyExists()),
@@ -75,7 +73,7 @@ public class SubModuleController {
 					validationFailureStatusCodes.getModuleByIdAlreadyExist()), HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS_BY_ID,
-				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+				validationFailureStatusCodes.getExitsSubModuleById()), HttpStatus.BAD_REQUEST);
 	}
 
 	// ------------------------------ Delete -API ------------------------------//
@@ -84,7 +82,7 @@ public class SubModuleController {
 		if (!subModuleService.existsById(id)) {
 			return new ResponseEntity<>(
 					new ValidationFailureResponse(ValidationConstance.SUB_MODULE_DELETE_EXISTS_BY_ID,
-							validationFailureStatusCodes.getExistsById()),
+							validationFailureStatusCodes.getExitsSubModuleById()),
 					HttpStatus.BAD_REQUEST);
 		}
 		subModuleService.deleteById(id);
@@ -95,10 +93,7 @@ public class SubModuleController {
 	@GetMapping(value = EndpointURI.SUB_MODULE_BY_ID)
 	public ResponseEntity<Object> findSubModuleById(@PathVariable Long id) {
 		if (subModuleService.exitsSubModuleById(id)) {
-			if (subModuleService.exitsSubModuleById(id)) {
-				return new ResponseEntity<Object>(mapper.map(subModuleService.getSubModuleById(id), SubModuleDto.class),
-						HttpStatus.OK);
-			}
+			return new ResponseEntity<Object>(subModuleService.getSubModuleById(id), HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getSubModuleById()), HttpStatus.BAD_REQUEST);
@@ -111,4 +106,5 @@ public class SubModuleController {
 		return new ResponseEntity<Object>(subModuleList, HttpStatus.OK);
 
 	}
+
 }

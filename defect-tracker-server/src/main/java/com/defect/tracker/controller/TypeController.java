@@ -32,9 +32,9 @@ public class TypeController {
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	private Mapper mapper;
-
+	
 	@PostMapping(value = EndpointURI.TYPE)
-	public ResponseEntity<Object> addType(@Valid @RequestBody TypeDto typeDto) {
+	public ResponseEntity<Object> addType(@Valid @RequestBody TypeDto typeDto) {	
 		if (typeService.isNameAlreadyExists(typeDto.getName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_EXISTS,
 					validationFailureStatusCodes.getNameAlreadyExists()), HttpStatus.BAD_REQUEST);
@@ -46,25 +46,24 @@ public class TypeController {
 
 	@PutMapping(value = EndpointURI.TYPE)
 	public ResponseEntity<Object> editTypeById(@Valid @RequestBody TypeDto typeDto) {
-		if (typeService.typeIdExists(typeDto.getId())) {
+		if (typeService.typeExistsById(typeDto.getId())) {
 			if (typeService.isNameAlreadyExists(typeDto.getName())) {
-				typeService.editTypeById(mapper.map(typeDto, Type.class));
-				return new ResponseEntity<Object>(Constants.TYPE_UPDATED_SUCCESS, HttpStatus.OK);
+				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_EXISTS,
+						validationFailureStatusCodes.getNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 			}
-			typeService.editTypeById(mapper.map(typeDto, Type.class));
+			Type type = mapper.map(typeDto, Type.class);
+			typeService.createType(type);
 			return new ResponseEntity<Object>(Constants.TYPE_UPDATED_SUCCESS, HttpStatus.OK);
 		}
-
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_ID_NOT_EXISTS,
 				validationFailureStatusCodes.getTypeIdNotExists()), HttpStatus.BAD_REQUEST);
 	}
 
 	@DeleteMapping(value = EndpointURI.TYPE_BY_ID)
 	public ResponseEntity<Object> deleteType(@PathVariable Long id) {
-		if (typeService.typeIdExists(id)) {
-			typeService.deleteTypeById(id);
+		if (typeService.typeExistsById(id)) {
+			typeService.typeDeleteById(id);
 			return new ResponseEntity<Object>(Constants.TYPE_DELETED_SUCCESS, HttpStatus.OK);
-
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_ID_NOT_EXISTS,
 				validationFailureStatusCodes.getTypeIdNotExists()), HttpStatus.BAD_REQUEST);
@@ -73,14 +72,15 @@ public class TypeController {
 	@GetMapping(value = EndpointURI.TYPE)
 	public ResponseEntity<Object> getType() {
 		return new ResponseEntity<Object>(mapper.map(typeService.getType(), TypeDto.class), HttpStatus.OK);
-    }
-	@GetMapping(value =EndpointURI.TYPE_BY_ID)
-	public ResponseEntity<Object> findTypeById(@PathVariable Long id){
-		if(typeService.typeIdExists(id)) {
-		return new ResponseEntity<Object>(typeService.getTypeById(id),HttpStatus.OK);
+	}
+
+	@GetMapping(value = EndpointURI.TYPE_BY_ID)
+	public ResponseEntity<Object> findTypeById(@PathVariable Long id) {
+		if (typeService.typeExistsById(id)) {
+			return new ResponseEntity<Object>(typeService.getTypeById(id), HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_ID_NOT_EXISTS,
 				validationFailureStatusCodes.getTypeIdNotExists()), HttpStatus.BAD_REQUEST);
 	}
 
-	}
+}

@@ -18,6 +18,9 @@ public interface ProjectAllocationService {
 
 	public List<ProjectAllocation> getAllProjectAllocation();
 
-	public boolean existsByProjectIdAndEmployeeIdAndModuleId(Long projectId, Long employeeId, Long moduleId);
+	public boolean existsByProjectIdAndEmployeeIdAndModuleIdAndSubModuleId(Long projectId, Long employeeId,
+			Long moduleId, Long subModuleId);
+
+
 
 }

@@ -44,7 +44,7 @@ public class ModuleController {
 	// ------------------------------ Add -API ------------------------------ //
 	@PostMapping(value = EndpointURI.MODULE)
 	public ResponseEntity<Object> addModule(@Valid @RequestBody ModuleDto moduleDto) {
-		if (!projectService.exsistByProjectId(moduleDto.getProjectId())) {
+		if (!projectService.projectIdExits(moduleDto.getProjectId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ID_NOT_EXISTS,
 					validationFailureStatusCodes.getProjectByIdAlreadyExist()), HttpStatus.BAD_REQUEST);
 		}
@@ -61,7 +61,7 @@ public class ModuleController {
 	@PutMapping(value = EndpointURI.MODULE)
 	public ResponseEntity<Object> updateModule(@Valid @RequestBody ModuleDto moduleDto) {
 		if (moduleService.exitsModuleById(moduleDto.getId())) {
-			if (projectService.exsistByProjectId(moduleDto.getProjectId())) {
+			if (projectService.projectIdExits(moduleDto.getProjectId())) {
 				if (moduleService.isModuleNameAlreadyExist(moduleDto.getName())) {
 					return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
 							validationFailureStatusCodes.getModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
@@ -74,7 +74,7 @@ public class ModuleController {
 					validationFailureStatusCodes.getProjectByIdAlreadyExist()), HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
-				validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+				validationFailureStatusCodes.getExistsModuleById()), HttpStatus.BAD_REQUEST);
 	}
 
 	// ------------------------- Get All -API ------------------------- //
@@ -89,7 +89,7 @@ public class ModuleController {
 	public ResponseEntity<Object> deleteModule(@PathVariable Long id) {
 		if (!moduleService.existsById(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_DELETE_EXISTS_BY_ID,
-					validationFailureStatusCodes.getExistsById()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getExistsModuleById()), HttpStatus.BAD_REQUEST);
 		}
 		moduleService.deleteById(id);
 		return new ResponseEntity<Object>(Constants.MODULE_DELETED_SUCCESS, HttpStatus.OK);

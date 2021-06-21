@@ -8,10 +8,10 @@ import javax.validation.constraints.Pattern;
 public class DesignationDto {
 	private Long id;
 	
-	@NotNull(message="{designationDto.designationName.null}")
-	@NotBlank(message="{designationDto.designationName.blank}")
-	@NotEmpty(message="{designationDto.designationName.empty")
-	@Pattern(regexp = "^[a-zA-Z.\\-\\/+=@_ ]*$",message="{designationDto.designationName.notAllowedSpecialCharacters}")
+	@NotNull(message="name is not null")
+	@NotBlank(message="name is not blank")
+	@NotEmpty(message="name is not empty")
+	@Pattern(regexp = "^[a-zA-Z.\\-\\/+=@_ ]*$",message="name not allowed special character and number")
 	private String name;
 
 	
