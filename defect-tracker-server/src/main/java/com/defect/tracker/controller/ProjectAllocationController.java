@@ -58,7 +58,7 @@ public class ProjectAllocationController {
 		}
 		if (!moduleService.existsById(projectAllocationDto.getModuleId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
-					validationFailureStatusCodes.getModuleIdNotAvailable()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getExistsModuleById()), HttpStatus.BAD_REQUEST);
 		}
 		if (projectAllocationService.existsByProjectIdAndEmployeeIdAndModuleIdAndSubModuleId(
 				projectAllocationDto.getProjectId(), projectAllocationDto.getEmployeeId(),
@@ -112,7 +112,7 @@ public class ProjectAllocationController {
 		}
 		if (!moduleService.existsById(projectAllocationDto.getModuleId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
-					validationFailureStatusCodes.getModuleIdNotAvailable()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getExistsModuleById()), HttpStatus.BAD_REQUEST);
 		}
 		if (projectAllocationService.existsByProjectIdAndEmployeeIdAndModuleIdAndSubModuleId(
 				projectAllocationDto.getProjectId(), projectAllocationDto.getEmployeeId(),

@@ -92,7 +92,7 @@ public class DefectController {
 		}
 		if (!(defectDto.getStatus().equals("new") || defectDto.getStatus().equals("New"))) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_STATUS_CHANGE_NEW,
-					validationFailureStatusCodes.getDefectStatusChange()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getDefectStatusChange()), HttpStatus.BAD_REQUEST);			
 		}
 		defectService.createDefect(mapper.map(defectDto, Defect.class));
 		emailService.sendDefectStatusAddEmail(defectDto);
@@ -139,10 +139,11 @@ public class DefectController {
 		simpleMail.setSubject("Defect" + " " + defectDto.getStatus() + " " + "Added");
 		simpleMail.setText("ProjectName:" + projectService.getProjectByName(defectDto.getProjectId()) + "\n"
 				+ "ModuleName:" + moduleService.findById(defectDto.getModuleId()));
+
 		javaMailSender.send(simpleMail);
 		return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
 	}
-
+	
 	@GetMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> getAllDefect() {
 		List<DefectDto> defectList = mapper.map(defectService.getAllDefect(), DefectDto.class);

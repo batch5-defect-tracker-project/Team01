@@ -15,7 +15,7 @@ public class ValidationConstance {
 	public static final String TYPE_EXISTS = "Type Already Exists";
 	public static final String TYPE_ID_NOT_EXISTS = "Type Id Not Exists";
 
-	// Designation
+  //Designation
 	public static final String DESIGNATION_EXISTS = "Designation Already Exists";
 	public static final String DESIGNATION_DELETE_EXISTS_BY_ID = "Designation Not Exists";
 	public static final String DESIGNATION_NOT_EXISTS_BY_ID = "Designation Not Exist";
@@ -30,9 +30,10 @@ public class ValidationConstance {
 	public static final String ASSIGNEDTO_ID_NOT_FOUND = "assignedto Id not found";
 	public static final String MODULE_ID_NOT_FOUND = "assignedto Id not found";
 	public static final String DEFECT_STATUS_CHANGE_NEW = "Defect Status change New";
+	
+	public static final String ONLY_ALLOWED_NEW_STATUS="Only Allowed New Status";
+	public static final String NOT_ALLOWED_NEW_STATUS="Not Allowed New Status";
 
-	public static final String ONLY_ALLOWED_NEW_STATUS = "Only Allowed New Status";
-	public static final String NOT_ALLOWED_NEW_STATUS = "Not Allowed New Status";
 	public static final String ASSIGNED_BY_ID_NOT_EXISTS = "Assigned By Id Not Exists";
 	public static final String ASSIGNED_TO_ID_NOT_EXISTS = "Assigned To Id Not Exists";
 
@@ -43,10 +44,10 @@ public class ValidationConstance {
 	public static final String SUB_MODULE_EXISTS = "SubModule Alredy Exists";
 	public static final String SUB_MODULE_NOT_EXISTS_BY_ID = "Sub Module Id is not Exists";
 	public static final String MODULE_NOT_EXISTS = "Module Not Exists";
-	public static final String MODULE_ID_NOT_EXISTS = "Module Id is not Exists";
+	public static final String MODULE_ID_NOT_EXISTS="Module Id is not Exists";
 
 	// SubModule
-	public static final String SUB_MODULE_ID_NOT_EXIT = " SubModule Id is not Exists";
+  public static final String SUB_MODULE_ID_NOT_EXIT =" SubModule Id is not Exists";
 	public static final String SUB_MODULE_DELETE_EXISTS_BY_ID = "SubModule Not Exists";
 	public static final String SUB_MODULE_EXISTS_BY_MODULE_ID = "SubModule Id not Exists By Module Id";
 
@@ -56,7 +57,7 @@ public class ValidationConstance {
 	public static final String PROJECT_ALLOCATION_NOT_EXISTS_BY_ID = "Project Allocation Id Not Exists";
 
 	// employee
-	public static final String EMPLOYEE_EMAIL_EXISTS = "Employee Email  Already Exists";
+  public static final String EMPLOYEE_EMAIL_EXISTS = "Employee Email  Already Exists";
 	public static final String EMPLOYEE_Id_EXISTS = "Employee Id  Already Exists";
 	public static final String EMPLOYEE_Id_NOT_AVAILABLE = "Employee Id  Not Available";
 	public static final String EMPLOYEE_NOT_ACTIVE = "Employee Not Active Please Activate Your Account";

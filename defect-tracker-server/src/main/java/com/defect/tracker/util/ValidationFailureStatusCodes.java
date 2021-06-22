@@ -79,7 +79,7 @@ public class ValidationFailureStatusCodes {
 	private String projectNameAlreadyExists;
 	// EndProject
 
-	// Designation
+	// DESIGNATION
 	@Value("${validation.designation.AlreadyExists}")
 	private String designationNameAlreadyExists;
 
@@ -87,7 +87,7 @@ public class ValidationFailureStatusCodes {
 	private String designationExistsById;
 	// EndDesignation
 
-	// Module
+  // Module
 	@Value("${validation.module.AlreadyExists}")
 	private String moduleNameAlreadyExists;
 
@@ -96,7 +96,7 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.module.IdAlreadyExists}")
 	private String ModuleById;
-	// EndDesignation
+	// EndModule
 
 	// SubModule
 	@Value("${validation.subModule.AlreadyExists}")
@@ -144,7 +144,7 @@ public class ValidationFailureStatusCodes {
 	private String projectExistsById;
 	// EndType
 
-	// Defect
+  // Defect
 	@Value("${validation.defect.AlreadyExists}")
 	private String modNameAlreadyExists;
 
