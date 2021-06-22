@@ -1,9 +1,7 @@
 package com.defect.tracker.services;
 
 import java.util.List;
-import java.util.Optional;
 
-import com.defect.tracker.data.dto.ProjectDto;
 import com.defect.tracker.data.entities.Project;
 
 public interface ProjectService {
@@ -23,7 +21,7 @@ public interface ProjectService {
 	public void updateProject(Project project);
 
 	public Object getProjectByName(Long id);
-	
+
 	public Project findProjectByName(String projectName);
-		
+
 }

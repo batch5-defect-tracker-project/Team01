@@ -1,12 +1,10 @@
 package com.defect.tracker.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.defect.tracker.data.dto.ProjectDto;
 import com.defect.tracker.data.entities.Project;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.repositories.ProjectRepository;
@@ -15,9 +13,10 @@ import com.defect.tracker.data.repositories.ProjectRepository;
 public class ProjectServiceImpl implements ProjectService {
 	@Autowired
 	private ProjectRepository projectRepository;
-	
+
 	@Autowired
 	Mapper mapper;
+
 	@Override
 	public void addProject(Project project) {
 		projectRepository.save(project);
@@ -48,19 +47,20 @@ public class ProjectServiceImpl implements ProjectService {
 	public List<Project> getProject() {
 		return projectRepository.findAll();
 	}
+
 	@Override
 	public void updateProject(Project project) {
 		projectRepository.save(project);
 	}
+
 	@Override
 	public Object getProjectByName(Long id) {
 		return projectRepository.findById(id).get().getName();
 	}
+
 	@Override
 	public Project findProjectByName(String projectName) {
 		return projectRepository.findByName(projectName);
 	}
-
-	
 
 }
