@@ -48,7 +48,7 @@ public class DesignationController {
 		List<DesignationDto> designationList = mapper.map(designationService.getAllDesignation(), DesignationDto.class);
 		return new ResponseEntity<Object>(designationList, HttpStatus.OK);
 	}
-	
+
 	@DeleteMapping(value = EndpointURI.DESIGNATION_BY_ID)
 	public ResponseEntity<Object> deleteDesignation(@PathVariable Long id) {
 		if (!designationService.designationExistsById(id)) {

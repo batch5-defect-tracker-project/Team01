@@ -67,7 +67,7 @@ public class ProjectAllocationController {
 					validationFailureStatusCodes.getProjectAllocationExistsById()), HttpStatus.BAD_REQUEST);
 		}
 		if (!subModuleService.existsByIdAndModuleId(projectAllocationDto.getSubModuleId(),
-				projectAllocationDto.getModuleId()) && projectAllocationDto.getId() != null) {
+				projectAllocationDto.getModuleId()) || projectAllocationDto.getId() != null) {
 			return new ResponseEntity<>(
 					new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS_BY_MODULE_ID,
 							validationFailureStatusCodes.getModuleIdExistsBySubModuleId()),
@@ -104,7 +104,7 @@ public class ProjectAllocationController {
 		}
 		if (!projectService.projectIdExits(projectAllocationDto.getProjectId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_NOT_EXISTS,
-					validationFailureStatusCodes.getProjectExistsById()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getProjectIdNotFound()), HttpStatus.BAD_REQUEST);
 		}
 		if (!employeeService.isIdAlreadyExists(projectAllocationDto.getEmployeeId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_Id_NOT_AVAILABLE,

@@ -72,14 +72,22 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.Name.UseAnotherProject}")
 	private String subModuleIdAlreadyExist;
 
+	@Value("${validation.projectName.NotFound}")
+	private String projectNameNotFound;
+
+	@Value("${validation.projectName.AlreadyExists}")
+	private String projectNameAlreadyExists;
+	// EndProject
+
 	// DESIGNATION
 	@Value("${validation.designation.AlreadyExists}")
 	private String designationNameAlreadyExists;
 
 	@Value("${validation.designation.AlreadyExistsById}")
 	private String designationExistsById;
+	// EndDesignation
 
-	// Module
+  // Module
 	@Value("${validation.module.AlreadyExists}")
 	private String moduleNameAlreadyExists;
 
@@ -88,7 +96,9 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.module.IdAlreadyExists}")
 	private String ModuleById;
+	// EndModule
 
+	// SubModule
 	@Value("${validation.subModule.AlreadyExists}")
 	private String SubModuleNameAlreadyExists;
 
@@ -100,28 +110,28 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.subModule.subModuleIdAlreadyExist}")
 	private String moduleByIdAlreadyExist;
+	// EndSubModule
 
-	// Project Allocation
+	// ProjectAllocation
 	@Value("${validation.projectAllocation.AlreadyExistsId}")
 	private String projectAllocationExistsById;
 
-	@Value("${validation.projectAllocation.AlreadyExistsId}")
-	private String employeeIdAlreadyExists;
+	@Value("${validation.projectAllocation.moduleIdExistsBySubModuleId}")
+	private String moduleIdExistsBySubModuleId;
 
 	@Value("${validation.projectAllocation.AlreadyExistsId}")
 	private String projectAllocationById;
+	// EndProjectAllocation
 
-	@Value("${validation.projectName.NotFound}")
-	private String projectNameNotFound;
-
-	@Value("${validation.projectName.AlreadyExists}")
-	private String projectNameAlreadyExists;
-
+	// Module
 	@Value("${validation.module.existsModuleById}")
 	private String existsModuleById;
 
 	@Value("${defect.Status.Change.New}")
 	private String defectStatusChange;
+
+	@Value("${validation.module.id.NotAvailable}")
+	private String ModuleIdNotAvailable;
 
 	// Type
 	@Value("${validation.type.AlreadyExists}")
@@ -132,11 +142,9 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.project.existsById}")
 	private String projectExistsById;
+	// EndType
 
-	@Value("${validation.project.existsById}")
-	private String ModuleIdExistsBySubModuleId;
-
-	// Defect
+  // Defect
 	@Value("${validation.defect.AlreadyExists}")
 	private String modNameAlreadyExists;
 
@@ -163,8 +171,8 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.defect.statusExist}")
 	private String statusExist;
-    //EndDefect
-	
+	// EndDefect
+
 	public String getEmpNotActive() {
 		return empNotActive;
 	}
@@ -397,14 +405,6 @@ public class ValidationFailureStatusCodes {
 		this.projectAllocationExistsById = projectAllocationExistsById;
 	}
 
-	public String getEmployeeIdAlreadyExists() {
-		return employeeIdAlreadyExists;
-	}
-
-	public void setEmployeeIdAlreadyExists(String employeeIdAlreadyExists) {
-		this.employeeIdAlreadyExists = employeeIdAlreadyExists;
-	}
-
 	public String getProjectAllocationById() {
 		return projectAllocationById;
 	}
@@ -467,14 +467,6 @@ public class ValidationFailureStatusCodes {
 
 	public void setProjectExistsById(String projectExistsById) {
 		this.projectExistsById = projectExistsById;
-	}
-
-	public String getModuleIdExistsBySubModuleId() {
-		return ModuleIdExistsBySubModuleId;
-	}
-
-	public void setModuleIdExistsBySubModuleId(String moduleIdExistsBySubModuleId) {
-		ModuleIdExistsBySubModuleId = moduleIdExistsBySubModuleId;
 	}
 
 	public String getModNameAlreadyExists() {
@@ -555,6 +547,22 @@ public class ValidationFailureStatusCodes {
 
 	public void setModuleByIdAlreadyExist(String moduleByIdAlreadyExist) {
 		this.moduleByIdAlreadyExist = moduleByIdAlreadyExist;
+	}
+
+	public String getModuleIdExistsBySubModuleId() {
+		return moduleIdExistsBySubModuleId;
+	}
+
+	public void setModuleIdExistsBySubModuleId(String moduleIdExistsBySubModuleId) {
+		this.moduleIdExistsBySubModuleId = moduleIdExistsBySubModuleId;
+	}
+
+	public String getModuleIdNotAvailable() {
+		return ModuleIdNotAvailable;
+	}
+
+	public void setModuleIdNotAvailable(String moduleIdNotAvailable) {
+		ModuleIdNotAvailable = moduleIdNotAvailable;
 	}
 
 }
