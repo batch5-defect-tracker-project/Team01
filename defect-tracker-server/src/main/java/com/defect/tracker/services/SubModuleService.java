@@ -16,10 +16,10 @@ public interface SubModuleService {
 	public boolean exitsSubModuleById(Long id);
 
 	public boolean isSubModuleNameAlreadyExist(String name);
-	
-	public SubModule getSubModuleById(Long id);
 
 	public List<SubModule> getAllSubModule();
+
+	public Object getSubModuleById(Long id);
 
 	public boolean existsById(Long id);
 
@@ -27,6 +27,10 @@ public interface SubModuleService {
 
 	public boolean getModuleIdAndName(Long moduleId, String name);
 
+	public boolean getSubModuleByIdAndName(Long moduleId, String name);
+
 	public boolean existsByIdAndModuleId(Long subModuleId, Long moduleId);
+
+	public boolean getSubModuleByModuleIdAndName(Long moduleId, String name);
 
 }

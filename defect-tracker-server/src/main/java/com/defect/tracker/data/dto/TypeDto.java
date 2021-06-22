@@ -8,10 +8,11 @@ import javax.validation.constraints.Pattern;
 public class TypeDto {
 
 	private Long id;
-	@NotNull(message = "{typeDto.typeName.null}")
-	@NotBlank(message = "{typeDto.typeName.blank}")
-	@NotEmpty(message = "{typeDto.typeName.empty}")
-	@Pattern(regexp = "^[a-zA-Z.\\-\\/+=@_ ]*$", message = "{typeDto.typeName.notallowed}")
+	
+	@NotNull(message="{typeDto.typeName.null}")
+	@NotBlank(message="{typeDto.typeName.blank}")
+	@NotEmpty(message="{typeDto.typeName.empty}")
+	@Pattern(regexp = "^[a-zA-Z.\\-\\/+=@_ ]*$",message="{typeDto.typeName.notallowed}")
 	private String name;
 
 	public Long getId() {
@@ -29,5 +30,6 @@ public class TypeDto {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
+	
 }
