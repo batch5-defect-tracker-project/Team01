@@ -28,6 +28,5 @@ public interface DefectService {
 
 	public DefectStatusCountDto getDefectCount(String projectName);
 
-	public boolean existsstatus(String status);
   
 }

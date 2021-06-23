@@ -12,4 +12,6 @@ public interface ModuleRepository extends JpaRepository<Module, Long> {
 
 	boolean existsByProjectIdAndName(Long projectId, String name);
 
+	boolean existsByIdAndProjectId(Long moduleId, Long projectId);
+
 }

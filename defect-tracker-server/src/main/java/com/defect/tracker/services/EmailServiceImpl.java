@@ -68,15 +68,13 @@ public class EmailServiceImpl implements EmailService {
 	@Override
 	public void sendDefectStatusAddEmail(DefectDto defectDto) {
 		Employee assignTo = mapper.map(employeeService.findEmployeeById(defectDto.getAssignedToId()), Employee.class);
-		Project project = mapper.map(projectService.getProjectByName(defectDto.getProjectId()), Project.class);
-		Module module=(Module) moduleService.getModuleById(defectDto.getModuleId());
 
 		SimpleMailMessage mailmessage = new SimpleMailMessage();
 		mailmessage.setFrom("meera10testmail@gmail.com");
 		mailmessage.setTo(assignTo.getEmail());
 		mailmessage.setSubject(defectDto.getStatus()+"Defect Add");
 		mailmessage.setText("assigenedToEmployeeId : " + defectDto.getAssignedToId() + "  moduleName : "
-				+module.getName()+ "  projectName : " + project.getName());
+				+ moduleService.findById(defectDto.getModuleId()) + "  projectName : " + projectService.getProjectByName(defectDto.getProjectId()));
 		javaMailSender.send(mailmessage);
 
 	}
@@ -85,9 +83,7 @@ public class EmailServiceImpl implements EmailService {
 	public void sendDefectStatusUpdateEmail(DefectDto defectDto) {
 		Employee assignBy = mapper.map(employeeService.findEmployeeById(defectDto.getAssignedById()), Employee.class);
 		Employee assignTo = mapper.map(employeeService.findEmployeeById(defectDto.getAssignedToId()), Employee.class);
-		Project project = mapper.map(projectService.getProjectByName(defectDto.getProjectId()), Project.class);
-		Module module=(Module) moduleService.getModuleById(defectDto.getModuleId());
-
+				
 		SimpleMailMessage mailmessage = new SimpleMailMessage();
 		mailmessage.setFrom("meera10testmail@gmail.com");
 		if ((defectDto.getStatus().equals("reopen")) || (defectDto.getStatus().equals("closed"))) {
@@ -98,7 +94,7 @@ public class EmailServiceImpl implements EmailService {
 		}
 		mailmessage.setSubject(" Defect Status Change - defectType : "+ defectDto.getStatus());
 		mailmessage.setText("assigenedToEmployeeId : " + defectDto.getAssignedToId() + "  moduleName : "
-				+ module.getName() + "  projectName : " + project.getName());
+				+ moduleService.findById(defectDto.getModuleId())+ "  projectName : " + projectService.getProjectByName(defectDto.getProjectId()));
 		javaMailSender.send(mailmessage);
 
 	}

@@ -71,8 +71,16 @@ public class DefectController {
 					validationFailureStatusCodes.getDefectModuleById()), HttpStatus.BAD_REQUEST);
 		}
 		if (!subModuleService.exitsSubModuleById(defectDto.getSubModuleId())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_ID_NOT_EXIT,
-					validationFailureStatusCodes.getDefectSubModuleById()), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
+					validationFailureStatusCodes.getDefectModuleById()), HttpStatus.BAD_REQUEST);
+		}
+		if (!moduleService.exitsModuleIdAndProjectId(defectDto.getModuleId(),defectDto.getProjectId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_RELATION_PROJECT_ID,
+					validationFailureStatusCodes.getDefectModuleByIdAndProjectId()), HttpStatus.BAD_REQUEST);
+		}
+		if (!subModuleService.existsByIdAndModuleId(defectDto.getSubModuleId(),defectDto.getModuleId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_RELATION_MODULE_ID,
+					validationFailureStatusCodes.getDefectSubModuleByIdAndModuleId()), HttpStatus.BAD_REQUEST);
 		}
 		if (!projectService.projectIdExits(defectDto.getProjectId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ID_NOT_EXISTS,
@@ -109,6 +117,14 @@ public class DefectController {
 		if (!subModuleService.exitsSubModuleById(defectDto.getSubModuleId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_ID_NOT_EXIT,
 					validationFailureStatusCodes.getDefectSubModuleById()), HttpStatus.BAD_REQUEST);
+		}
+		if (!moduleService.exitsModuleIdAndProjectId(defectDto.getModuleId(),defectDto.getProjectId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_RELATION_PROJECT_ID,
+					validationFailureStatusCodes.getDefectModuleByIdAndProjectId()), HttpStatus.BAD_REQUEST);
+		}
+		if (!subModuleService.existsByIdAndModuleId(defectDto.getSubModuleId(),defectDto.getModuleId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_RELATION_MODULE_ID,
+					validationFailureStatusCodes.getDefectSubModuleByIdAndModuleId()), HttpStatus.BAD_REQUEST);
 		}
 		if (!projectService.projectIdExits(defectDto.getProjectId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ID_NOT_EXISTS,
@@ -165,6 +181,14 @@ public class DefectController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_ID_NOT_EXIT,
 					validationFailureStatusCodes.getDefectSubModuleById()), HttpStatus.BAD_REQUEST);
 		}
+		if (!moduleService.exitsModuleIdAndProjectId(defectDto.getModuleId(),defectDto.getProjectId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_RELATION_PROJECT_ID,
+					validationFailureStatusCodes.getDefectModuleByIdAndProjectId()), HttpStatus.BAD_REQUEST);
+		}
+		if (!subModuleService.existsByIdAndModuleId(defectDto.getSubModuleId(),defectDto.getModuleId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_RELATION_MODULE_ID,
+					validationFailureStatusCodes.getDefectSubModuleByIdAndModuleId()), HttpStatus.BAD_REQUEST);
+		}
 		if (!projectService.projectIdExits(defectDto.getProjectId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ID_NOT_EXISTS,
 					validationFailureStatusCodes.getDefectProjectById()), HttpStatus.BAD_REQUEST);
@@ -215,13 +239,25 @@ public class DefectController {
 
 	@PutMapping(value = EndpointURI.DEFECT_UPDATE)
 	public ResponseEntity<Object> updateDefectById(@RequestBody DefectDto defectDto) {
+		if (!defectService.existsDefectById(defectDto.getId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS_BY_ID,
+					validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
+		}
 		if (!moduleService.existsModuleById(defectDto.getModuleId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
 					validationFailureStatusCodes.getDefectModuleById()), HttpStatus.BAD_REQUEST);
 		}
 		if (!subModuleService.exitsSubModuleById(defectDto.getSubModuleId())) {
-			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_ID_NOT_EXIT,
-					validationFailureStatusCodes.getDefectSubModuleById()), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
+					validationFailureStatusCodes.getDefectModuleById()), HttpStatus.BAD_REQUEST);
+		}
+		if (!moduleService.exitsModuleIdAndProjectId(defectDto.getModuleId(),defectDto.getProjectId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_RELATION_PROJECT_ID,
+					validationFailureStatusCodes.getDefectModuleByIdAndProjectId()), HttpStatus.BAD_REQUEST);
+		}
+		if (!subModuleService.existsByIdAndModuleId(defectDto.getSubModuleId(),defectDto.getModuleId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_RELATION_MODULE_ID,
+					validationFailureStatusCodes.getDefectSubModuleByIdAndModuleId()), HttpStatus.BAD_REQUEST);
 		}
 		if (!projectService.projectIdExits(defectDto.getProjectId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ID_NOT_EXISTS,

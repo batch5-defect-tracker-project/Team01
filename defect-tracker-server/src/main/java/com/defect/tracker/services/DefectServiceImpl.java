@@ -75,9 +75,4 @@ public class DefectServiceImpl implements DefectService {
 		return defectCount;
 	}
 
-	@Override
-	public boolean existsstatus(String status) {
-		return defectRepository.existsByStatus(status);
-	}
-
 }

@@ -169,8 +169,31 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.defect.type.existsTypeById}")
 	private String defectTypeById;
 
+	public String getDefectModuleByIdAndProjectId() {
+		return defectModuleByIdAndProjectId;
+	}
+
+	public void setDefectModuleByIdAndProjectId(String defectModuleByIdAndProjectId) {
+		this.defectModuleByIdAndProjectId = defectModuleByIdAndProjectId;
+	}
+
+	public String getDefectSubModuleByIdAndModuleId() {
+		return defectSubModuleByIdAndModuleId;
+	}
+
+	public void setDefectSubModuleByIdAndModuleId(String defectSubModuleByIdAndModuleId) {
+		this.defectSubModuleByIdAndModuleId = defectSubModuleByIdAndModuleId;
+	}
+
 	@Value("${validation.defect.statusExist}")
 	private String statusExist;
+	
+	@Value("${validation.defect.module.project.existsModuleById}")
+	private String defectModuleByIdAndProjectId;
+	
+	@Value("${validation.defect.submodule.module.existsModuleById}")
+	private String defectSubModuleByIdAndModuleId;
+	
 	// EndDefect
 
 	public String getEmployeeNotActive() {
@@ -286,7 +309,7 @@ public class ValidationFailureStatusCodes {
 	}
 
 	public String getProNameAlreadyExists() {
-		return proNameAlreadyExists;
+		return projectNameAlreadyExists;
 	}
 
 	public void setProNameAlreadyExists(String proNameAlreadyExists) {
