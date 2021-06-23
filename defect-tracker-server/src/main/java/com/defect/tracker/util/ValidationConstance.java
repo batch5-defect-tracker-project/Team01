@@ -41,6 +41,8 @@ public class ValidationConstance {
 	public static final String MODULE_EXISTS = "Module  Already Exists";
 	public static final String MODULE_DELETE_EXISTS_BY_ID = "Module  is not Exists";
 	public static final String MODULE_NOT_EXISTS_BY_ID = " Module Id is not Exists";
+	public static final String MODULE_NOT_RELATION_PROJECT_ID = " module id not relation in project_id";
+	public static final String SUB_MODULE_NOT_RELATION_MODULE_ID = " sub_module id not relation module_id";
 	public static final String SUB_MODULE_EXISTS = "SubModule Alredy Exists";
 	public static final String SUB_MODULE_NOT_EXISTS_BY_ID = "Sub Module Id is not Exists";
 	public static final String MODULE_NOT_EXISTS = "Module Not Exists";

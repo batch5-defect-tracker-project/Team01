@@ -34,4 +34,5 @@ public interface ModuleService {
 
 	public boolean exitsModuleById(Long id);
 
+	public boolean exitsModuleIdAndProjectId(Long moduleId, Long projectId);
 }
