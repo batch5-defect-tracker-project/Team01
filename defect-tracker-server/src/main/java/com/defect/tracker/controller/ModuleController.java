@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.defect.tracker.data.entities.Module;
-import com.defect.tracker.data.entities.SubModule;
 import com.defect.tracker.data.dto.ModuleDto;
-import com.defect.tracker.data.dto.SubModuleDto;
 import com.defect.tracker.data.mapper.Mapper;
 import com.defect.tracker.data.response.ValidationFailureResponse;
 import com.defect.tracker.services.ModuleService;
