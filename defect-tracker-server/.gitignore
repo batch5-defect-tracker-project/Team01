@@ -38,3 +38,4 @@ build/
 # Maven
 log/
 target/
+bin/
