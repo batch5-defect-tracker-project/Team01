@@ -10,4 +10,5 @@ public class DefectTracker {
 	public static void main(String[] args) {
 		SpringApplication.run(DefectTracker.class, args);
 	}
+
 }

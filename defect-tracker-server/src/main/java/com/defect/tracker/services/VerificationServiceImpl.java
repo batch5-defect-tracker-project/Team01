@@ -50,7 +50,8 @@ public class VerificationServiceImpl implements VerificationService {
 
 	@Override
 	public boolean existsTokenByEmployee(Long id) {
-		return verificationTokenRepository.existsByEmployee(employeeService.findById(id));
+		Employee employee = employeeService.findById(id);
+		return verificationTokenRepository.existsByEmployee(employee);
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.defect.tracker.controller;
 
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,18 +28,17 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 public class ProjectController {
 	@Autowired
 	ProjectService projectService;
-	
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
-	
 	@Autowired
 	private Mapper mapper;
+
 
 	@PostMapping(value = EndpointURI.PROJECT)
 	public ResponseEntity<Object> addProject(@Valid @RequestBody ProjectDto projectDto) {
 		if (projectService.exitsByProjectName(projectDto.getName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS,
-					validationFailureStatusCodes.getProNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getProjectNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
 		projectService.addProject(mapper.map(projectDto, Project.class));
 		return new ResponseEntity<Object>(Constants.PROJECT_ADDED_SUCCESS, HttpStatus.OK);
@@ -72,7 +72,7 @@ public class ProjectController {
 
 	@PutMapping(value = EndpointURI.PROJECT)
 	public ResponseEntity<Object> updateProject(@Valid @RequestBody ProjectDto projectDto) {
-		if (!projectService.projectIdExits(projectDto.getId())) {
+		if (projectService.projectIdExits(projectDto.getId())) {
 			if (projectService.exitsByProjectName(projectDto.getName())) {
 				if (projectService.getProjectByName(projectDto.getId()).equals(projectDto.getName())) {
 					projectService.updateProject(mapper.map(projectDto, Project.class));

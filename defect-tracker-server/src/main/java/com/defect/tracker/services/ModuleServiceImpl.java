@@ -10,6 +10,7 @@ import com.defect.tracker.data.repositories.ModuleRepository;
 
 @Service
 public class ModuleServiceImpl implements ModuleService {
+
 	@Autowired
 	private ModuleRepository moduleRepository;
 
@@ -25,20 +26,24 @@ public class ModuleServiceImpl implements ModuleService {
 
 	@Override
 	public List<Module> getAllModule() {
+
 		return moduleRepository.findAll();
 	}
 
 	@Override
 	public void deleteById(Long id) {
 		moduleRepository.deleteById(id);
+
 	}
 
 	@Override
+
 	public boolean existsById(Long id) {
 		return moduleRepository.existsById(id);
 	}
 
 	@Override
+
 	public Object getModuleById(Long id) {
 		return moduleRepository.findById(id).get();
 	}
@@ -50,8 +55,8 @@ public class ModuleServiceImpl implements ModuleService {
 	}
 
 	@Override
-	public Object findById(Long id) {
 
+	public Object findById(Long id) {
 		return moduleRepository.findById(id).get().getName();
 	}
 
@@ -79,6 +84,11 @@ public class ModuleServiceImpl implements ModuleService {
 	@Override
 	public boolean exitsModuleById(Long id) {
 		return moduleRepository.existsById(id);
+	}
+
+	@Override
+	public boolean exitsModuleIdAndProjectId(Long moduleId, Long projectId) {
+		return moduleRepository.existsByIdAndProjectId(moduleId, projectId);
 	}
 
 }

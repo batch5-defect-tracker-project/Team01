@@ -8,13 +8,10 @@ import com.defect.tracker.data.entities.VerificationToken;
 
 @Repository
 public interface VerificationTokenRepository extends JpaRepository<VerificationToken, Long> {
-
 	public VerificationToken findByToken(String token);
 
 	public VerificationToken findByEmployee(Employee employee);
 
 	public boolean existsByEmployee(Employee employee);
-
-	public void deleteByEmployeeId(Long id);
 
 }

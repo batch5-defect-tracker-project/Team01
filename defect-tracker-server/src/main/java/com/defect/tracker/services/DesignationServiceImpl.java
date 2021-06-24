@@ -13,7 +13,7 @@ public class DesignationServiceImpl implements DesignationService {
 
 	@Override
 	public boolean isDesignationNameAlreadyExist(String name) {
-		return designationRepository.existsByName(name);
+        return designationRepository.existsByName(name);
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class DesignationServiceImpl implements DesignationService {
 
 	@Override
 	public boolean designationExistsById(Long id) {
-		return designationRepository.existsById(id);
+	    return designationRepository.existsById(id);
 	}
 
 	@Override
@@ -46,3 +46,9 @@ public class DesignationServiceImpl implements DesignationService {
 		designationRepository.save(designation);
 	}
 }
+
+	
+
+	
+
+	
