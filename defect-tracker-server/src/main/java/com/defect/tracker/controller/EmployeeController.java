@@ -54,8 +54,9 @@ public class EmployeeController {
 
 	@Autowired
 	private Mapper mapper;
-
-	final String UPLOAD_DIR = "E:\\pro_defect___\\defect-tracker-server\\src\\main\\resources\\profiles";
+	
+//	final String UPLOAD_DIR = "E:\\pro_defect___\\defect-tracker-server\\src\\main\\resources\\profiles";
+	final String UPLOAD_DIR = "D:";
 
 	@PostMapping(value = EndpointURI.EMPLOYEE)
 	public ResponseEntity<Object> addEmployee(@Valid @RequestPart("employee") String employee,

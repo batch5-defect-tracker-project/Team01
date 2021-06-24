@@ -1,10 +1,8 @@
 package com.defect.tracker.services;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.defect.tracker.data.dto.DefectStatusCountDto;
 import com.defect.tracker.data.entities.Defect;
 import com.defect.tracker.data.entities.Project;
@@ -75,4 +73,9 @@ public class DefectServiceImpl implements DefectService {
 		return defectCount;
 	}
 
+	@Override
+	public boolean existsDefectByModuleIdAndSubModuleIdAndProjectIdAndTypeIdAndCommentsAndDescription(Long moduleId,
+			Long subModuleId, Long projectId, Long typeId, String comments, String description) {
+		return defectRepository.existsByModuleIdAndSubModuleIdAndProjectIdAndTypeIdAndCommentsAndDescription(moduleId,subModuleId,projectId,typeId,comments,description);
+	}
 }
