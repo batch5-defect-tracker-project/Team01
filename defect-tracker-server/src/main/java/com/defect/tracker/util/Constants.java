@@ -1,5 +1,4 @@
 package com.defect.tracker.util;
-
 public class Constants {
 
 	// employee
@@ -15,7 +14,7 @@ public class Constants {
 	public static final String PROJECT_ADDED_SUCCESS = "Project added successfully ";
 	public static final String PROJECT_UPDATE_SUCCESS = "Project update successfully";
 	public static final String PROJECT_DELETE_SUCCESS = "Project delete successfully";
-	public static final String DEFECT_COUNT_GET = "defect count get successfully";
+	public static final String DEFECT_COUNT_GET = "Defect Count Get Successfully";
 
 	// Project Allocation
 	public static final String PROJECT_ALLOCATION_ADDED_SUCCESS = "Project Allocation Added Successfully...!";
@@ -41,7 +40,7 @@ public class Constants {
 	public static final String DEFECT_ADDED_SUCCESS = "Defect Added Successfully";
 	public static final String DEFECT_DELETED_SUCCESS = "Defect Deleted Successfully";
 	public static final String DEFECT_UPDATED_SUCCESS = "Defect Updated Successfully";
-	public static final String MAIL_SEND_SUCCESS = "Status Update Mail end Successfully";
+	public static final String MAIL_SEND_SUCCESS = "Status Update Mail Sent Successfully";
 
 	// Type
 	public static final String TYPE_ADDED_SUCCESS = "Type added successfully ";
