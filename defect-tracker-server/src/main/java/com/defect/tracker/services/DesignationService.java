@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import com.defect.tracker.data.entities.Designation;
 
 @Service
-
 public interface DesignationService {
 
 	public boolean isDesignationNameAlreadyExist(String name);

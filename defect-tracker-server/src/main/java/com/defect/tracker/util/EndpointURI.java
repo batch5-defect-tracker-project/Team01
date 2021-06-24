@@ -19,7 +19,7 @@ public final class EndpointURI {
 	// Defect
 	public static final String DEFECT = BASE_API_PATH + "defect";
 	public static final String DEFECT_BY_ID = BASE_API_PATH + "defect" + ID;
-		
+
 	// Module
 	public static final String MODULE = BASE_API_PATH + "module";
 	public static final String MODULE_BY_ID = BASE_API_PATH + "module" + ID;
@@ -33,10 +33,8 @@ public final class EndpointURI {
 	public static final String EMPLOYEE_ID = BASE_API_PATH + "employee" + ID;
 	public static final String EMPLOYEE_ACTIVATION = BASE_API_PATH + "employee/activation";
 	public static final String EMPLOYEE_LOGIN = BASE_API_PATH + "employee/login";
-	public static final String EMPLOYEE_REGISTER = BASE_API_PATH + "employee/registration";
 
 	// Type
 	public static final String TYPE = BASE_API_PATH + "type";
 	public static final String TYPE_BY_ID = BASE_API_PATH + "type" + ID;
-
 }

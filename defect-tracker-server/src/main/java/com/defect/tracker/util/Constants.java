@@ -8,7 +8,6 @@ public class Constants {
 	public static final String EMPLOYEE_ACTIVATIN_SUCCESS = "Employee Email Verification Success";
 	public static final String EMPLOYEE_ALREADY_ACTIVATED = "Employee Already Verified";
 	public static final String EMPLOYEE_UPDATE_SUCCESS = "Employee Update Successfully";
-
 	public static final String EMPLOYEE_SUCCESSFULL_DELETE = "Employee Successfull Deleted";
 	public static final String EMPLOYEE_SUCCESSFULL_LOGIN = "Successfull Employee LogIn";
 
@@ -36,7 +35,6 @@ public class Constants {
 	public static final String SUB_MODULE_UPDATE_SUCCESS = "Sub Module Updated Successfully";
 	public static final String SUB_MODULE_DELETED_SUCCESS = "Sub Module Deleted Successfully";
 	public static final String SUB_MODULE_ADDED_SUCCESS = "Sub Module Added Successfully";
-	
 
 	// Defect
 	public static final String DEFECT_ADDED_SUCCESS = "Defect Added Successfully";
@@ -47,5 +45,4 @@ public class Constants {
 	public static final String TYPE_ADDED_SUCCESS = "Type added successfully ";
 	public static final String TYPE_UPDATED_SUCCESS = "Type Updated Successfully";
 	public static final String TYPE_DELETED_SUCCESS = "Type Deleted Successfully";
-
 }

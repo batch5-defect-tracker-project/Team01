@@ -11,40 +11,46 @@ public class ValidationFailureStatusCodes {
 
 	// Employee
 	@Value("${validation.employee.not.Active}")
-	private String empNotActive;
+	private String employeeNotActive;
 
 	@Value("${validation.employee.email.AlreadyExists}")
-	private String empEmailAlreadyExists;
+	private String employeeEmailAlreadyExists;
 
 	@Value("${validation.employee.email.IncorrectSyntax}")
-	private String empEmailSynatxError;
+	private String employeeEmailSynatxError;
 
 	@Value("${validation.employee.id.AlreadyExists}")
-	private String empIdAlreadyExists;
+	private String employeeIdAlreadyExists;
 
 	@Value("${validation.employee.id.NotAvailable}")
-	private String empIdNotAvailable;
+	private String employeeIdNotAvailable;
 
 	@Value("${validation.employee.profile.SizeException}")
-	private String empProfileSizeException;
+	private String employeeProfileSizeException;
 
 	@Value("${validation.employee.profile.ContentTypeException}")
-	private String empProfileContenetTypeException;
+	private String employeeProfileContenetTypeException;
 
 	@Value("${validation.employee.profile.Empty}")
-	private String empProfileIsEmpty;
+	private String employeeProfileIsEmpty;
 
 	@Value("${validation.employee.token.Invalid}")
-	private String invalidToken;
+	private String employeeInvalidToken;
 
 	@Value("${validation.employee.token.Expired}")
-	private String expiredToken;
+	private String employeeExpiredToken;
 
 	@Value("${validation.employee.email.NotAvailable}")
-	private String empEmailNotAvailable;
+	private String employeeEmailNotAvailable;
 
 	@Value("${validation.employee.contactNumber.NotValid}")
-	private String empContactNumberNotValid;
+	private String employeeContactNumberNotValid;
+
+	@Value("${validation.employee.object.fields.NullOrEmpty}")
+	private String employeeFieldsNullOrEmpty;
+
+	@Value("${validation.employee.designation.NotFound}")
+	private String employeeDesignationNotFound;
 	// EndEmployee
 
 	// Designation
@@ -53,9 +59,9 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.designation.AlreadyExistsById}")
 	private String designationExistsById;
-//EndDesignation
+	// EndDesignation
 
-// Defect
+	// Defect
 	@Value("${validation.defect.AlreadyExists}")
 	private String modNameAlreadyExists;
 
@@ -82,8 +88,7 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.defect.statusExist}")
 	private String statusExist;
-	
-//End Defect 
+	// End Defect
 
 	// Project
 	@Value("${validation.project.AlreadyExists}")
@@ -91,13 +96,6 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.project.projectIdAlreadyExist}")
 	private String projectByIdAlreadyExist;
-	
-	@Value("${validation.designation.AlreadyExists}")
-	private String desigNameAlreadyExists;
-
-
-	@Value("${validation.designation.existsById}")
-	private String desigExistsById;
 
 	@Value("${validation.employee.object.fields.NullOrEmpty}")
 	private String empFieldsNullOrEmpty;
@@ -111,18 +109,6 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.project.id.NotAvailable}")
 	private String projectIdNotAvailable;
 
-	@Value("${validation.designation.designationById}")
-	private String designationById;
-
-	@Value("${validation.designation.NotFound}")
-	private String designationNotFound;
-
-	@Value("${validation.designation.AlreadyExists}")
-	private String designationAlreadyExists;
-
-	@Value("${validation.designation.id.NotFound}")
-	private String designationIdNotFound;
-
 	// Module
 	@Value("${validation.module.AlreadyExists}")
 	private String moduleNameAlreadyExists;
@@ -132,6 +118,9 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.module.IdAlreadyExists}")
 	private String ModuleById;
+
+	@Value("${validation.module.existsById}")
+	private String existsById;
 
 	@Value("${validation.module.id.NotAvailable}")
 	private String ModuleIdNotAvailable;
@@ -162,8 +151,6 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.projectName.AlreadyExists}")
 	private String projectNameAlreadyExists;
 
-	@Value("${validation.module.existsById}")
-	private String existsById;
 
 	// Type
 	@Value("${validation.type.AlreadyExists}")
@@ -172,106 +159,119 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.type.TypeIdAlreadyExists}")
 	private String typeIdNotExists;
 
-	@Value("${validation.designation.existsById}")
-	private String designationExistById;
-
 	@Value("${validation.project.existsById}")
 	private String projectExistsById;
 
-	public String getEmpNotActive() {
-		return empNotActive;
+	public String getEmployeeNotActive() {
+		return employeeNotActive;
 	}
 
-	public void setEmpNotActive(String empNotActive) {
-		this.empNotActive = empNotActive;
+	public void setEmployeeNotActive(String employeeNotActive) {
+		this.employeeNotActive = employeeNotActive;
 	}
 
-	public String getEmpEmailAlreadyExists() {
-		return empEmailAlreadyExists;
+	public String getEmployeeEmailAlreadyExists() {
+		return employeeEmailAlreadyExists;
 	}
 
-	public void setEmpEmailAlreadyExists(String empEmailAlreadyExists) {
-		this.empEmailAlreadyExists = empEmailAlreadyExists;
+	public void setEmployeeEmailAlreadyExists(String employeeEmailAlreadyExists) {
+		this.employeeEmailAlreadyExists = employeeEmailAlreadyExists;
 	}
 
-	public String getEmpEmailSynatxError() {
-		return empEmailSynatxError;
+	public String getEmployeeEmailSynatxError() {
+		return employeeEmailSynatxError;
 	}
 
-	public void setEmpEmailSynatxError(String empEmailSynatxError) {
-		this.empEmailSynatxError = empEmailSynatxError;
+	public void setEmployeeEmailSynatxError(String employeeEmailSynatxError) {
+		this.employeeEmailSynatxError = employeeEmailSynatxError;
 	}
 
-	public String getEmpIdAlreadyExists() {
-		return empIdAlreadyExists;
+	public String getEmployeeIdAlreadyExists() {
+		return employeeIdAlreadyExists;
 	}
 
-	public void setEmpIdAlreadyExists(String empIdAlreadyExists) {
-		this.empIdAlreadyExists = empIdAlreadyExists;
+	public void setEmployeeIdAlreadyExists(String employeeIdAlreadyExists) {
+		this.employeeIdAlreadyExists = employeeIdAlreadyExists;
 	}
 
-	public String getEmpIdNotAvailable() {
-		return empIdNotAvailable;
+	public String getEmployeeIdNotAvailable() {
+		return employeeIdNotAvailable;
 	}
 
-	public void setEmpIdNotAvailable(String empIdNotAvailable) {
-		this.empIdNotAvailable = empIdNotAvailable;
+	public void setEmployeeIdNotAvailable(String employeeIdNotAvailable) {
+		this.employeeIdNotAvailable = employeeIdNotAvailable;
 	}
 
-	public String getEmpProfileSizeException() {
-		return empProfileSizeException;
+	public String getEmployeeProfileSizeException() {
+		return employeeProfileSizeException;
 	}
 
-	public void setEmpProfileSizeException(String empProfileSizeException) {
-		this.empProfileSizeException = empProfileSizeException;
+	public void setEmployeeProfileSizeException(String employeeProfileSizeException) {
+		this.employeeProfileSizeException = employeeProfileSizeException;
 	}
 
-	public String getEmpProfileContenetTypeException() {
-		return empProfileContenetTypeException;
+	public String getEmployeeProfileContenetTypeException() {
+		return employeeProfileContenetTypeException;
 	}
 
-	public void setEmpProfileContenetTypeException(String empProfileContenetTypeException) {
-		this.empProfileContenetTypeException = empProfileContenetTypeException;
+	public void setEmployeeProfileContenetTypeException(String employeeProfileContenetTypeException) {
+		this.employeeProfileContenetTypeException = employeeProfileContenetTypeException;
 	}
 
-	public String getEmpProfileIsEmpty() {
-		return empProfileIsEmpty;
+	public String getEmployeeProfileIsEmpty() {
+		return employeeProfileIsEmpty;
 	}
 
-	public void setEmpProfileIsEmpty(String empProfileIsEmpty) {
-		this.empProfileIsEmpty = empProfileIsEmpty;
+	public void setEmployeeProfileIsEmpty(String employeeProfileIsEmpty) {
+		this.employeeProfileIsEmpty = employeeProfileIsEmpty;
 	}
 
-	public String getInvalidToken() {
-		return invalidToken;
+	public String getEmployeeInvalidToken() {
+		return employeeInvalidToken;
 	}
 
-	public void setInvalidToken(String invalidToken) {
-		this.invalidToken = invalidToken;
+	public void setEmployeeInvalidToken(String employeeInvalidToken) {
+		this.employeeInvalidToken = employeeInvalidToken;
 	}
 
-	public String getExpiredToken() {
-		return expiredToken;
+	public String getEmployeeExpiredToken() {
+		return employeeExpiredToken;
 	}
 
-	public void setExpiredToken(String expiredToken) {
-		this.expiredToken = expiredToken;
+	public void setEmployeeExpiredToken(String employeeExpiredToken) {
+		this.employeeExpiredToken = employeeExpiredToken;
 	}
 
-	public String getEmpEmailNotAvailable() {
-		return empEmailNotAvailable;
+	public String getEmployeeEmailNotAvailable() {
+		return employeeEmailNotAvailable;
 	}
 
-	public void setEmpEmailNotAvailable(String empEmailNotAvailable) {
-		this.empEmailNotAvailable = empEmailNotAvailable;
+	public void setEmployeeEmailNotAvailable(String employeeEmailNotAvailable) {
+		this.employeeEmailNotAvailable = employeeEmailNotAvailable;
 	}
 
-	public String getEmpContactNumberNotValid() {
-		return empContactNumberNotValid;
+	public String getEmployeeContactNumberNotValid() {
+		return employeeContactNumberNotValid;
 	}
 
-	public void setEmpContactNumberNotValid(String empContactNumberNotValid) {
-		this.empContactNumberNotValid = empContactNumberNotValid;
+	public void setEmployeeContactNumberNotValid(String employeeContactNumberNotValid) {
+		this.employeeContactNumberNotValid = employeeContactNumberNotValid;
+	}
+
+	public String getEmployeeFieldsNullOrEmpty() {
+		return employeeFieldsNullOrEmpty;
+	}
+
+	public void setEmployeeFieldsNullOrEmpty(String employeeFieldsNullOrEmpty) {
+		this.employeeFieldsNullOrEmpty = employeeFieldsNullOrEmpty;
+	}
+
+	public String getEmployeeDesignationNotFound() {
+		return employeeDesignationNotFound;
+	}
+
+	public void setEmployeeDesignationNotFound(String employeeDesignationNotFound) {
+		this.employeeDesignationNotFound = employeeDesignationNotFound;
 	}
 
 	public String getDesignationNameAlreadyExists() {
@@ -378,22 +378,6 @@ public class ValidationFailureStatusCodes {
 		this.projectByIdAlreadyExist = projectByIdAlreadyExist;
 	}
 
-	public String getDesigNameAlreadyExists() {
-		return desigNameAlreadyExists;
-	}
-
-	public void setDesigNameAlreadyExists(String desigNameAlreadyExists) {
-		this.desigNameAlreadyExists = desigNameAlreadyExists;
-	}
-
-	public String getDesigExistsById() {
-		return desigExistsById;
-	}
-
-	public void setDesigExistsById(String desigExistsById) {
-		this.desigExistsById = desigExistsById;
-	}
-
 	public String getEmpFieldsNullOrEmpty() {
 		return empFieldsNullOrEmpty;
 	}
@@ -424,38 +408,6 @@ public class ValidationFailureStatusCodes {
 
 	public void setProjectIdNotAvailable(String projectIdNotAvailable) {
 		this.projectIdNotAvailable = projectIdNotAvailable;
-	}
-
-	public String getDesignationById() {
-		return designationById;
-	}
-
-	public void setDesignationById(String designationById) {
-		this.designationById = designationById;
-	}
-
-	public String getDesignationNotFound() {
-		return designationNotFound;
-	}
-
-	public void setDesignationNotFound(String designationNotFound) {
-		this.designationNotFound = designationNotFound;
-	}
-
-	public String getDesignationAlreadyExists() {
-		return designationAlreadyExists;
-	}
-
-	public void setDesignationAlreadyExists(String designationAlreadyExists) {
-		this.designationAlreadyExists = designationAlreadyExists;
-	}
-
-	public String getDesignationIdNotFound() {
-		return designationIdNotFound;
-	}
-
-	public void setDesignationIdNotFound(String designationIdNotFound) {
-		this.designationIdNotFound = designationIdNotFound;
 	}
 
 	public String getModuleNameAlreadyExists() {
@@ -578,14 +530,6 @@ public class ValidationFailureStatusCodes {
 		this.typeIdNotExists = typeIdNotExists;
 	}
 
-	public String getDesignationExistById() {
-		return designationExistById;
-	}
-
-	public void setDesignationExistById(String designationExistById) {
-		this.designationExistById = designationExistById;
-	}
-
 	public String getProjectExistsById() {
 		return projectExistsById;
 	}
@@ -594,5 +538,4 @@ public class ValidationFailureStatusCodes {
 		this.projectExistsById = projectExistsById;
 	}
 
-	
 }

@@ -42,14 +42,15 @@ public class DesignationController {
 		designationService.createDesignation(designation);
 		return new ResponseEntity<Object>(Constants.DESIGNATION_ADDED_SUCCESS, HttpStatus.OK);
 	}
+
 //	GetAll
 	@GetMapping(value = EndpointURI.DESIGNATION)
 	public ResponseEntity<Object> getAllDesigntion() {
 		List<DesignationDto> designationList = mapper.map(designationService.getAllDesignation(), DesignationDto.class);
 		return new ResponseEntity<Object>(designationList, HttpStatus.OK);
 	}
-//Delete	
 
+//Delete	
 	@DeleteMapping(value = EndpointURI.DESIGNATION_BY_ID)
 	public ResponseEntity<Object> deleteDesignation(@PathVariable Long id) {
 		if (!designationService.designationExistsById(id)) {
@@ -72,11 +73,10 @@ public class DesignationController {
 
 //Update
 	@PutMapping(value = EndpointURI.DESIGNATION)
-	public ResponseEntity<Object> editDesignationById(@RequestBody DesignationDto designationDto) {
+	public ResponseEntity<Object> editDesignationById(@Valid @RequestBody DesignationDto designationDto) {
 		if (designationService.designationExistsById(designationDto.getId())) {
 			if (designationService.isDesignationNameAlreadyExist(designationDto.getName())) {
-				return new ResponseEntity<>(
-						new ValidationFailureResponse(ValidationConstance.DESIGNATION_EXISTS,
+				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_EXISTS,
 								validationFailureStatusCodes.getDesignationNameAlreadyExists()),
 						HttpStatus.BAD_REQUEST);
 			}

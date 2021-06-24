@@ -86,10 +86,7 @@ public class SubModuleController {
 	@GetMapping(value = EndpointURI.SUB_MODULE_BY_ID)
 	public ResponseEntity<Object> findSubModuleById(@PathVariable Long id) {
 		if (subModuleService.exitsSubModuleById(id)) {
-			System.out.println("Controller");
-			SubModule subModule = subModuleService.getSubModuleById(id);
-			System.out.println(subModule.getName() + "SubModuleController");
-			return new ResponseEntity<Object>(subModule, HttpStatus.OK);
+			return new ResponseEntity<Object>(subModuleService.getSubModuleById(id), HttpStatus.OK);
 		}
 		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getSubModuleById()), HttpStatus.BAD_REQUEST);

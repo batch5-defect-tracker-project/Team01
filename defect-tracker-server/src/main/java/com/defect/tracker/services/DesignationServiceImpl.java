@@ -7,7 +7,6 @@ import com.defect.tracker.data.entities.Designation;
 import com.defect.tracker.data.repositories.DesignationRepository;
 
 @Service
-
 public class DesignationServiceImpl implements DesignationService {
 	@Autowired
 	private DesignationRepository designationRepository;

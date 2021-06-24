@@ -54,10 +54,9 @@ public class DefectController {
 	
 	@Autowired
 	TypeService typeService;
-
+//Add
 	@PostMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> addDefect(@Valid @RequestBody DefectDto defectDto) {
-
 		if (!moduleService.existsModuleById(defectDto.getModuleId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
 					validationFailureStatusCodes.getDefectModuleById()), HttpStatus.BAD_REQUEST);
@@ -98,13 +97,13 @@ public class DefectController {
 		javaMailSender.send(simpleMail);
 		return new ResponseEntity<Object>(Constants.DEFECT_ADDED_SUCCESS, HttpStatus.OK);
 	}
-	
+//GetAll	
 	@GetMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> getAllDefect() {
 		List<DefectDto> defectList = mapper.map(defectService.getAllDefect(), DefectDto.class);
 		return new ResponseEntity<Object>(defectList, HttpStatus.OK);
 	}
-	
+//Update	
 	@PutMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> editDefectById(@RequestBody DefectDto defectDto) {
 
@@ -168,7 +167,7 @@ public class DefectController {
 		defectService.createDefect(mapper.map(defectDto, Defect.class));
 		return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS, HttpStatus.OK);
 	}
-
+//DeleteById
 	@DeleteMapping(value = EndpointURI.DEFECT_BY_ID)
 	public ResponseEntity<Object> deleteDefectById(@PathVariable Long id) {
 		if (!defectService.existsDefectById(id)) {
@@ -179,7 +178,7 @@ public class DefectController {
 		return new ResponseEntity<Object>(Constants.DEFECT_DELETED_SUCCESS, HttpStatus.OK);
 	}
 
-	// GetById
+// GetById
 	@GetMapping(value = EndpointURI.DEFECT_BY_ID)
 	public ResponseEntity<Object> findDefectByID(@PathVariable Long id) {
 		if (defectService.existsDefectById(id)) {
