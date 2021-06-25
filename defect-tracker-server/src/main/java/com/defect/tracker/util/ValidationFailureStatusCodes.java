@@ -53,15 +53,58 @@ public class ValidationFailureStatusCodes {
 	private String employeeDesignationNotFound;
 	// EndEmployee
 
+	// Designation
+	@Value("${validation.designation.AlreadyExists}")
+	private String designationNameAlreadyExists;
+
+	@Value("${validation.designation.AlreadyExistsById}")
+	private String designationExistsById;
+	// EndDesignation
+
+	// Defect
+	@Value("${validation.defect.defectExistsById}")
+	private String defectExistsById;
+
+	@Value("${validation.defect.module.existsModuleById}")
+	private String defectModuleById;
+
+	@Value("${validation.defect.submodule.existsSubModuleById}")
+	private String defectSubModuleById;
+
+	@Value("${validation.defect.project.existsProjectById}")
+	private String defectProjectById;
+
+	@Value("${validation.defect.employee.existsAssignToId}")
+	private String assignedToExistsById;
+
+	@Value("${validation.defect.employee.existsAssignById}")
+	private String assignedByExistsById;
+
+	@Value("${validation.defect.statusExist}")
+	private String statusExist;
+
+	@Value("${validation.defect.type.existsTypeById}")
+	private String defectTypeById;
+
+	@Value("${validation.defect.module.project.existsModuleById}")
+	private String defectModuleByIdAndProjectId;
+
+	@Value("${validation.defect.submodule.module.existsModuleById}")
+	private String defectSubModuleByIdAndModuleId;
+	
+	@Value("${validation.defect.defectAlreadyExists}")
+	private String defectAlreadyExists;
+	// EndDefect
+
 	// Project
 	@Value("${validation.project.AlreadyExists}")
-	private String proNameAlreadyExists;
+	private String projectNameAlreadyExists;
 
 	@Value("${validation.project.projectIdAlreadyExist}")
 	private String projectByIdAlreadyExist;
 
-	@Value("${validation.designation.AlreadyExists}")
-	private String desigNameAlreadyExists;
+	@Value("${validation.employee.object.fields.NullOrEmpty}")
+	private String empFieldsNullOrEmpty;
 
 	@Value("${validation.id.NotFound}")
 	private String projectIdNotFound;
@@ -74,18 +117,6 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.projectName.NotFound}")
 	private String projectNameNotFound;
-
-	@Value("${validation.projectName.AlreadyExists}")
-	private String projectNameAlreadyExists;
-	// EndProject
-
-	// DESIGNATION
-	@Value("${validation.designation.AlreadyExists}")
-	private String designationNameAlreadyExists;
-
-	@Value("${validation.designation.AlreadyExistsById}")
-	private String designationExistsById;
-	// EndDesignation
 
 	// Module
 	@Value("${validation.module.AlreadyExists}")
@@ -130,9 +161,6 @@ public class ValidationFailureStatusCodes {
 	@Value("${defect.Status.Change.New}")
 	private String defectStatusChange;
 
-	@Value("${validation.module.id.NotAvailable}")
-	private String ModuleIdNotAvailable;
-
 	// Type
 	@Value("${validation.type.AlreadyExists}")
 	private String nameAlreadyExists;
@@ -143,58 +171,6 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.project.existsById}")
 	private String projectExistsById;
 	// EndType
-
-	// Defect
-	@Value("${validation.defect.AlreadyExists}")
-	private String modNameAlreadyExists;
-
-	@Value("${validation.defect.defectExistsById}")
-	private String defectExistsById;
-
-	@Value("${validation.defect.module.existsModuleById}")
-	private String defectModuleById;
-
-	@Value("${validation.defect.submodule.existsSubModuleById}")
-	private String defectSubModuleById;
-
-	@Value("${validation.defect.project.existsProjectById}")
-	private String defectProjectById;
-
-	@Value("${validation.defect.employee.existsAssignToId}")
-	private String assignedToExistsById;
-
-	@Value("${validation.defect.employee.existsAssignById}")
-	private String assignedByExistsById;
-
-	@Value("${validation.defect.type.existsTypeById}")
-	private String defectTypeById;
-
-	public String getDefectModuleByIdAndProjectId() {
-		return defectModuleByIdAndProjectId;
-	}
-
-	public void setDefectModuleByIdAndProjectId(String defectModuleByIdAndProjectId) {
-		this.defectModuleByIdAndProjectId = defectModuleByIdAndProjectId;
-	}
-
-	public String getDefectSubModuleByIdAndModuleId() {
-		return defectSubModuleByIdAndModuleId;
-	}
-
-	public void setDefectSubModuleByIdAndModuleId(String defectSubModuleByIdAndModuleId) {
-		this.defectSubModuleByIdAndModuleId = defectSubModuleByIdAndModuleId;
-	}
-
-	@Value("${validation.defect.statusExist}")
-	private String statusExist;
-	
-	@Value("${validation.defect.module.project.existsModuleById}")
-	private String defectModuleByIdAndProjectId;
-	
-	@Value("${validation.defect.submodule.module.existsModuleById}")
-	private String defectSubModuleByIdAndModuleId;
-	
-	// EndDefect
 
 	public String getEmployeeNotActive() {
 		return employeeNotActive;
@@ -308,12 +284,108 @@ public class ValidationFailureStatusCodes {
 		this.employeeDesignationNotFound = employeeDesignationNotFound;
 	}
 
-	public String getProNameAlreadyExists() {
+	public String getDesignationNameAlreadyExists() {
+		return designationNameAlreadyExists;
+	}
+
+	public void setDesignationNameAlreadyExists(String designationNameAlreadyExists) {
+		this.designationNameAlreadyExists = designationNameAlreadyExists;
+	}
+
+	public String getDesignationExistsById() {
+		return designationExistsById;
+	}
+
+	public void setDesignationExistsById(String designationExistsById) {
+		this.designationExistsById = designationExistsById;
+	}
+
+	public String getDefectExistsById() {
+		return defectExistsById;
+	}
+
+	public void setDefectExistsById(String defectExistsById) {
+		this.defectExistsById = defectExistsById;
+	}
+
+	public String getDefectModuleById() {
+		return defectModuleById;
+	}
+
+	public void setDefectModuleById(String defectModuleById) {
+		this.defectModuleById = defectModuleById;
+	}
+
+	public String getDefectSubModuleById() {
+		return defectSubModuleById;
+	}
+
+	public void setDefectSubModuleById(String defectSubModuleById) {
+		this.defectSubModuleById = defectSubModuleById;
+	}
+
+	public String getDefectProjectById() {
+		return defectProjectById;
+	}
+
+	public void setDefectProjectById(String defectProjectById) {
+		this.defectProjectById = defectProjectById;
+	}
+
+	public String getAssignedToExistsById() {
+		return assignedToExistsById;
+	}
+
+	public void setAssignedToExistsById(String assignedToExistsById) {
+		this.assignedToExistsById = assignedToExistsById;
+	}
+
+	public String getAssignedByExistsById() {
+		return assignedByExistsById;
+	}
+
+	public void setAssignedByExistsById(String assignedByExistsById) {
+		this.assignedByExistsById = assignedByExistsById;
+	}
+
+	public String getStatusExist() {
+		return statusExist;
+	}
+
+	public void setStatusExist(String statusExist) {
+		this.statusExist = statusExist;
+	}
+
+	public String getDefectTypeById() {
+		return defectTypeById;
+	}
+
+	public void setDefectTypeById(String defectTypeById) {
+		this.defectTypeById = defectTypeById;
+	}
+
+	public String getDefectModuleByIdAndProjectId() {
+		return defectModuleByIdAndProjectId;
+	}
+
+	public void setDefectModuleByIdAndProjectId(String defectModuleByIdAndProjectId) {
+		this.defectModuleByIdAndProjectId = defectModuleByIdAndProjectId;
+	}
+
+	public String getDefectSubModuleByIdAndModuleId() {
+		return defectSubModuleByIdAndModuleId;
+	}
+
+	public void setDefectSubModuleByIdAndModuleId(String defectSubModuleByIdAndModuleId) {
+		this.defectSubModuleByIdAndModuleId = defectSubModuleByIdAndModuleId;
+	}
+
+	public String getProjectNameAlreadyExists() {
 		return projectNameAlreadyExists;
 	}
 
-	public void setProNameAlreadyExists(String proNameAlreadyExists) {
-		this.proNameAlreadyExists = proNameAlreadyExists;
+	public void setProjectNameAlreadyExists(String projectNameAlreadyExists) {
+		this.projectNameAlreadyExists = projectNameAlreadyExists;
 	}
 
 	public String getProjectByIdAlreadyExist() {
@@ -324,12 +396,12 @@ public class ValidationFailureStatusCodes {
 		this.projectByIdAlreadyExist = projectByIdAlreadyExist;
 	}
 
-	public String getDesigNameAlreadyExists() {
-		return desigNameAlreadyExists;
+	public String getEmpFieldsNullOrEmpty() {
+		return empFieldsNullOrEmpty;
 	}
 
-	public void setDesigNameAlreadyExists(String desigNameAlreadyExists) {
-		this.desigNameAlreadyExists = desigNameAlreadyExists;
+	public void setEmpFieldsNullOrEmpty(String empFieldsNullOrEmpty) {
+		this.empFieldsNullOrEmpty = empFieldsNullOrEmpty;
 	}
 
 	public String getProjectIdNotFound() {
@@ -354,38 +426,6 @@ public class ValidationFailureStatusCodes {
 
 	public void setSubModuleIdAlreadyExist(String subModuleIdAlreadyExist) {
 		this.subModuleIdAlreadyExist = subModuleIdAlreadyExist;
-	}
-
-	public String getProjectNameNotFound() {
-		return projectNameNotFound;
-	}
-
-	public void setProjectNameNotFound(String projectNameNotFound) {
-		this.projectNameNotFound = projectNameNotFound;
-	}
-
-	public String getProjectNameAlreadyExists() {
-		return projectNameAlreadyExists;
-	}
-
-	public void setProjectNameAlreadyExists(String projectNameAlreadyExists) {
-		this.projectNameAlreadyExists = projectNameAlreadyExists;
-	}
-
-	public String getDesignationNameAlreadyExists() {
-		return designationNameAlreadyExists;
-	}
-
-	public void setDesignationNameAlreadyExists(String designationNameAlreadyExists) {
-		this.designationNameAlreadyExists = designationNameAlreadyExists;
-	}
-
-	public String getDesignationExistsById() {
-		return designationExistsById;
-	}
-
-	public void setDesignationExistsById(String designationExistsById) {
-		this.designationExistsById = designationExistsById;
 	}
 
 	public String getModuleNameAlreadyExists() {
@@ -484,14 +524,6 @@ public class ValidationFailureStatusCodes {
 		this.defectStatusChange = defectStatusChange;
 	}
 
-	public String getModuleIdNotAvailable() {
-		return ModuleIdNotAvailable;
-	}
-
-	public void setModuleIdNotAvailable(String moduleIdNotAvailable) {
-		ModuleIdNotAvailable = moduleIdNotAvailable;
-	}
-
 	public String getNameAlreadyExists() {
 		return nameAlreadyExists;
 	}
@@ -516,76 +548,21 @@ public class ValidationFailureStatusCodes {
 		this.projectExistsById = projectExistsById;
 	}
 
-	public String getModNameAlreadyExists() {
-		return modNameAlreadyExists;
+	public String getProjectNameNotFound() {
+		return projectNameNotFound;
 	}
 
-	public void setModNameAlreadyExists(String modNameAlreadyExists) {
-		this.modNameAlreadyExists = modNameAlreadyExists;
+	public void setProjectNameNotFound(String projectNameNotFound) {
+		this.projectNameNotFound = projectNameNotFound;
 	}
 
-	public String getDefectExistsById() {
-		return defectExistsById;
+	public String getDefectAlreadyExists() {
+		return defectAlreadyExists;
 	}
 
-	public void setDefectExistsById(String defectExistsById) {
-		this.defectExistsById = defectExistsById;
+	public void setDefectAlreadyExists(String defectAlreadyExists) {
+		this.defectAlreadyExists = defectAlreadyExists;
 	}
-
-	public String getDefectModuleById() {
-		return defectModuleById;
-	}
-
-	public void setDefectModuleById(String defectModuleById) {
-		this.defectModuleById = defectModuleById;
-	}
-
-	public String getDefectSubModuleById() {
-		return defectSubModuleById;
-	}
-
-	public void setDefectSubModuleById(String defectSubModuleById) {
-		this.defectSubModuleById = defectSubModuleById;
-	}
-
-	public String getDefectProjectById() {
-		return defectProjectById;
-	}
-
-	public void setDefectProjectById(String defectProjectById) {
-		this.defectProjectById = defectProjectById;
-	}
-
-	public String getAssignedToExistsById() {
-		return assignedToExistsById;
-	}
-
-	public void setAssignedToExistsById(String assignedToExistsById) {
-		this.assignedToExistsById = assignedToExistsById;
-	}
-
-	public String getAssignedByExistsById() {
-		return assignedByExistsById;
-	}
-
-	public void setAssignedByExistsById(String assignedByExistsById) {
-		this.assignedByExistsById = assignedByExistsById;
-	}
-
-	public String getDefectTypeById() {
-		return defectTypeById;
-	}
-
-	public void setDefectTypeById(String defectTypeById) {
-		this.defectTypeById = defectTypeById;
-	}
-
-	public String getStatusExist() {
-		return statusExist;
-	}
-
-	public void setStatusExist(String statusExist) {
-		this.statusExist = statusExist;
-	}
+	
 
 }
