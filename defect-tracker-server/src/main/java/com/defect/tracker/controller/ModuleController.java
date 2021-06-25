@@ -85,7 +85,7 @@ public class ModuleController {
 	// ------------------------- Delete By Id -API ------------------------- //
 	@DeleteMapping(value = EndpointURI.MODULE_BY_ID)
 	public ResponseEntity<Object> deleteModule(@PathVariable Long id) {
-		if (!moduleService.existsById(id)) {
+		if (!moduleService.existsModuleById(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_DELETE_EXISTS_BY_ID,
 					validationFailureStatusCodes.getExistsModuleById()), HttpStatus.BAD_REQUEST);
 		}
