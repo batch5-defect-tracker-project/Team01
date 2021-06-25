@@ -79,7 +79,7 @@ public class SubModuleController {
 	// ------------------------------ Delete -API ------------------------------//
 	@DeleteMapping(value = EndpointURI.SUB_MODULE_BY_ID)
 	public ResponseEntity<Object> deleteSubModule(@PathVariable Long id) {
-		if (!subModuleService.existsById(id)) {
+		if (!subModuleService.exitsSubModuleById(id)) {
 			return new ResponseEntity<>(
 					new ValidationFailureResponse(ValidationConstance.SUB_MODULE_DELETE_EXISTS_BY_ID,
 							validationFailureStatusCodes.getExitsSubModuleById()),
