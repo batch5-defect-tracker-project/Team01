@@ -92,8 +92,19 @@ public class ValidationFailureStatusCodes {
 	@Value("${validation.defect.submodule.module.existsModuleById}")
 	private String defectSubModuleByIdAndModuleId;
 	
+	public String getDefectStatusNotAllowNew() {
+		return defectStatusNotAllowNew;
+	}
+
+	public void setDefectStatusNotAllowNew(String defectStatusNotAllowNew) {
+		this.defectStatusNotAllowNew = defectStatusNotAllowNew;
+	}
+
 	@Value("${validation.defect.defectAlreadyExists}")
 	private String defectAlreadyExists;
+	
+	@Value("${validation.defect.defectStatusNotAllowNew}")
+	private String defectStatusNotAllowNew;
 	// EndDefect
 
 	// Project
@@ -563,6 +574,7 @@ public class ValidationFailureStatusCodes {
 	public void setDefectAlreadyExists(String defectAlreadyExists) {
 		this.defectAlreadyExists = defectAlreadyExists;
 	}
+
 	
 
 }

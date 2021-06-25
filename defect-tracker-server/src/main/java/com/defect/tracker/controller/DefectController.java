@@ -298,6 +298,10 @@ public class DefectController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_ID_NOT_EXISTS,
 					validationFailureStatusCodes.getDefectTypeById()), HttpStatus.BAD_REQUEST);
 		}
+		if(defectDto.getStatus().equalsIgnoreCase("New")) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.NOT_ALLOWED_NEW_STATUS,
+					validationFailureStatusCodes.getDefectStatusNotAllowNew()), HttpStatus.BAD_REQUEST);
+		}
 		if (!defectService.getDefectStatusById(defectDto.getId()).equalsIgnoreCase(defectDto.getStatus())) {
 			defectService.createDefect(mapper.map(defectDto, Defect.class));
 			emailService.sendDefectStatusUpdateEmail(defectDto);
