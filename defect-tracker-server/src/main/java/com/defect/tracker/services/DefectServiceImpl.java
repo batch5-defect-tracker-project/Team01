@@ -1,15 +1,9 @@
 package com.defect.tracker.services;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.defect.tracker.data.dto.DefectDto;
 import com.defect.tracker.data.dto.DefectStatusCountDto;
-import com.defect.tracker.data.dto.ProjectDto;
 import com.defect.tracker.data.entities.Defect;
 import com.defect.tracker.data.entities.Project;
 import com.defect.tracker.data.mapper.Mapper;
@@ -18,20 +12,16 @@ import com.defect.tracker.data.repositories.DefectRepository;
 @Service
 public class DefectServiceImpl implements DefectService {
 
-	
 	@Autowired
 	private DefectRepository defectRepository;
-
 	@Autowired
 	ProjectService projectService;
-
 	@Autowired
 	Mapper mapper;
 
 	@Override
 	public void createDefect(Defect defect) {
 		defectRepository.save(defect);
-
 	}
 
 	@Override
@@ -47,7 +37,6 @@ public class DefectServiceImpl implements DefectService {
 	@Override
 	public void editDefectById(Defect defect) {
 		defectRepository.save(defect);
-
 	}
 
 	@Override
@@ -67,23 +56,8 @@ public class DefectServiceImpl implements DefectService {
 	}
 
 	@Override
-	public Object getDefectStatusById(Long id) {
+	public String getDefectStatusById(Long id) {
 		return defectRepository.findById(id).get().getStatus();
-	}
-
-	@Override
-	public boolean existsAssignedTo(Long id) {
-		return defectRepository.existsByAssignedToId(id);
-	}
-
-	@Override
-	public boolean existsModuleId(Long id) {
-		return defectRepository.existsByModuleId(id);
-	}
-
-	@Override
-	public boolean existsAssignedBy(Long id) {
-		return defectRepository.existsByAssignedById(id);
 	}
 
 	@Override
@@ -100,8 +74,8 @@ public class DefectServiceImpl implements DefectService {
 	}
 
 	@Override
-	public boolean existsstatus(String status) {
-		return defectRepository.existsByStatus(status);
+	public boolean existsDefectByModuleIdAndSubModuleIdAndProjectIdAndTypeIdAndCommentsAndDescription(Long moduleId,
+			Long subModuleId, Long projectId, Long typeId, String comments, String description) {
+		return defectRepository.existsByModuleIdAndSubModuleIdAndProjectIdAndTypeIdAndCommentsAndDescription(moduleId,subModuleId,projectId,typeId,comments,description);
 	}
-
 }
