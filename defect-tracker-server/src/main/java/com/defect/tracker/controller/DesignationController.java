@@ -43,17 +43,19 @@ public class DesignationController {
 		return new ResponseEntity<Object>(Constants.DESIGNATION_ADDED_SUCCESS, HttpStatus.OK);
 	}
 
+//	GetAll
 	@GetMapping(value = EndpointURI.DESIGNATION)
 	public ResponseEntity<Object> getAllDesigntion() {
 		List<DesignationDto> designationList = mapper.map(designationService.getAllDesignation(), DesignationDto.class);
 		return new ResponseEntity<Object>(designationList, HttpStatus.OK);
 	}
 
+//Delete	
 	@DeleteMapping(value = EndpointURI.DESIGNATION_BY_ID)
 	public ResponseEntity<Object> deleteDesignation(@PathVariable Long id) {
 		if (!designationService.designationExistsById(id)) {
 			return new ResponseEntity<>(
-					new ValidationFailureResponse(ValidationConstance.DESIGNATION_DELETE_EXISTS_BY_ID,
+					new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_EXISTS_BY_ID,
 							validationFailureStatusCodes.getDesignationExistsById()),
 					HttpStatus.BAD_REQUEST);
 		}
@@ -71,17 +73,18 @@ public class DesignationController {
 	}
 
 	@PutMapping(value = EndpointURI.DESIGNATION)
-	public ResponseEntity<Object> editDesignationById(@RequestBody DesignationDto designationDto) {
+	public ResponseEntity<Object> editDesignationById(@Valid @RequestBody DesignationDto designationDto) {
 		if (designationService.designationExistsById(designationDto.getId())) {
 			if (designationService.isDesignationNameAlreadyExist(designationDto.getName())) {
 				return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_EXISTS,
-						validationFailureStatusCodes.getDesignationNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+								validationFailureStatusCodes.getDesignationNameAlreadyExists()),
+						HttpStatus.BAD_REQUEST);
 			}
 			Designation designation = mapper.map(designationDto, Designation.class);
 			designationService.createDesignation(designation);
 			return new ResponseEntity<Object>(Constants.DESIGNATION_UPDATED_SUCCESS, HttpStatus.OK);
 		}
-		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_EXISTS,
+		return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_EXISTS_BY_ID,
 				validationFailureStatusCodes.getDesignationExistsById()), HttpStatus.BAD_REQUEST);
 	}
 }

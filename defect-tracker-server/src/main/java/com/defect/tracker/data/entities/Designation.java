@@ -16,11 +16,6 @@ public class Designation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
-	@NotNull(message = "name is not null")
-	@NotBlank(message = "name is not blank")
-	@NotEmpty(message = "name is not empty")
-	@Pattern(regexp = "^[a-zA-Z.\\-\\/+=@_ ]*$", message = "name not allowed special character and number")
 	private String name;
 
 	public Long getId() {
@@ -38,5 +33,4 @@ public class Designation {
 	public void setName(String name) {
 		this.name = name;
 	}
-
 }

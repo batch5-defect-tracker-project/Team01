@@ -7,9 +7,10 @@ import com.defect.tracker.data.entities.Designation;
 import com.defect.tracker.data.repositories.DesignationRepository;
 
 @Service
-public class DesignationServiceImpl implements DesignationService{
-	 @Autowired
-		private  DesignationRepository designationRepository ;
+public class DesignationServiceImpl implements DesignationService {
+	@Autowired
+	private DesignationRepository designationRepository;
+
 	@Override
 	public boolean isDesignationNameAlreadyExist(String name) {
         return designationRepository.existsByName(name);
