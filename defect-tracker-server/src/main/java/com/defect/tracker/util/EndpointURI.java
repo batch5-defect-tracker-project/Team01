@@ -34,7 +34,7 @@ public final class EndpointURI {
 
 	// Defect
 	public static final String DEFECT_ADD = BASE_API_PATH + "defect_add";
-	public static final String DEFECT_UPDATE = BASE_API_PATH + "defectUpdate";
+	public static final String DEFECT_UPDATE = BASE_API_PATH + "defect_update";
 
 	// Employee
 	public static final String EMPLOYEE = BASE_API_PATH + "employee";
