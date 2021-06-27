@@ -87,7 +87,7 @@ public class ValidationFailureStatusCodes {
 	private String designationExistsById;
 	// EndDesignation
 
-  // Module
+	// Module
 	@Value("${validation.module.AlreadyExists}")
 	private String moduleNameAlreadyExists;
 
@@ -115,6 +115,9 @@ public class ValidationFailureStatusCodes {
 	// ProjectAllocation
 	@Value("${validation.projectAllocation.AlreadyExistsId}")
 	private String projectAllocationExistsById;
+
+	@Value("${validation.projectAllocation.projectIdExistsByModuleId}")
+	private String projectIdExistsByModuleId;
 
 	@Value("${validation.projectAllocation.moduleIdExistsBySubModuleId}")
 	private String moduleIdExistsBySubModuleId;
@@ -144,7 +147,7 @@ public class ValidationFailureStatusCodes {
 	private String projectExistsById;
 	// EndType
 
-  // Defect
+	// Defect
 	@Value("${validation.defect.AlreadyExists}")
 	private String modNameAlreadyExists;
 
@@ -563,6 +566,14 @@ public class ValidationFailureStatusCodes {
 
 	public void setModuleIdNotAvailable(String moduleIdNotAvailable) {
 		ModuleIdNotAvailable = moduleIdNotAvailable;
+	}
+
+	public String getProjectIdExistsByModuleId() {
+		return projectIdExistsByModuleId;
+	}
+
+	public void setProjectIdExistsByModuleId(String projectIdExistsByModuleId) {
+		this.projectIdExistsByModuleId = projectIdExistsByModuleId;
 	}
 
 }

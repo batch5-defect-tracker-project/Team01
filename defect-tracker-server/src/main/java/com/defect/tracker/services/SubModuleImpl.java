@@ -46,11 +46,7 @@ public class SubModuleImpl implements SubModuleService {
 
 	@Override
 	public void deleteById(Long id) {
-
-		subModuleRepository.deleteById(id);		
-
 		subModuleRepository.deleteById(id);
-
 	}
 
 	@Override
@@ -68,13 +64,6 @@ public class SubModuleImpl implements SubModuleService {
 
 	@Override
 	public boolean getSubModuleByIdAndName(Long moduleId, String name) {
-
-		return subModuleRepository.existsByModuleIdAndName(moduleId, name);
-	}
-
-	@Override
-	public boolean getSubModuleByIdAndName(Long moduleId, String name) {
-
 		return subModuleRepository.existsByModuleIdAndName(moduleId, name);
 	}
 
