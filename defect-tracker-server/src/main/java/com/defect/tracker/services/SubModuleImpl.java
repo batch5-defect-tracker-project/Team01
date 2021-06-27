@@ -40,6 +40,7 @@ public class SubModuleImpl implements SubModuleService {
 		return subModuleRepository.existsByModuleIdAndName(moduleId, name);
 	}
 
+	@Override
 	public boolean existsById(Long id) {
 		return subModuleRepository.existsById(id);
 	}
