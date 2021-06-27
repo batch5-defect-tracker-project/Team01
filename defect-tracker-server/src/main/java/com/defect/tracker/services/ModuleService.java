@@ -22,17 +22,11 @@ public interface ModuleService {
 
 	boolean isModuleNameAlreadyExist(String name);
 
-	public boolean existsByModuleId(Long moduleId);
-
-	boolean existsById(Long id);
-
-	public boolean exsistByModuleId(Long moduleId);
-
 	public Object findById(Long id);
 
 	public boolean existsModuleById(Long id);
 
-	public boolean exitsModuleById(Long id);
+	public boolean exitsModuleIdAndProjectId(Long moduleId, Long projectId);
 
 	public boolean existsModuleIdAndProjectId(Long moduleId, Long projectId);
 

@@ -54,9 +54,9 @@ public class ProjectAllocationController {
 		}
 		if (!employeeService.isIdAlreadyExists(projectAllocationDto.getEmployeeId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_Id_NOT_AVAILABLE,
-					validationFailureStatusCodes.getEmpIdNotAvailable()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getEmployeeIdNotAvailable()), HttpStatus.BAD_REQUEST);
 		}
-		if (!moduleService.existsById(projectAllocationDto.getModuleId())) {
+		if (!moduleService.existsModuleById(projectAllocationDto.getModuleId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
 					validationFailureStatusCodes.getExistsModuleById()), HttpStatus.BAD_REQUEST);
 		}
@@ -115,9 +115,9 @@ public class ProjectAllocationController {
 		}
 		if (!employeeService.isIdAlreadyExists(projectAllocationDto.getEmployeeId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_Id_NOT_AVAILABLE,
-					validationFailureStatusCodes.getEmpIdNotAvailable()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getEmployeeIdNotAvailable()), HttpStatus.BAD_REQUEST);
 		}
-		if (!moduleService.existsById(projectAllocationDto.getModuleId())) {
+		if (!moduleService.existsModuleById(projectAllocationDto.getModuleId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_NOT_EXISTS_BY_ID,
 					validationFailureStatusCodes.getExistsModuleById()), HttpStatus.BAD_REQUEST);
 		}

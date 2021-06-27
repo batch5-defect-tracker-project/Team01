@@ -39,7 +39,7 @@ public class SubModuleController {
 	// ------------------------------ Add -API ------------------------------ //
 	@PostMapping(value = EndpointURI.SUB_MODULE)
 	public ResponseEntity<Object> addSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
-		if (!moduleService.existsById(subModuleDto.getModuleId())) {
+		if (!moduleService.existsModuleById(subModuleDto.getModuleId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_ID_NOT_EXISTS,
 					validationFailureStatusCodes.getModuleByIdAlreadyExist()), HttpStatus.BAD_REQUEST);
 		}
@@ -57,7 +57,7 @@ public class SubModuleController {
 	@PutMapping(value = EndpointURI.SUB_MODULE)
 	public ResponseEntity<Object> updateSubModule(@Valid @RequestBody SubModuleDto subModuleDto) {
 		if (subModuleService.exitsSubModuleById(subModuleDto.getId())) {
-			if (moduleService.existsById(subModuleDto.getModuleId())) {
+			if (moduleService.existsModuleById(subModuleDto.getModuleId())) {
 				if (subModuleService.getSubModuleByModuleIdAndName(subModuleDto.getModuleId(),
 						subModuleDto.getName())) {
 					return new ResponseEntity<>(
@@ -79,7 +79,7 @@ public class SubModuleController {
 	// ------------------------------ Delete -API ------------------------------//
 	@DeleteMapping(value = EndpointURI.SUB_MODULE_BY_ID)
 	public ResponseEntity<Object> deleteSubModule(@PathVariable Long id) {
-		if (!subModuleService.existsById(id)) {
+		if (!subModuleService.exitsSubModuleById(id)) {
 			return new ResponseEntity<>(
 					new ValidationFailureResponse(ValidationConstance.SUB_MODULE_DELETE_EXISTS_BY_ID,
 							validationFailureStatusCodes.getExitsSubModuleById()),

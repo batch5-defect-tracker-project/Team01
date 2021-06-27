@@ -58,7 +58,7 @@ public class ModuleController {
 	// ------------------------- Update By Id -API ------------------------- //
 	@PutMapping(value = EndpointURI.MODULE)
 	public ResponseEntity<Object> updateModule(@Valid @RequestBody ModuleDto moduleDto) {
-		if (moduleService.exitsModuleById(moduleDto.getId())) {
+		if (moduleService.existsModuleById(moduleDto.getId())) {
 			if (projectService.projectIdExits(moduleDto.getProjectId())) {
 				if (moduleService.isModuleNameAlreadyExist(moduleDto.getName())) {
 					return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS,
@@ -85,7 +85,7 @@ public class ModuleController {
 	// ------------------------- Delete By Id -API ------------------------- //
 	@DeleteMapping(value = EndpointURI.MODULE_BY_ID)
 	public ResponseEntity<Object> deleteModule(@PathVariable Long id) {
-		if (!moduleService.existsById(id)) {
+		if (!moduleService.existsModuleById(id)) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_DELETE_EXISTS_BY_ID,
 					validationFailureStatusCodes.getExistsModuleById()), HttpStatus.BAD_REQUEST);
 		}
@@ -96,8 +96,8 @@ public class ModuleController {
 	// ------------------------- Get By Id -API ------------------------- //
 	@GetMapping(value = EndpointURI.MODULE_BY_ID)
 	public ResponseEntity<Object> findModuleById(@PathVariable Long id) {
-		if (moduleService.exitsModuleById(id)) {
-			if (moduleService.exitsModuleById(id)) {
+		if (moduleService.existsModuleById(id)) {
+			if (moduleService.existsModuleById(id)) {
 				return new ResponseEntity<Object>(mapper.map(moduleService.getModuleById(id), ModuleDto.class),
 						HttpStatus.OK);
 			}

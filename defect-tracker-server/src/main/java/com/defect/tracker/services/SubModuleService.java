@@ -21,15 +21,9 @@ public interface SubModuleService {
 
 	public Object getSubModuleById(Long id);
 
-	public boolean existsById(Long id);
-
 	public void deleteById(Long id);
 
-	public boolean getModuleIdAndName(Long moduleId, String name);
-
-	public boolean getSubModuleByIdAndName(Long moduleId, String name);
-
-	public boolean existsByIdAndModuleId(Long subModuleId, Long moduleId);
+	public boolean existsByIdAndModuleId(Long id, Long moduleId);
 
 	public boolean getSubModuleByModuleIdAndName(Long moduleId, String name);
 

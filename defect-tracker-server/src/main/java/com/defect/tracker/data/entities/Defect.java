@@ -12,11 +12,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "defect")
 public class Defect {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
 	private String severity;
 	private String priority;
 	private String description;
@@ -40,14 +38,6 @@ public class Defect {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "subModule_id", nullable = false)
 	private SubModule subModule;
-
-	public Project getProject() {
-		return project;
-	}
-
-	public void setProject(Project project) {
-		this.project = project;
-	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "assignedBy", nullable = false)
@@ -97,20 +87,20 @@ public class Defect {
 		this.stepsToReCreate = stepsToReCreate;
 	}
 
-	public String getComments() {
-		return comments;
-	}
-
-	public void setComments(String comments) {
-		this.comments = comments;
-	}
-
 	public String getStatus() {
 		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
 
 	public String getFile() {
@@ -127,6 +117,14 @@ public class Defect {
 
 	public void setType(Type type) {
 		this.type = type;
+	}
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
 	}
 
 	public Module getModule() {
@@ -160,5 +158,4 @@ public class Defect {
 	public void setAssignedTo(Employee assignedTo) {
 		this.assignedTo = assignedTo;
 	}
-
 }

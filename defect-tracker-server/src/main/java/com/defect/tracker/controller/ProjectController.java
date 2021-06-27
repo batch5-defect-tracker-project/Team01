@@ -38,7 +38,7 @@ public class ProjectController {
 	public ResponseEntity<Object> addProject(@Valid @RequestBody ProjectDto projectDto) {
 		if (projectService.exitsByProjectName(projectDto.getName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_EXISTS,
-					validationFailureStatusCodes.getProNameAlreadyExists()), HttpStatus.BAD_REQUEST);
+					validationFailureStatusCodes.getProjectNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
 		projectService.addProject(mapper.map(projectDto, Project.class));
 		return new ResponseEntity<Object>(Constants.PROJECT_ADDED_SUCCESS, HttpStatus.OK);

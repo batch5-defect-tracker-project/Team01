@@ -32,12 +32,7 @@ public class ModuleServiceImpl implements ModuleService {
 	@Override
 	public void deleteById(Long id) {
 		moduleRepository.deleteById(id);
-	}
-
-	@Override
-	public boolean existsById(Long id) {
-		return moduleRepository.existsById(id);
-	}
+    }
 
 	@Override
 	public Object getModuleById(Long id) {
@@ -59,23 +54,14 @@ public class ModuleServiceImpl implements ModuleService {
 		return moduleRepository.existsById(id);
 	}
 
-	public boolean existsByModuleId(Long moduleId) {
-		return moduleRepository.existsById(moduleId);
-	}
-
-	@Override
-	public boolean exsistByModuleId(Long moduleId) {
-		return moduleRepository.existsById(moduleId);
-	}
-
 	@Override
 	public void updateModule(Module module) {
 		moduleRepository.save(module);
 	}
 
 	@Override
-	public boolean exitsModuleById(Long id) {
-		return moduleRepository.existsById(id);
+	public boolean exitsModuleIdAndProjectId(Long moduleId, Long projectId) {
+		return moduleRepository.existsByIdAndProjectId(moduleId, projectId);
 	}
 
 	@Override
