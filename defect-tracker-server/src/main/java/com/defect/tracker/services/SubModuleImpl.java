@@ -49,7 +49,6 @@ public class SubModuleImpl implements SubModuleService {
 	@Override
 	public List<SubModule> getAllSubModule() {
 		return subModuleRepository.findAll();
-
 	}
 
 	@Override

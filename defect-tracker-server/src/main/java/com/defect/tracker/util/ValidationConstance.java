@@ -39,6 +39,7 @@ public class ValidationConstance {
 	public static final String SUB_MODULE_NOT_EXISTS_BY_ID = "Sub Module Id is not Exists";
 	public static final String MODULE_NOT_EXISTS = "Module Not Exists";
 	public static final String MODULE_ID_NOT_EXISTS = "Module Id is not Exists";
+	public static final String MODULE_EXISTS_BY_PROJECT_ID = "Module Id not Exists By Project Id";
 
 	// SubModule
 	public static final String SUB_MODULE_ID_NOT_EXIT = " SubModule Id is not Exists";

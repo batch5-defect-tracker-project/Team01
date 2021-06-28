@@ -28,4 +28,6 @@ public interface ModuleService {
 
 	public boolean exitsModuleIdAndProjectId(Long moduleId, Long projectId);
 
+	public boolean existsModuleIdAndProjectId(Long moduleId, Long projectId);
+
 }

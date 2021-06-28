@@ -66,12 +66,19 @@ public class ProjectAllocationController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_EXISTS,
 					validationFailureStatusCodes.getProjectAllocationExistsById()), HttpStatus.BAD_REQUEST);
 		}
-		if (!subModuleService.existsByIdAndModuleId(projectAllocationDto.getSubModuleId(),
-				projectAllocationDto.getModuleId()) || projectAllocationDto.getId() != null) {
-			return new ResponseEntity<>(
-					new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS_BY_MODULE_ID,
-							validationFailureStatusCodes.getModuleIdExistsBySubModuleId()),
-					HttpStatus.BAD_REQUEST);
+		if (!moduleService.existsModuleIdAndProjectId(projectAllocationDto.getModuleId(),
+				projectAllocationDto.getProjectId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS_BY_PROJECT_ID,
+					validationFailureStatusCodes.getProjectIdExistsByModuleId()), HttpStatus.BAD_REQUEST);
+		}
+		if (projectAllocationDto.getSubModuleId() != null) {
+			if (!subModuleService.existsByIdAndModuleId(projectAllocationDto.getSubModuleId(),
+					projectAllocationDto.getModuleId())) {
+				return new ResponseEntity<>(
+						new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS_BY_MODULE_ID,
+								validationFailureStatusCodes.getModuleIdExistsBySubModuleId()),
+						HttpStatus.BAD_REQUEST);
+			}
 		}
 		ProjectAllocation projectAllocation = mapper.map(projectAllocationDto, ProjectAllocation.class);
 		projectAllocationService.addProjectAllocation(projectAllocation);
@@ -120,12 +127,19 @@ public class ProjectAllocationController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.PROJECT_ALLOCATION_EXISTS,
 					validationFailureStatusCodes.getProjectAllocationExistsById()), HttpStatus.BAD_REQUEST);
 		}
-		if (!subModuleService.existsByIdAndModuleId(projectAllocationDto.getSubModuleId(),
-				projectAllocationDto.getModuleId()) && projectAllocationDto.getId() != null) {
-			return new ResponseEntity<>(
-					new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS_BY_MODULE_ID,
-							validationFailureStatusCodes.getModuleIdExistsBySubModuleId()),
-					HttpStatus.BAD_REQUEST);
+		if (!moduleService.existsModuleIdAndProjectId(projectAllocationDto.getModuleId(),
+				projectAllocationDto.getProjectId())) {
+			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.MODULE_EXISTS_BY_PROJECT_ID,
+					validationFailureStatusCodes.getProjectIdExistsByModuleId()), HttpStatus.BAD_REQUEST);
+		}
+		if (projectAllocationDto.getSubModuleId() != null) {
+			if (!subModuleService.existsByIdAndModuleId(projectAllocationDto.getSubModuleId(),
+					projectAllocationDto.getModuleId())) {
+				return new ResponseEntity<>(
+						new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS_BY_MODULE_ID,
+								validationFailureStatusCodes.getModuleIdExistsBySubModuleId()),
+						HttpStatus.BAD_REQUEST);
+			}
 		}
 		ProjectAllocation projectAllocation = mapper.map(projectAllocationDto, ProjectAllocation.class);
 		projectAllocationService.updateprojectAllocation(projectAllocation);

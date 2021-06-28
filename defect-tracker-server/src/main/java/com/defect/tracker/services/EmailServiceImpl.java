@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import com.defect.tracker.data.dto.DefectDto;
 import com.defect.tracker.data.entities.Employee;
-import com.defect.tracker.data.entities.Project;
 import com.defect.tracker.data.entities.VerificationToken;
 import com.defect.tracker.data.mapper.Mapper;
 
@@ -72,9 +71,10 @@ public class EmailServiceImpl implements EmailService {
 		SimpleMailMessage mailmessage = new SimpleMailMessage();
 		mailmessage.setFrom("meera10testmail@gmail.com");
 		mailmessage.setTo(assignTo.getEmail());
-		mailmessage.setSubject(defectDto.getStatus()+"Defect Add");
+		mailmessage.setSubject(defectDto.getStatus() + "Defect Add");
 		mailmessage.setText("assigenedToEmployeeId : " + defectDto.getAssignedToId() + "  moduleName : "
-				+ moduleService.findById(defectDto.getModuleId()) + "  projectName : " + projectService.getProjectByName(defectDto.getProjectId()));
+				+ moduleService.findById(defectDto.getModuleId()) + "  projectName : "
+				+ projectService.getProjectByName(defectDto.getProjectId()));
 		javaMailSender.send(mailmessage);
 
 	}
@@ -83,7 +83,7 @@ public class EmailServiceImpl implements EmailService {
 	public void sendDefectStatusUpdateEmail(DefectDto defectDto) {
 		Employee assignBy = mapper.map(employeeService.findEmployeeById(defectDto.getAssignedById()), Employee.class);
 		Employee assignTo = mapper.map(employeeService.findEmployeeById(defectDto.getAssignedToId()), Employee.class);
-				
+
 		SimpleMailMessage mailmessage = new SimpleMailMessage();
 		mailmessage.setFrom("meera10testmail@gmail.com");
 		if ((defectDto.getStatus().equals("reopen")) || (defectDto.getStatus().equals("closed"))) {
@@ -92,9 +92,10 @@ public class EmailServiceImpl implements EmailService {
 				|| (defectDto.getStatus().equals("reject"))) {
 			mailmessage.setTo(assignTo.getEmail());
 		}
-		mailmessage.setSubject(" Defect Status Change - defectType : "+ defectDto.getStatus());
+		mailmessage.setSubject(" Defect Status Change - defectType : " + defectDto.getStatus());
 		mailmessage.setText("assigenedToEmployeeId : " + defectDto.getAssignedToId() + "  moduleName : "
-				+ moduleService.findById(defectDto.getModuleId())+ "  projectName : " + projectService.getProjectByName(defectDto.getProjectId()));
+				+ moduleService.findById(defectDto.getModuleId()) + "  projectName : "
+				+ projectService.getProjectByName(defectDto.getProjectId()));
 		javaMailSender.send(mailmessage);
 
 	}

@@ -20,7 +20,6 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public void addProject(Project project) {
 		projectRepository.save(project);
-
 	}
 
 	@Override
