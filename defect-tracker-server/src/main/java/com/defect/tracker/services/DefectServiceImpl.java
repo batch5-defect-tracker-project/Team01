@@ -11,7 +11,6 @@ import com.defect.tracker.data.repositories.DefectRepository;
 
 @Service
 public class DefectServiceImpl implements DefectService {
-
 	@Autowired
 	private DefectRepository defectRepository;
 	@Autowired
@@ -76,6 +75,7 @@ public class DefectServiceImpl implements DefectService {
 	@Override
 	public boolean existsDefectByModuleIdAndSubModuleIdAndProjectIdAndTypeIdAndCommentsAndDescription(Long moduleId,
 			Long subModuleId, Long projectId, Long typeId, String comments, String description) {
-		return defectRepository.existsByModuleIdAndSubModuleIdAndProjectIdAndTypeIdAndCommentsAndDescription(moduleId,subModuleId,projectId,typeId,comments,description);
+		return defectRepository.existsByModuleIdAndSubModuleIdAndProjectIdAndTypeIdAndCommentsAndDescription(moduleId,
+				subModuleId, projectId, typeId, comments, description);
 	}
 }

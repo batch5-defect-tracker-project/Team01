@@ -1,4 +1,3 @@
-
 package com.defect.tracker.util;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -91,14 +90,6 @@ public class ValidationFailureStatusCodes {
 
 	@Value("${validation.defect.submodule.module.existsModuleById}")
 	private String defectSubModuleByIdAndModuleId;
-
-	public String getDefectStatusNotAllowNew() {
-		return defectStatusNotAllowNew;
-	}
-
-	public void setDefectStatusNotAllowNew(String defectStatusNotAllowNew) {
-		this.defectStatusNotAllowNew = defectStatusNotAllowNew;
-	}
 
 	@Value("${validation.defect.defectAlreadyExists}")
 	private String defectAlreadyExists;
@@ -584,6 +575,14 @@ public class ValidationFailureStatusCodes {
 
 	public void setProjectIdExistsByModuleId(String projectIdExistsByModuleId) {
 		this.projectIdExistsByModuleId = projectIdExistsByModuleId;
+	}
+
+	public String getDefectStatusNotAllowNew() {
+		return defectStatusNotAllowNew;
+	}
+
+	public void setDefectStatusNotAllowNew(String defectStatusNotAllowNew) {
+		this.defectStatusNotAllowNew = defectStatusNotAllowNew;
 	}
 
 }

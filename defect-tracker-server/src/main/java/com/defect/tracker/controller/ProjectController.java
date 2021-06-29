@@ -1,6 +1,5 @@
 package com.defect.tracker.controller;
 
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,6 @@ public class ProjectController {
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	private Mapper mapper;
-
 
 	@PostMapping(value = EndpointURI.PROJECT)
 	public ResponseEntity<Object> addProject(@Valid @RequestBody ProjectDto projectDto) {

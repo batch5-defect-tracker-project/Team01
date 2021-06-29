@@ -12,7 +12,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "sub_module")
 public class SubModule {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

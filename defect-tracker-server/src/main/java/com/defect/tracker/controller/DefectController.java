@@ -33,7 +33,6 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @RestController
 public class DefectController {
-
 	@Autowired
 	private DefectService defectService;
 	@Autowired
@@ -154,11 +153,13 @@ public class DefectController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.ONLY_ALLOWED_NEW_STATUS,
 					validationFailureStatusCodes.getStatusExist()), HttpStatus.BAD_REQUEST);
 		}
-		if (defectService.existsDefectByModuleIdAndSubModuleIdAndProjectIdAndTypeIdAndCommentsAndDescription(defectDto.getModuleId(),defectDto.getSubModuleId(),defectDto.getProjectId(),defectDto.getTypeId(),defectDto.getComments(),defectDto.getDescription())) {
+		if (defectService.existsDefectByModuleIdAndSubModuleIdAndProjectIdAndTypeIdAndCommentsAndDescription(
+				defectDto.getModuleId(), defectDto.getSubModuleId(), defectDto.getProjectId(), defectDto.getTypeId(),
+				defectDto.getComments(), defectDto.getDescription())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_EXISTS,
 					validationFailureStatusCodes.getDefectAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
-		
+
 		Defect defect = mapper.map(defectDto, Defect.class);
 		defectService.createDefect(defect);
 		Employee assignedTo = employeeService.findById(defectDto.getAssignedToId());
@@ -183,7 +184,6 @@ public class DefectController {
 	// Update
 	@PutMapping(value = EndpointURI.DEFECT)
 	public ResponseEntity<Object> editDefectById(@Valid @RequestBody DefectDto defectDto) {
-
 		if (!defectService.existsDefectById(defectDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DEFECT_NOT_EXISTS_BY_ID,
 					validationFailureStatusCodes.getDefectExistsById()), HttpStatus.BAD_REQUEST);
@@ -298,7 +298,7 @@ public class DefectController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_ID_NOT_EXISTS,
 					validationFailureStatusCodes.getDefectTypeById()), HttpStatus.BAD_REQUEST);
 		}
-		if(defectDto.getStatus().equalsIgnoreCase("New")) {
+		if (defectDto.getStatus().equalsIgnoreCase("New")) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.NOT_ALLOWED_NEW_STATUS,
 					validationFailureStatusCodes.getDefectStatusNotAllowNew()), HttpStatus.BAD_REQUEST);
 		}
@@ -309,7 +309,6 @@ public class DefectController {
 		}
 		defectService.createDefect(mapper.map(defectDto, Defect.class));
 		return new ResponseEntity<Object>(Constants.DEFECT_UPDATED_SUCCESS, HttpStatus.OK);
-
 	}
 
 	// Delete

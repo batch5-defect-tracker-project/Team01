@@ -13,7 +13,7 @@ public class TypeServiceImpl implements TypeService {
 
 	@Autowired
 	private TypeRepository typeRepository;
-	
+
 	@Override
 	public boolean isNameAlreadyExists(String name) {
 		return typeRepository.existsByName(name);
@@ -22,9 +22,8 @@ public class TypeServiceImpl implements TypeService {
 	@Override
 	public void createType(Type type) {
 		typeRepository.save(type);
-		
 	}
-	
+
 	@Override
 	public List<Type> getType() {
 		return typeRepository.findAll();
@@ -38,14 +37,12 @@ public class TypeServiceImpl implements TypeService {
 	@Override
 	public void typeDeleteById(Long id) {
 		typeRepository.deleteById(id);
-		
+
 	}
 
 	@Override
 	public Object getTypeById(Long id) {
 		return typeRepository.findById(id).get();
 	}
-	
-
 
 }

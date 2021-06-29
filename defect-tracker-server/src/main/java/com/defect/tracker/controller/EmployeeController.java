@@ -54,9 +54,8 @@ public class EmployeeController {
 
 	@Autowired
 	private Mapper mapper;
-	
-//	final String UPLOAD_DIR = "E:\\pro_defect___\\defect-tracker-server\\src\\main\\resources\\profiles";
-	final String UPLOAD_DIR = "D:";
+
+	final String UPLOAD_DIR = "E:\\pro_defect___\\defect-tracker-server\\src\\main\\resources\\profiles";
 
 	@PostMapping(value = EndpointURI.EMPLOYEE)
 	public ResponseEntity<Object> addEmployee(@Valid @RequestPart("employee") String employee,
@@ -146,12 +145,10 @@ public class EmployeeController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_Id_NOT_AVAILABLE,
 					validationFailureStatusCode.getEmployeeIdNotAvailable()), HttpStatus.BAD_REQUEST);
 		}
-
 		if (!employeeService.getEmployeeStatus(employeeDto.getId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.EMPLOYEE_NOT_ACTIVE,
 					validationFailureStatusCode.getEmployeeNotActive()), HttpStatus.BAD_REQUEST);
 		}
-
 		if (!designationService.designationExistsById(employeeDto.getDesignationId())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.DESIGNATION_NOT_FOUND,
 					validationFailureStatusCode.getEmployeeDesignationNotFound()), HttpStatus.BAD_REQUEST);

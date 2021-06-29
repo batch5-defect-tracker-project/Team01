@@ -47,7 +47,6 @@ public class SubModuleController {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.SUB_MODULE_EXISTS,
 					validationFailureStatusCodes.getSubModuleNameAlreadyExists()), HttpStatus.BAD_REQUEST);
 		}
-
 		SubModule subModule = mapper.map(subModuleDto, SubModule.class);
 		subModuleService.createSubModule(subModule);
 		return new ResponseEntity<Object>(Constants.SUB_MODULE_ADDED_SUCCESS, HttpStatus.OK);
@@ -104,7 +103,6 @@ public class SubModuleController {
 	public ResponseEntity<Object> getAllSubModule() {
 		List<SubModuleDto> subModuleList = mapper.map(subModuleService.getAllSubModule(), SubModuleDto.class);
 		return new ResponseEntity<Object>(subModuleList, HttpStatus.OK);
-
 	}
 
 }

@@ -35,7 +35,6 @@ public class ModuleController {
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	private Mapper mapper;
-
 	@Autowired
 	ProjectService projectService;
 

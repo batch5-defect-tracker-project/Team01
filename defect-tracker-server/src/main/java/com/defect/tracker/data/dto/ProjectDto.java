@@ -12,7 +12,7 @@ public class ProjectDto {
 	@NotBlank(message = "{project.name.blank}")
 	@Pattern(regexp = "^[a-zA-Z.\\-\\/+=@_ ]*$", message = "{project.name.notallow.specialcharacters}")
 	private String name;
-	
+
 	@NotNull(message = "{abbrevation.name.null}")
 	@NotEmpty(message = "{abbrevation.name.empty}")
 	@NotBlank(message = "{abbrevation.name.blank}")

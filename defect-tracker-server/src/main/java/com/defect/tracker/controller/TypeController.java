@@ -25,16 +25,15 @@ import com.defect.tracker.util.ValidationFailureStatusCodes;
 
 @RestController
 public class TypeController {
-
 	@Autowired
 	TypeService typeService;
 	@Autowired
 	ValidationFailureStatusCodes validationFailureStatusCodes;
 	@Autowired
 	private Mapper mapper;
-	
+
 	@PostMapping(value = EndpointURI.TYPE)
-	public ResponseEntity<Object> addType(@Valid @RequestBody TypeDto typeDto) {	
+	public ResponseEntity<Object> addType(@Valid @RequestBody TypeDto typeDto) {
 		if (typeService.isNameAlreadyExists(typeDto.getName())) {
 			return new ResponseEntity<>(new ValidationFailureResponse(ValidationConstance.TYPE_EXISTS,
 					validationFailureStatusCodes.getNameAlreadyExists()), HttpStatus.BAD_REQUEST);

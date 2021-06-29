@@ -61,7 +61,6 @@ public class EmailServiceImpl implements EmailService {
 		LocalDate date = LocalDate.now();
 		simpleMail.setText("Your details update successful when " + date + "	" + time);
 		javaMailSender.send(simpleMail);
-
 	}
 
 	@Override
@@ -76,7 +75,6 @@ public class EmailServiceImpl implements EmailService {
 				+ moduleService.findById(defectDto.getModuleId()) + "  projectName : "
 				+ projectService.getProjectByName(defectDto.getProjectId()));
 		javaMailSender.send(mailmessage);
-
 	}
 
 	@Override
@@ -97,7 +95,6 @@ public class EmailServiceImpl implements EmailService {
 				+ moduleService.findById(defectDto.getModuleId()) + "  projectName : "
 				+ projectService.getProjectByName(defectDto.getProjectId()));
 		javaMailSender.send(mailmessage);
-
 	}
 
 }

@@ -9,7 +9,4 @@ import com.defect.tracker.data.entities.Designation;
 public interface DesignationRepository extends JpaRepository<Designation, Long> {
 
 	boolean existsByName(String name);
-
-	
-
 }

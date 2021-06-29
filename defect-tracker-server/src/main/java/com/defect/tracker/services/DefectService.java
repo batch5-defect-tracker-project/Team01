@@ -9,17 +9,17 @@ import com.defect.tracker.data.entities.Defect;
 public interface DefectService {
 
 	public boolean isDefectExistsById(Long id);
-	
+
 	public void createDefect(Defect defect);
-	
+
 	public List<Defect> getAllDefect();
-	
+
 	public boolean existsDefectById(Long id);
-	
+
 	public void editDefectById(Defect defect);
-	
+
 	public void deleteDefectById(Long id);
-	
+
 	public Object getDefectById(Long id);
 
 	public String getDefectStatusById(Long id);

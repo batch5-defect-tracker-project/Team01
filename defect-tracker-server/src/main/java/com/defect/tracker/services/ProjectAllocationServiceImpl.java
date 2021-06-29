@@ -29,7 +29,6 @@ public class ProjectAllocationServiceImpl implements ProjectAllocationService {
 	@Override
 	public void updateprojectAllocation(ProjectAllocation projectAllocation) {
 		projectAllocationRepository.save(projectAllocation);
-
 	}
 
 	@Override
@@ -49,9 +48,4 @@ public class ProjectAllocationServiceImpl implements ProjectAllocationService {
 				employeeId, moduleId, subModuleId);
 	}
 
-	
 }
-
-
-
-
